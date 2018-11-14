@@ -1,0 +1,34 @@
+/*******************************************************************************
+ * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales - initial API and implementation
+ *******************************************************************************/
+target "CapellaFiltering"
+
+include "http://git.polarsys.org/c/capella/capella.git/plain/releng/plugins/org.polarsys.capella.targets/full/capella.target-definition.targetplatform?h=v1.2.x"
+
+with source, requirements
+
+location "https://ci.polarsys.org/capella/job/capella-v1.2.x/lastSuccessfulBuild/artifact/releng/plugins/org.polarsys.capella.rcp.site/target/repository" {
+
+	org.polarsys.capella.rcp.feature.feature.group
+}
+
+location capella-tests-master "https://ci.polarsys.org/capella/job/capella-v1.2.x/lastSuccessfulBuild/artifact/releng/plugins/org.polarsys.capella.test.site/target/repository" {
+
+	org.polarsys.capella.test.feature.feature.group
+
+}
+
+
+
+
+ 
+
+ 
+

@@ -1,0 +1,38 @@
+These followings icons are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+<icon file path> - <original eclipse plug-in> - <original file path>
+
+/icons/full/obj16/FilteringCriterionPkg.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\ConceptPkg.gif
+/icons/full/obj16/FilteringResultPkg.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\MissionPkg.gif
+/icons/full/obj16/uncheckAll_ovr_optional.png - org.polarsys.capella.filtering.model.edit - org.polarsys.capella.filtering.model.edit/icons/full/obj16/uncheckAll_ovr_optional.png
+/icons/full/ctool16/CreateFilteringCriterionPkg_ownedFilteringCriteria_FilteringCriterion.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\ConceptPkg.gif
+/icons/full/ctool16/CreateFilteringCriterionPkg_ownedFilteringCriterionPkgs_FilteringCriterionPkg.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\ConceptPkg.gif
+/icons/full/ctool16/CreateFilteringResultPkg_ownedFilteringResultPkgs_FilteringResultPkg.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\MissionPkg.gif
+/icons/full/ctool16/CreateFilteringResultPkg_ownedFilteringResults_FilteringResult.gif - org.polarsys.capella.core.data.res.edit - org.polarsys.capella.core.data.res.edit\icons\full\obj16\MissionPkg.gif
+org.polarsys.capella.filtering.model.edit/icons/full/obj16
+AssociatedFilteringCriterionSet.gif
+CreationDefaultFilteringCriterionSet.gif
+FilteringCriterion.gif
+FilteringModel.gif
+FilteringResult.gif
+FilteringResults.gif
+ovr_optional.png
+org.polarsys.capella.filtering.model.edit/icons/full/ctool16
+CreateExtensibleElement_ownedExtensions_AssociatedFilteringCriterionSet.gif
+CreateExtensibleElement_ownedExtensions_CreationDefaultFilteringCriterionSet.gif
+CreateExtensibleElement_ownedExtensions_FilteringModel.gif
+CreateExtensibleElement_ownedExtensions_FilteringResults.gif
+CreateFilteringModel_ownedFilteringCriteria_FilteringCriterion.gif
+CreateFilteringModel_ownedFilteringCriterionPkgs_FilteringCriterionPkg.gif
+CreateFilteringResults_filteringResults_FilteringResult.gif
+CreateFilteringResults_ownedFilteringResultPkgs_FilteringResultPkg.gif
+CreateGenericPkg_capellaElements_AssociatedFilteringCriterionSet.gif
+CreateGenericPkg_capellaElements_CreationDefaultFilteringCriterionSet.gif
+CreateGenericPkg_capellaElements_FilteringCriterion.gif
+CreateGenericPkg_capellaElements_FilteringCriterionPkg.gif
+CreateGenericPkg_capellaElements_FilteringModel.gif
+CreateGenericPkg_capellaElements_FilteringResult.gif
+CreateGenericPkg_capellaElements_FilteringResultPkg.gif
+CreateGenericPkg_capellaElements_FilteringResults.gif

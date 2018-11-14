@@ -1,0 +1,38 @@
+<!--
+  Copyright (c) 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
+=Introduction=
+
+Product Line Engineering (PLE) is a technology for mass customization that derives product instances from a set of core assets. Where applicable, and after an up-front investment, companies obtain time-to-market reduction through a systematic reuse process. Also companies obtain quality improvements through the standardization and homogenization of product family members among other benefits.
+
+There are two main phases:
+
+* '''Domain Engineering:''' Activities related with the definition of the core assets
+* '''Application Engineering:''' Activities related with the usage of these core assets.
+
+The current implementation of SPLE in Capella consists in creating a '''''Generic Product'''''. In this Generic Product, the Domain Engineers tag model elements that correspond to a specific '''''feature''''' (filtering point expressing optionality). Features are abstract characteristics of a system that are relevant for some stakeholder.  Then, Application Engineers can derive '''''Specific Products '''''containing only a selected set of features. This selection of features for extracting a specific product is called '''FilteringResult'''. The specific product will contain the elements associated to the selected features in addition to the common part that is shared among all products in the product family. The following figure illustrates this concept.
+
+<center>[[Image:Images/introduction_concept.png|center|480px]]</center>
+
+
+In this Add-On, Capella elements are enriched with filtering related information (see Appendix 1: Basic filtering Add-On Metamodel). The new functionalities for filtering management presented in the following sections are built on top of this.
+
+
+{| class="prettytable"
+|-
+|
+
+
+|
+'''Contributions:''' The new actions are available in the Variability submenu of Capella Project Explorer elements and Diagram elements. It also contributes to Decorators, Semantic browser and Validations.
+
+|}
+
+

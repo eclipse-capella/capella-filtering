@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.polarsys.capella.filtering.properties;singleton:=true
+Bundle-Version: 1.2.0.qualifier
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.polarsys.capella.core.ui.properties,
+ org.polarsys.capella.core.data.information.datatype.properties,
+ org.polarsys.capella.filtering.model,
+ org.polarsys.capella.filtering.tools
+Export-Package: org.polarsys.capella.filtering.properties,
+ org.polarsys.capella.filtering.properties.sections
+Bundle-Localization: plugin
+Import-Package: org.polarsys.capella.filtering.tools.utils

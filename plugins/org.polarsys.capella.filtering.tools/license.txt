@@ -1,0 +1,16 @@
+These followings icons are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+<icon file path> - <original eclipse plug-in> - <original file path>
+icons/checkAll.gif - ?
+icons/uncheckAll.gif - ?
+
+org.polarsys.capella.filtering.tools/icons
+criteriaAssigning.png
+extract.png
+filteringMetric.png
+optionalDecorator.png
+overview_16.png
+ovr_optional.png
+selectCriteriaFromResult.png

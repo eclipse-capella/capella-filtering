@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+  Copyright (c) 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="capella.category/filtering"
+            name="Filtering AddOn">
+         <category
+               id="integrity"
+               name="Integrity">
+         </category>
+         <category
+               id="design"
+               name="Design">
+         </category>
+      </category>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://www.polarsys.org/capella/filtering/1.2.0">
+         </package>
+         <package
+               namespaceUri="http://www.polarsys.org/capella/core/modeller/1.2.0">
+         </package>
+         <package
+               namespaceUri="http://www.polarsys.org/capella/core/core/1.2.0">
+         </package>
+         <package
+               namespaceUri="http://www.polarsys.org/capella/core/cs/1.2.0">
+         </package>
+         <package
+               namespaceUri="http://www.polarsys.org/capella/core/fa/1.2.0">
+         </package>
+         <constraints
+               categories="capella.category/filtering/integrity">
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_I_Project_OnlyOneExtensionElements"
+                  id="F_I_01"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_I_01 - Only one FilteringModel, Filtering Results, DefaultCreationFeatureSet as SystemEngineering child"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} Only one {1}as child is allowed
+               </message>
+               <description>
+                  Because of a technical limitation the user could add more than one FilteringModel, Filtering Results, DefaultCreationFeatureSet as SystemEngineering child. Only one is permitted as the other ones will be ignored.
+               </description>
+               <target
+                     class="SystemEngineering">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_I_CapellaElement_OnlyOneAssociatedCriterionSet"
+                  id="F_I_02"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_I_02 - Only one AssociatedFilteringCriterionSet as CapellaElement child"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} Only one AssociatedFilteringCriterionSet as child allowed
+               </message>
+               <description>
+                  Because of a technical limitation the user could add more than one AssociatedFilteringCriterionSet as CapellaElement child. Only one is permitted as the other ones will be ignored.
+               </description>
+               <target
+                     class="CapellaElement"></target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet"
+                  id="F_I_03"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_I_03 - Empty AssociatedFilteringCriterionSet"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} contains AssociatedFilteringCriterionSet as child without references to filtering criteria
+               </message>
+               <description>
+                  It is not worthy to keep an AssociatedFilteringCriterionSet element without references to filtering criteria. It should be removed or updated.
+               </description>
+               <target
+                     class="CapellaElement">
+               </target>
+            </constraint>
+         </constraints>
+         <constraints
+               categories="capella.category/filtering/design">
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_CapellaElement_Parents"
+                  id="F_D_01"
+                  isEnabledByDefault="false"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_01 - CapellaElement parents consistency"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} must belong to [{1}] because the optional child {2} does not contain this list
+               </message>
+               <description>
+                  If a CapellaElement has feature V and any of its parents contains other associated features but not V.
+               </description>
+               <target
+                     class="CapellaElement">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_Component_Functions"
+                  id="F_D_02"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_02 - Components&apos; functions consistency"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} should belong to [{1}] because {2} belongs to this list
+               </message>
+               <description>
+                  If a Function in a Component does not contain the feature of the Component.
+               </description>
+               <target
+                     class="Component"></target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_Component_DeploymentLinks"
+                  id="F_D_03"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_03 - Components&apos; deployment links consistency"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} should belong to [{1}] because deployed {2} belongs to this list
+               </message>
+               <description>
+                  If a Component has a deployment link to another Component and it contains a feature that the other Component does not contain.
+               </description>
+               <target
+                     class="DeploymentTarget"></target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_FunctionalExchange_Functions"
+                  id="F_D_04"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_04 - FunctionalExchanges&apos; components consistency"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} belongs to [{1}] and its related functions should belong to this list. {2}
+               </message>
+               <description>
+                  If a Functional Exchange contains a Feature that is not contained in its associated Functions.
+               </description>
+               <target
+                     class="FunctionalExchange"></target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_PhysicalLink_Components"
+                  id="F_D_05"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_05 - PhysicalLinks&apos; components consistencytency"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  {0} belongs to [{1}] and its related functions should belong to this list. {2}
+               </message>
+               <description>
+                  If a PhysicalLink contains a Feature that is not contained in its associated Components.
+               </description>
+               <target
+                     class="PhysicalLink"></target>
+            </constraint>
+            <constraint
+                  class="org.polarsys.capella.filtering.validation.constraints.MDCHK_D_FilteringCriterion_Unused"
+                  id="F_D_06"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="F_D_06 - Unused Filtering Criterion"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} is never used in the Project
+               </message>
+               <description>
+                  A Filtering Criterion that is never used in any Capella Element
+               </description>
+               <target
+                     class="FilteringCriterion">
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.polarsys.capella.core.validation.ui.ide.capellaQuickFix">
+      <resolver
+            class="org.polarsys.capella.filtering.validation.constraints.quickfix.MDCHK_D_CapellaElement_Parents_Resolver"
+            desc="Assign all the missing features of its optional childs"
+            icon="icons/criteriaAssigning.png"
+            label="Assign all the missing features of its optional childs">
+         <rules
+               ruleId="F_D_01">
+         </rules>
+      </resolver>
+      <resolver
+            class="org.polarsys.capella.filtering.validation.constraints.quickfix.MDCHK_DeleteElement_Resolver"
+            desc="Remove the element from the model"
+            icon="IMG_TOOL_DELETE"
+            label="Remove the element">
+         <rules
+               ruleId="F_D_06">
+         </rules>
+      </resolver>
+      <resolver
+            class="org.polarsys.capella.filtering.validation.constraints.quickfix.MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet_Resolver"
+            desc="Remove Associated Filtering Criterion Set from the Capella Element"
+            icon="IMG_TOOL_DELETE"
+            label="Remove Associated Filtering Criterion Set">
+         <rules
+               ruleId="F_I_03">
+         </rules>
+      </resolver>
+   </extension>
+
+</plugin>

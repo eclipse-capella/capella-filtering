@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+  Copyright (c) 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.polarsys.capella.filtering.tools.decorators.CriteriaLabelDecorator"
+            id="org.polarsys.capella.filtering.tools.decorator"
+            label="Filtering Image And Text Decorator"
+            lightweight="false"
+            state="true">
+         <enablement>
+         <!-- More check is done inside the class FeaturesLabelDecorator -->
+            <objectClass
+                  name="org.polarsys.capella.core.data.capellacore.CapellaElement">
+            </objectClass>            
+         </enablement>
+      </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.polarsys.capella.filtering.tools.melodyElementContribution.filteringOverview"
+            objectClass="org.polarsys.capella.core.data.capellacore.CapellaElement">
+         <menu
+               icon="icons/optionalDecorator.png"
+               id="org.polarsys.capella.filtering.tools.menu"
+               label="Filtering"
+               path="additions">
+            <groupMarker
+                  name="org.polarsys.capella.filtering.tools.separator">
+            </groupMarker>
+         </menu>
+         <enablement>
+            <test property="org.polarsys.capella.filtering.isViewPointActivated" />
+         </enablement>
+         <action
+               class="org.polarsys.capella.filtering.tools.actions.FilteringOverviewAction"
+               enablesFor="1"
+               icon="icons/overview_16.png"
+               id="org.polarsys.capella.filtering.tools.FilteringOverview.melodyElement"
+               label="%AnalyzeFeatures"
+               menubarPath="org.polarsys.capella.filtering.tools.menu/org.polarsys.capella.filtering.tools.separator">
+         </action>
+         <action
+               class="org.polarsys.capella.filtering.tools.actions.FilteringMultipleCriteriaAssigningAction"
+               icon="icons/criteriaAssigning.png"
+               id="org.polarsys.capella.filtering.tools.FilteringMultipleFeaturesAssignation.melodyElement"
+               label="%MultipleFeaturesAssignation"
+               menubarPath="org.polarsys.capella.filtering.tools.menu/org.polarsys.capella.filtering.tools.separator">
+         </action>
+         <visibility>
+            <not>
+               <or>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.FilteringCriterionSet">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.FilteringModel">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.FilteringResults">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.FilteringCriterion">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.core.data.capellamodeller.SystemEngineering">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.core.data.capellamodeller.Project">
+                  </objectClass>
+               </or>
+            </not>
+         </visibility>
+      </objectContribution>
+      <objectContribution
+            id="org.polarsys.capella.filtering.tools.projectContribution.extraction"
+            objectClass="org.polarsys.capella.filtering.FilteringResult">
+         <menu
+               icon="icons/optionalDecorator.png"
+               id="org.polarsys.capella.filtering.tools.menu2"
+               label="Filtering"
+               path="additions">
+            <groupMarker
+                  name="org.polarsys.capella.filtering.tools.separator2">
+            </groupMarker>
+         </menu>
+         <action
+               class="org.polarsys.capella.filtering.tools.actions.FilteringExtractionAction"
+               icon="icons/extract.png"
+               id="org.polarsys.capella.filtering.tools.action2"
+               label="%DeriveSpecificProduct"
+               menubarPath="org.polarsys.capella.filtering.tools.menu2/org.polarsys.capella.filtering.tools.separator2">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="org.polarsys.capella.filtering.tools.systemEngineeringContribution.metrics"
+            objectClass="org.polarsys.capella.core.data.capellamodeller.SystemEngineering">
+         <menu
+               icon="icons/optionalDecorator.png"
+               id="org.polarsys.capella.filtering.tools.menu3"
+               label="Filtering"
+               path="additions">
+            <groupMarker
+                  name="org.polarsys.capella.filtering.tools.separator3">
+            </groupMarker>
+         </menu>
+         <action
+               class="org.polarsys.capella.filtering.tools.actions.FilteringOverviewAction"
+               enablesFor="1"
+               icon="icons/overview_16.png"
+               id="org.polarsys.capella.filtering.tools.FilteringOverview.systemEngineering"
+               label="%AnalyzeFeatures"
+               menubarPath="org.polarsys.capella.filtering.tools.menu3/org.polarsys.capella.filtering.tools.separator3">
+         </action>
+         <action
+               class="org.polarsys.capella.filtering.tools.actions.FilteringMetricsAction"
+               enablesFor="1"
+               icon="icons/filteringMetric.pngfilteringMetric.png"
+               id="org.polarsys.capella.filtering.tools.FilteringMetrics.systemsEngineering"
+               label="Filtering metrics"
+               menubarPath="org.polarsys.capella.filtering.tools.menu3/org.polarsys.capella.filtering.tools.separator3">
+         </action>
+         <enablement>
+            <test property="org.polarsys.capella.filtering.isViewPointActivated" />
+         </enablement>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.polarsys.capella.core.platform.sirius.ui.actions.Capella.page"
+            class="org.polarsys.capella.filtering.tools.preferences.FilteringPreferencesPage"
+            id="org.polarsys.capella.filtering.tools.page"
+            name="Filtering">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.polarsys.capella.filtering.tools.preferences.FilteringPreferencesInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonFilter
+            activeByDefault="true"
+            description="Hides Associated Feature Set from Capella elements"
+            id="org.polarsys.capella.filtering.filters.associatedFilteringCriterionSet"
+            name="Filtering: Associated Filtering Criterion Set"
+            visibleInUI="true">
+         <filterExpression>
+            <instanceof
+                  value="org.polarsys.capella.filtering.AssociatedFilteringCriterionSet">
+            </instanceof>
+         </filterExpression>
+      </commonFilter>
+            <commonFilter
+            activeByDefault="false"
+            description="Hides Feature Model from Project"
+            id="org.polarsys.capella.filtering.filters.filteringModel"
+            name="Filtering: Filtering Model"
+            visibleInUI="true">
+         <filterExpression>
+            <instanceof
+                  value="org.polarsys.capella.filtering.FilteringModel">
+            </instanceof>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="false"
+            description="Hides FilteringResults element from Project"
+            id="org.polarsys.capella.filtering.filters.filteringresults"
+            name="Filtering: Filtering Results"
+            visibleInUI="true">
+         <filterExpression>
+            <instanceof
+                  value="org.polarsys.capella.filtering.FilteringResults">
+            </instanceof>
+         </filterExpression>
+      </commonFilter>
+      <commonFilter
+            activeByDefault="false"
+            description="Hides Creation Default Feature Set from Project"
+            id="org.polarsys.capella.filtering.filters.creationDefaultFeatureSet"
+            name="Filtering: Creation Default Filtering Criterion Set"
+            visibleInUI="true">
+         <filterExpression>
+            <instanceof
+                  value="org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet">
+            </instanceof>
+         </filterExpression>
+      </commonFilter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="capella.project.explorer">
+         <includes>
+            <contentExtension
+                  pattern="org.polarsys.capella.filtering.filters.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+   <extension
+         point="org.eclipse.sirius.sessionManagerListener">
+      <listener
+            class="org.polarsys.capella.filtering.tools.listeners.FilteringSessionManagerListener">
+      </listener>
+   </extension>
+      <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.polarsys.capella.filtering.tools.propertytester.FilteringPropertyTester"
+               id="org.polarsys.capella.filtering.propertyTester"
+               namespace="org.polarsys.capella.filtering"
+               properties="isViewPointActivated"
+               type="java.lang.Object">
+         </propertyTester>
+      </extension>
+      
+         <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.polarsys.capella.views.category"
+            class="org.polarsys.capella.filtering.tools.view.DiagCriteriaVisibilityView"
+            icon="icons/criteriaAssigning.png"
+            id="org.polarsys.capella.filtering.tools.view.DiagCriteriaVisibilityView"
+            name="Diagram Filtering Criteria Visibility"
+            restorable="true">
+      </view>
+   </extension>
+         <extension
+               point="org.eclipse.sirius.refreshExtensionProvider">
+            <refreshExtensionProvider
+                  priority="normal"
+                  providerClass="org.polarsys.capella.filtering.tools.refresh.ExtensionRefreshExtensionProvider">
+            </refreshExtensionProvider>
+         </extension>
+   
+</plugin>

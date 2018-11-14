@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+    
+	<parent>
+		<groupId>org.polarsys</groupId>
+		<artifactId>org.polarsys.capella.addon.filtering</artifactId>
+       <version>1.2.0-SNAPSHOT</version>
+       <relativePath>../../</relativePath>
+	</parent>
+	
+    <artifactId>org.polarsys.capella.filtering.tests.ju</artifactId>
+    <version>1.2.0-SNAPSHOT</version>
+    <packaging>eclipse-test-plugin</packaging>
+  			
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<product>${capella-product-id}</product>
+					<application>${capella-application-id}</application>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<testClass>org.polarsys.capella.filtering.tests.ju.tests.DerivationTestSuite</testClass>
+					<!-- <debugPort>9999</debugPort> -->
+					<dependencies>
+						<!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=462862 -->
+						<dependency>
+							<type>eclipse-plugin</type>
+							<artifactId>org.eclipse.equinox.event</artifactId>
+							<version>0.0.0</version>
+						</dependency>
+					</dependencies>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<environments combine.self="override"/>
+					<dependency-resolution>
+						<extraRequirements>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>${capella-product-id}</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>${capella-application-id}</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.polarsys.capella.filtering.feature</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>>
+						</extraRequirements>
+					</dependency-resolution>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
