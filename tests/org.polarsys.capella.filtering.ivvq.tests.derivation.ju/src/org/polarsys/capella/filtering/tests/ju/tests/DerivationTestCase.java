@@ -54,26 +54,32 @@ import org.polarsys.capella.test.framework.helpers.TestHelper;
 /**
  * Derivation test
  */
-@SuppressWarnings({ "restriction", "nls" })
+@SuppressWarnings({ "nls" })
 public class DerivationTestCase extends BasicTestCase {
 	private IProgressMonitor progressMonitor = new NullProgressMonitor();
 
 	Session session = null;
 	IProject project = null;
+	FilteringResult currentFilteringResult = null;
 
-	FilteringResult configuration = null;
 	private String modelId;
 
 	@Override
 	public List<String> getRequiredTestModels() {
-		return Arrays.asList("sysmodel", "sysmodel_Empty FilteringResult", "sysmodel_FilteringResult 1",
-				"sysmodel_FilteringResult 2");
+		return Arrays.asList("MyLib", "sysmodel", "sysmodel_Empty FilteringResult", "sysmodel_FilteringResult 1",
+				"sysmodel_FilteringResult 2", "TestLib", "TestLib_DieselFilteringResult",
+				"TestLib_HybridFilteringResult", "TestLib_PetrolFilteringResult", "TestSPLProject",
+				"TestSPLProject_EmptyFilteringResult", "TestSPLProject_FilteringResult");
+	}
+
+	public List<String> getModelsUnderTest() {
+		return Arrays.asList("sysmodel", "TestLib", "TestSPLProject");
 	}
 
 	@Override
 	public void test() {
 		// We use this try/catch with a wrappedException to be able to see in
-		// junit which were the involved project and configuration
+		// junit involved project and filtering results
 		try {
 			doTestDerivation();
 		} catch (Exception exception) {
@@ -82,74 +88,86 @@ public class DerivationTestCase extends BasicTestCase {
 	}
 
 	public void doTestDerivation() throws Exception {
+		for (String inputModelName : getModelsUnderTest()) {
+			performDerivationAndCheck(inputModelName);
+		}
+	}
 
-		//TODO: foreach required model launch a test case
-		String inputModelName = getRequiredTestModels().get(0);
+	/**
+	 * Perform derivation for each {@link FilteringResult} in an already loaded
+	 * model. Models can be loaded using {@link #getRequiredTestModels()}
+	 * 
+	 * @throws Exception
+	 */
+	private void performDerivationAndCheck(String inputModelName) throws Exception {
 		project = IResourceHelpers.getEclipseProjectInWorkspace(inputModelName);
 
 		Session session = getSessionForTestModel(inputModelName);
 		session.open(progressMonitor);
 
 		// Get the configurations element from the model
-		FilteringResults configurations = getConfigurationsElement(session.getSemanticResources());
+		FilteringResults FilteringResults = getConfigurationsElement(session.getSemanticResources());
 
-		// TODO: foreach result derive and test
-		configuration = configurations.getFilteringResults().get(0);
-		IProject expectedResultProject = IResourceHelpers.getEclipseProjectInWorkspace(configuration.getName());
+		// foreach result derive and test
+		for (FilteringResult filterResult : FilteringResults.getFilteringResults()) {
+			this.currentFilteringResult = filterResult;
+			System.err.println("=== currentFilteringResult: " + currentFilteringResult);
 
-		// Create derived project
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		String derivedProjectName = configuration.getName();
-		IProject derivedProject = workspace.getRoot().getProject(derivedProjectName);
-		derivedProject.create(progressMonitor);
-		derivedProject.open(progressMonitor);
+			IProject expectedResultProject = IResourceHelpers.getEclipseProjectInWorkspace(filterResult.getName());
 
-		// Perform derivation. The process we are interested in this test
-		FilteringExtractionJob job = new FilteringExtractionJob(project, derivedProject,
-				configuration.getFilteringCriteria(), configuration, modelId);
-		workspace.run(job, progressMonitor);
+			// Create derived project
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			String derivedProjectName = filterResult.getName();
+			IProject derivedProject = workspace.getRoot().getProject(derivedProjectName);
+			derivedProject.create(progressMonitor);
+			derivedProject.open(progressMonitor);
 
-		// Check derived project
-		//
-		// Open session
-		IFile derivedAirdFile = findFirstMatchingFile(SiriusUtil.SESSION_RESOURCE_EXTENSION, derivedProject);
+			// Perform derivation. The process we are interested in this test
+			FilteringExtractionJob job = new FilteringExtractionJob(project, derivedProject,
+					filterResult.getFilteringCriteria(), filterResult, modelId);
+			workspace.run(job, progressMonitor);
 
-		Session sessionOfDerived = org.polarsys.capella.test.framework.helpers.TestHelper
-				.openOrGetSession(derivedAirdFile);
-		sessionOfDerived.open(progressMonitor);
-		assertTrue("Session of derived project does not open!: " + getInfoOfCurrentTest(), sessionOfDerived.isOpen());
+			// Check derived project
+			//
+			// Open session
+			IFile derivedAirdFile = findFirstMatchingFile(SiriusUtil.SESSION_RESOURCE_EXTENSION, derivedProject);
 
-		// Get and open reference model
-		Session expectedResultSession = getSessionForTestModel(inputModelName+"_"+configuration.getName());
+			Session sessionOfDerived = org.polarsys.capella.test.framework.helpers.TestHelper
+					.openOrGetSession(derivedAirdFile);
+			sessionOfDerived.open(progressMonitor);
+			assertTrue("Session of derived project does not open!: " + getInfoOfCurrentTest(),
+					sessionOfDerived.isOpen());
 
-		expectedResultSession.open(progressMonitor);
-		assertTrue("Session of expected project does not open!: " + getInfoOfCurrentTest(),
-				expectedResultSession.isOpen());
+			// Get and open reference model
+			Session expectedResultSession = getSessionForTestModel(inputModelName + "_" + filterResult.getName());
 
-		// Check original and derived projects have same natures
+			expectedResultSession.open(progressMonitor);
+			assertTrue("Session of expected project does not open!: " + getInfoOfCurrentTest(),
+					expectedResultSession.isOpen());
 
-		checkProjectsHaveSameNatures(project, derivedProject);
+			// Check original and derived projects have same natures
 
-		//
-		// Check derived project against expected one
-		//
-		// Natures
-		checkProjectsHaveSameNatures(expectedResultProject, derivedProject);
-		// Project's content (files, folders)
-		checkProjectsContainSameIResources(expectedResultProject, derivedProject);
-		// References to semantic resources
-		checkReferencedSemanticResources(expectedResultSession, sessionOfDerived);
-		// Compare .melodymodeller files
-		checkSemanticResourcesAreEqual(TestHelper.getSemanticResource(expectedResultSession),
-				TestHelper.getSemanticResource(sessionOfDerived));
+			checkProjectsHaveSameNatures(project, derivedProject);
 
-		// Remove also derived
-		sessionOfDerived.save(progressMonitor);
-		sessionOfDerived.close(progressMonitor);
-		derivedProject.close(progressMonitor);
-		derivedProject.delete(IResource.FORCE | IResource.ALWAYS_DELETE_PROJECT_CONTENT, progressMonitor);
+			//
+			// Check derived project against expected one
+			//
+			// Natures
+			checkProjectsHaveSameNatures(expectedResultProject, derivedProject);
+			// Project's content (files, folders)
+			checkProjectsContainSameIResources(expectedResultProject, derivedProject);
+			// References to semantic resources
+			checkReferencedSemanticResources(expectedResultSession, sessionOfDerived);
+			// Compare .melodymodeller files
+			checkSemanticResourcesAreEqual(TestHelper.getSemanticResource(expectedResultSession),
+					TestHelper.getSemanticResource(sessionOfDerived));
 
-
+			// Delete derived project
+			sessionOfDerived.save(progressMonitor);
+			sessionOfDerived.close(progressMonitor);
+			derivedProject.close(progressMonitor);
+			derivedProject.delete(IResource.FORCE | IResource.ALWAYS_DELETE_PROJECT_CONTENT, progressMonitor);
+		}
 
 	}
 
@@ -187,7 +205,7 @@ public class DerivationTestCase extends BasicTestCase {
 
 	// Info to display (in case of failing test)
 	private String getInfoOfCurrentTest() {
-		return "Project=[" + project.getName() + "] with FilteringResult=[" + configuration.getName() + "]";
+		return "Project=[" + project.getName() + "] with FilteringResult=[" + currentFilteringResult.getName() + "]";
 	}
 
 	/**

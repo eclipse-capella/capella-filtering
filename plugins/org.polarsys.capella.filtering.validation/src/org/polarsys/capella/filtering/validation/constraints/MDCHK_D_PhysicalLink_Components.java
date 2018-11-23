@@ -47,6 +47,7 @@ public class MDCHK_D_PhysicalLink_Components extends AbstractModelConstraint {
 				List<FilteringCriterion> feFeatures = FilteringUtils.getAssociatedCriteria(physicalLink);
 
 				List<FilteringCriterion> outputFunctionFeatures = FilteringUtils.getAssociatedCriteria(outputObject);
+				
 				// Calculate missingFeatures of the output function
 				List<FilteringCriterion> missingOutputFeatures = ConstraintsUtil.missingFilteringCriteria(feFeatures,
 						outputFunctionFeatures);

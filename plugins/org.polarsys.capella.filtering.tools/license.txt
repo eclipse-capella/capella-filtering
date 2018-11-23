@@ -3,8 +3,9 @@ These followings icons are made available under the terms of the Eclipse Public 
  http://www.eclipse.org/legal/epl-v10.html
 
 <icon file path> - <original eclipse plug-in> - <original file path>
-icons/checkAll.gif - ?
-icons/uncheckAll.gif - ?
+/icons/refresh.gif - org.eclipse.pde.ui - org.eclipse.pde.ui/icons/elcl16/refresh.gif
+/icons/checkAll.gif - ?
+/icons/uncheckAll.gif - ?
 
 org.polarsys.capella.filtering.tools/icons
 criteriaAssigning.png

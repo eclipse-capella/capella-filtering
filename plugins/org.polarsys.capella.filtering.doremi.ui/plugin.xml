@@ -88,7 +88,6 @@
             </command>
             <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filters.optionals"
-                  icon="icons/filters.png"
                   label="Hide Optionals"
                   style="toggle">
                <visibleWhen
@@ -111,7 +110,6 @@
             </command>
             <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filters.common"
-                  icon="icons/filters.png"
                   label="Hide Common"
                   style="toggle">
                <visibleWhen
@@ -222,15 +220,6 @@
             allPopups="false"
             locationURI="menu:org.polarsys.capella.filtering.sirius.ui.filteringToolbar">
             <command
-                  commandId="org.polarsys.capella.filtering.sirius.ui.multipleCriteriaAssigningCommand"
-                  icon="icons/criteriaAssigning.png"
-                  label="Assign Filtering Criterion"
-                  style="push">
-               <visibleWhen
-                     checkEnabled="true">
-               </visibleWhen>
-            </command>
-            <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filteringOverviewCommand"
                   icon="icons/overview.png"
                   label="Filtering Criteria Overview"
@@ -240,24 +229,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.polarsys.capella.filtering.sirius.ui.selectHiddenCriteriaCommand"
-                  icon="icons/showHideCriteria.png"
-                  label="Show/hide Filtering Criteria"
-                  style="toggle">
-               <visibleWhen
-                     checkEnabled="false">
-                  <iterate
-                        ifEmpty="false"
-                        operator="or">
-                     <instanceof
-                           value="org.eclipse.sirius.diagram.ui.internal.edit.parts.DDiagramEditPart">
-                     </instanceof>
-                  </iterate>
-               </visibleWhen>
-            </command>
-            <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filters.optionals"
-                  icon="icons/filters.png"
                   label="Hide Optionals"
                   style="toggle">
                <visibleWhen
@@ -273,7 +245,6 @@
             </command>
             <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filters.common"
-                  icon="icons/filters.png"
                   label="Hide Common"
                   style="toggle">
                <visibleWhen

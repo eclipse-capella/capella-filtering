@@ -184,8 +184,8 @@
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
-                  name="F_D_05 - PhysicalLinks&apos; components consistencytency"
-                  severity="ERROR"
+                  name="F_D_05 - PhysicalLinks&apos; components consistency"
+                  severity="WARNING"
                   statusCode="1">
                <message>
                   {0} belongs to [{1}] and its related functions should belong to this list. {2}

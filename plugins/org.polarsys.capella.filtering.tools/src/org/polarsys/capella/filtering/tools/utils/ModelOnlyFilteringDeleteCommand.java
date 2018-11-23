@@ -48,10 +48,14 @@ class ModelOnlyFilteringDeleteCommand extends CapellaDeleteCommand {
 
 	/**
 	 * Finds _all_ elements that will be deleted when the command is executed.
-	 * NOTES: a. Two layers of business logic are controlling the result of this
-	 * operation: 1. The delete helper is used to expand the initial selection
-	 * 2. Business rules defined in PreDeleteStructureCommand b. All containment
-	 * children of deleted elements are explicitly contained in the result set.
+	 * <br>
+	 * NOTES: <br> 
+	 * a. Two layers of business logic are controlling the result of this
+	 * operation:<br>
+	 * 1. The delete helper is used to expand the initial selection <br>
+	 * 2. Business rules defined in PreDeleteStructureCommand <br>
+	 * b. All containment children of deleted elements are explicitly contained
+	 * in the result set.
 	 */
 	@Override
 	public Set<?> getAllElementsToDelete() {

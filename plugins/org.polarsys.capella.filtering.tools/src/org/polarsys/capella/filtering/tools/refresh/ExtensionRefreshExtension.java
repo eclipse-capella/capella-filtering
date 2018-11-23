@@ -34,12 +34,14 @@ public class ExtensionRefreshExtension implements IRefreshExtension {
 	}
 
 	public void process(DDiagram diagram) {
-		//refresh a already opened diagram
+
+		// refresh a already opened diagram
 		if (!diagram.getActivatedFilters().isEmpty()) {
 			CompositeFilterApplicationBuilder builder = new CompositeFilterApplicationBuilder(diagram);
 			builder.computeCompositeFilterApplications();
 		}
-		//set filter when opening a diagram
+
+		// set filter when opening a diagram
 		CompositeFilterDescription filterDesc = (CompositeFilterDescription) localSet
 				.getEObject(FilteringToolsPlugin.FILTER_URI, true);
 		if (!contains(diagram.getActivatedFilters(), filterDesc)) {

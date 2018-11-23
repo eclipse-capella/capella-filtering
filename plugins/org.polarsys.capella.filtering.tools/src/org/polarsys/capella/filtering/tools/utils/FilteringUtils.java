@@ -338,7 +338,7 @@ public class FilteringUtils {
 		return res;
 	}
 
-	public static Set<EObject> getImpactedElements(List<EObject> element) {
+	public static Set<EObject> getImpactedElements(Collection<EObject> element) {
 		Set<EObject> relatedElements = new HashSet<EObject>();
 
 		if (element == null || element.isEmpty()) {

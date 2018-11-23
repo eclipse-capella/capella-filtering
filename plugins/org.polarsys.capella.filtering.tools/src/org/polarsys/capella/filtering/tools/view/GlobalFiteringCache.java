@@ -23,6 +23,7 @@ public class GlobalFiteringCache {
 
 	private boolean isEnabled;
 	private Map<Project, FilteringResult> cache = new HashMap<>();
+	
 
 	public GlobalFiteringCache() {
 		// TODO Auto-generated constructor stub
@@ -61,6 +62,10 @@ public class GlobalFiteringCache {
 	public void setEnabled(boolean enabled) {
 		this.isEnabled = enabled;
 
+	}
+	@Override
+	public String toString() {
+		return cache.toString();
 	}
 
 }

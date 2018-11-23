@@ -54,6 +54,9 @@ public class FilteringServices {
 
 	}
 
+	/*
+	 * Used to filter diagram at refresh
+	 */
 	public boolean isFilteredByGlobalFilteringCache(EObject element) {
 
 		GlobalFiteringCache globalFilteringCache = FilteringToolsPlugin.getGlobalFilteringCache();

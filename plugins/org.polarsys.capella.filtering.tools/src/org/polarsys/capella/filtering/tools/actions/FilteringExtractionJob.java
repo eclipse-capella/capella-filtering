@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,7 @@ import com.google.common.collect.Lists;
  */
 /**
  * TODO A workspace runnable is used instead of a Job because resources
- * modification notifications caused several exceptions in Melody Project
+ * modification notifications caused several exceptions in Capella Project
  * Explorer and Properties views.
  */
 public class FilteringExtractionJob implements IWorkspaceRunnable {
@@ -99,6 +100,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 	@Override
 	public void run(IProgressMonitor monitor) {
 		try {
+
 			FilteringExtractor extractor = new FilteringExtractor(clonedProject, domainId);
 			/**
 			 * A new eclipse project has been created (copy nature from the
@@ -239,7 +241,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 					 * libraries.
 					 */
 					// The elements that are going to be completely removed
-					List<EObject> elementsToDelete = new ArrayList<>();
+					Set<EObject> elementsToDelete = new HashSet<>();
 
 					// The elements that are going to be uncontrol before
 					// removed
@@ -258,7 +260,11 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 										final CapellaElement capellaElement = (CapellaElement) eContainer;
 										IModel model = ILibraryManager.INSTANCE.getModel(capellaElement);
 										if (currentModel != null && currentModel.equals(model)
-												&& !isAlreadyContained(elementsToDelete, capellaElement)) {
+										/*
+										 * &&
+										 * !isAlreadyContained(elementsToDelete,
+										 * capellaElement)
+										 */) {
 											// We delete the element only if it
 											// doesn't associated with a checked
 											// feature
@@ -283,7 +289,10 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 								for (EObject element : impactedElements) {
 									IModel model = ILibraryManager.INSTANCE.getModel(element);
 									if (currentModel != null && currentModel.equals(model)
-											&& !isAlreadyContained(elementsToDelete, element)) {
+									/*
+									 * && !isAlreadyContained(elementsToDelete,
+									 * element)
+									 */) {
 										elementsToDelete.add(element);
 									}
 								}
@@ -322,7 +331,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 					/**
 					 * Delete the model elements to be deleted
 					 */
-					elementsToDelete = EcoreUtil.filterDescendants(elementsToDelete);
+					elementsToDelete = new HashSet<>(EcoreUtil.filterDescendants(elementsToDelete));
 					CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, elementsToDelete, true,
 							false, true);
 					if (command.canExecute()) {
@@ -350,6 +359,27 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 			// Finally monitor done
 			monitor.done();
 		}
+	}
+	
+	/**
+	 * @param elements
+	 * @param current
+	 */
+	@Deprecated // TODO: takes 94% of CPU time in a derivation !
+	// do not use list, use hasmap or treemap (contains fast)
+	boolean isAlreadyContained(List<EObject> elements, EObject current) {
+		if (!elements.contains(current)) {
+			for (EObject elts : elements) {
+				for (Iterator<EObject> iterator = elts.eAllContents(); iterator.hasNext();) {
+					EObject elt = iterator.next();
+					if (elt.equals(current)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -396,36 +426,20 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 		return false;
 	}
 
-	/**
-	 * @param elements
-	 * @param current
-	 */
-	boolean isAlreadyContained(List<EObject> elements, EObject current) {
-		if (!elements.contains(current)) {
-			for (EObject elts : elements) {
-				for (Iterator<EObject> iterator = elts.eAllContents(); iterator.hasNext();) {
-					EObject elt = iterator.next();
-					if (elt.equals(current)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-		return true;
-	}
+
 
 	protected void doExecuteNonDirtyingCommand(final Command realCommand) {
 		executionManager.execute(new AbstractNonDirtyingCommand() {
 			@Override
 			public void run() {
+				Collection<?> affectedObjects = realCommand.getAffectedObjects();
 				realCommand.execute();
 			}
 		});
 	}
 
 	/**
-	 * TODO Copied From MelodyViewpointUncontrolHandler without UI and
+	 * TODO Copied From CapellaViewpointUncontrolHandler without UI and
 	 * modifications.
 	 * 
 	 * @param semanticRoot
