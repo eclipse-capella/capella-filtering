@@ -36,6 +36,7 @@ import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
 import org.polarsys.capella.common.ui.actions.AbstractTigAction;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.model.handler.helpers.CapellaAdapterHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringModel;
@@ -49,150 +50,169 @@ import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
  */
 public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction implements IActionDelegate {
 
-	protected FilteringCriteriaSelectionDialog checkedTreeSelectionDialog;
+  protected FilteringCriteriaSelectionDialog checkedTreeSelectionDialog;
 
-	public void run(IAction action) {
+  public void run(IAction action) {
 
-		// Get the selected elements
-		final List<ModelElement> elements = getSelectedElements();
+    // Get the selected elements as Set (since resolving semantic elements
+    // below can add duplicates)
+    final Set<ModelElement> selectedElements = new HashSet<>(getSelectedElements());
 
-		// Remove elements that we were not able to adapt to melodyElements, for
-		// example Notes in diagrams
-		elements.removeAll(Collections.singletonList(null));
+    // resolve semantic elements and add them to the set
+    resolveSemanticElements(selectedElements);
 
-		// Display message there were no valid diagram element selected
-		if (elements.isEmpty()) {
-			MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
-					Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
-			return;
-		}
+    // Remove elements that we were not able to adapt to melodyElements, for
+    // example Notes in diagrams
+    selectedElements.removeAll(Collections.singletonList(null));
 
-		// Calculate intersection of feature model for all selected elements
-		Collection<FilteringModel> filteringModels = FilteringUtils.getCommonFilteringModels(elements, true);
-		if (filteringModels.isEmpty()) {
-			MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
-					Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
-			return;
+    // Display message there were no valid diagram element selected
+    if (selectedElements.isEmpty()) {
+      MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
+          Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
+      return;
+    }
 
-		}
-		Collection<FilteringCriterion> availableFeatures = FilteringUtils.getOwnedFilteringCriteria(filteringModels);
-		Collection<Object> globalFeatures = new ArrayList<>();
-		List<Object> checkedFeatures = new ArrayList<>();
+    // Calculate intersection of feature model for all selected elements
+    Collection<FilteringModel> filteringModels = FilteringUtils.getCommonFilteringModels(selectedElements, true);
+    if (filteringModels.isEmpty()) {
+      MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
+          Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
+      return;
 
-		HashMap<Object, Integer> infoFeatures = new HashMap<>();
+    }
+    Collection<FilteringCriterion> availableFeatures = FilteringUtils.getOwnedFilteringCriteria(filteringModels);
+    Collection<Object> globalFeatures = new ArrayList<>();
+    List<Object> checkedFeatures = new ArrayList<>();
 
-		// Fill checkedFeatures list and prepare the counter to check if a
-		// feature is contained by all selected elements
-		int elementCounter = 0;
-		for (ModelElement element : elements) {
-			if (element instanceof CapellaElement) {
-				elementCounter++;
-				List<FilteringCriterion> elementFeatures = FilteringUtils.getExplicitAssociatedCriteria((element));
-				for (EObject feature : elementFeatures) {
-					if (!infoFeatures.containsKey(feature)) {
-						infoFeatures.put(feature, 1);
-						if (!checkedFeatures.contains(feature)) {
-							checkedFeatures.add(feature);
-						}
-					} else {
-						infoFeatures.put(feature, infoFeatures.get(feature) + 1);
-					}
-				}
-			}
-		}
+    HashMap<Object, Integer> infoFeatures = new HashMap<>();
 
-		// Search for global features
-		for (Object concreteFeature : availableFeatures) {
-			Integer counter = infoFeatures.get(concreteFeature);
-			if ((counter != null) && (counter == elementCounter)) {
-				globalFeatures.add(concreteFeature);
-			}
-		}
+    // Fill checkedFeatures list and prepare the counter to check if a
+    // feature is contained by all selected elements
+    int elementCounter = 0;
+    for (ModelElement element : selectedElements) {
+      if (element instanceof CapellaElement) {
+        elementCounter++;
+        List<FilteringCriterion> elementFeatures = FilteringUtils.getExplicitAssociatedCriteria((element));
+        for (EObject feature : elementFeatures) {
+          if (!infoFeatures.containsKey(feature)) {
+            infoFeatures.put(feature, 1);
+            if (!checkedFeatures.contains(feature)) {
+              checkedFeatures.add(feature);
+            }
+          } else {
+            infoFeatures.put(feature, infoFeatures.get(feature) + 1);
+          }
+        }
+      }
+    }
 
-		// Create the dialog
-		setupDialog(filteringModels, globalFeatures, checkedFeatures);
-		// Open the dialog
-		if (checkedTreeSelectionDialog.open() == Window.OK) {
-			// Execute a command with the user modifications
+    // Search for global features
+    for (Object concreteFeature : availableFeatures) {
+      Integer counter = infoFeatures.get(concreteFeature);
+      if ((counter != null) && (counter == elementCounter)) {
+        globalFeatures.add(concreteFeature);
+      }
+    }
 
-			AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
-				public void run() {
-					List<FilteringCriterion> featuresToAdd = new ArrayList<>();
-					List<FilteringCriterion> featuresToRemove = new ArrayList<>();
+    // Create the dialog
+    setupDialog(filteringModels, globalFeatures, checkedFeatures);
+    // Open the dialog
+    if (checkedTreeSelectionDialog.open() == Window.OK) {
+      // Execute a command with the user modifications
 
-					Collection<Object> toCheck = checkedTreeSelectionDialog.getCheckedElements();
-					Collection<Object> toUnCheck = checkedTreeSelectionDialog.getUnCheckedElements();
+      AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+        public void run() {
+          List<FilteringCriterion> featuresToAdd = new ArrayList<>();
+          List<FilteringCriterion> featuresToRemove = new ArrayList<>();
 
-					// Filter the undefined ones
-					Collection<Object> undefined = checkedTreeSelectionDialog.getUndefinedElements();
-					if (!undefined.isEmpty()) {
-						toCheck.removeAll(undefined);
-						toUnCheck.removeAll(undefined);
-					}
+          Collection<Object> toCheck = checkedTreeSelectionDialog.getCheckedElements();
+          Collection<Object> toUnCheck = checkedTreeSelectionDialog.getUnCheckedElements();
 
-					for (ModelElement element : elements) {
-						if (element instanceof CapellaElement) {
-							CapellaElement mElement = (CapellaElement) element;
-							for (Object unCheckMe : toUnCheck) {
-								if (FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(unCheckMe)) {
-									featuresToRemove.add((FilteringCriterion) unCheckMe);
-								}
-							}
-							for (Object checkMe : toCheck) {
-								if (!FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(checkMe)) {
-									featuresToAdd.add((FilteringCriterion) checkMe);
-								}
-							}
-							FilteringUtils.addAssociatedCriteria(mElement, featuresToAdd);
-							FilteringUtils.removeAssociatedCriteria(mElement, featuresToRemove);
-						}
-					}
-				}
-			};
-			FilteringUtils.executeCommand(command, elements);
-		}
-	}
+          // Filter the undefined ones
+          Collection<Object> undefined = checkedTreeSelectionDialog.getUndefinedElements();
+          if (!undefined.isEmpty()) {
+            toCheck.removeAll(undefined);
+            toUnCheck.removeAll(undefined);
+          }
 
-	/**
-	 * Setup Dialog
-	 */
-	private void setupDialog(Collection<FilteringModel> filteringModels, Collection<Object> globalFeatures,
-			List<Object> checkedFeatures) {
+          for (ModelElement element : selectedElements) {
+            if (element instanceof CapellaElement) {
+              CapellaElement mElement = (CapellaElement) element;
+              for (Object unCheckMe : toUnCheck) {
+                if (FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(unCheckMe)) {
+                  featuresToRemove.add((FilteringCriterion) unCheckMe);
+                }
+              }
+              for (Object checkMe : toCheck) {
+                if (!FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(checkMe)) {
+                  featuresToAdd.add((FilteringCriterion) checkMe);
+                }
+              }
+              FilteringUtils.addAssociatedCriteria(mElement, featuresToAdd);
+              FilteringUtils.removeAssociatedCriteria(mElement, featuresToRemove);
+            }
+          }
+        }
+      };
+      FilteringUtils.executeCommand(command, selectedElements);
+    }
+  }
 
-		Collection<Project> projects = getProjects(filteringModels);
-		Session session = SessionManager.INSTANCE.getSession(projects.iterator().next());
-		TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-		checkedTreeSelectionDialog = new FilteringCriteriaSelectionDialog(Display.getCurrent().getActiveShell(),
-				new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
-						((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
-				new CriteriaContentProvider(), projects);
-		checkedTreeSelectionDialog.setTitle(Messages.AssignFilteringCriteriaAction_title); //$NON-NLS-1$
-		checkedTreeSelectionDialog.setMessage(Messages.AssignFilteringCriteriaAction_message); //$NON-NLS-1$
-		checkedTreeSelectionDialog.setInput(projects);
-		checkedTreeSelectionDialog.setInitialElementSelections(checkedFeatures);
-		checkedTreeSelectionDialog
-				.setImage(AbstractUIPlugin.imageDescriptorFromPlugin(FilteringToolsPlugin.getDefault().getPluginId(),
-						"icons/criteriaAssigning.png").createImage()); //$NON-NLS-1$
-		checkedTreeSelectionDialog.setComparator(new ViewerComparator());
-		// Undefined elements are the checked features that are not part of the
-		// global features
-		Set<Object> undefinedElements = new HashSet<>();
-		for (Object feature : checkedFeatures) {
-			if (!globalFeatures.contains(feature)) {
-				undefinedElements.add(feature);
-			}
-		}
-		checkedTreeSelectionDialog.setInitialUndefinedElements(undefinedElements);
-	}
+  /**
+   * Enrich provided Set with resolved semantic elements
+   */
+  private void resolveSemanticElements(Set<ModelElement> selectedElements) {
 
-	private Collection<Project> getProjects(Collection<FilteringModel> filteringModels) {
-		Collection<Project> result = new HashSet<>();
-		for (FilteringModel fm : filteringModels) {
-			Project project = CapellaProjectHelper.getProject(fm);
-			if (project != null) {
-				result.add(project);
-			}
-		}
-		return result;
-	}
+    for (ModelElement elt : selectedElements) {
+      EObject semanticObject = CapellaAdapterHelper.resolveSemanticObject(elt);
+      if (semanticObject instanceof CapellaElement) {
+        selectedElements.add((CapellaElement) semanticObject);
+      }
+
+    }
+
+  }
+
+  /**
+   * Setup Dialog
+   */
+  private void setupDialog(Collection<FilteringModel> filteringModels, Collection<Object> globalFeatures,
+      List<Object> checkedFeatures) {
+
+    Collection<Project> projects = getProjects(filteringModels);
+    Session session = SessionManager.INSTANCE.getSession(projects.iterator().next());
+    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+    checkedTreeSelectionDialog = new FilteringCriteriaSelectionDialog(Display.getCurrent().getActiveShell(),
+        new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
+            ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
+        new CriteriaContentProvider(), projects);
+    checkedTreeSelectionDialog.setTitle(Messages.AssignFilteringCriteriaAction_title); // $NON-NLS-1$
+    checkedTreeSelectionDialog.setMessage(Messages.AssignFilteringCriteriaAction_message); // $NON-NLS-1$
+    checkedTreeSelectionDialog.setInput(projects);
+    checkedTreeSelectionDialog.setInitialElementSelections(checkedFeatures);
+    checkedTreeSelectionDialog.setImage(AbstractUIPlugin
+        .imageDescriptorFromPlugin(FilteringToolsPlugin.getDefault().getPluginId(), "icons/criteriaAssigning.png") //$NON-NLS-1$
+        .createImage());
+    checkedTreeSelectionDialog.setComparator(new ViewerComparator());
+    // Undefined elements are the checked features that are not part of the
+    // global features
+    Set<Object> undefinedElements = new HashSet<>();
+    for (Object feature : checkedFeatures) {
+      if (!globalFeatures.contains(feature)) {
+        undefinedElements.add(feature);
+      }
+    }
+    checkedTreeSelectionDialog.setInitialUndefinedElements(undefinedElements);
+  }
+
+  private Collection<Project> getProjects(Collection<FilteringModel> filteringModels) {
+    Collection<Project> result = new HashSet<>();
+    for (FilteringModel fm : filteringModels) {
+      Project project = CapellaProjectHelper.getProject(fm);
+      if (project != null) {
+        result.add(project);
+      }
+    }
+    return result;
+  }
 }

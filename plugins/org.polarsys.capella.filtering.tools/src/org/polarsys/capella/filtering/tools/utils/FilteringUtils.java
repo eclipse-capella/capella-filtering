@@ -325,8 +325,8 @@ public class FilteringUtils {
 			}
 
 			ExecutionManager executionManager = TransactionHelper.getExecutionManager(element);
-			CapellaDeleteCommand mdc = new ModelOnlyFilteringDeleteCommand(executionManager, explictlyReferencedElements,
-					true, false, false);
+			CapellaDeleteCommand mdc = new ModelOnlyFilteringDeleteCommand(executionManager,
+					explictlyReferencedElements, true, false, false);
 			Set<?> expandedElements = mdc.getAllElementsToDelete();
 
 			if (expandedElements.contains(element)) {
@@ -371,7 +371,8 @@ public class FilteringUtils {
 	 * 
 	 * @param eObjects
 	 * @param includeReferencedLibraries
-	 * @return The intersection of FilteringModels for the given list of eObjects
+	 * @return The intersection of FilteringModels for the given list of
+	 *         eObjects
 	 */
 	public static Collection<FilteringModel> getCommonFilteringModels(Collection<ModelElement> eObjects,
 			boolean includeReferencedLibraries) {
@@ -830,7 +831,7 @@ public class FilteringUtils {
 	 * @param command
 	 * @param elements
 	 */
-	public static void executeCommand(AbstractReadWriteCommand command, List<ModelElement> elements) {
+	public static void executeCommand(AbstractReadWriteCommand command, Collection<ModelElement> elements) {
 		executeCommand(command, TransactionHelper.getEditingDomain(elements));
 	}
 

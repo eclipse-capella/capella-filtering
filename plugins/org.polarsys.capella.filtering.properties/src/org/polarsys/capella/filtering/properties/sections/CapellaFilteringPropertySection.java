@@ -79,8 +79,8 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
 		super.loadData(capellaElement);
 
 		// The second parameter is the semanticFeature but we do not include
-		// anyone. Filtering criterion is not a direct
-		// attribute of CapellaElement
+		// anyone.
+		// Filtering criterion is not direct attribute of CapellaElement
 		features.loadData(capellaElement, null);
 		implicitCriteria.loadData(capellaElement, null);
 	}
@@ -91,7 +91,6 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
 	 */
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
-		// VERRUE : see SBo for more detailed explanations
 		if (selection instanceof StructuredSelection) {
 			EObject selected = CapellaAdapterHelper
 					.resolveSemanticObject(((StructuredSelection) selection).getFirstElement());
