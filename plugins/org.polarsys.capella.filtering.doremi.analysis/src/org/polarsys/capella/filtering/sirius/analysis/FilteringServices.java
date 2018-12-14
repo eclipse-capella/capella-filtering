@@ -12,11 +12,11 @@ package org.polarsys.capella.filtering.sirius.analysis;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.sirius.diagram.DDiagramElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -41,6 +41,25 @@ public class FilteringServices {
 			service = new FilteringServices();
 		}
 		return service;
+	}
+
+	public static boolean hasDecorationPLText(EObject view) {
+		if (view instanceof DDiagramElement) {
+			List<FilteringCriterion> f = FilteringUtils.getAssociatedCriteria((DDiagramElement) view);
+			return !f.isEmpty();
+		}
+		return false;
+	}
+
+	public static String getPLText(EObject view) {
+		// if (view instanceof DDiagramElement) {
+		// String a = FilteringUtils.getAssociatedCriteria((DDiagramElement)
+		// view).stream().map(x ->
+		// x.getName()).collect(Collectors.joining("\n"));
+		// return a;//+" "+(Math.random()*2000);
+		// }
+		return "TOTO TATA";
+
 	}
 
 	public Collection<FilteringCriterion> getAllFilteringCriteria(EObject modelElement) {

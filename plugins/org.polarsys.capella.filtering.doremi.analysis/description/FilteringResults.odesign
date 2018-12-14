@@ -73,6 +73,19 @@
         <filters xsi:type="filter:VariableFilter" semanticConditionExpression="service:isFilteredByGlobalFilteringCache()"/>
       </filters>
     </ownedRepresentations>
+    <ownedRepresentationExtensions xsi:type="description_2:DiagramExtensionDescription" name="FilteringDiagExtension" viewpointURI="viewpoint:/org.polarsys.capella.filtering.sirius.analysis/description/FilteringResults.odesign" representationName="Filtering">
+      <layers name="HasFilteringCriteriaDecorator" activeByDefault="true">
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description:GenericDecorationDescription" name="HasAssociatedFilteringCriteria" position="NORTH_EAST" distributionDirection="HORIZONTAL" preconditionExpression="service:view.hasDecorationPLText" imageExpression="/org.polarsys.capella.filtering.sirius.analysis/icons/optionalDecorator.png" tooltipExpression="service:view.getPLText"/>
+        </decorationDescriptionsSet>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="true">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderColor" value="244,220,255"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="strokeColor" value="244,220,255"/>
+          </vsmElementCustomizations>
+        </customization>
+      </layers>
+    </ownedRepresentationExtensions>
     <ownedJavaExtensions qualifiedClassName="org.polarsys.capella.filtering.sirius.analysis.FilteringServices"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.sirius.common.tools.api.interpreter.StandardServices"/>
   </ownedViewpoints>
