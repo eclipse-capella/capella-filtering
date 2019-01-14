@@ -13,12 +13,12 @@ package org.polarsys.capella.filtering.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResult;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Result</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Result</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
@@ -40,6 +40,18 @@ public class FilteringResultImpl extends FilteringCriterionSetImpl implements Fi
 	@Override
 	protected EClass eStaticClass() {
 		return FilteringPackage.Literals.FILTERING_RESULT;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+
+	public FilteringCriterionSet computeFilteringCriterionSet() {
+		// a FilteringResultImpl is a FilteringCriterionSetImpl => return this
+		return this;
+
 	}
 
 } // FilteringResultImpl

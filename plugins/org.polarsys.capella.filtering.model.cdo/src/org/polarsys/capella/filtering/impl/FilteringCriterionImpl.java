@@ -19,8 +19,7 @@ import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Criterion</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Criterion</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */

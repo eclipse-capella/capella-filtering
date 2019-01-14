@@ -26,14 +26,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 
+import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
 import org.polarsys.capella.filtering.FilteringResults;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Results</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Results</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -71,9 +71,9 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 */
 
 	@SuppressWarnings("unchecked")
-	public EList<FilteringResult> getFilteringResults() {
+	public EList<AbstractFilteringResult> getFilteringResults() {
 
-		return (EList<FilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__FILTERING_RESULTS,
+		return (EList<AbstractFilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__FILTERING_RESULTS,
 				FilteringPackage.Literals.FILTERING_RESULTS__FILTERING_RESULTS, true, true);
 	}
 
@@ -129,7 +129,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 		switch (featureID) {
 		case FilteringPackage.FILTERING_RESULTS__FILTERING_RESULTS:
 			getFilteringResults().clear();
-			getFilteringResults().addAll((Collection<? extends FilteringResult>) newValue);
+			getFilteringResults().addAll((Collection<? extends AbstractFilteringResult>) newValue);
 			return;
 		case FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS:
 			getOwnedFilteringResultPkgs().clear();

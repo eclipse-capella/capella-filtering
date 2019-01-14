@@ -39,32 +39,32 @@ import org.polarsys.capella.filtering.model.helpers.FilteringCriterionSetHelper;
  */
 public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl implements ComposedFilteringResult {
 
-	/**
-	 * The cached value of the '{@link #getUnionFilteringResultSet() <em>Union Filtering Result Set</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getUnionFilteringResultSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected UnionFilteringResultSet unionFilteringResultSet;
+  /**
+   * The cached value of the '{@link #getUnionFilteringResultSet() <em>Union Filtering Result Set</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see #getUnionFilteringResultSet()
+   * @generated
+   * @ordered
+   */
+  protected UnionFilteringResultSet unionFilteringResultSet;
 
-	/**
-	 * The cached value of the '{@link #getIntersectionFilteringResultSet() <em>Intersection Filtering Result Set</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getIntersectionFilteringResultSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected IntersectionFilteringResultSet intersectionFilteringResultSet;
+  /**
+   * The cached value of the '{@link #getIntersectionFilteringResultSet() <em>Intersection Filtering Result Set</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see #getIntersectionFilteringResultSet()
+   * @generated
+   * @ordered
+   */
+  protected IntersectionFilteringResultSet intersectionFilteringResultSet;
 
-	/**
-	 * The cached value of the '{@link #getExclusionFilteringResultSet() <em>Exclusion Filtering Result Set</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getExclusionFilteringResultSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExclusionFilteringResultSet exclusionFilteringResultSet;
+  /**
+   * The cached value of the '{@link #getExclusionFilteringResultSet() <em>Exclusion Filtering Result Set</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see #getExclusionFilteringResultSet()
+   * @generated
+   * @ordered
+   */
+  protected ExclusionFilteringResultSet exclusionFilteringResultSet;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -149,7 +149,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public UnionFilteringResultSet getUnionFilteringResultSet() {
 
-		return unionFilteringResultSet;
+		return (UnionFilteringResultSet) eDynamicGet(
+				FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET, true, true);
 	}
 
 	/**
@@ -160,17 +162,8 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	public NotificationChain basicSetUnionFilteringResultSet(UnionFilteringResultSet newUnionFilteringResultSet,
 			NotificationChain msgs) {
 
-		UnionFilteringResultSet oldUnionFilteringResultSet = unionFilteringResultSet;
-		unionFilteringResultSet = newUnionFilteringResultSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET, oldUnionFilteringResultSet,
-					newUnionFilteringResultSet);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
+		msgs = eDynamicInverseAdd((InternalEObject) newUnionFilteringResultSet,
+				FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET, msgs);
 
 		return msgs;
 	}
@@ -182,24 +175,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public void setUnionFilteringResultSet(UnionFilteringResultSet newUnionFilteringResultSet) {
 
-		if (newUnionFilteringResultSet != unionFilteringResultSet) {
-			NotificationChain msgs = null;
-			if (unionFilteringResultSet != null)
-				msgs = ((InternalEObject) unionFilteringResultSet).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
-						null, msgs);
-			if (newUnionFilteringResultSet != null)
-				msgs = ((InternalEObject) newUnionFilteringResultSet).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
-						null, msgs);
-			msgs = basicSetUnionFilteringResultSet(newUnionFilteringResultSet, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET, newUnionFilteringResultSet,
-					newUnionFilteringResultSet));
-
+		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
+				newUnionFilteringResultSet);
 	}
 
 	/**
@@ -209,7 +187,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public IntersectionFilteringResultSet getIntersectionFilteringResultSet() {
 
-		return intersectionFilteringResultSet;
+		return (IntersectionFilteringResultSet) eDynamicGet(
+				FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET, true, true);
 	}
 
 	/**
@@ -220,17 +200,8 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	public NotificationChain basicSetIntersectionFilteringResultSet(
 			IntersectionFilteringResultSet newIntersectionFilteringResultSet, NotificationChain msgs) {
 
-		IntersectionFilteringResultSet oldIntersectionFilteringResultSet = intersectionFilteringResultSet;
-		intersectionFilteringResultSet = newIntersectionFilteringResultSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
-					oldIntersectionFilteringResultSet, newIntersectionFilteringResultSet);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
+		msgs = eDynamicInverseAdd((InternalEObject) newIntersectionFilteringResultSet,
+				FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET, msgs);
 
 		return msgs;
 	}
@@ -242,26 +213,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public void setIntersectionFilteringResultSet(IntersectionFilteringResultSet newIntersectionFilteringResultSet) {
 
-		if (newIntersectionFilteringResultSet != intersectionFilteringResultSet) {
-			NotificationChain msgs = null;
-			if (intersectionFilteringResultSet != null)
-				msgs = ((InternalEObject) intersectionFilteringResultSet).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
-						null, msgs);
-			if (newIntersectionFilteringResultSet != null)
-				msgs = ((InternalEObject) newIntersectionFilteringResultSet).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
-						null, msgs);
-			msgs = basicSetIntersectionFilteringResultSet(newIntersectionFilteringResultSet, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
-					newIntersectionFilteringResultSet, newIntersectionFilteringResultSet));
-
+		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
+				newIntersectionFilteringResultSet);
 	}
 
 	/**
@@ -271,7 +225,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public ExclusionFilteringResultSet getExclusionFilteringResultSet() {
 
-		return exclusionFilteringResultSet;
+		return (ExclusionFilteringResultSet) eDynamicGet(
+				FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET, true, true);
 	}
 
 	/**
@@ -282,17 +238,8 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	public NotificationChain basicSetExclusionFilteringResultSet(
 			ExclusionFilteringResultSet newExclusionFilteringResultSet, NotificationChain msgs) {
 
-		ExclusionFilteringResultSet oldExclusionFilteringResultSet = exclusionFilteringResultSet;
-		exclusionFilteringResultSet = newExclusionFilteringResultSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
-					oldExclusionFilteringResultSet, newExclusionFilteringResultSet);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
+		msgs = eDynamicInverseAdd((InternalEObject) newExclusionFilteringResultSet,
+				FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET, msgs);
 
 		return msgs;
 	}
@@ -304,26 +251,9 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 
 	public void setExclusionFilteringResultSet(ExclusionFilteringResultSet newExclusionFilteringResultSet) {
 
-		if (newExclusionFilteringResultSet != exclusionFilteringResultSet) {
-			NotificationChain msgs = null;
-			if (exclusionFilteringResultSet != null)
-				msgs = ((InternalEObject) exclusionFilteringResultSet).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
-						null, msgs);
-			if (newExclusionFilteringResultSet != null)
-				msgs = ((InternalEObject) newExclusionFilteringResultSet).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
-						null, msgs);
-			msgs = basicSetExclusionFilteringResultSet(newExclusionFilteringResultSet, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
-					newExclusionFilteringResultSet, newExclusionFilteringResultSet));
-
+		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
+				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
+				newExclusionFilteringResultSet);
 	}
 
 	/**
@@ -408,11 +338,11 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET:
-			return unionFilteringResultSet != null;
+			return getUnionFilteringResultSet() != null;
 		case FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET:
-			return intersectionFilteringResultSet != null;
+			return getIntersectionFilteringResultSet() != null;
 		case FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET:
-			return exclusionFilteringResultSet != null;
+			return getExclusionFilteringResultSet() != null;
 		}
 		return super.eIsSet(featureID);
 	}

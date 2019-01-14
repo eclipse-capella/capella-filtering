@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.polarsys.capella.common.data.activity.ActivityPackage;
+import org.polarsys.capella.common.data.behavior.BehaviorPackage;
+import org.polarsys.capella.common.data.modellingcore.ModellingcorePackage;
 import org.polarsys.capella.core.data.capellacommon.CapellacommonPackage;
 
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
@@ -207,6 +210,8 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		isInited = true;
 
 		// Initialize simple dependencies
+		ActivityPackage.eINSTANCE.eClass();
+		BehaviorPackage.eINSTANCE.eClass();
 		CapellacorePackage.eINSTANCE.eClass();
 		OaPackage.eINSTANCE.eClass();
 		CtxPackage.eINSTANCE.eClass();
@@ -219,6 +224,8 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		CsPackage.eINSTANCE.eClass();
 		FaPackage.eINSTANCE.eClass();
 		InteractionPackage.eINSTANCE.eClass();
+		EmdePackage.eINSTANCE.eClass();
+		ModellingcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theFilteringPackage.createPackageContents();
@@ -694,12 +701,11 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 */
 	protected void createExtensionAnnotations() {
 		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/extension"; //$NON-NLS-1$	
-		addAnnotation(this, source,
-				new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"useIDAttributes", "false" //$NON-NLS-1$ //$NON-NLS-2$
-				});
+		addAnnotation(this, source, new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"useIDAttributes", "false" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
 	/**
@@ -710,12 +716,11 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 */
 	protected void createDslfactoryAnnotations() {
 		String source = "http://www.polarsys.org/kitalpha/dsl/2007/dslfactory"; //$NON-NLS-1$	
-		addAnnotation(this, source,
-				new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
-						"useIDAttributes", "false" //$NON-NLS-1$ //$NON-NLS-2$
-				});
+		addAnnotation(this, source, new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
+				"useIDAttributes", "false" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
 	/**
@@ -726,83 +731,72 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 */
 	protected void createDocumentationAnnotations() {
 		String source = "http://www.polarsys.org/kitalpha/ecore/documentation"; //$NON-NLS-1$	
-		addAnnotation(this, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(filteringModelEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(getFilteringModel_OwnedFilteringCriteria(), source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(filteringCriterionEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(filteringCriterionSetEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(getFilteringCriterionSet_FilteringCriteria(), source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(filteringResultsEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(getFilteringResults_FilteringResults(), source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(filteringResultEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(associatedFilteringCriterionSetEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
-		addAnnotation(creationDefaultFilteringCriterionSetEClass, source,
-				new String[] { "description", null, //$NON-NLS-1$
-						"usage guideline", null, //$NON-NLS-1$
-						"used in levels", null, //$NON-NLS-1$
-						"usage examples", null, //$NON-NLS-1$
-						"constraints", null //$NON-NLS-1$
-				});
+		addAnnotation(this, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(filteringModelEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(getFilteringModel_OwnedFilteringCriteria(), source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(filteringCriterionEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(filteringCriterionSetEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(getFilteringCriterionSet_FilteringCriteria(), source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(filteringResultsEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(getFilteringResults_FilteringResults(), source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(filteringResultEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(associatedFilteringCriterionSetEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(creationDefaultFilteringCriterionSetEClass, source, new String[] { "description", null, //$NON-NLS-1$
+				"usage guideline", null, //$NON-NLS-1$
+				"used in levels", null, //$NON-NLS-1$
+				"usage examples", null, //$NON-NLS-1$
+				"constraints", null //$NON-NLS-1$
+		});
 	}
 
 	/**

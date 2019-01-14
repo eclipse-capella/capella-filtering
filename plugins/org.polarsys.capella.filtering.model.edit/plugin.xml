@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
-<!--
-  Copyright (c) 2018 THALES GLOBAL SERVICES.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the Eclipse Public License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/legal/epl-v10.html
+<?eclipse version="3.0"?>
 
-  Contributors:
-       Thales - initial API and implementation
--->
+
 
 <plugin>
 
+   
+<!--@generated-->
   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated filtering -->
       <factory class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory" supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider                org.eclipse.emf.edit.provider.IStructuredItemContentProvider                org.eclipse.emf.edit.provider.ITreeItemContentProvider                org.eclipse.emf.edit.provider.IItemLabelProvider                org.eclipse.emf.edit.provider.IItemPropertySource" uri="http://www.polarsys.org/capella/filtering/1.2.0"/>
    </extension>
 
+   
+<!--@generated-->
   <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated filtering -->
       <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
@@ -73,12 +69,85 @@
       <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
    </extension><extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated filtering -->
+      <factory class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory" supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider                org.eclipse.emf.edit.provider.IStructuredItemContentProvider                org.eclipse.emf.edit.provider.ITreeItemContentProvider                org.eclipse.emf.edit.provider.IItemLabelProvider                org.eclipse.emf.edit.provider.IItemPropertySource" uri="http://www.polarsys.org/capella/filtering/1.2.0"/>
+   </extension><extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated filtering -->
+      <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
+   </extension><extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated filtering -->
       <factory class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory" supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider org.eclipse.emf.edit.provider.IStructuredItemContentProvider org.eclipse.emf.edit.provider.ITreeItemContentProvider org.eclipse.emf.edit.provider.IItemLabelProvider org.eclipse.emf.edit.provider.IItemPropertySource" uri="http://www.polarsys.org/capella/filtering/1.2.0"/>
    </extension><extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated filtering -->
       <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
    </extension>
+<!--@generated-->
+  <extension point="org.polarsys.capella.common.menu.dynamic.MDEMenuItemContribution">
+</extension>
 
-null
+<!--@generated-->
+  <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+    <propertySections contributorId="org.polarsys.capella.core.data.capellamodeller.properties">
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringModelSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringModelItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringModel"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringCriterionItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringCriterion"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringCriterionSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringCriterionSet"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultsSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringResultsItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringResults"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringResultItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringResult"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.AssociatedFilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.contributions.AssociatedFilteringCriterionSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.AssociatedFilteringCriterionSet"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.CreationDefaultFilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.contributions.CreationDefaultFilteringCriterionSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultPkgSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringResultPkgItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringResultPkg"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionPkgSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringCriterionPkgItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringCriterionPkg"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection" id="org.polarsys.capella.filtering.provider.contributions.ComposedFilteringResultItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.ComposedFilteringResult"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" id="org.polarsys.capella.filtering.provider.contributions.AbstractFilteringResultItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.AbstractFilteringResult"/>
+        </propertySection>
+</propertySections>
+    </extension>
 
+<!--@generated-->
+  <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+    <propertySections contributorId="org.eclipse.sirius.diagram.ui">
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.FilteringModelSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringModelSection" id="org.polarsys.capella.filtering.provider.sections.FilteringModelSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSection" id="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSetSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.sections.FilteringCriterionSetSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.FilteringResultsSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultsSection" id="org.polarsys.capella.filtering.provider.sections.FilteringResultsSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultSection" id="org.polarsys.capella.filtering.provider.sections.FilteringResultSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.AssociatedFilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.sections.AssociatedFilteringCriterionSetSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.CreationDefaultFilteringCriterionSetSection" id="org.polarsys.capella.filtering.provider.sections.CreationDefaultFilteringCriterionSetSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultPkgSection" id="org.polarsys.capella.filtering.provider.sections.FilteringResultPkgSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringCriterionPkgSection" id="org.polarsys.capella.filtering.provider.sections.FilteringCriterionPkgSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection" id="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" filter="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" id="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection.section" tab="Base">
+        </propertySection>
+</propertySections>
+    </extension>
 </plugin>

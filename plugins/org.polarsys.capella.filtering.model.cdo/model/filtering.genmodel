@@ -55,5 +55,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriteria"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriterionPkgs"/>
     </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/UnionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/IntersectionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/ExclusionFilteringResultSet"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultSet">
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultSet/filteringResults"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AbstractFilteringResult">
+      <genOperations ecoreOperation="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AbstractFilteringResult/computeFilteringCriterionSet"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//UnionFilteringResultSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ExclusionFilteringResultSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//IntersectionFilteringResultSet"/>
   </genPackages>
 </genmodel:GenModel>

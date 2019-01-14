@@ -85,10 +85,10 @@ public final class FilteringEditPlugin extends EMFPlugin {
 	 */
 	public static class Implementation extends EclipsePlugin {
 		/**
-			 * Creates an instance.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * Creates an instance.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		public Implementation() {
 			super();
 

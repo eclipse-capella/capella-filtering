@@ -93,10 +93,10 @@ public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter
 	}
 
 	/**
-		 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+	 * @generated
+	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
@@ -106,9 +106,9 @@ public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter
 	}
 
 	/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public boolean hasChildren(Object object) {
 		return hasChildren(object, true);

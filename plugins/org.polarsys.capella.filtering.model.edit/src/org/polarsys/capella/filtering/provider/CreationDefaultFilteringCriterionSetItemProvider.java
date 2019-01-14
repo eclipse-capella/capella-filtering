@@ -81,7 +81,8 @@ public class CreationDefaultFilteringCriterionSetItemProvider extends FilteringC
 		String label = ((CreationDefaultFilteringCriterionSet) object).getName();
 		// begin-extension-code
 		return label == null || label.length() == 0
-				? "[" + getString("_UI_CreationDefaultFilteringCriterionSet_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				? "[" + getString("_UI_CreationDefaultFilteringCriterionSet_type") + "]" //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+				: label;
 		// end-extension-code
 	}
 

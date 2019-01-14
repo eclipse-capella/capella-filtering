@@ -29,8 +29,7 @@
 	<modules>
 		<module>org.polarsys.capella.filtering.feature</module>
 		<module>org.polarsys.capella.filtering.fc.feature</module>
-		<!--  
 		<module>org.polarsys.capella.filtering.model.cdo.feature</module>
-		-->
+		
 	</modules>
 </project>

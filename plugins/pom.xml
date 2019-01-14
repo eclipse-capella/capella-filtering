@@ -37,9 +37,7 @@
 		<module>org.polarsys.capella.filtering.doremi.ui</module>
 		<module>org.polarsys.capella.filtering.menu.contribution</module>
 		<module>org.polarsys.capella.filtering.model</module>
-		<!--  
 		<module>org.polarsys.capella.filtering.model.cdo</module>
-		-->
 		<module>org.polarsys.capella.filtering.model.edit</module>
 		<module>org.polarsys.capella.filtering.properties</module>
 		<module>org.polarsys.capella.filtering.semantic.queries</module>

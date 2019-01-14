@@ -35,13 +35,13 @@ import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 
 import org.polarsys.capella.core.data.requirement.RequirementsTrace;
 
+import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Result
- * Pkg</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Result Pkg</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -131,9 +131,10 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@SuppressWarnings("unchecked")
-	public EList<FilteringResult> getOwnedFilteringResults() {
+	public EList<AbstractFilteringResult> getOwnedFilteringResults() {
 
-		return (EList<FilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS,
+		return (EList<AbstractFilteringResult>) eDynamicGet(
+				FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS,
 				FilteringPackage.Literals.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS, true, true);
 	}
 
@@ -210,7 +211,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 			return;
 		case FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS:
 			getOwnedFilteringResults().clear();
-			getOwnedFilteringResults().addAll((Collection<? extends FilteringResult>) newValue);
+			getOwnedFilteringResults().addAll((Collection<? extends AbstractFilteringResult>) newValue);
 			return;
 		case FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULT_PKGS:
 			getOwnedFilteringResultPkgs().clear();

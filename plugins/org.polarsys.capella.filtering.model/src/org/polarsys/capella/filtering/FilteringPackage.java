@@ -2820,62 +2820,62 @@ public interface FilteringPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringModelImpl <em>Model</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringModelImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringModel()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringModelImpl <em>Model</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringModelImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringModel()
+		 * @generated
+		 */
 		EClass FILTERING_MODEL = eINSTANCE.getFilteringModel();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Criteria</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Criteria</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_MODEL__OWNED_FILTERING_CRITERIA = eINSTANCE.getFilteringModel_OwnedFilteringCriteria();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Criterion Pkgs</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Criterion Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS = eINSTANCE
 				.getFilteringModel_OwnedFilteringCriterionPkgs();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionImpl <em>Criterion</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringCriterionImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterion()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionImpl <em>Criterion</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringCriterionImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterion()
+		 * @generated
+		 */
 		EClass FILTERING_CRITERION = eINSTANCE.getFilteringCriterion();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl <em>Criterion Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterionSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl <em>Criterion Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterionSet()
+		 * @generated
+		 */
 		EClass FILTERING_CRITERION_SET = eINSTANCE.getFilteringCriterionSet();
 
 		/**
-			 * The meta object literal for the '<em><b>Filtering Criteria</b></em>' reference list feature.
-			 * <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Filtering Criteria</b></em>' reference list feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * @generated
+		 */
 		EReference FILTERING_CRITERION_SET__FILTERING_CRITERIA = eINSTANCE.getFilteringCriterionSet_FilteringCriteria();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl <em>Results</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringResultsImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResults()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl <em>Results</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringResultsImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResults()
+		 * @generated
+		 */
 		EClass FILTERING_RESULTS = eINSTANCE.getFilteringResults();
 
 		/**
@@ -2887,97 +2887,97 @@ public interface FilteringPackage extends EPackage {
 		EReference FILTERING_RESULTS__FILTERING_RESULTS = eINSTANCE.getFilteringResults_FilteringResults();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS = eINSTANCE
 				.getFilteringResults_OwnedFilteringResultPkgs();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultImpl <em>Result</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringResultImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResult()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultImpl <em>Result</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringResultImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResult()
+		 * @generated
+		 */
 		EClass FILTERING_RESULT = eINSTANCE.getFilteringResult();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.AssociatedFilteringCriterionSetImpl <em>Associated Filtering Criterion Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.AssociatedFilteringCriterionSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getAssociatedFilteringCriterionSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.AssociatedFilteringCriterionSetImpl <em>Associated Filtering Criterion Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.AssociatedFilteringCriterionSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getAssociatedFilteringCriterionSet()
+		 * @generated
+		 */
 		EClass ASSOCIATED_FILTERING_CRITERION_SET = eINSTANCE.getAssociatedFilteringCriterionSet();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.CreationDefaultFilteringCriterionSetImpl <em>Creation Default Filtering Criterion Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.CreationDefaultFilteringCriterionSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getCreationDefaultFilteringCriterionSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.CreationDefaultFilteringCriterionSetImpl <em>Creation Default Filtering Criterion Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.CreationDefaultFilteringCriterionSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getCreationDefaultFilteringCriterionSet()
+		 * @generated
+		 */
 		EClass CREATION_DEFAULT_FILTERING_CRITERION_SET = eINSTANCE.getCreationDefaultFilteringCriterionSet();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl <em>Result Pkg</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringResultPkgImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResultPkg()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl <em>Result Pkg</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringResultPkgImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResultPkg()
+		 * @generated
+		 */
 		EClass FILTERING_RESULT_PKG = eINSTANCE.getFilteringResultPkg();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Results</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Results</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS = eINSTANCE
 				.getFilteringResultPkg_OwnedFilteringResults();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_RESULT_PKG__OWNED_FILTERING_RESULT_PKGS = eINSTANCE
 				.getFilteringResultPkg_OwnedFilteringResultPkgs();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl <em>Criterion Pkg</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterionPkg()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl <em>Criterion Pkg</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringCriterionPkg()
+		 * @generated
+		 */
 		EClass FILTERING_CRITERION_PKG = eINSTANCE.getFilteringCriterionPkg();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Criteria</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Criteria</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_CRITERION_PKG__OWNED_FILTERING_CRITERIA = eINSTANCE
 				.getFilteringCriterionPkg_OwnedFilteringCriteria();
 
 		/**
-			 * The meta object literal for the '<em><b>Owned Filtering Criterion Pkgs</b></em>' containment reference list feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Owned Filtering Criterion Pkgs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference FILTERING_CRITERION_PKG__OWNED_FILTERING_CRITERION_PKGS = eINSTANCE
 				.getFilteringCriterionPkg_OwnedFilteringCriterionPkgs();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.ComposedFilteringResultImpl <em>Composed Filtering Result</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.ComposedFilteringResultImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getComposedFilteringResult()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.ComposedFilteringResultImpl <em>Composed Filtering Result</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.ComposedFilteringResultImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getComposedFilteringResult()
+		 * @generated
+		 */
 		EClass COMPOSED_FILTERING_RESULT = eINSTANCE.getComposedFilteringResult();
 
 		/**
@@ -2990,72 +2990,72 @@ public interface FilteringPackage extends EPackage {
 				.getComposedFilteringResult_UnionFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '<em><b>Intersection Filtering Result Set</b></em>' containment reference feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Intersection Filtering Result Set</b></em>' containment reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET = eINSTANCE
 				.getComposedFilteringResult_IntersectionFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '<em><b>Exclusion Filtering Result Set</b></em>' containment reference feature.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * The meta object literal for the '<em><b>Exclusion Filtering Result Set</b></em>' containment reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 */
 		EReference COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET = eINSTANCE
 				.getComposedFilteringResult_ExclusionFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultSetImpl <em>Result Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.FilteringResultSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResultSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultSetImpl <em>Result Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.FilteringResultSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getFilteringResultSet()
+		 * @generated
+		 */
 		EClass FILTERING_RESULT_SET = eINSTANCE.getFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '<em><b>Filtering Results</b></em>' reference list feature.
-			 * <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Filtering Results</b></em>' reference list feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-			 * @generated
-			 */
+		 * @generated
+		 */
 		EReference FILTERING_RESULT_SET__FILTERING_RESULTS = eINSTANCE.getFilteringResultSet_FilteringResults();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.AbstractFilteringResultImpl <em>Abstract Filtering Result</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.AbstractFilteringResultImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getAbstractFilteringResult()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.AbstractFilteringResultImpl <em>Abstract Filtering Result</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.AbstractFilteringResultImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getAbstractFilteringResult()
+		 * @generated
+		 */
 		EClass ABSTRACT_FILTERING_RESULT = eINSTANCE.getAbstractFilteringResult();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.UnionFilteringResultSetImpl <em>Union Filtering Result Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.UnionFilteringResultSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getUnionFilteringResultSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.UnionFilteringResultSetImpl <em>Union Filtering Result Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.UnionFilteringResultSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getUnionFilteringResultSet()
+		 * @generated
+		 */
 		EClass UNION_FILTERING_RESULT_SET = eINSTANCE.getUnionFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.ExclusionFilteringResultSetImpl <em>Exclusion Filtering Result Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.ExclusionFilteringResultSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getExclusionFilteringResultSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.ExclusionFilteringResultSetImpl <em>Exclusion Filtering Result Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.ExclusionFilteringResultSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getExclusionFilteringResultSet()
+		 * @generated
+		 */
 		EClass EXCLUSION_FILTERING_RESULT_SET = eINSTANCE.getExclusionFilteringResultSet();
 
 		/**
-			 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.IntersectionFilteringResultSetImpl <em>Intersection Filtering Result Set</em>}' class.
-			 * <!-- begin-user-doc --> <!-- end-user-doc -->
-			 * @see org.polarsys.capella.filtering.impl.IntersectionFilteringResultSetImpl
-			 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getIntersectionFilteringResultSet()
-			 * @generated
-			 */
+		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.IntersectionFilteringResultSetImpl <em>Intersection Filtering Result Set</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @see org.polarsys.capella.filtering.impl.IntersectionFilteringResultSetImpl
+		 * @see org.polarsys.capella.filtering.impl.FilteringPackageImpl#getIntersectionFilteringResultSet()
+		 * @generated
+		 */
 		EClass INTERSECTION_FILTERING_RESULT_SET = eINSTANCE.getIntersectionFilteringResultSet();
 
 	}
