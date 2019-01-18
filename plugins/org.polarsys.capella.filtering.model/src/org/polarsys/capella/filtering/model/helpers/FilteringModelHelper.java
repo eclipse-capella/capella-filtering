@@ -19,25 +19,25 @@ import org.polarsys.capella.filtering.FilteringModel;
  */
 public class FilteringModelHelper {
 
-	private static final FilteringModelHelper instance = new FilteringModelHelper();
+  private static final FilteringModelHelper instance = new FilteringModelHelper();
 
-	/**
-	 * @generated
-	 */
-	public static FilteringModelHelper getInstance() {
-		return instance;
-	}
+  /**
+   * @generated
+   */
+  public static FilteringModelHelper getInstance() {
+    return instance;
+  }
 
-	/**
-	 * @generated
-	 */
-	public Object doSwitch(FilteringModel object, EStructuralFeature feature) {
-		// handle derivated feature
+  /**
+   * @generated
+   */
+  public Object doSwitch(FilteringModel object, EStructuralFeature feature) {
+    // handle derivated feature
 
-		// delegate to parent helper
-		return org.polarsys.capella.core.data.helpers.capellacore.delegates.NamedElementHelper.getInstance()
-				.doSwitch(object, feature);
+    // delegate to parent helper
+    return org.polarsys.capella.core.data.helpers.capellacore.delegates.NamedElementHelper.getInstance()
+        .doSwitch(object, feature);
 
-	}
+  }
 
 }

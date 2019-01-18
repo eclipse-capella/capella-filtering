@@ -30,44 +30,44 @@ import org.polarsys.kitalpha.transposer.rules.handler.rules.api.IContext;
  */
 public class ExtensionRetriever implements IScopeRetriever {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public IStatus init(IContext context) {
-		return Status.OK_STATUS;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public IStatus init(IContext context) {
+    return Status.OK_STATUS;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public IStatus dispose(IContext context) {
-		return Status.OK_STATUS;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public IStatus dispose(IContext context) {
+    return Status.OK_STATUS;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<? extends EObject> retrieveRelatedElements(EObject source, IContext context) {
-		Collection<EObject> elements = new LinkedList<>();
-		if (source instanceof CapellaElement) {
-			CapellaElement element = (CapellaElement) source;
-			if (element.getOwnedExtensions() != null && OptionsHandlerHelper.getInstance(context).getBooleanValue(
-					context, IExtensionConstants.OPTIONS_SCOPE, IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET,
-					IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET__DEFAULT_VALUE)) {
-				for (EObject eObject : element.getOwnedExtensions()) {
-					if (eObject instanceof AssociatedFilteringCriterionSet) {
-						elements.add(eObject);
-					}
-				}
-			}
-		}
-		return elements;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public Collection<? extends EObject> retrieveRelatedElements(EObject source, IContext context) {
+    Collection<EObject> elements = new LinkedList<>();
+    if (source instanceof CapellaElement) {
+      CapellaElement element = (CapellaElement) source;
+      if (element.getOwnedExtensions() != null && OptionsHandlerHelper.getInstance(context).getBooleanValue(context,
+          IExtensionConstants.OPTIONS_SCOPE, IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET,
+          IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET__DEFAULT_VALUE)) {
+        for (EObject eObject : element.getOwnedExtensions()) {
+          if (eObject instanceof AssociatedFilteringCriterionSet) {
+            elements.add(eObject);
+          }
+        }
+      }
+    }
+    return elements;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<? extends EObject> retrieveSharedElements(IContext context) {
-		return Collections.emptyList();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public Collection<? extends EObject> retrieveSharedElements(IContext context) {
+    return Collections.emptyList();
+  }
 }

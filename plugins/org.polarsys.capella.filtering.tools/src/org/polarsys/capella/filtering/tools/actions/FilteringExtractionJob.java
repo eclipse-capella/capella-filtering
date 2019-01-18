@@ -59,421 +59,399 @@ import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.tools.extract.FilteringExtractor;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
-import com.google.common.collect.Lists;
-
 /**
  * TODO Manage to show the progress monitor information.
  */
 /**
- * TODO A workspace runnable is used instead of a Job because resources
- * modification notifications caused several exceptions in Capella Project
- * Explorer and Properties views.
+ * TODO A workspace runnable is used instead of a Job because resources modification notifications caused several
+ * exceptions in Capella Project Explorer and Properties views.
  */
 public class FilteringExtractionJob implements IWorkspaceRunnable {
 
-	String domainId;
-	IProject clonedProject;
-	IProject currentProject;
-	EObject configuration;
-	List<FilteringCriterion> selectedFeatures;
-	ExecutionManager executionManager = null;
-	TransactionalEditingDomain editingDomain = null;
-	ArrayList<Resource> resourcesToDelete = new ArrayList<>();
+  String domainId;
+  IProject clonedProject;
+  IProject currentProject;
+  EObject configuration;
+  List<FilteringCriterion> selectedFeatures;
+  ExecutionManager executionManager = null;
+  TransactionalEditingDomain editingDomain = null;
+  ArrayList<Resource> resourcesToDelete = new ArrayList<>();
 
-	/**
-	 * @param name
-	 * @param domainId
-	 */
-	public FilteringExtractionJob(IProject currentProject, IProject clonedProject,
-			List<FilteringCriterion> selectedFeatures, EObject configuration, String domainId) {
-		this.domainId = domainId;
-		this.currentProject = currentProject;
-		this.clonedProject = clonedProject;
-		this.selectedFeatures = selectedFeatures;
-		this.configuration = configuration;
+  /**
+   * @param name
+   * @param domainId
+   */
+  public FilteringExtractionJob(IProject currentProject, IProject clonedProject,
+      List<FilteringCriterion> selectedFeatures, EObject configuration, String domainId) {
+    this.domainId = domainId;
+    this.currentProject = currentProject;
+    this.clonedProject = clonedProject;
+    this.selectedFeatures = selectedFeatures;
+    this.configuration = configuration;
 
-	}
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void run(IProgressMonitor monitor) {
-		try {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void run(IProgressMonitor monitor) {
+    try {
 
-			FilteringExtractor extractor = new FilteringExtractor(clonedProject, domainId);
-			/**
-			 * A new eclipse project has been created (copy nature from the
-			 * cloned project)
-			 */
-			extractor.cloneProjectNature(currentProject);
-			if (monitor.isCanceled()) {
-				throw new OperationCanceledException();
-			}
+      FilteringExtractor extractor = new FilteringExtractor(clonedProject, domainId);
+      /**
+       * A new eclipse project has been created (copy nature from the cloned project)
+       */
+      extractor.cloneProjectNature(currentProject);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
 
-			/**
-			 * We copy all files including '.melodymodeller', '.aird',
-			 * '.melodyfragment', '.airdfragment' and '.afm' files into the
-			 * newly created eclipse project.
-			 */
-			Map<String, String> oldReferenceToNewReference = extractor.cloneModels(currentProject);
-			if (monitor.isCanceled()) {
-				throw new OperationCanceledException();
-			}
+      /**
+       * We copy all files including '.melodymodeller', '.aird', '.melodyfragment', '.airdfragment' and '.afm' files
+       * into the newly created eclipse project.
+       */
+      Map<String, String> oldReferenceToNewReference = extractor.cloneModels(currentProject);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
 
-			/**
-			 * Then we update the reference from the 'aird' model to the
-			 * 'melodymodeller' and 'afm' models, because the models filename
-			 * have changed.
-			 */
-			extractor.updateReferences(oldReferenceToNewReference);
-			if (monitor.isCanceled()) {
-				throw new OperationCanceledException();
-			}
+      /**
+       * Then we update the reference from the 'aird' model to the 'melodymodeller' and 'afm' models, because the models
+       * filename have changed.
+       */
+      extractor.updateReferences(oldReferenceToNewReference);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
 
-			/**
-			 * The cloned model is opened in a Sirius session
-			 */
-			// Aird Models
-			List<IFile> airdModels = FilteringUtils.getAirdModels(clonedProject);
-			for (IFile aird : airdModels) {
-				Session session = FilteringUtils.openSession(aird);
+      /**
+       * The cloned model is opened in a Sirius session
+       */
+      // Aird Models
+      List<IFile> airdModels = FilteringUtils.getAirdModels(clonedProject);
+      for (IFile aird : airdModels) {
+        Session session = FilteringUtils.openSession(aird);
 
-				if (!session.isOpen()) {
-					session.open(monitor);
-				}
+        if (!session.isOpen()) {
+          session.open(monitor);
+        }
 
-				// This will prevent exceptions for external modifications and
-				// deletions.
-				session.setReloadingPolicy(new ReloadingPolicy() {
-					@Override
-					public List<Action> getActions(Session session, Resource resource, ResourceStatus newStatus) {
-						return new ArrayList<>();
-					}
-				});
+        // This will prevent exceptions for external modifications and
+        // deletions.
+        session.setReloadingPolicy(new ReloadingPolicy() {
+          @Override
+          public List<Action> getActions(Session session, Resource resource, ResourceStatus newStatus) {
+            return new ArrayList<>();
+          }
+        });
 
-				editingDomain = session.getTransactionalEditingDomain();
-				executionManager = ExecutionManagerRegistry.getInstance().getExecutionManager(editingDomain);
+        editingDomain = session.getTransactionalEditingDomain();
+        executionManager = ExecutionManagerRegistry.getInstance().getExecutionManager(editingDomain);
 
-				// Semantic models
-				Collection<Resource> resources = session.getSemanticResources();
-				List<Resource> referencedLibraries = FilteringUtils.getReferencedLibraries(session);
-				for (final Resource semanticResource : resources) {
-					if (referencedLibraries.contains(semanticResource)) {
-						continue;
-					}
+        // Semantic models
+        Collection<Resource> resources = session.getSemanticResources();
+        List<Resource> referencedLibraries = FilteringUtils.getReferencedLibraries(session);
+        for (final Resource semanticResource : resources) {
+          if (referencedLibraries.contains(semanticResource)) {
+            continue;
+          }
 
-					/**
-					 * Builds a table to establish a mapping between the
-					 * features from the initial project and the features from
-					 * the cloned project
-					 */
-					final Map<FilteringCriterion, FilteringCriterion> mappingTable = new HashMap<>();
-					// If session is not open semanticResource.getAllContents
-					// returns empty list
-					// We stop if we found the project AND the system
-					// engineering
-					boolean projectFound = false;
-					boolean systemEngineeringFound = false;
-					List<FilteringModel> derivedFilteringModels = null;
-					List<FilteringCriterion> newFeatures = Collections.emptyList();
-					IModel currentModel = null;
-					for (Iterator<EObject> iterator = semanticResource.getAllContents(); iterator.hasNext();) {
-						final EObject current = iterator.next();
+          /**
+           * Builds a table to establish a mapping between the features from the initial project and the features from
+           * the cloned project
+           */
+          final Map<FilteringCriterion, FilteringCriterion> mappingTable = new HashMap<>();
+          // If session is not open semanticResource.getAllContents
+          // returns empty list
+          // We stop if we found the project AND the system
+          // engineering
+          boolean projectFound = false;
+          boolean systemEngineeringFound = false;
+          List<FilteringModel> derivedFilteringModels = null;
+          List<FilteringCriterion> newFeatures = Collections.emptyList();
+          IModel currentModel = null;
+          for (Iterator<EObject> iterator = semanticResource.getAllContents(); iterator.hasNext();) {
+            final EObject current = iterator.next();
 
-						/**
-						 * Change SystemEngineering name
-						 */
-						if (current instanceof SystemEngineering) {
-							executionManager.execute(new AbstractNonDirtyingCommand() {
-								@Override
-								public void run() {
-									((SystemEngineering) current).setName(clonedProject.getName());
-								}
-							});
-							systemEngineeringFound = true;
-						}
+            /**
+             * Change SystemEngineering name
+             */
+            if (current instanceof SystemEngineering) {
+              executionManager.execute(new AbstractNonDirtyingCommand() {
+                @Override
+                public void run() {
+                  ((SystemEngineering) current).setName(clonedProject.getName());
+                }
+              });
+              systemEngineeringFound = true;
+            }
 
-						if (current instanceof Project) {
-							// Init the current model
-							currentModel = ILibraryManager.INSTANCE.getModel(current);
-							/**
-							 * Change Project name
-							 */
-							executionManager.execute(new AbstractNonDirtyingCommand() {
-								@Override
-								public void run() {
-									((Project) current).setName(clonedProject.getName());
-								}
-							});
+            if (current instanceof Project) {
+              // Init the current model
+              currentModel = ILibraryManager.INSTANCE.getModel(current);
+              /**
+               * Change Project name
+               */
+              executionManager.execute(new AbstractNonDirtyingCommand() {
+                @Override
+                public void run() {
+                  ((Project) current).setName(clonedProject.getName());
+                }
+              });
 
-							List<FilteringModel> rootSemanticObjectFilteringModels = FilteringUtils
-									.getFilteringModels(configuration, true);
-							derivedFilteringModels = FilteringUtils.getFilteringModels(current, true);
-							if (FilteringUtils.hasFilteringFeatures(rootSemanticObjectFilteringModels)
-									&& FilteringUtils.hasFilteringFeatures(derivedFilteringModels)) {
-								List<FilteringCriterion> oldFeatures = FilteringUtils
-										.getOwnedFilteringCriteria(rootSemanticObjectFilteringModels);
-								newFeatures = FilteringUtils.getOwnedFilteringCriteria(derivedFilteringModels);
+              List<FilteringModel> rootSemanticObjectFilteringModels = FilteringUtils.getFilteringModels(configuration,
+                  true);
+              derivedFilteringModels = FilteringUtils.getFilteringModels(current, true);
+              if (FilteringUtils.hasFilteringFeatures(rootSemanticObjectFilteringModels)
+                  && FilteringUtils.hasFilteringFeatures(derivedFilteringModels)) {
+                List<FilteringCriterion> oldFeatures = FilteringUtils
+                    .getOwnedFilteringCriteria(rootSemanticObjectFilteringModels);
+                newFeatures = FilteringUtils.getOwnedFilteringCriteria(derivedFilteringModels);
 
-								// associate new features of cloned project with
-								// old features of initial project
-								mapFeatures(newFeatures, oldFeatures, mappingTable);
-							}
+                // associate new features of cloned project with
+                // old features of initial project
+                mapFeatures(newFeatures, oldFeatures, mappingTable);
+              }
 
-							projectFound = true;
-						}
+              projectFound = true;
+            }
 
-						if (projectFound && systemEngineeringFound) {
-							break;
-						}
-					}
+            if (projectFound && systemEngineeringFound) {
+              break;
+            }
+          }
 
-					// Cancel control
-					if (monitor.isCanceled()) {
-						throw new OperationCanceledException();
-					}
+          // Cancel control
+          if (monitor.isCanceled()) {
+            throw new OperationCanceledException();
+          }
 
-					/**
-					 * All the elements tagged with a wrong feature and belong
-					 * to the current model are deleted. This is to prevent from
-					 * deleting semantic objects located in referenced
-					 * libraries.
-					 */
-					// The elements that are going to be completely removed
-					Set<EObject> elementsToDelete = new HashSet<>();
+          /**
+           * All the elements tagged with a wrong feature and belong to the current model are deleted. This is to
+           * prevent from deleting semantic objects located in referenced libraries.
+           */
+          // The elements that are going to be completely removed
+          Set<EObject> elementsToDelete = new HashSet<>();
 
-					// The elements that are going to be uncontrol before
-					// removed
-					List<EObject> elementsToUncontrol = new ArrayList<>();
-					if (derivedFilteringModels != null) {
-						for (Object feature : newFeatures) {
-							final FilteringCriterion filteringCriterion = (FilteringCriterion) feature;
-							if (!selectedFeatures.contains(mappingTable.get(filteringCriterion))) {
-								List<EObject> referencingElements = CrossReferencerHelper
-										.getReferencingElements(filteringCriterion);
+          // The elements that are going to be uncontrol before
+          // removed
+          List<EObject> elementsToUncontrol = new ArrayList<>();
+          if (derivedFilteringModels != null) {
+            for (Object feature : newFeatures) {
+              final FilteringCriterion filteringCriterion = (FilteringCriterion) feature;
+              if (!selectedFeatures.contains(mappingTable.get(filteringCriterion))) {
+                List<EObject> referencingElements = CrossReferencerHelper.getReferencingElements(filteringCriterion);
 
-								for (EObject eObject : referencingElements) {
-									EObject eContainer = eObject.eContainer();
-									if (eObject instanceof AssociatedFilteringCriterionSet
-											&& eContainer instanceof CapellaElement) {
-										final CapellaElement capellaElement = (CapellaElement) eContainer;
-										IModel model = ILibraryManager.INSTANCE.getModel(capellaElement);
-										if (currentModel != null && currentModel.equals(model)
-										/*
-										 * &&
-										 * !isAlreadyContained(elementsToDelete,
-										 * capellaElement)
-										 */) {
-											// We delete the element only if it
-											// doesn't associated with a checked
-											// feature
-											if (!hasOneCheckedFeature(capellaElement, mappingTable)) {
-												// We add it to the delete list
-												elementsToDelete.add(capellaElement);
-											}
-											// We remove unnecessary associated
-											// features even if we keep it
-											executionManager.execute(new AbstractNonDirtyingCommand() {
-												@Override
-												public void run() {
-													FilteringUtils.removeAssociatedCriteria(capellaElement,
-															Collections.singletonList(filteringCriterion));
-												}
-											});
-										}
-									}
-								}
+                for (EObject eObject : referencingElements) {
+                  EObject eContainer = eObject.eContainer();
+                  if (eObject instanceof AssociatedFilteringCriterionSet && eContainer instanceof CapellaElement) {
+                    final CapellaElement capellaElement = (CapellaElement) eContainer;
+                    IModel model = ILibraryManager.INSTANCE.getModel(capellaElement);
+                    if (currentModel != null && currentModel.equals(model)
+                    /*
+                     * && !isAlreadyContained(elementsToDelete, capellaElement)
+                     */) {
+                      // We delete the element only if it
+                      // doesn't associated with a checked
+                      // feature
+                      if (!hasOneCheckedFeature(capellaElement, mappingTable)) {
+                        // We add it to the delete list
+                        elementsToDelete.add(capellaElement);
+                      }
+                      // We remove unnecessary associated
+                      // features even if we keep it
+                      executionManager.execute(new AbstractNonDirtyingCommand() {
+                        @Override
+                        public void run() {
+                          FilteringUtils.removeAssociatedCriteria(capellaElement,
+                              Collections.singletonList(filteringCriterion));
+                        }
+                      });
+                    }
+                  }
+                }
 
-								Set<EObject> impactedElements = FilteringUtils.getImpactedElements(elementsToDelete);
-								for (EObject element : impactedElements) {
-									IModel model = ILibraryManager.INSTANCE.getModel(element);
-									if (currentModel != null && currentModel.equals(model)
-									/*
-									 * && !isAlreadyContained(elementsToDelete,
-									 * element)
-									 */) {
-										elementsToDelete.add(element);
-									}
-								}
+                Set<EObject> impactedElements = FilteringUtils.getImpactedElements(elementsToDelete);
+                for (EObject element : impactedElements) {
+                  IModel model = ILibraryManager.INSTANCE.getModel(element);
+                  if (currentModel != null && currentModel.equals(model)
+                  /*
+                   * && !isAlreadyContained(elementsToDelete, element)
+                   */) {
+                    elementsToDelete.add(element);
+                  }
+                }
 
-								for (EObject element : elementsToDelete) {
-									if (editingDomain.isControllable(element)
-											&& AdapterFactoryEditingDomain.isControlled(element)
-											&& !elementsToUncontrol.contains(element)) {
-										elementsToUncontrol.add(element);
-									}
-								}
-							}
-						}
-					}
+                for (EObject element : elementsToDelete) {
+                  if (editingDomain.isControllable(element) && AdapterFactoryEditingDomain.isControlled(element)
+                      && !elementsToUncontrol.contains(element)) {
+                    elementsToUncontrol.add(element);
+                  }
+                }
+              }
+            }
+          }
 
-					// Cancel control
-					if (monitor.isCanceled()) {
-						throw new OperationCanceledException();
-					}
+          // Cancel control
+          if (monitor.isCanceled()) {
+            throw new OperationCanceledException();
+          }
 
-					/**
-					 * Uncontrol elements to be deleted
-					 */
-					/*
-					 * TODO See CapellaDeleteCommand execute() method fix_me
-					 * comments. Cannot delete fragmented elements.
-					 */
-					for (EObject eObject : elementsToUncontrol) {
-						performUncontrol(eObject);
-						// Cancel control
-						if (monitor.isCanceled()) {
-							throw new OperationCanceledException();
-						}
-					}
+          /**
+           * Uncontrol elements to be deleted
+           */
+          /*
+           * TODO See CapellaDeleteCommand execute() method fix_me comments. Cannot delete fragmented elements.
+           */
+          for (EObject eObject : elementsToUncontrol) {
+            performUncontrol(eObject);
+            // Cancel control
+            if (monitor.isCanceled()) {
+              throw new OperationCanceledException();
+            }
+          }
 
-					/**
-					 * Delete the model elements to be deleted
-					 */
-					elementsToDelete = new HashSet<>(EcoreUtil.filterDescendants(elementsToDelete));
-					CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, elementsToDelete, true,
-							false, true);
-					if (command.canExecute()) {
-						// execute the command
-						doExecuteNonDirtyingCommand(command);
-					}
-				}
+          /**
+           * Delete the model elements to be deleted
+           */
+          elementsToDelete = new HashSet<>(EcoreUtil.filterDescendants(elementsToDelete));
+          CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, elementsToDelete, true, false,
+              true);
+          if (command.canExecute()) {
+            // execute the command
+            doExecuteNonDirtyingCommand(command);
+          }
+        }
 
-				// Refresh all representations
-				FilteringUtils.refreshAllRepresentations(session, executionManager);
+        // Refresh all representations
+        FilteringUtils.refreshAllRepresentations(session, executionManager);
 
-				// Save and close session
-				session.save(new NullProgressMonitor());
-				SessionHelper.closeUiSessions(Collections.singletonList(clonedProject));
+        // Save and close session
+        session.save(new NullProgressMonitor());
+        SessionHelper.closeUiSessions(Collections.singletonList(clonedProject));
 
-				// Refresh workspace
-				clonedProject.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-			}
+        // Refresh workspace
+        clonedProject.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+      }
 
-		} catch (CoreException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			// Finally monitor done
-			monitor.done();
-		}
-	}
-	
-	/**
-	 * @param elements
-	 * @param current
-	 */
-	@Deprecated // TODO: takes 94% of CPU time in a derivation !
-	// do not use list, use hasmap or treemap (contains fast)
-	boolean isAlreadyContained(List<EObject> elements, EObject current) {
-		if (!elements.contains(current)) {
-			for (EObject elts : elements) {
-				for (Iterator<EObject> iterator = elts.eAllContents(); iterator.hasNext();) {
-					EObject elt = iterator.next();
-					if (elt.equals(current)) {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-		return true;
-	}
+    } catch (CoreException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      // Finally monitor done
+      monitor.done();
+    }
+  }
 
-	/**
-	 * associate new features of cloned project with old features of initial
-	 * project in mappingTable
-	 * 
-	 * @param newFeatures
-	 * @param oldFeatures
-	 * @param mappingTable
-	 */
-	private void mapFeatures(List<FilteringCriterion> newFeatures, List<FilteringCriterion> oldFeatures,
-			Map<FilteringCriterion, FilteringCriterion> mappingTable) {
+  /**
+   * @param elements
+   * @param current
+   */
+  @Deprecated // TODO: takes 94% of CPU time in a derivation !
+  // do not use list, use hasmap or treemap (contains fast)
+  boolean isAlreadyContained(List<EObject> elements, EObject current) {
+    if (!elements.contains(current)) {
+      for (EObject elts : elements) {
+        for (Iterator<EObject> iterator = elts.eAllContents(); iterator.hasNext();) {
+          EObject elt = iterator.next();
+          if (elt.equals(current)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    return true;
+  }
 
-		assert (oldFeatures.size() == newFeatures.size());
+  /**
+   * associate new features of cloned project with old features of initial project in mappingTable
+   * 
+   * @param newFeatures
+   * @param oldFeatures
+   * @param mappingTable
+   */
+  private void mapFeatures(List<FilteringCriterion> newFeatures, List<FilteringCriterion> oldFeatures,
+      Map<FilteringCriterion, FilteringCriterion> mappingTable) {
 
-		for (Object newElement : newFeatures) {
-			for (Object oldElement : oldFeatures) {
-				if (newElement instanceof FilteringCriterion && oldElement instanceof FilteringCriterion) {
-					FilteringCriterion newFeature = (FilteringCriterion) newElement;
-					FilteringCriterion oldFeature = (FilteringCriterion) oldElement;
-					if (newFeature.getName().equals(oldFeature.getName())) {
-						mappingTable.put(newFeature, oldFeature);
-					}
-				}
-			}
-		}
-	}
+    assert (oldFeatures.size() == newFeatures.size());
 
-	/**
-	 * @param elem
-	 * @param mappingTable
-	 * @return
-	 */
-	private boolean hasOneCheckedFeature(CapellaElement elem,
-			Map<FilteringCriterion, FilteringCriterion> mappingTable) {
-		List<FilteringCriterion> associatedCriteria = FilteringUtils.getAssociatedCriteria(elem);
+    for (Object newElement : newFeatures) {
+      for (Object oldElement : oldFeatures) {
+        if (newElement instanceof FilteringCriterion && oldElement instanceof FilteringCriterion) {
+          FilteringCriterion newFeature = (FilteringCriterion) newElement;
+          FilteringCriterion oldFeature = (FilteringCriterion) oldElement;
+          if (newFeature.getName().equals(oldFeature.getName())) {
+            mappingTable.put(newFeature, oldFeature);
+          }
+        }
+      }
+    }
+  }
 
-		for (FilteringCriterion associatedFeature : associatedCriteria) {
-			if (selectedFeatures.contains(mappingTable.get(associatedFeature))) {
-				return true;
-			}
-		}
+  /**
+   * @param elem
+   * @param mappingTable
+   * @return
+   */
+  private boolean hasOneCheckedFeature(CapellaElement elem, Map<FilteringCriterion, FilteringCriterion> mappingTable) {
+    List<FilteringCriterion> associatedCriteria = FilteringUtils.getAssociatedCriteria(elem);
 
-		return false;
-	}
+    for (FilteringCriterion associatedFeature : associatedCriteria) {
+      if (selectedFeatures.contains(mappingTable.get(associatedFeature))) {
+        return true;
+      }
+    }
 
+    return false;
+  }
 
+  protected void doExecuteNonDirtyingCommand(final Command realCommand) {
+    executionManager.execute(new AbstractNonDirtyingCommand() {
+      @Override
+      public void run() {
+        Collection<?> affectedObjects = realCommand.getAffectedObjects();
+        realCommand.execute();
+      }
+    });
+  }
 
-	protected void doExecuteNonDirtyingCommand(final Command realCommand) {
-		executionManager.execute(new AbstractNonDirtyingCommand() {
-			@Override
-			public void run() {
-				Collection<?> affectedObjects = realCommand.getAffectedObjects();
-				realCommand.execute();
-			}
-		});
-	}
+  /**
+   * TODO Copied From CapellaViewpointUncontrolHandler without UI and modifications.
+   * 
+   * @param semanticRoot
+   */
+  public void performUncontrol(final EObject semanticRoot) {
+    DesignerControlAction dca = new DesignerControlAction();
+    CapellaSiriusUncontrolCommand vuc = dca.new CapellaSiriusUncontrolCommand(semanticRoot, true);
 
-	/**
-	 * TODO Copied From CapellaViewpointUncontrolHandler without UI and
-	 * modifications.
-	 * 
-	 * @param semanticRoot
-	 */
-	public void performUncontrol(final EObject semanticRoot) {
-		DesignerControlAction dca = new DesignerControlAction();
-		CapellaSiriusUncontrolCommand vuc = dca.new CapellaSiriusUncontrolCommand(semanticRoot, true);
+    // Disable resourceSetSync notification to avoid unload / reload of
+    // fragmented resources during the unfragmentation.
+    setResourceSetSyncNotificationEnabled(false);
+    try {
+      doExecuteNonDirtyingCommand(vuc);
+    } finally {
+      Display.getDefault().asyncExec(new Runnable() {
+        @Override
+        public void run() {
+          // Re-enable the notification.
+          setResourceSetSyncNotificationEnabled(true);
+        }
+      });
+    }
+  }
 
-		// Disable resourceSetSync notification to avoid unload / reload of
-		// fragmented resources during the unfragmentation.
-		setResourceSetSyncNotificationEnabled(false);
-		try {
-			doExecuteNonDirtyingCommand(vuc);
-		} finally {
-			Display.getDefault().asyncExec(new Runnable() {
-				@Override
-				public void run() {
-					// Re-enable the notification.
-					setResourceSetSyncNotificationEnabled(true);
-				}
-			});
-		}
-	}
-
-	/**
-	 * TODO Copied from DesignerControlAction Set whether or not the
-	 * resourceSetSync related to current TED emits notifications to its
-	 * clients.
-	 * 
-	 * @param notificationEnabled
-	 */
-	public void setResourceSetSyncNotificationEnabled(boolean notificationEnabled) {
-		if (editingDomain != null) {
-			ResourceSetSync.getOrInstallResourceSetSync(editingDomain).setNotificationIsRequired(notificationEnabled);
-		}
-	}
+  /**
+   * TODO Copied from DesignerControlAction Set whether or not the resourceSetSync related to current TED emits
+   * notifications to its clients.
+   * 
+   * @param notificationEnabled
+   */
+  public void setResourceSetSyncNotificationEnabled(boolean notificationEnabled) {
+    if (editingDomain != null) {
+      ResourceSetSync.getOrInstallResourceSetSync(editingDomain).setNotificationIsRequired(notificationEnabled);
+    }
+  }
 }

@@ -23,20 +23,20 @@ import org.polarsys.capella.filtering.tools.actions.FilteringMultipleCriteriaAss
  */
 public class MultipleCriteriaAssigningCommandHandler extends AbstractHandler {
 
-	private FilteringMultipleCriteriaAssigningAction action;
+  private FilteringMultipleCriteriaAssigningAction action;
 
-	public MultipleCriteriaAssigningCommandHandler() {
-		this.action = new FilteringMultipleCriteriaAssigningAction();
-	}
+  public MultipleCriteriaAssigningCommandHandler() {
+    this.action = new FilteringMultipleCriteriaAssigningAction();
+  }
 
-	@Override
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		// Update the selection
-		DDiagramEditor diagramEditor = (DDiagramEditor) HandlerUtil.getActiveEditor(event);
-		ISelection selection = diagramEditor.getEditorSite().getSelectionProvider().getSelection();
-		action.selectionChanged(null, selection);
-		// Run the action
-		action.run(null);
-		return null;
-	}
+  @Override
+  public Object execute(final ExecutionEvent event) throws ExecutionException {
+    // Update the selection
+    DDiagramEditor diagramEditor = (DDiagramEditor) HandlerUtil.getActiveEditor(event);
+    ISelection selection = diagramEditor.getEditorSite().getSelectionProvider().getSelection();
+    action.selectionChanged(null, selection);
+    // Run the action
+    action.run(null);
+    return null;
+  }
 }

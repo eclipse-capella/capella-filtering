@@ -34,46 +34,46 @@ import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
 
 public class CriteriaMultipleSemanticField extends MultipleSemanticField {
 
-	/**
-	 * @param parent
-	 * @param label
-	 * @param widgetFactory
-	 * @param controller
-	 */
-	public CriteriaMultipleSemanticField(Composite parent, String label, TabbedPropertySheetWidgetFactory widgetFactory,
-			IMultipleSemanticFieldController controller) {
-		super(parent, label, widgetFactory, controller);
-	}
+  /**
+   * @param parent
+   * @param label
+   * @param widgetFactory
+   * @param controller
+   */
+  public CriteriaMultipleSemanticField(Composite parent, String label, TabbedPropertySheetWidgetFactory widgetFactory,
+      IMultipleSemanticFieldController controller) {
+    super(parent, label, widgetFactory, controller);
+  }
 
-	/**
-	 * We use our own dialog to select the features. {@inheritDoc}
-	 */
-	@Override
-	protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
-			List<EObject> availableElements, String title, String message) {
-		Session session = SessionManager.INSTANCE.getSession(_semanticElement);
-		TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-		Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
-		FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
-				new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
-						((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
-				new CriteriaContentProvider(), projects);
-		dialog.setTitle(title);
-		dialog.setMessage(message);
-		dialog.setInput(projects);
-		dialog.setInitialElementSelections(currentElements);
-		if (dialog.open() != Window.OK) {
-			// User press cancel or close => OperationCanceledException =>
-			// Transaction is rolled back
-			throw new OperationCanceledException();
-		}
-		// Return the selection
-		List<EObject> checkedElements = new ArrayList<>();
-		for (Object o : dialog.getCheckedElements()) {
-			if (o instanceof EObject) {
-				checkedElements.add((EObject) o);
-			}
-		}
-		return checkedElements;
-	}
+  /**
+   * We use our own dialog to select the features. {@inheritDoc}
+   */
+  @Override
+  protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
+      List<EObject> availableElements, String title, String message) {
+    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
+        new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
+            ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
+        new CriteriaContentProvider(), projects);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setInput(projects);
+    dialog.setInitialElementSelections(currentElements);
+    if (dialog.open() != Window.OK) {
+      // User press cancel or close => OperationCanceledException =>
+      // Transaction is rolled back
+      throw new OperationCanceledException();
+    }
+    // Return the selection
+    List<EObject> checkedElements = new ArrayList<>();
+    for (Object o : dialog.getCheckedElements()) {
+      if (o instanceof EObject) {
+        checkedElements.add((EObject) o);
+      }
+    }
+    return checkedElements;
+  }
 }

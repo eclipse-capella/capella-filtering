@@ -23,20 +23,20 @@ import org.polarsys.capella.filtering.tools.actions.FilteringOverviewAction;
  */
 public class FilteringOverviewCommandHandler extends AbstractHandler {
 
-	private FilteringOverviewAction action;
+  private FilteringOverviewAction action;
 
-	public FilteringOverviewCommandHandler() {
-		this.action = new FilteringOverviewAction();
-	}
+  public FilteringOverviewCommandHandler() {
+    this.action = new FilteringOverviewAction();
+  }
 
-	@Override
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		// Update the selection
-		DDiagramEditor diagramEditor = (DDiagramEditor) HandlerUtil.getActiveEditor(event);
-		ISelection selection = diagramEditor.getEditorSite().getSelectionProvider().getSelection();
-		action.selectionChanged(null, selection);
-		// Run the action
-		action.run(null);
-		return null;
-	}
+  @Override
+  public Object execute(final ExecutionEvent event) throws ExecutionException {
+    // Update the selection
+    DDiagramEditor diagramEditor = (DDiagramEditor) HandlerUtil.getActiveEditor(event);
+    ISelection selection = diagramEditor.getEditorSite().getSelectionProvider().getSelection();
+    action.selectionChanged(null, selection);
+    // Run the action
+    action.run(null);
+    return null;
+  }
 }

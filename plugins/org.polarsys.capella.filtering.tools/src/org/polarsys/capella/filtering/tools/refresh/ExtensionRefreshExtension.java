@@ -21,46 +21,46 @@ import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 
 public class ExtensionRefreshExtension implements IRefreshExtension {
 
-	private final ResourceSetImpl localSet = new ResourceSetImpl();
+  private final ResourceSetImpl localSet = new ResourceSetImpl();
 
-	@Override
-	public void beforeRefresh(DDiagram diagram) {
-		process(diagram);
-	}
+  @Override
+  public void beforeRefresh(DDiagram diagram) {
+    process(diagram);
+  }
 
-	@Override
-	public void postRefresh(DDiagram diagram) {
-		// nothing to do
-	}
+  @Override
+  public void postRefresh(DDiagram diagram) {
+    // nothing to do
+  }
 
-	public void process(DDiagram diagram) {
+  public void process(DDiagram diagram) {
 
-		// refresh a already opened diagram
-		if (!diagram.getActivatedFilters().isEmpty()) {
-			CompositeFilterApplicationBuilder builder = new CompositeFilterApplicationBuilder(diagram);
-			builder.computeCompositeFilterApplications();
-		}
+    // refresh a already opened diagram
+    if (!diagram.getActivatedFilters().isEmpty()) {
+      CompositeFilterApplicationBuilder builder = new CompositeFilterApplicationBuilder(diagram);
+      builder.computeCompositeFilterApplications();
+    }
 
-		// set filter when opening a diagram
-		CompositeFilterDescription filterDesc = (CompositeFilterDescription) localSet
-				.getEObject(FilteringToolsPlugin.FILTER_URI, true);
-		if (!contains(diagram.getActivatedFilters(), filterDesc)) {
-			diagram.getActivatedFilters().add(filterDesc);
-			if (diagram.getCurrentConcern() != null) {
-				diagram.getCurrentConcern().getFilters().add(filterDesc);
-			}
-		}
+    // set filter when opening a diagram
+    CompositeFilterDescription filterDesc = (CompositeFilterDescription) localSet
+        .getEObject(FilteringToolsPlugin.FILTER_URI, true);
+    if (!contains(diagram.getActivatedFilters(), filterDesc)) {
+      diagram.getActivatedFilters().add(filterDesc);
+      if (diagram.getCurrentConcern() != null) {
+        diagram.getCurrentConcern().getFilters().add(filterDesc);
+      }
+    }
 
-	}
+  }
 
-	private boolean contains(EList<FilterDescription> activatedFilters, CompositeFilterDescription filterDesc) {
-		for (FilterDescription desc : activatedFilters) {
-			// name is the id of the element ...
-			if (desc.getName().equals(filterDesc.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
+  private boolean contains(EList<FilterDescription> activatedFilters, CompositeFilterDescription filterDesc) {
+    for (FilterDescription desc : activatedFilters) {
+      // name is the id of the element ...
+      if (desc.getName().equals(filterDesc.getName())) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 }

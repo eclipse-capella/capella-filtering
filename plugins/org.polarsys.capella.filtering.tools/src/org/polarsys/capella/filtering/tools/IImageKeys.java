@@ -19,18 +19,18 @@ import org.polarsys.capella.filtering.tools.view.DiagCriteriaVisibilityView;
  */
 public interface IImageKeys {
 
-	/**
-	 * overview action image id.
-	 */
-	public static final String IMG_FILTERING_EXTRACTION = "extract.png"; //$NON-NLS-1$
+  /**
+   * overview action image id.
+   */
+  public static final String IMG_FILTERING_EXTRACTION = "extract.png"; //$NON-NLS-1$
 
-	/**
-	 * overview action image id.
-	 */
-	public static final String IMG_FILTERING_OVERVIEW = "overview_16.png"; //$NON-NLS-1$
+  /**
+   * overview action image id.
+   */
+  public static final String IMG_FILTERING_OVERVIEW = "overview_16.png"; //$NON-NLS-1$
 
-	  /**
-	   * Image id used in {@link DiagCriteriaVisibilityView} to refresh active diagram.<br>
-	   */
-	  public final static String IMG_REFRESH = "refresh.gif"; //$NON-NLS-1$
+  /**
+   * Image id used in {@link DiagCriteriaVisibilityView} to refresh active diagram.<br>
+   */
+  public final static String IMG_REFRESH = "refresh.gif"; //$NON-NLS-1$
 }

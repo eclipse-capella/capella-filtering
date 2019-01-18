@@ -30,135 +30,132 @@ import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteComman
 
 class ModelOnlyFilteringDeleteCommand extends CapellaDeleteCommand {
 
-	private Set<Object> allElementsToDelete;
-	private ExecutionManager executionManager2;
+  private Set<Object> allElementsToDelete;
+  private ExecutionManager executionManager2;
 
-	/**
-	 * @param executionManager
-	 * @param selection
-	 * @param ensureTransaction
-	 * @param confirmDelete
-	 * @param longOperationEvents
-	 */
-	public ModelOnlyFilteringDeleteCommand(ExecutionManager executionManager, Collection<?> selection,
-			boolean ensureTransaction, boolean confirmDelete, boolean longOperationEvents) {
-		super(executionManager, selection, ensureTransaction, confirmDelete, longOperationEvents);
-		executionManager2 = executionManager;
-	}
+  /**
+   * @param executionManager
+   * @param selection
+   * @param ensureTransaction
+   * @param confirmDelete
+   * @param longOperationEvents
+   */
+  public ModelOnlyFilteringDeleteCommand(ExecutionManager executionManager, Collection<?> selection,
+      boolean ensureTransaction, boolean confirmDelete, boolean longOperationEvents) {
+    super(executionManager, selection, ensureTransaction, confirmDelete, longOperationEvents);
+    executionManager2 = executionManager;
+  }
 
-	/**
-	 * Finds _all_ elements that will be deleted when the command is executed.
-	 * <br>
-	 * NOTES: <br> 
-	 * a. Two layers of business logic are controlling the result of this
-	 * operation:<br>
-	 * 1. The delete helper is used to expand the initial selection <br>
-	 * 2. Business rules defined in PreDeleteStructureCommand <br>
-	 * b. All containment children of deleted elements are explicitly contained
-	 * in the result set.
-	 */
-	@Override
-	public Set<?> getAllElementsToDelete() {
-		if (allElementsToDelete == null) {
-			// Get a new handler.
-			HashSet<Object> result = new HashSet<Object>();
-			PreDeleteHandler handler = new PreDeleteHandler();
+  /**
+   * Finds _all_ elements that will be deleted when the command is executed. <br>
+   * NOTES: <br>
+   * a. Two layers of business logic are controlling the result of this operation:<br>
+   * 1. The delete helper is used to expand the initial selection <br>
+   * 2. Business rules defined in PreDeleteStructureCommand <br>
+   * b. All containment children of deleted elements are explicitly contained in the result set.
+   */
+  @Override
+  public Set<?> getAllElementsToDelete() {
+    if (allElementsToDelete == null) {
+      // Get a new handler.
+      HashSet<Object> result = new HashSet<Object>();
+      PreDeleteHandler handler = new PreDeleteHandler();
 
-			// Call predeletion command.
-			Command preDeletion = new ModelOnlyPreDeleteStructureCommand(executionManager2.getEditingDomain(),
-					getExpandedSelection(), handler);
-			if (preDeletion.canExecute()) {
-				preDeletion.execute();
-			}
+      // Call predeletion command.
+      Command preDeletion = new ModelOnlyPreDeleteStructureCommand(executionManager2.getEditingDomain(),
+          getExpandedSelection(), handler);
+      if (preDeletion.canExecute()) {
+        preDeletion.execute();
+      }
 
-			for (Notification notification : handler.notifications) {
-				Object notifier = notification.getNotifier();
-				if (notifier instanceof EObject) {
-					// Get old value (ie removed one).
-					Object oldValue = notification.getOldValue();
-					int notificationType = notification.getEventType();
-					switch (notificationType) {
-					// Set case.
-					// Handle it as a remove, as long as there is a null new
-					// value (and a not null old one, but that part is
-					// tested within the remove case
-					// directly).
-					case Notification.SET:
-						if (null != notification.getNewValue()) {
-							break;
-						}
-						//$FALL-THROUGH$
-					case Notification.REMOVE:
-						if (oldValue instanceof EObject) {
-							boolean handleNotification = false;
-							try {
-								EReference feature = EReference.class.cast(notification.getFeature());
-								handleNotification = feature.isContainment();
-							} catch (ClassCastException exception) {
-								// Could not tell feature, add notification
-								// whatever it might be.
-								handleNotification = true;
-							}
-							if (handleNotification) {
-								// Add the deleted element.
-								EObject deletedObject = (EObject) oldValue;
-								result.add(deletedObject);
-								// Filter out children of non Melody model
-								// elements as DRepresentation for instance.
-								if (CapellaResourceHelper.isSemanticElement(deletedObject)) {
-									// Add the deleted element subtree.
-									TreeIterator<EObject> allChildrenOfDeletedObject = deletedObject.eAllContents();
-									while (allChildrenOfDeletedObject.hasNext()) {
-										EObject child = allChildrenOfDeletedObject.next();
-										result.add(child);
-									}
-								}
-							}
-						}
-						break;
-					default:
-						break;
-					}
-				}
-			}
-			handler.dispose();
-			allElementsToDelete = Collections.unmodifiableSet(result);
-		}
-		return allElementsToDelete;
-	}
+      for (Notification notification : handler.notifications) {
+        Object notifier = notification.getNotifier();
+        if (notifier instanceof EObject) {
+          // Get old value (ie removed one).
+          Object oldValue = notification.getOldValue();
+          int notificationType = notification.getEventType();
+          switch (notificationType) {
+          // Set case.
+          // Handle it as a remove, as long as there is a null new
+          // value (and a not null old one, but that part is
+          // tested within the remove case
+          // directly).
+          case Notification.SET:
+            if (null != notification.getNewValue()) {
+              break;
+            }
+            //$FALL-THROUGH$
+          case Notification.REMOVE:
+            if (oldValue instanceof EObject) {
+              boolean handleNotification = false;
+              try {
+                EReference feature = EReference.class.cast(notification.getFeature());
+                handleNotification = feature.isContainment();
+              } catch (ClassCastException exception) {
+                // Could not tell feature, add notification
+                // whatever it might be.
+                handleNotification = true;
+              }
+              if (handleNotification) {
+                // Add the deleted element.
+                EObject deletedObject = (EObject) oldValue;
+                result.add(deletedObject);
+                // Filter out children of non Melody model
+                // elements as DRepresentation for instance.
+                if (CapellaResourceHelper.isSemanticElement(deletedObject)) {
+                  // Add the deleted element subtree.
+                  TreeIterator<EObject> allChildrenOfDeletedObject = deletedObject.eAllContents();
+                  while (allChildrenOfDeletedObject.hasNext()) {
+                    EObject child = allChildrenOfDeletedObject.next();
+                    result.add(child);
+                  }
+                }
+              }
+            }
+            break;
+          default:
+            break;
+          }
+        }
+      }
+      handler.dispose();
+      allElementsToDelete = Collections.unmodifiableSet(result);
+    }
+    return allElementsToDelete;
+  }
 
-	private class ModelOnlyPreDeleteStructureCommand extends PreDeleteStructureCommand {
+  private class ModelOnlyPreDeleteStructureCommand extends PreDeleteStructureCommand {
 
-		private PreDeleteHandler handler;
+    private PreDeleteHandler handler;
 
-		/**
-		 * @param editingDomain
-		 * @param elements
-		 * @param deleteParts
-		 * @param handler
-		 */
-		public ModelOnlyPreDeleteStructureCommand(EditingDomain editingDomain, Collection<?> elements,
-				PreDeleteHandler handler) {
-			super(editingDomain, elements, handler);
-			this.handler = handler;
-		}
+    /**
+     * @param editingDomain
+     * @param elements
+     * @param deleteParts
+     * @param handler
+     */
+    public ModelOnlyPreDeleteStructureCommand(EditingDomain editingDomain, Collection<?> elements,
+        PreDeleteHandler handler) {
+      super(editingDomain, elements, handler);
+      this.handler = handler;
+    }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@SuppressWarnings("unchecked")
-		@Override
-		protected void doPrepare() {
-			append(new PreRemoveCommand((Collection<EObject>) getElementsToDelete(), handler));
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void doPrepare() {
+      append(new PreRemoveCommand((Collection<EObject>) getElementsToDelete(), handler));
+    }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected Command doDeleteStructure(EObject sourceObject) {
-			return new ModelOnlyPreDeleteStructureCommand(getEditingDomain(), Collections.singletonList(sourceObject),
-					handler);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Command doDeleteStructure(EObject sourceObject) {
+      return new ModelOnlyPreDeleteStructureCommand(getEditingDomain(), Collections.singletonList(sourceObject),
+          handler);
+    }
+  }
 }

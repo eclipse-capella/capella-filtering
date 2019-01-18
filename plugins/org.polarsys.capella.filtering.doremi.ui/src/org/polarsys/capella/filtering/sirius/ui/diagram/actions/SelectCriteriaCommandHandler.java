@@ -24,20 +24,20 @@ import org.polarsys.capella.filtering.sirius.ui.FilteringSiriusUtils;
  */
 public class SelectCriteriaCommandHandler extends AbstractHandler implements IElementUpdater {
 
-	private SelectCriteriaAction action;
+  private SelectCriteriaAction action;
 
-	public SelectCriteriaCommandHandler() {
-		this.action = new SelectCriteriaAction(FilteringSiriusUtils.getActivePage());
-	}
+  public SelectCriteriaCommandHandler() {
+    this.action = new SelectCriteriaAction(FilteringSiriusUtils.getActivePage());
+  }
 
-	@Override
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		action.getCommand().execute();
-		return null;
-	}
+  @Override
+  public Object execute(final ExecutionEvent event) throws ExecutionException {
+    action.getCommand().execute();
+    return null;
+  }
 
-	@Override
-	public void updateElement(UIElement element, Map parameters) {
-		action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
-	}
+  @Override
+  public void updateElement(UIElement element, Map parameters) {
+    action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
+  }
 }

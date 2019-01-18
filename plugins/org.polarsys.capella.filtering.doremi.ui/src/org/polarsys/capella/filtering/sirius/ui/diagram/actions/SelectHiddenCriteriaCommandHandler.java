@@ -26,39 +26,39 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class SelectHiddenCriteriaCommandHandler extends AbstractHandler implements IElementUpdater {
 
-	private SelectHiddenCriteriaAction action;
+  private SelectHiddenCriteriaAction action;
 
-	public SelectHiddenCriteriaCommandHandler() {
-		this.action = new SelectHiddenCriteriaAction(FilteringSiriusUtils.getActivePage(),
-				FilteringSiriusUtils.getActivePart());
-	}
+  public SelectHiddenCriteriaCommandHandler() {
+    this.action = new SelectHiddenCriteriaAction(FilteringSiriusUtils.getActivePage(),
+        FilteringSiriusUtils.getActivePart());
+  }
 
-	@Override
-	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
-			@Override
-			@SuppressWarnings("synthetic-access")
-			public void run() {
-				action.getCommand().execute();
-			}
+  @Override
+  public Object execute(final ExecutionEvent event) throws ExecutionException {
+    FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
+      @Override
+      @SuppressWarnings("synthetic-access")
+      public void run() {
+        action.getCommand().execute();
+      }
 
-			@SuppressWarnings("synthetic-access")
-			@Override
-			public void commandRolledBack() {
-				action.getCommand().undo();
-			}
+      @SuppressWarnings("synthetic-access")
+      @Override
+      public void commandRolledBack() {
+        action.getCommand().undo();
+      }
 
-			@Override
-			public String toString() {
-				return "Hide features"; //$NON-NLS-1$
-			}
-		}, action.getSession());
-		return null;
-	}
+      @Override
+      public String toString() {
+        return "Hide features"; //$NON-NLS-1$
+      }
+    }, action.getSession());
+    return null;
+  }
 
-	@Override
-	public void updateElement(UIElement element, Map parameters) {
-		action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
-		element.setIcon(action.getImage());
-	}
+  @Override
+  public void updateElement(UIElement element, Map parameters) {
+    action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
+    element.setIcon(action.getImage());
+  }
 }

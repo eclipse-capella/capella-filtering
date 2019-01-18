@@ -17,11 +17,11 @@ import org.polarsys.capella.core.data.capellacore.NamedElement;
  * Feature Label Provider
  */
 public class NamedElementLabelProvider extends LabelProvider {
-	@Override
-	public String getText(Object element) {
-		if (element instanceof NamedElement) {
-			return ((NamedElement) element).getName();
-		}
-		return element == null ? "" : element.toString();//$NON-NLS-1$
-	}
+  @Override
+  public String getText(Object element) {
+    if (element instanceof NamedElement) {
+      return ((NamedElement) element).getName();
+    }
+    return element == null ? "" : element.toString();//$NON-NLS-1$
+  }
 }

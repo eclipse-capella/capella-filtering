@@ -19,26 +19,26 @@ import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 /**
- * Query that retrieves the feature list associated to a given melody element.
- * To to be used in the semantic browser extension point for example.
+ * Query that retrieves criteria associated to a given melody element. To to be used in the semantic browser extension
+ * point for example.
  * 
  * 
  */
 public class CapellaElementExplicitQuery implements IQuery {
 
-	/**
-	 * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
-	 */
-	@Override
-	public List<Object> compute(Object object) {
-		List<Object> result = new ArrayList<>();
-		// Show for any melody element except FilteringCriterionSet that has his
-		// own semantic browser contribution for filtering features
-		if ((object instanceof EObject) && !(object instanceof FilteringCriterionSet)) {
-			for (Object o : FilteringUtils.getExplicitAssociatedCriteria((EObject) object)) {
-				result.add(o);
-			}
-		}
-		return result;
-	}
+  /**
+   * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
+   */
+  @Override
+  public List<Object> compute(Object object) {
+    List<Object> result = new ArrayList<>();
+    // Show for any melody element except FilteringCriterionSet that has his
+    // own semantic browser contribution for filtering features
+    if ((object instanceof EObject) && !(object instanceof FilteringCriterionSet)) {
+      for (Object o : FilteringUtils.getExplicitAssociatedCriteria((EObject) object)) {
+        result.add(o);
+      }
+    }
+    return result;
+  }
 }

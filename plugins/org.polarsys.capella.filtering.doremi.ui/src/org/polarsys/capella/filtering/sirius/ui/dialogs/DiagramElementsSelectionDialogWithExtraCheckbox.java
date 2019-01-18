@@ -21,29 +21,29 @@ import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
  */
 public class DiagramElementsSelectionDialogWithExtraCheckbox extends DiagramElementsSelectionDialog {
 
-	private String checkboxMessage;
-	private boolean checkboxSelected;
-	private boolean selection;
+  private String checkboxMessage;
+  private boolean checkboxSelected;
+  private boolean selection;
 
-	/**
-	 * @param title
-	 * @param message
-	 */
-	public DiagramElementsSelectionDialogWithExtraCheckbox(String title, String message, String checkboxMessage,
-			boolean checkboxSelected) {
-		super(title, message);
-		this.checkboxMessage = checkboxMessage;
-		this.checkboxSelected = checkboxSelected;
-	}
+  /**
+   * @param title
+   * @param message
+   */
+  public DiagramElementsSelectionDialogWithExtraCheckbox(String title, String message, String checkboxMessage,
+      boolean checkboxSelected) {
+    super(title, message);
+    this.checkboxMessage = checkboxMessage;
+    this.checkboxSelected = checkboxSelected;
+  }
 
-	@Override
-	public SiriusCriteriaSelectionDialog createCustomTreeSelectionDialog(Shell parent, EObject eObject) {
-		Project project = CapellaProjectHelper.getProject(((DSemanticDiagram) eObject).getTarget());
-		return new SiriusCriteriaSelectionDialog(parent, new AdvancedFeatureLabelProvider(), super.contentProvider,
-				project, eObject);
-	}
+  @Override
+  public SiriusCriteriaSelectionDialog createCustomTreeSelectionDialog(Shell parent, EObject eObject) {
+    Project project = CapellaProjectHelper.getProject(((DSemanticDiagram) eObject).getTarget());
+    return new SiriusCriteriaSelectionDialog(parent, new AdvancedFeatureLabelProvider(), super.contentProvider, project,
+        eObject);
+  }
 
-	public boolean getCheckboxSelection() {
-		return selection;
-	}
+  public boolean getCheckboxSelection() {
+    return selection;
+  }
 }

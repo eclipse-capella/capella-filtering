@@ -20,12 +20,12 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * 
  */
 public class CriterionSetFilteringCriteriaController extends AbstractMultipleSemanticFieldController {
-	/**
-	 * @see org.polarsys.capella.core.ui.properties.controllers.custom.properties.controllers.AbstractMultipleSemanticFieldController#getReadOpenValuesQuery(org.polarsys.capella.core.data.capellacore.CapellaElement)
-	 */
-	@Override
-	protected IBusinessQuery getReadOpenValuesQuery(EObject semanticElement) {
-		return BusinessQueriesProvider.getInstance().getContribution(semanticElement.eClass(),
-				FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA);
-	}
+  /**
+   * @see org.polarsys.capella.core.ui.properties.controllers.custom.properties.controllers.AbstractMultipleSemanticFieldController#getReadOpenValuesQuery(org.polarsys.capella.core.data.capellacore.CapellaElement)
+   */
+  @Override
+  protected IBusinessQuery getReadOpenValuesQuery(EObject semanticElement) {
+    return BusinessQueriesProvider.getInstance().getContribution(semanticElement.eClass(),
+        FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA);
+  }
 }

@@ -21,20 +21,20 @@ import org.polarsys.capella.filtering.FilteringPackage;
 
 public class AssociatedFilteringCriterionSetItemContribution implements IMDEMenuItemContribution {
 
-	@Override
-	public EClass getMetaclass() {
-		return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
-	}
+  @Override
+  public EClass getMetaclass() {
+    return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
+  }
 
-	@Override
-	public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
-			ModelElement createdElement, EStructuralFeature feature) {
-		return new IdentityCommand();
-	}
+  @Override
+  public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
+      ModelElement createdElement, EStructuralFeature feature) {
+    return new IdentityCommand();
+  }
 
-	@Override
-	public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
-		return false;
-	}
+  @Override
+  public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
+    return false;
+  }
 
 }

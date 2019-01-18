@@ -24,30 +24,30 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class FilteringMetricsAction extends AbstractTigAction implements IActionDelegate {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void run(IAction action) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void run(IAction action) {
 
-		List<EObject> result = new ArrayList<>();
+    List<EObject> result = new ArrayList<>();
 
-		// Provide all the elements to the dialog
-		TreeIterator<EObject> it = getSelectedElement().eAllContents();
-		EObject current = null;
-		while (it.hasNext()) {
-			current = it.next();
-			if (!FilteringUtils.isInstanceOfFilteringExcludedElements(current)) {
-				result.add(current);
-			}
-		}
+    // Provide all the elements to the dialog
+    TreeIterator<EObject> it = getSelectedElement().eAllContents();
+    EObject current = null;
+    while (it.hasNext()) {
+      current = it.next();
+      if (!FilteringUtils.isInstanceOfFilteringExcludedElements(current)) {
+        result.add(current);
+      }
+    }
 
-		// Create the dialog
-		FilteringMetricsDialog dialog = new FilteringMetricsDialog(
-				PlatformUI.getWorkbench().getDisplay().getActiveShell(), Messages.FilteringMetricsAction_0, // $NON-NLS-1$
-				Messages.FilteringMetricsAction_1, this.getSelectedElement(), result); // $NON-NLS-1$
+    // Create the dialog
+    FilteringMetricsDialog dialog = new FilteringMetricsDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+        Messages.FilteringMetricsAction_0, // $NON-NLS-1$
+        Messages.FilteringMetricsAction_1, this.getSelectedElement(), result); // $NON-NLS-1$
 
-		// Open it
-		dialog.open();
-	}
+    // Open it
+    dialog.open();
+  }
 }

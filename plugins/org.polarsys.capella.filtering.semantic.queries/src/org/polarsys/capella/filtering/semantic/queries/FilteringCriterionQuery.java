@@ -25,26 +25,30 @@ import org.polarsys.capella.common.platform.sirius.ted.SemanticEditingDomainFact
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 
+/**
+ * get all model elements associated with a Filtering Criterion
+ * 
+ */
 public class FilteringCriterionQuery implements IQuery {
 
-	@Override
-	public List<Object> compute(Object object) {
-		Set<Object> res = new HashSet<>();
+  @Override
+  public List<Object> compute(Object object) {
+    Set<Object> res = new HashSet<>();
 
-		if (object instanceof FilteringCriterion) {
-			FilteringCriterion filteringCriterion = (FilteringCriterion) object;
+    if (object instanceof FilteringCriterion) {
+      FilteringCriterion filteringCriterion = (FilteringCriterion) object;
 
-			ECrossReferenceAdapter crossReferencer = ((SemanticEditingDomain) TransactionHelper
-					.getEditingDomain(filteringCriterion)).getCrossReferencer();
-			Collection<EObject> referencingElements = EcoreUtil2.getReferencingElements(filteringCriterion, crossReferencer);
+      ECrossReferenceAdapter crossReferencer = ((SemanticEditingDomain) TransactionHelper
+          .getEditingDomain(filteringCriterion)).getCrossReferencer();
+      Collection<EObject> referencingElements = EcoreUtil2.getReferencingElements(filteringCriterion, crossReferencer);
 
-			for (EObject referencingElement : referencingElements) {
+      for (EObject referencingElement : referencingElements) {
 
-				if (referencingElement instanceof AssociatedFilteringCriterionSet) {
-					res.add(referencingElement.eContainer());
-				}
-			}
-		}
-		return new ArrayList<>(res);
-	}
+        if (referencingElement instanceof AssociatedFilteringCriterionSet) {
+          res.add(referencingElement.eContainer());
+        }
+      }
+    }
+    return new ArrayList<>(res);
+  }
 }

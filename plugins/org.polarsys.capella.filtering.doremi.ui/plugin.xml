@@ -479,22 +479,6 @@
             name="Filtering">
       </command>
    </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-      <decoratorProvider
-            class="org.polarsys.capella.filtering.sirius.ui.decorators.OptionalDecoratorProvider">
-         <Priority
-               name="Medium">
-         </Priority>
-         <object
-               class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart(org.eclipse.gmf.runtime.diagram.ui)"
-               id="Node">
-         </object>
-         <context
-               decoratorTargets="Node">
-         </context>
-      </decoratorProvider>
-   </extension>
    
 
 </plugin>

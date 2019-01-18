@@ -12,7 +12,7 @@ package org.polarsys.capella.filtering.properties.sections;
 
 interface Messages {
 
-	public static String filteringLabel = "Filtering Criteria";
-	public static String implicitCriteriaLabel = "Implicit Criteria";
+  public static String filteringLabel = "Filtering Criteria";
+  public static String implicitCriteriaLabel = "Implicit Criteria";
 
 }

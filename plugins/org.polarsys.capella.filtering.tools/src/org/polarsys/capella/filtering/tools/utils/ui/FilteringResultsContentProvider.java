@@ -23,45 +23,45 @@ import org.polarsys.capella.filtering.FilteringResults;
  */
 public class FilteringResultsContentProvider implements IStructuredContentProvider, ITreeContentProvider {
 
-	private FilteringResults filteringResults;
+  private FilteringResults filteringResults;
 
-	public FilteringResultsContentProvider(FilteringResults filteringResults) {
-		super();
-		this.filteringResults = filteringResults;
-	}
+  public FilteringResultsContentProvider(FilteringResults filteringResults) {
+    super();
+    this.filteringResults = filteringResults;
+  }
 
-	public Set<Object> getAllContents() {
-		Set<Object> contents = new HashSet<Object>();
-		if ((filteringResults != null) && (filteringResults.getFilteringResults() != null)) {
-			for (Object content : filteringResults.getFilteringResults()) {
-				contents.add(content);
-			}
-		}
-		return contents;
-	}
+  public Set<Object> getAllContents() {
+    Set<Object> contents = new HashSet<Object>();
+    if ((filteringResults != null) && (filteringResults.getFilteringResults() != null)) {
+      for (Object content : filteringResults.getFilteringResults()) {
+        contents.add(content);
+      }
+    }
+    return contents;
+  }
 
-	public void dispose() {
-		// Do nothing
-	}
+  public void dispose() {
+    // Do nothing
+  }
 
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// Do nothing
-	}
+  public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+    // Do nothing
+  }
 
-	public Object[] getElements(Object inputElement) {
-		return getAllContents().toArray();
-	}
+  public Object[] getElements(Object inputElement) {
+    return getAllContents().toArray();
+  }
 
-	public Object[] getChildren(Object parentElement) {
-		return null;
-	}
+  public Object[] getChildren(Object parentElement) {
+    return null;
+  }
 
-	public Object getParent(Object element) {
-		return null;
-	}
+  public Object getParent(Object element) {
+    return null;
+  }
 
-	public boolean hasChildren(Object element) {
-		return false;
-	}
+  public boolean hasChildren(Object element) {
+    return false;
+  }
 
 }

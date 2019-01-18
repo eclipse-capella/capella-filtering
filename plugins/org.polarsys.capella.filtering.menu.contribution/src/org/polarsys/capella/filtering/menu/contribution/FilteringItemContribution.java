@@ -33,88 +33,86 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class FilteringItemContribution implements IMDEMenuItemContribution {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
-		return true;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
+    return true;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
-			ModelElement createdElement, EStructuralFeature feature) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
+      ModelElement createdElement, EStructuralFeature feature) {
 
-		if (createdElement instanceof CapellaElement
-				&& !FilteringUtils.isInstanceOfFilteringExcludedElements(createdElement)) {
+    if (createdElement instanceof CapellaElement
+        && !FilteringUtils.isInstanceOfFilteringExcludedElements(createdElement)) {
 
-			// Get creation default features
-			CreationDefaultFilteringCriterionSet creationDefaultFeatureSet = FilteringUtils
-					.getCreationDefaultFeatureSet(containerElement);
+      // Get creation default features
+      CreationDefaultFilteringCriterionSet creationDefaultFeatureSet = FilteringUtils
+          .getCreationDefaultFeatureSet(containerElement);
 
-			if (creationDefaultFeatureSet != null) {
-				List<FilteringCriterion> creationDefaultFeatures = creationDefaultFeatureSet.getFilteringCriteria();
-				if (!creationDefaultFeatures.isEmpty()) {
+      if (creationDefaultFeatureSet != null) {
+        List<FilteringCriterion> creationDefaultFeatures = creationDefaultFeatureSet.getFilteringCriteria();
+        if (!creationDefaultFeatures.isEmpty()) {
 
-					// Create associatedFeatureSet for the element if it doesn't
-					// exist
-					AssociatedFilteringCriterionSet featureSet = FilteringUtils
-							.getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
-					if (featureSet == null) {
-						AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
-							@Override
-							public void run() {
-								AssociatedFilteringCriterionSet newFeatureSet = FilteringFactory.eINSTANCE
-										.createAssociatedFilteringCriterionSet();
-								createdElement.getOwnedExtensions().add(newFeatureSet);
-							}
-						};
-						executeCommand(command, containerElement);
-						// Get the associated feature set again
-						featureSet = FilteringUtils
-								.getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
-					}
+          // Create associatedFeatureSet for the element if it doesn't
+          // exist
+          AssociatedFilteringCriterionSet featureSet = FilteringUtils
+              .getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
+          if (featureSet == null) {
+            AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+              @Override
+              public void run() {
+                AssociatedFilteringCriterionSet newFeatureSet = FilteringFactory.eINSTANCE
+                    .createAssociatedFilteringCriterionSet();
+                createdElement.getOwnedExtensions().add(newFeatureSet);
+              }
+            };
+            executeCommand(command, containerElement);
+            // Get the associated feature set again
+            featureSet = FilteringUtils.getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
+          }
 
-					// Create the command that we should return in the execution
-					// contribution
-					CompoundCommand cmd = new CompoundCommand();
-					for (FilteringCriterion filteringCriterion : creationDefaultFeatures) {
-						if (!FilteringUtils.getAssociatedCriteria(createdElement).contains(filteringCriterion)) {
-							cmd.append(new AddCommand(editingDomain, featureSet,
-									FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria(),
-									filteringCriterion));
-						}
-					}
-					return cmd;
-				}
-			}
-		}
-		return null;
-	}
+          // Create the command that we should return in the execution
+          // contribution
+          CompoundCommand cmd = new CompoundCommand();
+          for (FilteringCriterion filteringCriterion : creationDefaultFeatures) {
+            if (!FilteringUtils.getAssociatedCriteria(createdElement).contains(filteringCriterion)) {
+              cmd.append(new AddCommand(editingDomain, featureSet,
+                  FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria(), filteringCriterion));
+            }
+          }
+          return cmd;
+        }
+      }
+    }
+    return null;
+  }
 
-	private boolean notFilteringItem(ModelElement elt) {
+  private boolean notFilteringItem(ModelElement elt) {
 
-		return (elt instanceof FilteringCriterion);
-	}
+    return (elt instanceof FilteringCriterion);
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public EClass getMetaclass() {
-		return ModellingcorePackage.Literals.MODEL_ELEMENT;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public EClass getMetaclass() {
+    return ModellingcorePackage.Literals.MODEL_ELEMENT;
+  }
 
-	/**
-	 * Execute given command.
-	 * 
-	 * @param command
-	 * @param createdElement
-	 */
-	protected void executeCommand(ICommand command, ModelElement createdElement) {
-		FilteringUtils.executeCommand(command, createdElement);
-	}
+  /**
+   * Execute given command.
+   * 
+   * @param command
+   * @param createdElement
+   */
+  protected void executeCommand(ICommand command, ModelElement createdElement) {
+    FilteringUtils.executeCommand(command, createdElement);
+  }
 }

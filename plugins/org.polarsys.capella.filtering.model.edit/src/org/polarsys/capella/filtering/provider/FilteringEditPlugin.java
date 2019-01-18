@@ -28,107 +28,101 @@ import org.polarsys.capella.core.data.capellamodeller.provider.CapellaModellerEd
 import org.polarsys.kitalpha.emde.model.edit.provider.EmdeEditPlugin;
 
 /**
- * This is the central singleton for the Filtering edit plugin. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the central singleton for the Filtering edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public final class FilteringEditPlugin extends EMFPlugin {
-	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	public static final FilteringEditPlugin INSTANCE = new FilteringEditPlugin();
+  /**
+   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public static final FilteringEditPlugin INSTANCE = new FilteringEditPlugin();
 
-	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	private static Implementation plugin;
+  /**
+   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  private static Implementation plugin;
 
-	/**
-	 * Create the instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FilteringEditPlugin() {
-		super(new ResourceLocator[] { ActivityEditPlugin.INSTANCE, BehaviorEditPlugin.INSTANCE,
-				CapellaModellerEditPlugin.INSTANCE, EmdeEditPlugin.INSTANCE, ModellingCoreEditPlugin.INSTANCE, });
-	}
+  /**
+   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public FilteringEditPlugin() {
+    super(new ResourceLocator[] { ActivityEditPlugin.INSTANCE, BehaviorEditPlugin.INSTANCE,
+        CapellaModellerEditPlugin.INSTANCE, EmdeEditPlugin.INSTANCE, ModellingCoreEditPlugin.INSTANCE, });
+  }
 
-	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return the singleton instance.
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getPluginResourceLocator() {
-		return plugin;
-	}
+  /**
+   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @return the singleton instance.
+   * @generated
+   */
+  @Override
+  public ResourceLocator getPluginResourceLocator() {
+    return plugin;
+  }
 
-	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return the singleton instance.
-	 * @generated
-	 */
-	public static Implementation getPlugin() {
-		return plugin;
-	}
+  /**
+   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @return the singleton instance.
+   * @generated
+   */
+  public static Implementation getPlugin() {
+    return plugin;
+  }
 
-	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public static class Implementation extends EclipsePlugin {
-		/**
-		 * Creates an instance.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		public Implementation() {
-			super();
+  /**
+   * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public static class Implementation extends EclipsePlugin {
+    /**
+     * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public Implementation() {
+      super();
 
-			// Remember the static instance.
-			//
-			plugin = this;
-		}
-	}
+      // Remember the static instance.
+      //
+      plugin = this;
+    }
+  }
 
-	/**
-	 * @generated
-	 */
-	@Override
-	public Object getImage(String key) {
-		Object image = super.getImage(key);
-		if (image == null)
-			return delegatedGetImage(key);
-		return image;
-	}
+  /**
+   * @generated
+   */
+  @Override
+  public Object getImage(String key) {
+    Object image = super.getImage(key);
+    if (image == null)
+      return delegatedGetImage(key);
+    return image;
+  }
 
-	/**
-	 * @generated
-	 */
-	@Override
-	protected Object delegatedGetImage(String key) throws MissingResourceException {
-		for (int i = 0; i < delegateResourceLocators.length; ++i) {
-			try {
-				Object image = delegateResourceLocators[i].getImage(key);
-				if (image != null)
-					return image;
-			} catch (MissingResourceException exception) {
-			}
-		}
-		return null;
-	}
+  /**
+   * @generated
+   */
+  @Override
+  protected Object delegatedGetImage(String key) throws MissingResourceException {
+    for (int i = 0; i < delegateResourceLocators.length; ++i) {
+      try {
+        Object image = delegateResourceLocators[i].getImage(key);
+        if (image != null)
+          return image;
+      } catch (MissingResourceException exception) {
+      }
+    }
+    return null;
+  }
 
 }

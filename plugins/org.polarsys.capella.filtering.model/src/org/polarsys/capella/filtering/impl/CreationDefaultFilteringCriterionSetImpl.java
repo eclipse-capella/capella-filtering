@@ -17,31 +17,32 @@ import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Creation Default Filtering Criterion Set</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Creation Default Filtering Criterion
+ * Set</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class CreationDefaultFilteringCriterionSetImpl extends FilteringCriterionSetImpl
-		implements CreationDefaultFilteringCriterionSet {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CreationDefaultFilteringCriterionSetImpl() {
+    implements CreationDefaultFilteringCriterionSet {
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected CreationDefaultFilteringCriterionSetImpl() {
 
-		super();
+    super();
 
-	}
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return FilteringPackage.Literals.CREATION_DEFAULT_FILTERING_CRITERION_SET;
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return FilteringPackage.Literals.CREATION_DEFAULT_FILTERING_CRITERION_SET;
+  }
 
 } // CreationDefaultFilteringCriterionSetImpl

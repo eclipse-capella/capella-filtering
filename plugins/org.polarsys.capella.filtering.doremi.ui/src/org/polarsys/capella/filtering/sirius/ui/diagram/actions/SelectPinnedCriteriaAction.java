@@ -46,219 +46,218 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 /**
- * Action to open a dialog box where the user can select/deselect the diagram
- * Product Line features which should be hidden.
+ * Action to open a dialog box where the user can select/deselect the diagram Product Line features which should be
+ * hidden.
  * 
  * 
  */
 
 public class SelectPinnedCriteriaAction extends FilteringDiagramAction {
 
-	private final class HiddenFeaturesSelectionCommand extends AbstractTransactionalCommand {
-		private final DDiagram diagram;
+  private final class HiddenFeaturesSelectionCommand extends AbstractTransactionalCommand {
+    private final DDiagram diagram;
 
-		private HiddenFeaturesSelectionCommand(TransactionalEditingDomain domain, String label, DDiagram diagram) {
-			super(domain, label, null);
-			this.diagram = diagram;
-		}
+    private HiddenFeaturesSelectionCommand(TransactionalEditingDomain domain, String label, DDiagram diagram) {
+      super(domain, label, null);
+      this.diagram = diagram;
+    }
 
-		@SuppressWarnings("synthetic-access")
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-				throws ExecutionException {
-			DiagramElementsSelectionDialog dlg = new DiagramElementsSelectionDialog(TITLE, MESSAGE);
-			dlg.setSelectionPredicate(isPinned);
-			dlg.setSelectedAction(pinElement);
-			dlg.setDeselectedAction(unpinElement);
-			dlg.setGrayedPredicate(getNonSelectablePredicate());
-			boolean executed = dlg.open(getShell(), diagram, true);
-			if (executed) {
-				return CommandResult.newOKCommandResult();
-			}
-			return CommandResult.newCancelledCommandResult();
-		}
+    @SuppressWarnings("synthetic-access")
+    @Override
+    protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+      DiagramElementsSelectionDialog dlg = new DiagramElementsSelectionDialog(TITLE, MESSAGE);
+      dlg.setSelectionPredicate(isPinned);
+      dlg.setSelectedAction(pinElement);
+      dlg.setDeselectedAction(unpinElement);
+      dlg.setGrayedPredicate(getNonSelectablePredicate());
+      boolean executed = dlg.open(getShell(), diagram, true);
+      if (executed) {
+        return CommandResult.newOKCommandResult();
+      }
+      return CommandResult.newCancelledCommandResult();
+    }
 
-		private Predicate<Object> getNonSelectablePredicate() {
+    private Predicate<Object> getNonSelectablePredicate() {
 
-			return new Predicate<Object>() {
-				@Override
-				public boolean apply(Object input) {
-					if (input instanceof DDiagramElement) {
-						return !PinHelper.allowsPinUnpin((DDiagramElement) input);
-					}
-					return false;
-				}
-			};
-		}
-	}
+      return new Predicate<Object>() {
+        @Override
+        public boolean apply(Object input) {
+          if (input instanceof DDiagramElement) {
+            return !PinHelper.allowsPinUnpin((DDiagramElement) input);
+          }
+          return false;
+        }
+      };
+    }
+  }
 
-	private static final String TITLE = "Diagram Filtering Features pinning"; //$NON-NLS-1$
+  private static final String TITLE = "Diagram Filtering Features pinning"; //$NON-NLS-1$
 
-	private static final String MESSAGE = "Pinned diagram Filtering Features are checked."; //$NON-NLS-1$
+  private static final String MESSAGE = "Pinned diagram Filtering Features are checked."; //$NON-NLS-1$
 
-	private static final String TOOLTIP = "Pin/Unpin features"; //$NON-NLS-1$
+  private static final String TOOLTIP = "Pin/Unpin features"; //$NON-NLS-1$
 
-	private static final String ICON_PATH = "icons/pinUnpinCriteria.png"; //$NON-NLS-1$
+  private static final String ICON_PATH = "icons/pinUnpinCriteria.png"; //$NON-NLS-1$
 
-	/** The hide icon descriptor. */
-	private static final ImageDescriptor DESC_PIN = Activator.getBundledImageDescriptor(ICON_PATH);
+  /** The hide icon descriptor. */
+  private static final ImageDescriptor DESC_PIN = Activator.getBundledImageDescriptor(ICON_PATH);
 
-	private final Predicate<Object> isPinned = new Predicate<Object>() {
-		@Override
-		public boolean apply(Object input) {
-			if (input instanceof DDiagramElement) {
-				return new PinHelper().isPinned((DDiagramElement) input);
-			}
-			return false;
-		}
-	};
+  private final Predicate<Object> isPinned = new Predicate<Object>() {
+    @Override
+    public boolean apply(Object input) {
+      if (input instanceof DDiagramElement) {
+        return new PinHelper().isPinned((DDiagramElement) input);
+      }
+      return false;
+    }
+  };
 
-	private final Function<Object, Void> pinElement = new Function<Object, Void>() {
-		@Override
-		public Void apply(Object from) {
-			if (from instanceof DDiagramElement) {
-				new PinHelper().markAsPinned((DDiagramElement) from);
-			}
-			return null;
-		}
-	};
+  private final Function<Object, Void> pinElement = new Function<Object, Void>() {
+    @Override
+    public Void apply(Object from) {
+      if (from instanceof DDiagramElement) {
+        new PinHelper().markAsPinned((DDiagramElement) from);
+      }
+      return null;
+    }
+  };
 
-	private final Function<Object, Void> unpinElement = new Function<Object, Void>() {
-		@Override
-		public Void apply(Object from) {
-			if (from instanceof DDiagramElement) {
-				new PinHelper().markAsUnpinned((DDiagramElement) from);
-			}
-			return null;
-		}
-	};
+  private final Function<Object, Void> unpinElement = new Function<Object, Void>() {
+    @Override
+    public Void apply(Object from) {
+      if (from instanceof DDiagramElement) {
+        new PinHelper().markAsUnpinned((DDiagramElement) from);
+      }
+      return null;
+    }
+  };
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param workbenchPage
-	 *            the workbench page.
-	 */
-	public SelectPinnedCriteriaAction(IWorkbenchPage workbenchPage) {
-		super(workbenchPage);
-		// setText(TOOLTIP);
-		// setId(ActionIds.SELECT_HIDDEN_ELEMENTS);
-		// setToolTipText(TOOLTIP);
-		setImageDescriptor(DESC_PIN);
-	}
+  /**
+   * Constructor.
+   * 
+   * @param workbenchPage
+   *          the workbench page.
+   */
+  public SelectPinnedCriteriaAction(IWorkbenchPage workbenchPage) {
+    super(workbenchPage);
+    // setText(TOOLTIP);
+    // setId(ActionIds.SELECT_HIDDEN_ELEMENTS);
+    // setToolTipText(TOOLTIP);
+    setImageDescriptor(DESC_PIN);
+  }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param workbenchPage
-	 *            the workbench page.
-	 * @param part
-	 *            the workbench part.
-	 */
-	public SelectPinnedCriteriaAction(IWorkbenchPage workbenchPage, IDiagramWorkbenchPart part) {
-		super(workbenchPage);
-		setWorkbenchPart(part);
-		// setText(TOOLTIP);
-		// setId(ActionIds.SELECT_HIDDEN_ELEMENTS);
-		// setToolTipText(TOOLTIP);
-		setImageDescriptor(getImage());
-	}
+  /**
+   * Constructor.
+   * 
+   * @param workbenchPage
+   *          the workbench page.
+   * @param part
+   *          the workbench part.
+   */
+  public SelectPinnedCriteriaAction(IWorkbenchPage workbenchPage, IDiagramWorkbenchPart part) {
+    super(workbenchPage);
+    setWorkbenchPart(part);
+    // setText(TOOLTIP);
+    // setId(ActionIds.SELECT_HIDDEN_ELEMENTS);
+    // setToolTipText(TOOLTIP);
+    setImageDescriptor(getImage());
+  }
 
-	/**
-	 * Get the decorated image
-	 */
-	public ImageDescriptor getImage() {
-		if (getWorkbenchPart() instanceof DiagramEditor) {
-			final Diagram gmfDiagram = ((DiagramEditor) getWorkbenchPart()).getDiagram();
-			if (gmfDiagram != null) {
-				EObject diagram = gmfDiagram.getElement();
-				if (diagram instanceof DDiagram) {
-					if (hasPinnedAndOptionalElements((DDiagram) diagram)) {
-						// FIXME When the problem of pinned ports when a diagram
-						// is reopened is solved, enable the customized icon.
-						// return
-						// Implementation.getDecoratedCheckedImageDescriptor(DESC_PIN);
-						return DESC_PIN;
-					}
-				}
-			}
-		}
-		return DESC_PIN;
-	}
+  /**
+   * Get the decorated image
+   */
+  public ImageDescriptor getImage() {
+    if (getWorkbenchPart() instanceof DiagramEditor) {
+      final Diagram gmfDiagram = ((DiagramEditor) getWorkbenchPart()).getDiagram();
+      if (gmfDiagram != null) {
+        EObject diagram = gmfDiagram.getElement();
+        if (diagram instanceof DDiagram) {
+          if (hasPinnedAndOptionalElements((DDiagram) diagram)) {
+            // FIXME When the problem of pinned ports when a diagram
+            // is reopened is solved, enable the customized icon.
+            // return
+            // Implementation.getDecoratedCheckedImageDescriptor(DESC_PIN);
+            return DESC_PIN;
+          }
+        }
+      }
+    }
+    return DESC_PIN;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Request createTargetRequest() {
-		return null;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected Request createTargetRequest() {
+    return null;
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected boolean isSelectionListener() {
-		return false;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected boolean isSelectionListener() {
+    return false;
+  }
 
-	private Shell getShell() {
-		return getWorkbenchPart().getSite().getShell();
-	}
+  private Shell getShell() {
+    return getWorkbenchPart().getSite().getShell();
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Command getCommand() {
-		Command result = UnexecutableCommand.INSTANCE;
-		Iterable<IDDiagramEditPart> diagramEditParts = Iterables.filter(getSelectedObjects(), IDDiagramEditPart.class);
-		if (Iterables.size(diagramEditParts) >= 1) {
-			IDDiagramEditPart diagramEditPart = Iterables.get(diagramEditParts, 0);
-			result = getElementsSelectionCommand(diagramEditPart);
-		}
-		return result;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected Command getCommand() {
+    Command result = UnexecutableCommand.INSTANCE;
+    Iterable<IDDiagramEditPart> diagramEditParts = Iterables.filter(getSelectedObjects(), IDDiagramEditPart.class);
+    if (Iterables.size(diagramEditParts) >= 1) {
+      IDDiagramEditPart diagramEditPart = Iterables.get(diagramEditParts, 0);
+      result = getElementsSelectionCommand(diagramEditPart);
+    }
+    return result;
+  }
 
-	@SuppressWarnings("synthetic-access")
-	private Command getElementsSelectionCommand(IDDiagramEditPart diagramEditPart) {
-		EObject semanticElement = diagramEditPart.resolveSemanticElement();
-		if (semanticElement instanceof DDiagram) {
-			DDiagram diagram = (DDiagram) semanticElement;
-			return new ICommandProxy(
-					new HiddenFeaturesSelectionCommand(diagramEditPart.getEditingDomain(), TOOLTIP, diagram));
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
+  @SuppressWarnings("synthetic-access")
+  private Command getElementsSelectionCommand(IDDiagramEditPart diagramEditPart) {
+    EObject semanticElement = diagramEditPart.resolveSemanticElement();
+    if (semanticElement instanceof DDiagram) {
+      DDiagram diagram = (DDiagram) semanticElement;
+      return new ICommandProxy(
+          new HiddenFeaturesSelectionCommand(diagramEditPart.getEditingDomain(), TOOLTIP, diagram));
+    }
+    return UnexecutableCommand.INSTANCE;
+  }
 
-	@Override
-	protected boolean calculateEnabled() {
-		boolean canEditInstance = true;
-		if ((getWorkbenchPart() instanceof DDiagramEditor)
-				&& (((DDiagramEditor) getWorkbenchPart()).getRepresentation() instanceof DDiagram)) {
-			final DDiagramEditor editor = (DDiagramEditor) getWorkbenchPart();
-			final DDiagram editorDiagram = (DDiagram) editor.getRepresentation();
-			IPermissionAuthority permissionAuthority = PermissionAuthorityRegistry.getDefault()
-					.getPermissionAuthority(editor.getSession().getSessionResource().getResourceSet());
-			canEditInstance = permissionAuthority.canEditInstance(editorDiagram);
-		}
-		return canEditInstance && super.calculateEnabled();
-	}
+  @Override
+  protected boolean calculateEnabled() {
+    boolean canEditInstance = true;
+    if ((getWorkbenchPart() instanceof DDiagramEditor)
+        && (((DDiagramEditor) getWorkbenchPart()).getRepresentation() instanceof DDiagram)) {
+      final DDiagramEditor editor = (DDiagramEditor) getWorkbenchPart();
+      final DDiagram editorDiagram = (DDiagram) editor.getRepresentation();
+      IPermissionAuthority permissionAuthority = PermissionAuthorityRegistry.getDefault()
+          .getPermissionAuthority(editor.getSession().getSessionResource().getResourceSet());
+      canEditInstance = permissionAuthority.canEditInstance(editorDiagram);
+    }
+    return canEditInstance && super.calculateEnabled();
+  }
 
-	private boolean hasPinnedAndOptionalElements(DDiagram dDiagram) {
-		Iterator<DDiagramElement> iterator = dDiagram.getDiagramElements().iterator();
-		PinHelper pinHelper = new PinHelper();
-		while (iterator.hasNext()) {
-			final DDiagramElement element = iterator.next();
-			if (pinHelper.isPinned(element) && FilteringSiriusUtils.hasAssociatedCriteria(element)) {
-				return true;
-			}
-		}
-		return false;
-	}
+  private boolean hasPinnedAndOptionalElements(DDiagram dDiagram) {
+    Iterator<DDiagramElement> iterator = dDiagram.getDiagramElements().iterator();
+    PinHelper pinHelper = new PinHelper();
+    while (iterator.hasNext()) {
+      final DDiagramElement element = iterator.next();
+      if (pinHelper.isPinned(element) && FilteringSiriusUtils.hasAssociatedCriteria(element)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-	@Override
-	public void setWorkbenchPart(IWorkbenchPart workbenchPart) {
-		super.setWorkbenchPart(workbenchPart);
-	}
+  @Override
+  public void setWorkbenchPart(IWorkbenchPart workbenchPart) {
+    super.setWorkbenchPart(workbenchPart);
+  }
 }

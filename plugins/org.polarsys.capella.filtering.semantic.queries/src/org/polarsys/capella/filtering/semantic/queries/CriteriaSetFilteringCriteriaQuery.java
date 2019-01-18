@@ -17,22 +17,22 @@ import org.polarsys.capella.common.helpers.query.IQuery;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 
 /**
- * Query that retrieves the feature list associated to a Feature Set.
+ * Query that retrieves criteria associated to a FilteringCriterionSet.
  * 
  * 
  */
 public class CriteriaSetFilteringCriteriaQuery implements IQuery {
 
-	/**
-	 * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
-	 */
-	public List<Object> compute(Object object) {
-		List<Object> result = new ArrayList<>();
-		if (object instanceof FilteringCriterionSet) {
-			for (Object o : ((FilteringCriterionSet) object).getFilteringCriteria()) {
-				result.add(o);
-			}
-		}
-		return result;
-	}
+  /**
+   * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
+   */
+  public List<Object> compute(Object object) {
+    List<Object> result = new ArrayList<>();
+    if (object instanceof FilteringCriterionSet) {
+      for (Object o : ((FilteringCriterionSet) object).getFilteringCriteria()) {
+        result.add(o);
+      }
+    }
+    return result;
+  }
 }

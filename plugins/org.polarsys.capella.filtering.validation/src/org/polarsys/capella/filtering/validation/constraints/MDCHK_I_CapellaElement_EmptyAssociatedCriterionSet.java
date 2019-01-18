@@ -26,28 +26,28 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  */
 public class MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet extends AbstractModelConstraint {
 
-	@Override
-	public IStatus validate(IValidationContext ctx) {
-		EObject eObj = ctx.getTarget();
-		EMFEventType eType = ctx.getEventType();
-		// check that it is batch validation
-		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof CapellaElement) {
-				CapellaElement capellaElement = (CapellaElement) eObj;
-				for (ElementExtension elementExtension : capellaElement.getOwnedExtensions()) {
-					if (elementExtension instanceof AssociatedFilteringCriterionSet) {
+  @Override
+  public IStatus validate(IValidationContext ctx) {
+    EObject eObj = ctx.getTarget();
+    EMFEventType eType = ctx.getEventType();
+    // check that it is batch validation
+    if (eType == EMFEventType.NULL) {
+      if (eObj instanceof CapellaElement) {
+        CapellaElement capellaElement = (CapellaElement) eObj;
+        for (ElementExtension elementExtension : capellaElement.getOwnedExtensions()) {
+          if (elementExtension instanceof AssociatedFilteringCriterionSet) {
 
-						// Check if it is empty
-						List<?> list = ((AssociatedFilteringCriterionSet) elementExtension).getFilteringCriteria();
-						if ((list == null) || list.isEmpty()) {
-							return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(capellaElement));
-						}
+            // Check if it is empty
+            List<?> list = ((AssociatedFilteringCriterionSet) elementExtension).getFilteringCriteria();
+            if ((list == null) || list.isEmpty()) {
+              return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(capellaElement));
+            }
 
-					}
-				}
-			}
-		}
-		return ctx.createSuccessStatus();
-	}
+          }
+        }
+      }
+    }
+    return ctx.createSuccessStatus();
+  }
 
 }

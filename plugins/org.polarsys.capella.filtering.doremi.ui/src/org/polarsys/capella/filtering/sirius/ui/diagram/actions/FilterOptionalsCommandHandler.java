@@ -23,45 +23,45 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class FilterOptionalsCommandHandler extends AbstractHandler implements IElementUpdater {
 
-	private FilterCommonOptionalAction action;
+  private FilterCommonOptionalAction action;
 
-	public FilterOptionalsCommandHandler() {
-		action = new FilterCommonOptionalAction(FilteringSiriusUtils.getActivePage(),
-				FilteringSiriusUtils.getActivePart(), false);
-	}
+  public FilterOptionalsCommandHandler() {
+    action = new FilterCommonOptionalAction(FilteringSiriusUtils.getActivePage(), FilteringSiriusUtils.getActivePart(),
+        false);
+  }
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
-			@Override
-			@SuppressWarnings("synthetic-access")
-			public void run() {
-				action.getCommand().execute();
-				// Prepare it for the next execution with the inverse
-				action.setShow(!action.getShow());
-			}
+  @Override
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
+      @Override
+      @SuppressWarnings("synthetic-access")
+      public void run() {
+        action.getCommand().execute();
+        // Prepare it for the next execution with the inverse
+        action.setShow(!action.getShow());
+      }
 
-			@SuppressWarnings("synthetic-access")
-			@Override
-			public void commandRolledBack() {
-				action.getCommand().undo();
-				// Prepare it for the next execution with the inverse
-				action.setShow(!action.getShow());
-			}
+      @SuppressWarnings("synthetic-access")
+      @Override
+      public void commandRolledBack() {
+        action.getCommand().undo();
+        // Prepare it for the next execution with the inverse
+        action.setShow(!action.getShow());
+      }
 
-			@Override
-			public String toString() {
-				return "Filter Optionals"; //$NON-NLS-1$
-			}
-		}, action.getSession());
+      @Override
+      public String toString() {
+        return "Filter Optionals"; //$NON-NLS-1$
+      }
+    }, action.getSession());
 
-		return null;
-	}
+    return null;
+  }
 
-	@Override
-	public void updateElement(UIElement element, Map parameters) {
-		action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
-		// Update the toggle state
-		element.setChecked(action.isAlreadyFiltered());
-	}
+  @Override
+  public void updateElement(UIElement element, Map parameters) {
+    action.setWorkbenchPart(FilteringSiriusUtils.getActivePart());
+    // Update the toggle state
+    element.setChecked(action.isAlreadyFiltered());
+  }
 }

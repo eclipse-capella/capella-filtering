@@ -23,19 +23,19 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet_Resolver extends MDCHK_DeleteElement_Resolver {
 
-	/**
-	 * Remove AssociatedFilteringCriterionSet
-	 */
-	@Override
-	public List<EObject> getElementsToDelete(EObject markerEObject) {
-		List<EObject> toDelete = new ArrayList<EObject>();
-		if (markerEObject instanceof CapellaElement) {
-			AssociatedFilteringCriterionSet featureSet = FilteringUtils
-					.getAssociatedFilteringCriterionSet((CapellaElement) markerEObject);
-			if (featureSet != null) {
-				toDelete.add(featureSet);
-			}
-		}
-		return toDelete;
-	}
+  /**
+   * Remove AssociatedFilteringCriterionSet
+   */
+  @Override
+  public List<EObject> getElementsToDelete(EObject markerEObject) {
+    List<EObject> toDelete = new ArrayList<EObject>();
+    if (markerEObject instanceof CapellaElement) {
+      AssociatedFilteringCriterionSet featureSet = FilteringUtils
+          .getAssociatedFilteringCriterionSet((CapellaElement) markerEObject);
+      if (featureSet != null) {
+        toDelete.add(featureSet);
+      }
+    }
+    return toDelete;
+  }
 }

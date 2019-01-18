@@ -43,100 +43,99 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class CapellaFilteringPropertySection extends AbstractSection implements IFilter {
 
-	private IndirectCapellaElementCriteriaMultipleSemanticField features;
-	private ReadOnlyMultipleSemanticField implicitCriteria;
+  private IndirectCapellaElementCriteriaMultipleSemanticField features;
+  private ReadOnlyMultipleSemanticField implicitCriteria;
 
-	/**
-	 * @see org.eclipse.ui.views.properties.tabbed.ISection#createControls(org.eclipse.swt.widgets.Composite,
-	 *      org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
-	 */
-	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
-		super.createControls(parent, aTabbedPropertySheetPage);
+  /**
+   * @see org.eclipse.jface.viewers.IFilter#select(java.lang.Object)
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject eObj = CapellaAdapterHelper.resolveSemanticObject(toTest);
+    // Filter CapellaElement
+    if (!(eObj instanceof CapellaElement)) {
+      return false;
+    }
+    // Filter our types
+    return !(FilteringUtils.isInstanceOfFilteringExcludedElements(eObj));
+  }
 
-		rootParentComposite.setLayout(new GridLayout());
-		rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+  /**
+   * @see org.eclipse.ui.views.properties.tabbed.ISection#createControls(org.eclipse.swt.widgets.Composite,
+   *      org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
+   */
+  @Override
+  public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
+    super.createControls(parent, aTabbedPropertySheetPage);
 
-		boolean displayedInWizard = isDisplayedInWizard();
+    rootParentComposite.setLayout(new GridLayout());
+    rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		features = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(),
-				Messages.filteringLabel, getWidgetFactory(), new CapellaElementCriteria());
-		features.setDisplayedInWizard(displayedInWizard);
+    boolean displayedInWizard = isDisplayedInWizard();
 
-		implicitCriteria = new ReadOnlyMultipleSemanticField(getReferencesGroup(), Messages.implicitCriteriaLabel,
-				getWidgetFactory(), new CapellaElementImplicitCriteria());
-		implicitCriteria.setEnabled(false);
-		implicitCriteria.setDisplayedInWizard(displayedInWizard);
-	}
+    features = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel,
+        getWidgetFactory(), new CapellaElementCriteria());
+    features.setDisplayedInWizard(displayedInWizard);
 
-	/**
-	 * load the form data from given capella element.<br>
-	 * Default implementation registers an EMF adapter to listen to model
-	 * changes if displayed in a wizard.
-	 */
-	@Override
-	public void loadData(EObject capellaElement) {
-		super.loadData(capellaElement);
+    implicitCriteria = new ReadOnlyMultipleSemanticField(getReferencesGroup(), Messages.implicitCriteriaLabel,
+        getWidgetFactory(), new CapellaElementImplicitCriteria());
+    implicitCriteria.setEnabled(false);
+    implicitCriteria.setDisplayedInWizard(displayedInWizard);
+  }
 
-		// The second parameter is the semanticFeature but we do not include
-		// anyone.
-		// Filtering criterion is not direct attribute of CapellaElement
-		features.loadData(capellaElement, null);
-		implicitCriteria.loadData(capellaElement, null);
-	}
+  /**
+   * load the form data from given capella element.<br>
+   * Default implementation registers an EMF adapter to listen to model changes if displayed in a wizard.
+   */
+  @Override
+  public void loadData(EObject capellaElement) {
+    super.loadData(capellaElement);
 
-	/**
-	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#setInput(org.eclipse.ui.IWorkbenchPart,
-	 *      org.eclipse.jface.viewers.ISelection)
-	 */
-	@Override
-	public void setInput(IWorkbenchPart part, ISelection selection) {
-		if (selection instanceof StructuredSelection) {
-			EObject selected = CapellaAdapterHelper
-					.resolveSemanticObject(((StructuredSelection) selection).getFirstElement());
-			if (selected instanceof CapellaElement) {
-				if (selected.eClass().equals(CsPackage.eINSTANCE.getPart())) {
-					boolean allowMultiplePart = TriStateBoolean.True
-							.equals(CapellaProjectHelper.isReusableComponentsDriven((Part) selected));
-					if (!allowMultiplePart) {
-						AbstractType type = ((Part) selected).getAbstractType();
-						if ((type != null) && !(type instanceof ConfigurationItem)) {
-							super.setInput(part, new StructuredSelection(type));
-							loadData((CapellaElement) type);
-							return;
-						}
-					}
-				}
-				loadData((CapellaElement) selected);
-			}
-		}
-		super.setInput(part, selection);
-	}
+    // The second parameter is the semanticFeature but we do not include
+    // anyone.
+    // Filtering criterion is not direct attribute of CapellaElement
+    features.loadData(capellaElement, null);
+    implicitCriteria.loadData(capellaElement, null);
+  }
 
-	/**
-	 * @see org.eclipse.jface.viewers.IFilter#select(java.lang.Object)
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject eObj = CapellaAdapterHelper.resolveSemanticObject(toTest);
-		// Filter CapellaElement
-		if (!(eObj instanceof CapellaElement)) {
-			return false;
-		}
-		// Filter our types
-		return !(FilteringUtils.isInstanceOfFilteringExcludedElements(eObj));
-	}
+  /**
+   * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#setInput(org.eclipse.ui.IWorkbenchPart,
+   *      org.eclipse.jface.viewers.ISelection)
+   */
+  @Override
+  public void setInput(IWorkbenchPart part, ISelection selection) {
+    if (selection instanceof StructuredSelection) {
+      EObject selected = CapellaAdapterHelper
+          .resolveSemanticObject(((StructuredSelection) selection).getFirstElement());
+      if (selected instanceof CapellaElement) {
+        if (selected.eClass().equals(CsPackage.eINSTANCE.getPart())) {
+          boolean allowMultiplePart = TriStateBoolean.True
+              .equals(CapellaProjectHelper.isReusableComponentsDriven((Part) selected));
+          if (!allowMultiplePart) {
+            AbstractType type = ((Part) selected).getAbstractType();
+            if ((type != null) && !(type instanceof ConfigurationItem)) {
+              super.setInput(part, new StructuredSelection(type));
+              loadData((CapellaElement) type);
+              return;
+            }
+          }
+        }
+        loadData((CapellaElement) selected);
+      }
+    }
+    super.setInput(part, selection);
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<AbstractSemanticField> getSemanticFields() {
-		List<AbstractSemanticField> fields = new ArrayList<>();
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<AbstractSemanticField> getSemanticFields() {
+    List<AbstractSemanticField> fields = new ArrayList<>();
 
-		fields.add(features);
-		fields.add(implicitCriteria);
+    fields.add(features);
+    fields.add(implicitCriteria);
 
-		return fields;
-	}
+    return fields;
+  }
 }

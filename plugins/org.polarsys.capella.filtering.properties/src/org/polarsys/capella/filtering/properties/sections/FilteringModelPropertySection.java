@@ -18,12 +18,12 @@ import org.polarsys.capella.filtering.FilteringPackage;
  */
 public class FilteringModelPropertySection extends SummaryPropertySection {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject eObjectToTest = super.selection(toTest);
-		return ((eObjectToTest != null) && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringModel()));
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject eObjectToTest = super.selection(toTest);
+    return ((eObjectToTest != null) && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringModel()));
+  }
 }

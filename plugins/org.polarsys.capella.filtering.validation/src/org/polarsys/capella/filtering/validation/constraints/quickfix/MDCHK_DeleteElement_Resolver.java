@@ -25,40 +25,39 @@ import org.polarsys.capella.core.validation.ui.ide.quickfix.AbstractCapellaMarke
 
 public class MDCHK_DeleteElement_Resolver extends AbstractCapellaMarkerResolution {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void run(IMarker marker_p) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void run(IMarker marker_p) {
 
-		// Get the element from the marker
-		Iterator<EObject> it = getModelElements(marker_p).iterator();
-		if (it.hasNext()) {
-			EObject first = it.next();
-			List<EObject> toDelete = getElementsToDelete(first);
+    // Get the element from the marker
+    Iterator<EObject> it = getModelElements(marker_p).iterator();
+    if (it.hasNext()) {
+      EObject first = it.next();
+      List<EObject> toDelete = getElementsToDelete(first);
 
-			if ((toDelete != null) && !toDelete.isEmpty()) {
-				// Execute the modification
-				ExecutionManager executionManager = TransactionHelper.getExecutionManager(toDelete);
-				CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, toDelete, true,
-						IDeletePreferences.INSTANCE.isConfirmationRequired(), true);
-				if (command.canExecute()) {
-					command.execute();
-				}
-			}
-		}
-	}
+      if ((toDelete != null) && !toDelete.isEmpty()) {
+        // Execute the modification
+        ExecutionManager executionManager = TransactionHelper.getExecutionManager(toDelete);
+        CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, toDelete, true,
+            IDeletePreferences.INSTANCE.isConfirmationRequired(), true);
+        if (command.canExecute()) {
+          command.execute();
+        }
+      }
+    }
+  }
 
-	/**
-	 * Default implementation return the markerEObject directly. To override if
-	 * needed
-	 */
-	public List<EObject> getElementsToDelete(EObject markerEObject) {
-		List<EObject> toDelete = new ArrayList<EObject>();
-		if (markerEObject instanceof CapellaElement) {
-			CapellaElement element = (CapellaElement) markerEObject;
-			toDelete.add(element);
-		}
-		return toDelete;
-	}
+  /**
+   * Default implementation return the markerEObject directly. To override if needed
+   */
+  public List<EObject> getElementsToDelete(EObject markerEObject) {
+    List<EObject> toDelete = new ArrayList<EObject>();
+    if (markerEObject instanceof CapellaElement) {
+      CapellaElement element = (CapellaElement) markerEObject;
+      toDelete.add(element);
+    }
+    return toDelete;
+  }
 }

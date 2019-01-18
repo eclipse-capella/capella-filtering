@@ -15,18 +15,20 @@ import org.polarsys.kitalpha.ad.services.manager.ViewpointManager;
 
 public class ViewpointHelper {
 
-	public static final String VIEWPOINT_ID = "org.polarsys.capella.filtering"; //$NON-NLS-1$
+  public static final String VIEWPOINT_ID = "org.polarsys.capella.filtering"; //$NON-NLS-1$
 
-	/**
-	 * @return true is the AF viewpoint is active, false otherwise
-	 */
-	public static boolean isViewpointActive(EObject element) {
-		try {
-			return (element != null) ? ViewpointManager.getInstance(element).isReferenced(VIEWPOINT_ID)
-					&& !ViewpointManager.getInstance(element).isInactive(VIEWPOINT_ID) : false;
-		} catch (IllegalArgumentException ex) {
-			// element is invalid, silent failure
-		}
-		return false;
-	}
+  /**
+   * @return true is the AF viewpoint is active, false otherwise
+   */
+  public static boolean isViewpointActive(EObject element) {
+    try {
+      return (element != null)
+          ? ViewpointManager.getInstance(element).isReferenced(VIEWPOINT_ID)
+              && !ViewpointManager.getInstance(element).isInactive(VIEWPOINT_ID)
+          : false;
+    } catch (IllegalArgumentException ex) {
+      // element is invalid, silent failure
+    }
+    return false;
+  }
 }

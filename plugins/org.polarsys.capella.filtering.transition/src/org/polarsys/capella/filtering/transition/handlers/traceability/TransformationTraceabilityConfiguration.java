@@ -20,23 +20,23 @@ import org.polarsys.kitalpha.transposer.rules.handler.rules.api.IContext;
  */
 public class TransformationTraceabilityConfiguration extends TraceabilityConfiguration {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void initHandlers(IContext fContext) {
-		super.initHandlers(fContext);
-		addHandler(fContext, new TransformationTraceabilityHandler());
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected void initHandlers(IContext fContext) {
+    super.initHandlers(fContext);
+    addHandler(fContext, new TransformationTraceabilityHandler());
+  }
 
-	@Override
-	public boolean useHandlerForAttachment(EObject source, EObject target, ITraceabilityHandler handler,
-			IContext context) {
-		// TODO remove FilteringModel and FilteringCriterion TransfoLinks. Now
-		// it creates links to perform the diff but it doesnt make sense to have
-		// these elements
-		// after that. AssociatedFilteringCriterionSet transfo links make sense
-		// to maintain them.
-		return true;
-	}
+  @Override
+  public boolean useHandlerForAttachment(EObject source, EObject target, ITraceabilityHandler handler,
+      IContext context) {
+    // TODO remove FilteringModel and FilteringCriterion TransfoLinks. Now
+    // it creates links to perform the diff but it doesnt make sense to have
+    // these elements
+    // after that. AssociatedFilteringCriterionSet transfo links make sense
+    // to maintain them.
+    return true;
+  }
 }

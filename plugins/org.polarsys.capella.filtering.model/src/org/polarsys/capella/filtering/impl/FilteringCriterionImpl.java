@@ -19,29 +19,30 @@ import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Criterion</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Criterion</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class FilteringCriterionImpl extends NamedElementImpl implements FilteringCriterion {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FilteringCriterionImpl() {
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FilteringCriterionImpl() {
 
-		super();
+    super();
 
-	}
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return FilteringPackage.Literals.FILTERING_CRITERION;
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return FilteringPackage.Literals.FILTERING_CRITERION;
+  }
 
 } // FilteringCriterionImpl

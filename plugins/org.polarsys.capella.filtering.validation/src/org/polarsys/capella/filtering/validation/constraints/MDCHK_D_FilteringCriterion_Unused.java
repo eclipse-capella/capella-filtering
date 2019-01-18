@@ -29,33 +29,33 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class MDCHK_D_FilteringCriterion_Unused extends AbstractModelConstraint {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IStatus validate(IValidationContext ctx) {
-		EObject eObj = ctx.getTarget();
-		EMFEventType eType = ctx.getEventType();
-		// check that it is batch validation
-		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof FilteringCriterion) {
-				// Loop all project elements
-				Project project = CapellaProjectHelper.getProject(eObj);
-				Iterator<EObject> i = project.eAllContents();
-				while (i.hasNext()) {
-					EObject object = i.next();
-					if (object instanceof CapellaElement) {
-						List<FilteringCriterion> filteringCriteria = FilteringUtils.getExplicitAssociatedCriteria(object);
-						if (filteringCriteria.contains(eObj)) {
-							// OK, used Filtering Criterion
-							return ctx.createSuccessStatus();
-						}
-					}
-				}
-				return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(eObj));
-			}
-		}
-		return ctx.createSuccessStatus();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IStatus validate(IValidationContext ctx) {
+    EObject eObj = ctx.getTarget();
+    EMFEventType eType = ctx.getEventType();
+    // check that it is batch validation
+    if (eType == EMFEventType.NULL) {
+      if (eObj instanceof FilteringCriterion) {
+        // Loop all project elements
+        Project project = CapellaProjectHelper.getProject(eObj);
+        Iterator<EObject> i = project.eAllContents();
+        while (i.hasNext()) {
+          EObject object = i.next();
+          if (object instanceof CapellaElement) {
+            List<FilteringCriterion> filteringCriteria = FilteringUtils.getExplicitAssociatedCriteria(object);
+            if (filteringCriteria.contains(eObj)) {
+              // OK, used Filtering Criterion
+              return ctx.createSuccessStatus();
+            }
+          }
+        }
+        return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(eObj));
+      }
+    }
+    return ctx.createSuccessStatus();
+  }
 
 }

@@ -18,57 +18,57 @@ import org.eclipse.osgi.util.NLS;
  * 
  */
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.polarsys.capella.filtering.tools.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "org.polarsys.capella.filtering.tools.messages"; //$NON-NLS-1$
 
-	//
-	// Product Line
-	//
-	public static String filtering_menu_lbl;
-	public static String filtering_overviewAction_lbl;
+  //
+  // Product Line
+  //
+  public static String filtering_menu_lbl;
+  public static String filtering_overviewAction_lbl;
 
-	public static String filtering_dialog_title;
-	public static String filtering_dialog_msg;
+  public static String filtering_dialog_title;
+  public static String filtering_dialog_msg;
 
-	public static String filtering_dialog_combo_lbl;
-	public static String filtering_dialog_combo_allStatus;
+  public static String filtering_dialog_combo_lbl;
+  public static String filtering_dialog_combo_allStatus;
 
-	public static String filtering_dialog_header_col0;
-	public static String filtering_dialog_header_col1;
-	public static String filtering_dialog_header_col2;
-	public static String filtering_dialog_header_col3;
+  public static String filtering_dialog_header_col0;
+  public static String filtering_dialog_header_col1;
+  public static String filtering_dialog_header_col2;
+  public static String filtering_dialog_header_col3;
 
-	public static String filtering_selectAll;
-	public static String filtering_deselectAll;
+  public static String filtering_selectAll;
+  public static String filtering_deselectAll;
 
-	public static String FilteringExtractionAction_0;
+  public static String FilteringExtractionAction_0;
 
-	public static String FilteringExtractionAction_1;
+  public static String FilteringExtractionAction_1;
 
-	public static String FilteringExtractionAction_2;
+  public static String FilteringExtractionAction_2;
 
-	public static String FilteringExtractionAction_3;
+  public static String FilteringExtractionAction_3;
 
-	public static String FilteringExtractionAction_melodymodellerFileNotFound;
+  public static String FilteringExtractionAction_melodymodellerFileNotFound;
 
-	public static String FilteringExtractionAction_projectHasReferenceToLibrary;
+  public static String FilteringExtractionAction_projectHasReferenceToLibrary;
 
-	public static String FilteringVariabilityMetricsDialog_0;
+  public static String FilteringVariabilityMetricsDialog_0;
 
-	public static String FilteringVariabilityMetricsDialog_1;
+  public static String FilteringVariabilityMetricsDialog_1;
 
-	public static String FilteringVariabilityMetricsDialog_2;
+  public static String FilteringVariabilityMetricsDialog_2;
 
-	public static String FilteringVariabilityMetricsDialog_3;
+  public static String FilteringVariabilityMetricsDialog_3;
 
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
+  static {
+    // initialize resource bundle
+    NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+  }
 
-	/**
-	 * Constructor.
-	 */
-	private Messages() {
-		// Do nothing.
-	}
+  /**
+   * Constructor.
+   */
+  private Messages() {
+    // Do nothing.
+  }
 }

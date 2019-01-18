@@ -20,27 +20,27 @@ import org.eclipse.ui.PlatformUI;
 
 public abstract class FilteringDiagramAction extends DiagramAction {
 
-	/**
-	 * @param workbenchPage
-	 */
-	public FilteringDiagramAction(IWorkbenchPage workbenchPage) {
-		super(workbenchPage.getActivePart());
-	}
+  /**
+   * @param workbenchPage
+   */
+  public FilteringDiagramAction(IWorkbenchPage workbenchPage) {
+    super(workbenchPage.getActivePart());
+  }
 
-	/**
-	 * @return
-	 */
-	public Session getSession() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench != null) {
-			IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-			if (activeWorkbenchWindow != null) {
-				IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-				if (activePage.getActivePart() instanceof DDiagramEditor) {
-					return ((DDiagramEditor) activePage.getActivePart()).getSession();
-				}
-			}
-		}
-		return null;
-	}
+  /**
+   * @return
+   */
+  public Session getSession() {
+    IWorkbench workbench = PlatformUI.getWorkbench();
+    if (workbench != null) {
+      IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+      if (activeWorkbenchWindow != null) {
+        IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+        if (activePage.getActivePart() instanceof DDiagramEditor) {
+          return ((DDiagramEditor) activePage.getActivePart()).getSession();
+        }
+      }
+    }
+    return null;
+  }
 }

@@ -12,15 +12,15 @@
 package org.polarsys.capella.filtering;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object
- * '<em><b>Result</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Result</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResult()
- * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
+ * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null'
+ *        used\040in\040levels='null' usage\040examples='null' constraints='null'"
  * @generated
  */
 
-public interface FilteringResult extends FilteringCriterionSet {
+public interface FilteringResult extends FilteringCriterionSet, AbstractFilteringResult {
 
 } // FilteringResult

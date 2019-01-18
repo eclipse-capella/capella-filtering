@@ -66,6 +66,17 @@
                   type="org.polarsys.capella.filtering.FilteringCriterion">
             </input>
          </propertySection>
+         
+         <propertySection
+               class="org.polarsys.capella.filtering.properties.sections.ComposedResultPropertySection"
+               filter="org.polarsys.capella.filtering.properties.sections.ComposedResultPropertySection"
+               id="org.polarsys.capella.filtering.properties.sections.ComposedResultPropertySection"
+               tab="Base">
+            <input
+                  type="org.polarsys.capella.filtering.ComposedFilteringResult">
+            </input>
+         </propertySection>
+         
                   <propertySection tab="Base"
                class="org.polarsys.capella.filtering.properties.sections.ResultPropertySection"
                filter="org.polarsys.capella.filtering.properties.sections.ResultPropertySection"
@@ -74,6 +85,7 @@
                   type="org.polarsys.capella.filtering.FilteringResult">
             </input>
          </propertySection>
+         
          <propertySection tab="Base"
                class="org.polarsys.capella.filtering.properties.sections.AssociatedCriterionPropertySection"
                filter="org.polarsys.capella.filtering.properties.sections.AssociatedCriterionPropertySection"

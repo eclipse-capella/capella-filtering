@@ -65,7 +65,7 @@
             <not>
                <or>
                   <objectClass
-                        name="org.polarsys.capella.filtering.FilteringCriterionSet">
+                        name="org.polarsys.capella.filtering.AbstractFilteringResult">
                   </objectClass>
                   <objectClass
                         name="org.polarsys.capella.filtering.FilteringModel">
@@ -88,7 +88,7 @@
       </objectContribution>
       <objectContribution
             id="org.polarsys.capella.filtering.tools.projectContribution.extraction"
-            objectClass="org.polarsys.capella.filtering.FilteringResult">
+            objectClass="org.polarsys.capella.filtering.AbstractFilteringResult">
          <menu
                icon="icons/optionalDecorator.png"
                id="org.polarsys.capella.filtering.tools.menu2"

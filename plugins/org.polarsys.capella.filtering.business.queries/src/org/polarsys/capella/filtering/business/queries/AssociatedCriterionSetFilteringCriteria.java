@@ -18,9 +18,9 @@ import org.polarsys.capella.filtering.FilteringPackage;
  */
 public class AssociatedCriterionSetFilteringCriteria extends CriterionSetFilteringCriteria {
 
-	@Override
-	public EClass getEClass() {
-		return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
-	}
+  @Override
+  public EClass getEClass() {
+    return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
+  }
 
 }

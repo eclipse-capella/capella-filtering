@@ -16,19 +16,20 @@ import org.polarsys.capella.core.model.handler.helpers.CapellaAdapterHelper;
 import org.polarsys.capella.filtering.FilteringModel;
 
 /**
- * This is the item provider adapter for a {@link FilteringModelSection} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link FilteringModelSection} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class FilteringModelSection extends NamedElementSection {
-	/**
-	 * @generated
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
+  /**
+   * @generated
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
 
-		return obj != null
-				&& obj.eClass().equals(org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getFilteringModel());
-	}
+    return obj != null
+        && obj.eClass().equals(org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getFilteringModel());
+  }
 }

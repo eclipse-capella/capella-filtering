@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.capella.filtering.tools,
  org.polarsys.capella.filtering.model,
  org.polarsys.capella.core.model.handler,
- org.eclipse.sirius.diagram
+ org.eclipse.sirius.diagram,
+ org.polarsys.capella.filtering.semantic.queries;bundle-version="1.2.0",
+ org.polarsys.capella.core.model.helpers
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Localization: plugin

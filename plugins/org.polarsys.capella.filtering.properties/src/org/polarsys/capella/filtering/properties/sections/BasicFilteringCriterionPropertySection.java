@@ -19,13 +19,12 @@ import org.polarsys.capella.filtering.FilteringPackage;
  */
 public class BasicFilteringCriterionPropertySection extends NamedElementSection {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject eObjectToTest = super.selection(toTest);
-		return ((eObjectToTest != null)
-				&& (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringCriterion()));
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject eObjectToTest = super.selection(toTest);
+    return ((eObjectToTest != null) && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringCriterion()));
+  }
 }

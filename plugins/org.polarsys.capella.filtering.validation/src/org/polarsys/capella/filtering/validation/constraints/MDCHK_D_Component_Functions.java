@@ -29,35 +29,35 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class MDCHK_D_Component_Functions extends AbstractModelConstraint {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IStatus validate(IValidationContext ctx) {
-		EObject eObj = ctx.getTarget();
-		EMFEventType eType = ctx.getEventType();
-		// check that it is batch validation
-		if (eType == EMFEventType.NULL) {
-			List<IStatus> statuses = new ArrayList<>();
-			if (eObj instanceof Component) {
-				Component component = (Component) eObj;
-				List<FilteringCriterion> componentFeatures = FilteringUtils.getAssociatedCriteria(component);
-				for (AbstractFunction function : component.getAllocatedFunctions()) {
-					List<FilteringCriterion> functionFeatures = FilteringUtils.getAssociatedCriteria(function);
-					List<FilteringCriterion> missingFeatures = ConstraintsUtil
-							.missingFilteringCriteria(functionFeatures, componentFeatures);
-					if (!missingFeatures.isEmpty()) {
-						statuses.add(ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(component),
-								FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingFeatures),
-								ConstraintsUtil.getNameForMessage(function)));
-					}
-				}
-			}
-			if (!statuses.isEmpty()) {
-				return ConstraintStatus.createMultiStatus(ctx, statuses);
-			}
-		}
-		return ctx.createSuccessStatus();
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public IStatus validate(IValidationContext ctx) {
+    EObject eObj = ctx.getTarget();
+    EMFEventType eType = ctx.getEventType();
+    // check that it is batch validation
+    if (eType == EMFEventType.NULL) {
+      List<IStatus> statuses = new ArrayList<>();
+      if (eObj instanceof Component) {
+        Component component = (Component) eObj;
+        List<FilteringCriterion> componentFeatures = FilteringUtils.getAssociatedCriteria(component);
+        for (AbstractFunction function : component.getAllocatedFunctions()) {
+          List<FilteringCriterion> functionFeatures = FilteringUtils.getAssociatedCriteria(function);
+          List<FilteringCriterion> missingFeatures = ConstraintsUtil.missingFilteringCriteria(functionFeatures,
+              componentFeatures);
+          if (!missingFeatures.isEmpty()) {
+            statuses.add(ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(component),
+                FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingFeatures),
+                ConstraintsUtil.getNameForMessage(function)));
+          }
+        }
+      }
+      if (!statuses.isEmpty()) {
+        return ConstraintStatus.createMultiStatus(ctx, statuses);
+      }
+    }
+    return ctx.createSuccessStatus();
+  }
 
 }

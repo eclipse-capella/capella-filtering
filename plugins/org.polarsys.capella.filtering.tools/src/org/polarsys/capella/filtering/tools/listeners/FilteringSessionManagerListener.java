@@ -22,38 +22,38 @@ import org.polarsys.capella.filtering.FilteringModel;
 
 public class FilteringSessionManagerListener extends SessionManagerListener.Stub {
 
-	static Adapter adapter;
+  static Adapter adapter;
 
-	public FilteringSessionManagerListener() {
+  public FilteringSessionManagerListener() {
 
-		if (adapter != null) {
-			return;
-		}
+    if (adapter != null) {
+      return;
+    }
 
-		adapter = new FilteringDataListener();
-	}
+    adapter = new FilteringDataListener();
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void notify(Session updated, int notification) {
-		super.notify(updated, notification);
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void notify(Session updated, int notification) {
+    super.notify(updated, notification);
 
-		if (updated == null) {
-			return;
-		}
+    if (updated == null) {
+      return;
+    }
 
-		DataNotifier dataNotifier = ((SemanticEditingDomain) updated.getTransactionalEditingDomain()).getDataNotifier();
-		switch (notification) {
-		case SessionListener.OPENED:
-			dataNotifier.addAdapter(FilteringCriterion.class, adapter);
-			dataNotifier.addAdapter(FilteringModel.class, adapter);
-			dataNotifier.addAdapter(AssociatedFilteringCriterionSet.class, adapter);
-			break;
-		case SessionListener.CLOSED:
-			dataNotifier.remove(adapter);
-			break;
-		}
-	}
+    DataNotifier dataNotifier = ((SemanticEditingDomain) updated.getTransactionalEditingDomain()).getDataNotifier();
+    switch (notification) {
+    case SessionListener.OPENED:
+      dataNotifier.addAdapter(FilteringCriterion.class, adapter);
+      dataNotifier.addAdapter(FilteringModel.class, adapter);
+      dataNotifier.addAdapter(AssociatedFilteringCriterionSet.class, adapter);
+      break;
+    case SessionListener.CLOSED:
+      dataNotifier.remove(adapter);
+      break;
+    }
+  }
 }

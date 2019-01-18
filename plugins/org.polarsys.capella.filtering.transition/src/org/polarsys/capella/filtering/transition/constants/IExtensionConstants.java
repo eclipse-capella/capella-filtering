@@ -11,14 +11,14 @@
 package org.polarsys.capella.filtering.transition.constants;
 
 /**
- * Constants that will be used to store the transition preferences related with
- * filtering. It uses the same mechanism as preference pages.
+ * Constants that will be used to store the transition preferences related with filtering. It uses the same mechanism as
+ * preference pages.
  * 
  * 
  * 
  */
 public class IExtensionConstants {
-	public static final String OPTIONS_SCOPE = "org.polarsys.capella.filtering.tools"; //$NON-NLS-1$
-	public static final String OPTIONS_ASSOCIATEDCRITERIONSET = "AssociatedFilteringCriterionSet"; //$NON-NLS-1$
-	public static final boolean OPTIONS_ASSOCIATEDCRITERIONSET__DEFAULT_VALUE = true;
+  public static final String OPTIONS_SCOPE = "org.polarsys.capella.filtering.tools"; //$NON-NLS-1$
+  public static final String OPTIONS_ASSOCIATEDCRITERIONSET = "AssociatedFilteringCriterionSet"; //$NON-NLS-1$
+  public static final boolean OPTIONS_ASSOCIATEDCRITERIONSET__DEFAULT_VALUE = true;
 }

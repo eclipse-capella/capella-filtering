@@ -24,28 +24,28 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  */
 public class MDCHK_I_CapellaElement_OnlyOneAssociatedCriterionSet extends AbstractModelConstraint {
 
-	@Override
-	public IStatus validate(IValidationContext ctx) {
-		EObject eObj = ctx.getTarget();
-		EMFEventType eType = ctx.getEventType();
-		// check that it is batch validation
-		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof CapellaElement) {
-				CapellaElement capellaElement = (CapellaElement) eObj;
-				boolean oneFound = false;
-				for (ElementExtension elementExtension : capellaElement.getOwnedExtensions()) {
-					if (elementExtension instanceof AssociatedFilteringCriterionSet) {
-						if (oneFound) {
-							// One was previously found so this is the second.
-							// Return failure
-							return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(capellaElement));
-						}
-						oneFound = true;
-					}
-				}
-			}
-		}
-		return ctx.createSuccessStatus();
-	}
+  @Override
+  public IStatus validate(IValidationContext ctx) {
+    EObject eObj = ctx.getTarget();
+    EMFEventType eType = ctx.getEventType();
+    // check that it is batch validation
+    if (eType == EMFEventType.NULL) {
+      if (eObj instanceof CapellaElement) {
+        CapellaElement capellaElement = (CapellaElement) eObj;
+        boolean oneFound = false;
+        for (ElementExtension elementExtension : capellaElement.getOwnedExtensions()) {
+          if (elementExtension instanceof AssociatedFilteringCriterionSet) {
+            if (oneFound) {
+              // One was previously found so this is the second.
+              // Return failure
+              return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(capellaElement));
+            }
+            oneFound = true;
+          }
+        }
+      }
+    }
+    return ctx.createSuccessStatus();
+  }
 
 }

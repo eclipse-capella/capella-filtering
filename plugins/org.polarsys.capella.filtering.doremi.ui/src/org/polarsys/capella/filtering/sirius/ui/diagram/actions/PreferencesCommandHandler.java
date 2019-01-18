@@ -24,17 +24,17 @@ import org.polarsys.capella.filtering.tools.preferences.FilteringPreferencesPage
  */
 public class PreferencesCommandHandler extends AbstractHandler {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// Create and open the Dialog that shows automatically Product Line
-		// preferences
-		PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, FilteringPreferencesPage.getID(),
-				null, null);
-		dialog.open();
-		return null;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    // Create and open the Dialog that shows automatically Product Line
+    // preferences
+    PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, FilteringPreferencesPage.getID(), null,
+        null);
+    dialog.open();
+    return null;
+  }
 
 }

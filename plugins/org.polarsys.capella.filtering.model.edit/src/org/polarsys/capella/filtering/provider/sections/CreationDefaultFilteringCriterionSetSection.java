@@ -16,21 +16,20 @@ import org.polarsys.capella.core.model.handler.helpers.CapellaAdapterHelper;
 import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
 
 /**
- * This is the item provider adapter for a
- * {@link CreationDefaultFilteringCriterionSetSection} object. <!--
+ * This is the item provider adapter for a {@link CreationDefaultFilteringCriterionSetSection} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class CreationDefaultFilteringCriterionSetSection extends NamedElementSection {
-	/**
-	 * @generated
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
+  /**
+   * @generated
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
 
-		return obj != null && obj.eClass().equals(
-				org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getCreationDefaultFilteringCriterionSet());
-	}
+    return obj != null && obj.eClass()
+        .equals(org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getCreationDefaultFilteringCriterionSet());
+  }
 }

@@ -15,18 +15,18 @@ import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void start(BundleContext context) throws Exception {
-		// Do nothing
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public void start(BundleContext context) throws Exception {
+    // Do nothing
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void stop(BundleContext context) throws Exception {
-		// Do nothing
-	}
+  /**
+   * {@inheritDoc}
+   */
+  public void stop(BundleContext context) throws Exception {
+    // Do nothing
+  }
 
 }

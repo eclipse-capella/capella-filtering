@@ -10,3 +10,4 @@ Require-Bundle: org.polarsys.capella.core.model.handler,
  org.polarsys.capella.core.model.helpers,
  org.polarsys.capella.filtering.model
 Import-Package: org.polarsys.capella.filtering.tools.utils
+Export-Package: org.polarsys.capella.filtering.semantic.queries

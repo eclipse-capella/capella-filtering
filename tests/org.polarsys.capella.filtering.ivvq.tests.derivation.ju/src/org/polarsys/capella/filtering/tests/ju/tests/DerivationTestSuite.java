@@ -19,21 +19,20 @@ import org.polarsys.capella.test.framework.api.BasicTestSuite;
 import junit.framework.Test;
 
 /**
- * The objective of this test suite is to test that the derivation ends without
- * exceptions and that it has the expected resulting project. For this we use a
- * set of projects, each one with its own possible configurations
+ * The objective of this test suite is to test that the derivation ends without exceptions and that it has the expected
+ * resulting project. For this we use a set of projects, each one with its own possible configurations
  */
 public class DerivationTestSuite extends BasicTestSuite {
 
-	public static Test suite() {
-		return new DerivationTestSuite();
-	}
+  public static Test suite() {
+    return new DerivationTestSuite();
+  }
 
-	@Override
-	protected List<BasicTestArtefact> getTests() {
-		List<BasicTestArtefact> testCases = new ArrayList<>();
-		testCases.add(new DerivationTestCase());
-		return testCases;
-	}
+  @Override
+  protected List<BasicTestArtefact> getTests() {
+    List<BasicTestArtefact> testCases = new ArrayList<>();
+    testCases.add(new DerivationTestCase());
+    return testCases;
+  }
 
 }

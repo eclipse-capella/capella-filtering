@@ -33,47 +33,46 @@ import com.google.common.collect.Sets;
 
 public class SiriusCriteriaSelectionDialog extends FilteringCriteriaSelectionDialog {
 
-	EObject baseEObject;
+  EObject baseEObject;
 
-	/**
-	 * @param parent
-	 * @param labelProvider
-	 * @param contentProvider
-	 * @param baseEObject
-	 */
-	public SiriusCriteriaSelectionDialog(Shell parent, ILabelProvider labelProvider,
-			CriteriaContentProvider contentProvider, Project project, EObject digaram) {
-		super(parent, labelProvider, contentProvider, project);
-		this.baseEObject = digaram;
-	}
+  /**
+   * @param parent
+   * @param labelProvider
+   * @param contentProvider
+   * @param baseEObject
+   */
+  public SiriusCriteriaSelectionDialog(Shell parent, ILabelProvider labelProvider,
+      CriteriaContentProvider contentProvider, Project project, EObject digaram) {
+    super(parent, labelProvider, contentProvider, project);
+    this.baseEObject = digaram;
+  }
 
-	@Override
-	public void setInitialSelections(Object[] selectedElements) {
-		setInitialElementSelections(Arrays.asList(selectedElements));
-	}
+  @Override
+  public void setInitialSelections(Object[] selectedElements) {
+    setInitialElementSelections(Arrays.asList(selectedElements));
+  }
 
-	@Override
-	public void setInitialElementSelections(List selectedElements) {
-		DDiagram diagram = (DDiagram) baseEObject;
-		List<FilteringModel> filteringModels = FilteringSiriusUtils.getFilteringModels(diagram, true);
-		Set<FilteringCriterion> filteredSelection = Sets.newHashSet();
-		if (!filteringModels.isEmpty() && FilteringUtils.hasFilteringFeatures(filteringModels)) {
-			// Loop through all Filtering features
-			for (Object o : diagram.getDiagramElements()) {
-				if (o instanceof DDiagramElement) {
-					DDiagramElement diagramElement = (DDiagramElement) o;
-					if (!diagramElement.isVisible()) {
-						continue;
-					}
-					// Loop through semantic elements
-					for (EObject semanticElement : FilteringSiriusUtils.getRealSemanticElements(diagramElement)) {
-						List<FilteringCriterion> associatedCriteria = FilteringUtils
-								.getExplicitAssociatedCriteria(semanticElement);
-						filteredSelection.addAll(associatedCriteria);
-					}
-				}
-			}
-		}
-		super.setInitialElementSelections(new ArrayList<FilteringCriterion>(filteredSelection));
-	}
+  @Override
+  public void setInitialElementSelections(List selectedElements) {
+    DDiagram diagram = (DDiagram) baseEObject;
+    List<FilteringModel> filteringModels = FilteringSiriusUtils.getFilteringModels(diagram, true);
+    Set<FilteringCriterion> filteredSelection = Sets.newHashSet();
+    if (!filteringModels.isEmpty() && FilteringUtils.hasFilteringFeatures(filteringModels)) {
+      // Loop through all Filtering features
+      for (Object o : diagram.getDiagramElements()) {
+        if (o instanceof DDiagramElement) {
+          DDiagramElement diagramElement = (DDiagramElement) o;
+          if (!diagramElement.isVisible()) {
+            continue;
+          }
+          // Loop through semantic elements
+          for (EObject semanticElement : FilteringSiriusUtils.getRealSemanticElements(diagramElement)) {
+            List<FilteringCriterion> associatedCriteria = FilteringUtils.getExplicitAssociatedCriteria(semanticElement);
+            filteredSelection.addAll(associatedCriteria);
+          }
+        }
+      }
+    }
+    super.setInitialElementSelections(new ArrayList<FilteringCriterion>(filteredSelection));
+  }
 }

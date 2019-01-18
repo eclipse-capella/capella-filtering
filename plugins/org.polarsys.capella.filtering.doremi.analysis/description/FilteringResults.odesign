@@ -73,15 +73,16 @@
         <filters xsi:type="filter:VariableFilter" semanticConditionExpression="service:isFilteredByGlobalFilteringCache()"/>
       </filters>
     </ownedRepresentations>
-    <ownedRepresentationExtensions xsi:type="description_2:DiagramExtensionDescription" name="FilteringDiagExtension" viewpointURI="viewpoint:/org.polarsys.capella.filtering.sirius.analysis/description/FilteringResults.odesign" representationName="Filtering">
+    <ownedRepresentationExtensions xsi:type="description_2:DiagramExtensionDescription" name="FilteringDiagExtension" viewpointURI="viewpoint:/org.polarsys.capella.core.sirius.analysis/.*" representationName=".*">
       <layers name="HasFilteringCriteriaDecorator" activeByDefault="true">
         <decorationDescriptionsSet>
-          <decorationDescriptions xsi:type="description:GenericDecorationDescription" name="HasAssociatedFilteringCriteria" position="NORTH_EAST" distributionDirection="HORIZONTAL" preconditionExpression="service:view.hasDecorationPLText" imageExpression="/org.polarsys.capella.filtering.sirius.analysis/icons/optionalDecorator.png" tooltipExpression="service:view.getPLText"/>
+          <decorationDescriptions xsi:type="description:GenericDecorationDescription" name="HasAssociatedFilteringCriteria" position="NORTH_EAST" distributionDirection="HORIZONTAL" preconditionExpression="service:view.hasDecorationPLText" imageExpression="/org.polarsys.capella.filtering.sirius.analysis/icons/optionalDecorator.png" tooltipExpression="service:view.getPLText(container)"/>
         </decorationDescriptionsSet>
         <customization>
-          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="true">
-            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderColor" value="244,220,255"/>
-            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="strokeColor" value="244,220,255"/>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:view.hasDecorationPLText">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderSize" value="service:getBorderSize"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderColor" value="service:getBorderColor"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="strokeColor" value="service:getStrokeColor"/>
           </vsmElementCustomizations>
         </customization>
       </layers>

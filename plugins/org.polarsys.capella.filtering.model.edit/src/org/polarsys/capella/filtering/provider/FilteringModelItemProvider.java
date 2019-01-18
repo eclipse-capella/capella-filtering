@@ -42,213 +42,207 @@ import org.polarsys.kitalpha.emde.model.EmdePackage;
 import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
 
 /**
- * This is the item provider adapter for a
- * {@link org.polarsys.capella.filtering.FilteringModel} object. <!--
+ * This is the item provider adapter for a {@link org.polarsys.capella.filtering.FilteringModel} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class FilteringModelItemProvider extends NamedElementItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public FilteringModelItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+  /**
+   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public FilteringModelItemProvider(AdapterFactory adapterFactory) {
+    super(adapterFactory);
+  }
 
-	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+  /**
+   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-		}
-		// begin-extension-code
-		checkChildCreationExtender(object);
-		// end-extension-code
-		return itemPropertyDescriptors;
-	}
+    }
+    // begin-extension-code
+    checkChildCreationExtender(object);
+    // end-extension-code
+    return itemPropertyDescriptors;
+  }
 
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
-			childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
-		}
-		return childrenFeatures;
-	}
+  /**
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+    if (childrenFeatures == null) {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
+      childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
+    }
+    return childrenFeatures;
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
 
-		return super.getChildFeature(object, child);
-	}
+    return super.getChildFeature(object, child);
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean hasChildren(Object object) {
-		return hasChildren(object, true);
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public boolean hasChildren(Object object) {
+    return hasChildren(object, true);
+  }
 
-	/**
-	 * This returns FilteringModel.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FilteringModel")); //$NON-NLS-1$
-	}
+  /**
+   * This returns FilteringModel.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/FilteringModel")); //$NON-NLS-1$
+  }
 
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
+  /**
+   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public String getText(Object object) {
 
-		String label = ((FilteringModel) object).getName();
-		// begin-extension-code
-		return label == null || label.length() == 0 ? "[" + getString("_UI_FilteringModel_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		// end-extension-code
-	}
+    String label = ((FilteringModel) object).getName();
+    // begin-extension-code
+    return label == null || label.length() == 0 ? "[" + getString("_UI_FilteringModel_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    // end-extension-code
+  }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+  /**
+   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
+   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public void notifyChanged(Notification notification) {
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(FilteringModel.class)) {
-		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(FilteringModel.class)) {
+    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+      return;
+    }
+    super.notifyChanged(notification);
+  }
 
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-					FilteringFactory.eINSTANCE.createFilteringModel());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+  /**
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
+   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    super.collectNewChildDescriptors(newChildDescriptors, object);
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS, FilteringFactory.eINSTANCE.createFilteringModel());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-					FilteringFactory.eINSTANCE.createFilteringResults());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+          FilteringFactory.eINSTANCE.createFilteringResults());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-					FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+          FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-					FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+          FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERIA,
-					FilteringFactory.eINSTANCE.createFilteringCriterion());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERIA,
+          FilteringFactory.eINSTANCE.createFilteringCriterion());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS,
-					FilteringFactory.eINSTANCE.createFilteringCriterionPkg());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
+    // begin-extension-code
+    {
+      CommandParameter commandParameter = createChildParameter(
+          FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS,
+          FilteringFactory.eINSTANCE.createFilteringCriterionPkg());
+      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+        newChildDescriptors.add(commandParameter);
+      }
+    }
+    // end-extension-code
 
-	}
+  }
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return FilteringEditPlugin.INSTANCE;
-	}
+  /**
+   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public ResourceLocator getResourceLocator() {
+    return FilteringEditPlugin.INSTANCE;
+  }
 
 }

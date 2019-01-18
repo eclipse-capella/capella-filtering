@@ -22,57 +22,57 @@ import org.polarsys.capella.core.ui.properties.fields.MultipleSemanticField;
  */
 public class ReadOnlyMultipleSemanticField extends MultipleSemanticField {
 
-	/**
-	 * @param parent
-	 * @param label
-	 * @param widgetFactory
-	 * @param controller
-	 */
-	public ReadOnlyMultipleSemanticField(Composite parent, String label, TabbedPropertySheetWidgetFactory widgetFactory,
-			IMultipleSemanticFieldController controller) {
-		// Span the widget to fill all the horizontal space now that there are
-		// no buttons
-		super(parent, label, widgetFactory, 4, controller, false);
-	}
+  /**
+   * @param parent
+   * @param label
+   * @param widgetFactory
+   * @param controller
+   */
+  public ReadOnlyMultipleSemanticField(Composite parent, String label, TabbedPropertySheetWidgetFactory widgetFactory,
+      IMultipleSemanticFieldController controller) {
+    // Span the widget to fill all the horizontal space now that there are
+    // no buttons
+    super(parent, label, widgetFactory, 4, controller, false);
+  }
 
-	/**
-	 * Create Edit button.
-	 * 
-	 * @param parent
-	 */
-	@Override
-	protected void createEditButton(Composite parent) {
-		// Do not create it
-	}
+  /**
+   * Create Edit button.
+   * 
+   * @param parent
+   */
+  @Override
+  protected void createEditButton(Composite parent) {
+    // Do not create it
+  }
 
-	/**
-	 * Create Open button.
-	 * 
-	 * @param parent
-	 */
-	@Override
-	protected void createOpenButton(Composite parent) {
-		// Do not create it
-	}
+  /**
+   * Create Open button.
+   * 
+   * @param parent
+   */
+  @Override
+  protected void createOpenButton(Composite parent) {
+    // Do not create it
+  }
 
-	/**
-	 * Create Add button.
-	 * 
-	 * @param parent
-	 */
-	@Override
-	protected void createAddButton(Composite parent) {
-		// Do not create it
-	}
+  /**
+   * Create Add button.
+   * 
+   * @param parent
+   */
+  @Override
+  protected void createAddButton(Composite parent) {
+    // Do not create it
+  }
 
-	/**
-	 * Create Delete button.
-	 * 
-	 * @param parent
-	 */
-	@Override
-	protected void createDeleteButton(Composite parent) {
-		// Do not create it
-	}
+  /**
+   * Create Delete button.
+   * 
+   * @param parent
+   */
+  @Override
+  protected void createDeleteButton(Composite parent) {
+    // Do not create it
+  }
 
 }

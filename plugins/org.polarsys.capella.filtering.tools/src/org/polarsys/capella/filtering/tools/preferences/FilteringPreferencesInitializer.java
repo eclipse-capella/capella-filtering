@@ -19,13 +19,13 @@ import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
  */
 public class FilteringPreferencesInitializer extends AbstractPreferenceInitializer {
 
-	@Override
-	public void initializeDefaultPreferences() {
-		IPreferenceStore store = FilteringToolsPlugin.getDefault().getPreferenceStore();
-		store.setDefault(FilteringPreferencesPage.FEATURES_DIAGRAM, false);
-		store.setDefault(FilteringPreferencesPage.OPTIONAL_DIAGRAM, true);
-		store.setDefault(FilteringPreferencesPage.SAVE_DECORATORS_DIAGRAM, true);
-		store.setDefault(FilteringPreferencesPage.APPLICATION_PROJECT_WITH_DIFFERENT_ID, false);
-	}
+  @Override
+  public void initializeDefaultPreferences() {
+    IPreferenceStore store = FilteringToolsPlugin.getDefault().getPreferenceStore();
+    store.setDefault(FilteringPreferencesPage.FEATURES_DIAGRAM, false);
+    store.setDefault(FilteringPreferencesPage.OPTIONAL_DIAGRAM, true);
+    store.setDefault(FilteringPreferencesPage.SAVE_DECORATORS_DIAGRAM, true);
+    store.setDefault(FilteringPreferencesPage.APPLICATION_PROJECT_WITH_DIFFERENT_ID, false);
+  }
 
 }

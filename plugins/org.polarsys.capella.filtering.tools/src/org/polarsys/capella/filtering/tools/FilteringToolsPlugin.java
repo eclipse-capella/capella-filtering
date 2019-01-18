@@ -37,105 +37,102 @@ import org.polarsys.kitalpha.ad.common.utils.URIFix;
  */
 public class FilteringToolsPlugin extends AbstractUIActivator {
 
-	/**
-	 * The plug-in ID
-	 */
-	public static final String ID = "org.polarsys.capella.filtering.tools"; //$NON-NLS-1$
-	public static final String FILTERING_ODESIGN = "/org.polarsys.capella.filtering.sirius.analysis/description/FilteringResults.odesign";
-	public static final URI FILTER_URI = URIFix.createPlatformPluginURI(
-			FILTERING_ODESIGN
-					+ "#//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='Filtering']/@filters[name='VisibleDiagramFilteringCriteria']",
-			false);
+  /**
+   * The plug-in ID
+   */
+  public static final String ID = "org.polarsys.capella.filtering.tools"; //$NON-NLS-1$
+  public static final String FILTERING_ODESIGN = "/org.polarsys.capella.filtering.sirius.analysis/description/FilteringResults.odesign";
+  public static final URI FILTER_URI = URIFix.createPlatformPluginURI(FILTERING_ODESIGN
+      + "#//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='Filtering']/@filters[name='VisibleDiagramFilteringCriteria']",
+      false);
 
-	/**
-	 * The singleton instance.
-	 */
-	private static FilteringToolsPlugin plugin;
+  /**
+   * The singleton instance.
+   */
+  private static FilteringToolsPlugin plugin;
 
-	private Map<ImageDescriptor, Image> descriptorsToImages;
+  private Map<ImageDescriptor, Image> descriptorsToImages;
 
-	private static Map<FilteringCriterion, Collection<?>> implicitImpactCache = new HashMap<>();
-	/**
-	 * Caches current selected filtering selection for each Capella
-	 * project.</br>
-	 * The filtering selection is provided by {@link DiagCriteriaVisibilityView}
-	 */
-	private static GlobalFiteringCache globalFilteringCache = new GlobalFiteringCache();
+  private static Map<FilteringCriterion, Collection<?>> implicitImpactCache = new HashMap<>();
+  /**
+   * Caches current selected filtering selection for each Capella project.</br>
+   * The filtering selection is provided by {@link DiagCriteriaVisibilityView}
+   */
+  private static GlobalFiteringCache globalFilteringCache = new GlobalFiteringCache();
 
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		descriptorsToImages = new HashMap<>();
-		plugin = this;
+  /**
+   * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+   */
+  @Override
+  public void start(BundleContext context) throws Exception {
+    super.start(context);
+    descriptorsToImages = new HashMap<>();
+    plugin = this;
 
-		// We add a listener to update automatically the diagrams when we click
-		// apply in the preferences page
-		FilteringToolsPlugin.getDefault().getPreferenceStore()
-				.addPropertyChangeListener(new IPropertyChangeListener() {
-					@Override
-					public void propertyChange(PropertyChangeEvent event) {
-						if (event.getProperty().equals(FilteringPreferencesPage.FEATURES_DIAGRAM)
-								|| event.getProperty().equals(FilteringPreferencesPage.OPTIONAL_DIAGRAM)
-								|| event.getProperty().equals(FilteringPreferencesPage.SAVE_DECORATORS_DIAGRAM)) {
-							FilteringUtils.forceRefreshAllDiagrams();
-						}
-					}
-				});
-	}
+    // We add a listener to update automatically the diagrams when we click
+    // apply in the preferences page
+    FilteringToolsPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent event) {
+        if (event.getProperty().equals(FilteringPreferencesPage.FEATURES_DIAGRAM)
+            || event.getProperty().equals(FilteringPreferencesPage.OPTIONAL_DIAGRAM)
+            || event.getProperty().equals(FilteringPreferencesPage.SAVE_DECORATORS_DIAGRAM)) {
+          FilteringUtils.forceRefreshAllDiagrams();
+        }
+      }
+    });
+  }
 
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		/*
-		 * Disposing the images
-		 */
-		Iterator<Image> it = descriptorsToImages.values().iterator();
-		while (it.hasNext()) {
-			Image img = it.next();
-			if (img != null) {
-				img.dispose();
-			}
-		}
-		plugin = null;
-		super.stop(context);
-	}
+  /**
+   * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+   */
+  @Override
+  public void stop(BundleContext context) throws Exception {
+    /*
+     * Disposing the images
+     */
+    Iterator<Image> it = descriptorsToImages.values().iterator();
+    while (it.hasNext()) {
+      Image img = it.next();
+      if (img != null) {
+        img.dispose();
+      }
+    }
+    plugin = null;
+    super.stop(context);
+  }
 
-	/**
-	 * Returns the singleton instance
-	 * 
-	 * @return
-	 */
-	public static FilteringToolsPlugin getDefault() {
-		return plugin;
-	}
+  /**
+   * Returns the singleton instance
+   * 
+   * @return
+   */
+  public static FilteringToolsPlugin getDefault() {
+    return plugin;
+  }
 
-	/**
-	 * @return the implicitImpactCache
-	 */
-	public static Map<FilteringCriterion, Collection<?>> getImplicitImpactCache() {
-		return implicitImpactCache;
-	}
+  /**
+   * @return the implicitImpactCache
+   */
+  public static Map<FilteringCriterion, Collection<?>> getImplicitImpactCache() {
+    return implicitImpactCache;
+  }
 
-	public static GlobalFiteringCache getGlobalFilteringCache() {
-		return globalFilteringCache;
-	}
+  public static GlobalFiteringCache getGlobalFilteringCache() {
+    return globalFilteringCache;
+  }
 
-	/**
-	 * 
-	 * @param desc
-	 *            an image descriptor.
-	 * @return an Image instance
-	 */
-	public Image getImage(ImageDescriptor desc) {
-		if (!descriptorsToImages.containsKey(desc)) {
-			descriptorsToImages.put(desc, desc.createImage());
-		}
-		return descriptorsToImages.get(desc);
-	}
+  /**
+   * 
+   * @param desc
+   *          an image descriptor.
+   * @return an Image instance
+   */
+  public Image getImage(ImageDescriptor desc) {
+    if (!descriptorsToImages.containsKey(desc)) {
+      descriptorsToImages.put(desc, desc.createImage());
+    }
+    return descriptorsToImages.get(desc);
+  }
 
 }

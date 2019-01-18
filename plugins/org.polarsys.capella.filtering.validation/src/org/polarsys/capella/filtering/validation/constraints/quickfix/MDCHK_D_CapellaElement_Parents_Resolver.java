@@ -28,56 +28,56 @@ import org.polarsys.capella.filtering.validation.constraints.ConstraintsUtil;
  */
 public class MDCHK_D_CapellaElement_Parents_Resolver extends AbstractCapellaMarkerResolution {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void run(IMarker marker_p) {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void run(IMarker marker_p) {
 
-		// Get the element from the marker
-		Iterator<EObject> it = getModelElements(marker_p).iterator();
-		if (it.hasNext()) {
-			EObject first = it.next();
-			if (first instanceof CapellaElement) {
-				final CapellaElement element = (CapellaElement) first;
+    // Get the element from the marker
+    Iterator<EObject> it = getModelElements(marker_p).iterator();
+    if (it.hasNext()) {
+      EObject first = it.next();
+      if (first instanceof CapellaElement) {
+        final CapellaElement element = (CapellaElement) first;
 
-				// Loop through childs to collect their Filtering Criteria
-				List<FilteringCriterion> childsVarFeatures = getChildsFeatures(element);
+        // Loop through childs to collect their Filtering Criteria
+        List<FilteringCriterion> childsVarFeatures = getChildsFeatures(element);
 
-				// Calculate which features are missing
-				List<FilteringCriterion> elementVarFeatures = FilteringUtils.getAssociatedCriteria(element);
-				final List<FilteringCriterion> featuresToAdd = ConstraintsUtil
-						.missingFilteringCriteria(childsVarFeatures, elementVarFeatures);
+        // Calculate which features are missing
+        List<FilteringCriterion> elementVarFeatures = FilteringUtils.getAssociatedCriteria(element);
+        final List<FilteringCriterion> featuresToAdd = ConstraintsUtil.missingFilteringCriteria(childsVarFeatures,
+            elementVarFeatures);
 
-				// Execute the modification
-				AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
-					public void run() {
-						FilteringUtils.addAssociatedCriteria(element, featuresToAdd);
-					}
-				};
-				FilteringUtils.executeCommand(command, element);
-			}
-		}
-	}
+        // Execute the modification
+        AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+          public void run() {
+            FilteringUtils.addAssociatedCriteria(element, featuresToAdd);
+          }
+        };
+        FilteringUtils.executeCommand(command, element);
+      }
+    }
+  }
 
-	/**
-	 * Loop through childs to collect their Filtering Criteria
-	 */
-	public static List<FilteringCriterion> getChildsFeatures(EObject element) {
-		List<FilteringCriterion> childsVarFeatures = new ArrayList<FilteringCriterion>();
-		Iterator<EObject> childs = element.eAllContents();
-		while (childs.hasNext()) {
-			EObject child = childs.next();
-			if (child instanceof CapellaElement) {
-				if (!FilteringUtils.isInstanceOfFilteringExcludedElements(child)) {
-					for (FilteringCriterion var : FilteringUtils.getAssociatedCriteria(child)) {
-						if (!childsVarFeatures.contains(var)) {
-							childsVarFeatures.add(var);
-						}
-					}
-				}
-			}
-		}
-		return childsVarFeatures;
-	}
+  /**
+   * Loop through childs to collect their Filtering Criteria
+   */
+  public static List<FilteringCriterion> getChildsFeatures(EObject element) {
+    List<FilteringCriterion> childsVarFeatures = new ArrayList<FilteringCriterion>();
+    Iterator<EObject> childs = element.eAllContents();
+    while (childs.hasNext()) {
+      EObject child = childs.next();
+      if (child instanceof CapellaElement) {
+        if (!FilteringUtils.isInstanceOfFilteringExcludedElements(child)) {
+          for (FilteringCriterion var : FilteringUtils.getAssociatedCriteria(child)) {
+            if (!childsVarFeatures.contains(var)) {
+              childsVarFeatures.add(var);
+            }
+          }
+        }
+      }
+    }
+    return childsVarFeatures;
+  }
 }

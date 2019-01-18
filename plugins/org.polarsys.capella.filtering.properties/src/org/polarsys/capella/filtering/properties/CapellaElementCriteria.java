@@ -25,41 +25,41 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  * 
  */
 public class CapellaElementCriteria extends AbstractMultipleSemanticFieldController {
-	/**
-	 * @see org.polarsys.capella.core.ui.properties.fields.custom.properties.widgets.SimpleEditableSemanticField#loadData(org.polarsys.capella.core.data.information.datatype.BooleanType,
-	 *      org.eclipse.emf.ecore.EReference)
-	 */
-	@Override
-	public List<EObject> loadValues(EObject semanticElement, EStructuralFeature semanticFeature) {
-		return getValues(semanticElement);
-	}
+  /**
+   * @see org.polarsys.capella.core.ui.properties.fields.custom.properties.widgets.SimpleEditableSemanticField#loadData(org.polarsys.capella.core.data.information.datatype.BooleanType,
+   *      org.eclipse.emf.ecore.EReference)
+   */
+  @Override
+  public List<EObject> loadValues(EObject semanticElement, EStructuralFeature semanticFeature) {
+    return getValues(semanticElement);
+  }
 
-	/**
-	 * @param semanticElement
-	 * @param semanticFeature
-	 * @return
-	 */
-	private List<EObject> getValues(EObject semanticElement) {
-		List<EObject> result = new ArrayList<>();
-		// Get explicit
-		result.addAll(FilteringUtils.getExplicitAssociatedCriteria(semanticElement));
-		return result;
-	}
+  /**
+   * @param semanticElement
+   * @param semanticFeature
+   * @return
+   */
+  private List<EObject> getValues(EObject semanticElement) {
+    List<EObject> result = new ArrayList<>();
+    // Get explicit
+    result.addAll(FilteringUtils.getExplicitAssociatedCriteria(semanticElement));
+    return result;
+  }
 
-	/**
-	 * @see org.polarsys.capella.core.ui.properties.controllers.custom.properties.controllers.AbstractMultipleSemanticFieldController#getReadOpenValuesQuery(org.polarsys.capella.core.data.capellacore.CapellaElement)
-	 */
-	@Override
-	protected IBusinessQuery getReadOpenValuesQuery(EObject semanticElement) {
-		return null;
-	}
+  /**
+   * @see org.polarsys.capella.core.ui.properties.controllers.custom.properties.controllers.AbstractMultipleSemanticFieldController#getReadOpenValuesQuery(org.polarsys.capella.core.data.capellacore.CapellaElement)
+   */
+  @Override
+  protected IBusinessQuery getReadOpenValuesQuery(EObject semanticElement) {
+    return null;
+  }
 
-	/**
-	 * @see org.polarsys.capella.core.ui.properties.fields.custom.properties.widgets.SimpleEditableSemanticField#readOpenValues()
-	 */
-	@Override
-	public List<EObject> readOpenValues(EObject semanticElement, EStructuralFeature semanticFeature,
-			boolean availableElements) {
-		return Collections.emptyList();
-	}
+  /**
+   * @see org.polarsys.capella.core.ui.properties.fields.custom.properties.widgets.SimpleEditableSemanticField#readOpenValues()
+   */
+  @Override
+  public List<EObject> readOpenValues(EObject semanticElement, EStructuralFeature semanticFeature,
+      boolean availableElements) {
+    return Collections.emptyList();
+  }
 }

@@ -88,7 +88,7 @@
       <details key="constraints"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filteringResults" upperBound="-1"
-        eType="#//FilteringResult" containment="true">
+        eType="#//AbstractFilteringResult" containment="true">
       <eAnnotations source="http://www.polarsys.org/capella/semantic"/>
       <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
         <details key="description"/>
@@ -101,7 +101,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFilteringResultPkgs"
         upperBound="-1" eType="#//FilteringResultPkg" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilteringResult" eSuperTypes="#//FilteringCriterionSet">
+  <eClassifiers xsi:type="ecore:EClass" name="FilteringResult" eSuperTypes="#//FilteringCriterionSet #//AbstractFilteringResult">
     <eAnnotations source="http://www.polarsys.org/kitalpha/ecore/documentation">
       <details key="description"/>
       <details key="usage guideline"/>
@@ -137,7 +137,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilteringResultPkg" eSuperTypes="platform:/plugin/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore#//Namespace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFilteringResults"
-        upperBound="-1" eType="#//FilteringResult" containment="true"/>
+        upperBound="-1" eType="#//AbstractFilteringResult" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFilteringResultPkgs"
         upperBound="-1" eType="#//FilteringResultPkg" containment="true"/>
   </eClassifiers>
@@ -147,4 +147,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFilteringCriterionPkgs"
         upperBound="-1" eType="#//FilteringCriterionPkg" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComposedFilteringResult" eSuperTypes="#//AbstractFilteringResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="UnionFilteringResultSet"
+        eType="#//UnionFilteringResultSet" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="IntersectionFilteringResultSet"
+        eType="#//IntersectionFilteringResultSet" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ExclusionFilteringResultSet"
+        eType="#//ExclusionFilteringResultSet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilteringResultSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filteringResults" upperBound="-1"
+        eType="#//AbstractFilteringResult"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractFilteringResult" abstract="true"
+      eSuperTypes="platform:/plugin/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore#//NamedElement">
+    <eOperations name="computeFilteringCriterionSet" eType="#//FilteringCriterionSet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnionFilteringResultSet" eSuperTypes="#//FilteringResultSet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExclusionFilteringResultSet" eSuperTypes="#//FilteringResultSet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntersectionFilteringResultSet" eSuperTypes="#//FilteringResultSet"/>
 </ecore:EPackage>

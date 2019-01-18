@@ -15,9 +15,9 @@ import org.polarsys.capella.filtering.FilteringPackage;
 
 public class FilteringResultFilteringCriteria extends CriterionSetFilteringCriteria {
 
-	@Override
-	public EClass getEClass() {
-		return FilteringPackage.Literals.FILTERING_RESULT;
-	}
+  @Override
+  public EClass getEClass() {
+    return FilteringPackage.Literals.FILTERING_RESULT;
+  }
 
 }

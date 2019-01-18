@@ -30,5 +30,19 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriteria"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriterionPkgs"/>
     </genClasses>
+    <genClasses ecoreClass="filtering.ecore#//ComposedFilteringResult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//ComposedFilteringResult/UnionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//ComposedFilteringResult/IntersectionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//ComposedFilteringResult/ExclusionFilteringResultSet"/>
+    </genClasses>
+    <genClasses ecoreClass="filtering.ecore#//FilteringResultSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringResultSet/filteringResults"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="filtering.ecore#//AbstractFilteringResult">
+      <genOperations ecoreOperation="filtering.ecore#//AbstractFilteringResult/computeFilteringCriterionSet"/>
+    </genClasses>
+    <genClasses ecoreClass="filtering.ecore#//UnionFilteringResultSet"/>
+    <genClasses ecoreClass="filtering.ecore#//ExclusionFilteringResultSet"/>
+    <genClasses ecoreClass="filtering.ecore#//IntersectionFilteringResultSet"/>
   </genPackages>
 </genmodel:GenModel>

@@ -15,9 +15,9 @@ import org.polarsys.capella.filtering.FilteringPackage;
 
 public class CreationDefaultCriterionSetFilteringCriteria extends CriterionSetFilteringCriteria {
 
-	@Override
-	public EClass getEClass() {
-		return FilteringPackage.Literals.CREATION_DEFAULT_FILTERING_CRITERION_SET;
-	}
+  @Override
+  public EClass getEClass() {
+    return FilteringPackage.Literals.CREATION_DEFAULT_FILTERING_CRITERION_SET;
+  }
 
 }

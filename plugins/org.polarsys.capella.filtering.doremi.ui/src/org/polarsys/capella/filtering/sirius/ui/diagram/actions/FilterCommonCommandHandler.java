@@ -26,43 +26,43 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class FilterCommonCommandHandler extends AbstractHandler implements IElementUpdater {
 
-	private FilterCommonOptionalAction action;
+  private FilterCommonOptionalAction action;
 
-	public FilterCommonCommandHandler() {
-		this.action = new FilterCommonOptionalAction(FilteringSiriusUtils.getActivePage(),
-				FilteringSiriusUtils.getActivePart(), true);
-	}
+  public FilterCommonCommandHandler() {
+    this.action = new FilterCommonOptionalAction(FilteringSiriusUtils.getActivePage(),
+        FilteringSiriusUtils.getActivePart(), true);
+  }
 
-	@Override
-	@SuppressWarnings("synthetic-access")
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
+  @Override
+  @SuppressWarnings("synthetic-access")
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    FilteringUtils.executeCommand(new AbstractReadWriteCommand() {
 
-			@Override
-			public void run() {
-				action.getCommand().execute();
-				// Prepare it for the next execution with the inverse
-				action.setShow(!action.getShow());
-			}
+      @Override
+      public void run() {
+        action.getCommand().execute();
+        // Prepare it for the next execution with the inverse
+        action.setShow(!action.getShow());
+      }
 
-			@Override
-			public void commandRolledBack() {
-				action.getCommand().undo();
-				// Prepare it for the next execution with the inverse
-				action.setShow(!action.getShow());
-			}
+      @Override
+      public void commandRolledBack() {
+        action.getCommand().undo();
+        // Prepare it for the next execution with the inverse
+        action.setShow(!action.getShow());
+      }
 
-			@Override
-			public String toString() {
-				return "Filter Common"; //$NON-NLS-1$
-			}
-		}, action.getSession());
-		return null;
-	}
+      @Override
+      public String toString() {
+        return "Filter Common"; //$NON-NLS-1$
+      }
+    }, action.getSession());
+    return null;
+  }
 
-	@Override
-	public void updateElement(UIElement element, Map parameters) {
-		// Update the toggle state
-		element.setChecked(action.isAlreadyFiltered());
-	}
+  @Override
+  public void updateElement(UIElement element, Map parameters) {
+    // Update the toggle state
+    element.setChecked(action.isAlreadyFiltered());
+  }
 }

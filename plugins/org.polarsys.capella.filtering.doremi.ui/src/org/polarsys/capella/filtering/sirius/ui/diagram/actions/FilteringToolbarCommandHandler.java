@@ -19,11 +19,11 @@ import org.eclipse.core.commands.ExecutionException;
  */
 public class FilteringToolbarCommandHandler extends AbstractHandler {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		return null;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public Object execute(ExecutionEvent event) throws ExecutionException {
+    return null;
+  }
 }

@@ -28,52 +28,52 @@ import org.polarsys.kitalpha.transposer.rules.handler.rules.api.IPremise;
  */
 public class AssociatedCriterionSetRule extends AbstractUpdateRule {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected EClass getSourceType() {
-		return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected EClass getSourceType() {
+    return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
+  }
 
-	@Override
-	protected void retrieveGoDeep(EObject source, List<EObject> result, IContext context) {
-		super.retrieveGoDeep(source, result, context);
-		result.addAll(((AssociatedFilteringCriterionSet) source).getFilteringCriteria());
-	}
+  @Override
+  protected void retrieveGoDeep(EObject source, List<EObject> result, IContext context) {
+    super.retrieveGoDeep(source, result, context);
+    result.addAll(((AssociatedFilteringCriterionSet) source).getFilteringCriteria());
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void apply(EObject element, IContext context) throws Exception {
-		super.apply(element, context);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void apply(EObject element, IContext context) throws Exception {
+    super.apply(element, context);
+  }
 
-	@Override
-	protected void premicesRelated(EObject element, ArrayList<IPremise> needed) {
-		// If we are going to use attachRelated we need this method too.
-		super.premicesRelated(element, needed);
-		needed.addAll(createDefaultPrecedencePremices(element,
-				FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA));
-	}
+  @Override
+  protected void premicesRelated(EObject element, ArrayList<IPremise> needed) {
+    // If we are going to use attachRelated we need this method too.
+    super.premicesRelated(element, needed);
+    needed.addAll(createDefaultPrecedencePremices(element,
+        FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA));
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void attachRelated(EObject element, EObject result, IContext context) {
-		super.attachRelated(element, result, context);
-		AttachmentHelper.getInstance(context).attachTracedElements(element, result,
-				FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA, context);
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected void attachRelated(EObject element, EObject result, IContext context) {
+    super.attachRelated(element, result, context);
+    AttachmentHelper.getInstance(context).attachTracedElements(element, result,
+        FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA, context);
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public EClass getTargetType(EObject element, IContext context) {
-		return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public EClass getTargetType(EObject element, IContext context) {
+    return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
+  }
 
 }

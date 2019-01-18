@@ -32,57 +32,57 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class CriteriaContentProvider implements IStructuredContentProvider, ITreeContentProvider {
 
-	public Object[] getElements(Object inputElement) {
-		return getChildren(inputElement);
-	}
+  public Object[] getElements(Object inputElement) {
+    return getChildren(inputElement);
+  }
 
-	public Object[] getChildren(Object parentElement) {
-		List<Object> children = new ArrayList<Object>();
+  public Object[] getChildren(Object parentElement) {
+    List<Object> children = new ArrayList<Object>();
 
-		if (parentElement instanceof Collection<?/* Project */>) {
-			children.addAll((Collection<?>) parentElement);
+    if (parentElement instanceof Collection<?/* Project */>) {
+      children.addAll((Collection<?>) parentElement);
 
-		} else if (parentElement instanceof Project) {
-			FilteringModel filteringModel = FilteringUtils.getFilteringModel((Project) parentElement);
-			if (filteringModel != null) {
-				children.addAll(doGetElements(filteringModel));
-			}
+    } else if (parentElement instanceof Project) {
+      FilteringModel filteringModel = FilteringUtils.getFilteringModel((Project) parentElement);
+      if (filteringModel != null) {
+        children.addAll(doGetElements(filteringModel));
+      }
 
-		} else if (parentElement instanceof FilteringCriterionPkg) {
-			children.addAll(FilteringUtils.getOwnedFilteringCriteriaAndPkgs((FilteringCriterionPkg) parentElement));
+    } else if (parentElement instanceof FilteringCriterionPkg) {
+      children.addAll(FilteringUtils.getOwnedFilteringCriteriaAndPkgs((FilteringCriterionPkg) parentElement));
 
-		} else if (parentElement instanceof DSemanticDiagram) {
+    } else if (parentElement instanceof DSemanticDiagram) {
 
-			return getChildren(((DSemanticDiagram) parentElement).getTarget());
+      return getChildren(((DSemanticDiagram) parentElement).getTarget());
 
-		} else if (parentElement instanceof EObject) {
-			children.addAll(FilteringUtils.getMainAndReferencedVariantProjects((EObject) parentElement));
-		}
-		return children.toArray();
-	}
+    } else if (parentElement instanceof EObject) {
+      children.addAll(FilteringUtils.getMainAndReferencedVariantProjects((EObject) parentElement));
+    }
+    return children.toArray();
+  }
 
-	private List<EObject> doGetElements(FilteringModel filteringModel) {
-		return FilteringUtils.getOwnedFilteringCriteriaAndPkgs(Arrays.asList(filteringModel));
-	}
+  private List<EObject> doGetElements(FilteringModel filteringModel) {
+    return FilteringUtils.getOwnedFilteringCriteriaAndPkgs(Arrays.asList(filteringModel));
+  }
 
-	public void dispose() {
-		// Do nothing
-	}
+  public void dispose() {
+    // Do nothing
+  }
 
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// Do nothing
-	}
+  public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+    // Do nothing
+  }
 
-	public Object getParent(Object element) {
-		if (element instanceof FilteringCriterion) {
-			return CapellaProjectHelper.getProject((FilteringCriterion) element);
-		}
-		return null;
-	}
+  public Object getParent(Object element) {
+    if (element instanceof FilteringCriterion) {
+      return CapellaProjectHelper.getProject((FilteringCriterion) element);
+    }
+    return null;
+  }
 
-	public boolean hasChildren(Object obj) {
-		boolean hasChildren = obj instanceof Project || obj instanceof FilteringCriterionPkg;
+  public boolean hasChildren(Object obj) {
+    boolean hasChildren = obj instanceof Project || obj instanceof FilteringCriterionPkg;
 
-		return hasChildren;
-	}
+    return hasChildren;
+  }
 }

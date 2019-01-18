@@ -25,56 +25,55 @@ import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 /**
- * FilteringCriterionSet is an abstract EClass. Currently, when the engine is
- * getting a business query contribution that matches EClass and
- * EStructuralFeatures it uses "equals" for EClass so no supertypes will match.
- * Extend this class for SuperTypes of FilteringCriterionSet.
+ * FilteringCriterionSet is an abstract EClass. Currently, when the engine is getting a business query contribution that
+ * matches EClass and EStructuralFeatures it uses "equals" for EClass so no supertypes will match. Extend this class for
+ * SuperTypes of FilteringCriterionSet.
  */
 public class CriterionSetFilteringCriteria implements IBusinessQuery {
 
-	/**
-	 * @see org.polarsys.capella.core.business.queries.IBusinessQuery#getAvailableElements(org.polarsys.capella.core.data.capellacore.CapellaElement)
-	 */
-	public List<EObject> getAvailableElements(EObject element) {
-		// Check if the element is null
-		if (null == element) {
-			return Collections.emptyList();
-		}
+  /**
+   * @see org.polarsys.capella.core.business.queries.IBusinessQuery#getAvailableElements(org.polarsys.capella.core.data.capellacore.CapellaElement)
+   */
+  public List<EObject> getAvailableElements(EObject element) {
+    // Check if the element is null
+    if (null == element) {
+      return Collections.emptyList();
+    }
 
-		// Get the filteringModels
-		List<FilteringModel> filteringModels = FilteringUtils.getFilteringModels(element, true);
+    // Get the filteringModels
+    List<FilteringModel> filteringModels = FilteringUtils.getFilteringModels(element, true);
 
-		List<EObject> availableElements = new ArrayList<>();
-		for (FilteringCriterion vf : FilteringUtils.getOwnedFilteringCriteria(filteringModels)) {
-			// Add features
-			availableElements.add(vf);
-		}
-		return availableElements;
-	}
+    List<EObject> availableElements = new ArrayList<>();
+    for (FilteringCriterion vf : FilteringUtils.getOwnedFilteringCriteria(filteringModels)) {
+      // Add features
+      availableElements.add(vf);
+    }
+    return availableElements;
+  }
 
-	/**
-	 * @see org.polarsys.capella.core.business.queries.IBusinessQuery#getCurrentElements(org.polarsys.capella.core.data.capellacore.CapellaElement,
-	 *      boolean)
-	 */
-	public List<EObject> getCurrentElements(EObject element, boolean onlyGenerated) {
-		List<EObject> currentElements = new ArrayList<>();
-		if (element instanceof FilteringCriterionSet) {
-			FilteringCriterionSet featureSet = (FilteringCriterionSet) element;
-			if (featureSet.getFilteringCriteria() != null) {
-				currentElements.addAll(featureSet.getFilteringCriteria());
-			}
-		}
-		return currentElements;
-	}
+  /**
+   * @see org.polarsys.capella.core.business.queries.IBusinessQuery#getCurrentElements(org.polarsys.capella.core.data.capellacore.CapellaElement,
+   *      boolean)
+   */
+  public List<EObject> getCurrentElements(EObject element, boolean onlyGenerated) {
+    List<EObject> currentElements = new ArrayList<>();
+    if (element instanceof FilteringCriterionSet) {
+      FilteringCriterionSet featureSet = (FilteringCriterionSet) element;
+      if (featureSet.getFilteringCriteria() != null) {
+        currentElements.addAll(featureSet.getFilteringCriteria());
+      }
+    }
+    return currentElements;
+  }
 
-	/**
-	 * Method to override in SuperTypes {@inheritDoc}
-	 */
-	public EClass getEClass() {
-		return FilteringPackage.Literals.FILTERING_CRITERION_SET;
-	}
+  /**
+   * Method to override in SuperTypes {@inheritDoc}
+   */
+  public EClass getEClass() {
+    return FilteringPackage.Literals.FILTERING_CRITERION_SET;
+  }
 
-	public List<EReference> getEStructuralFeatures() {
-		return Collections.singletonList(FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA);
-	}
+  public List<EReference> getEStructuralFeatures() {
+    return Collections.singletonList(FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA);
+  }
 }

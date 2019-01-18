@@ -20,19 +20,19 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class CapellaElementImplicitQuery implements IQuery {
 
-	/**
-	 * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
-	 */
-	@Override
-	public List<Object> compute(Object object) {
-		List<Object> result = new ArrayList<>();
-		// Show for any melody element except FilteringCriterionSet that has his
-		// own semantic browser contribution for filtering features
-		if ((object instanceof EObject) && !(object instanceof FilteringCriterionSet)) {
-			for (Object o : FilteringUtils.getImplicitAssociatedCriteria((EObject) object)) {
-				result.add(o);
-			}
-		}
-		return result;
-	}
+  /**
+   * @see org.polarsys.capella.common.ui.toolkit.browser.query.IQuery#compute(java.lang.Object)
+   */
+  @Override
+  public List<Object> compute(Object object) {
+    List<Object> result = new ArrayList<>();
+    // Show for any melody element except FilteringCriterionSet that has his
+    // own semantic browser contribution for filtering features
+    if ((object instanceof EObject) && !(object instanceof FilteringCriterionSet)) {
+      for (Object o : FilteringUtils.getImplicitAssociatedCriteria((EObject) object)) {
+        result.add(o);
+      }
+    }
+    return result;
+  }
 }

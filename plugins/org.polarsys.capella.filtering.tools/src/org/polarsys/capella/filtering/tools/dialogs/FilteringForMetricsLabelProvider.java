@@ -27,91 +27,91 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class FilteringForMetricsLabelProvider extends FilteringLabelProvider {
 
-	/**
-	 * @param viewer
-	 * @param foregroundColorForReferencingElements
-	 */
-	public FilteringForMetricsLabelProvider(TreeViewer viewer, int foregroundColorForReferencingElements) {
-		super(viewer, foregroundColorForReferencingElements);
-	}
+  /**
+   * @param viewer
+   * @param foregroundColorForReferencingElements
+   */
+  public FilteringForMetricsLabelProvider(TreeViewer viewer, int foregroundColorForReferencingElements) {
+    super(viewer, foregroundColorForReferencingElements);
+  }
 
-	Double varMetric;
+  Double varMetric;
 
-	@Override
-	public String getColumnText(Object element, int columnIndex) {
-		String text = null;
-		varMetric = null;
+  @Override
+  public String getColumnText(Object element, int columnIndex) {
+    String text = null;
+    varMetric = null;
 
-		// Element name
-		if (0 == columnIndex) {
-			text = getText(element);
-			// Variability rate
-		} else if (1 == columnIndex && element instanceof CapellaElement) {
-			Double metric = getVariabilityRate((EObject) element);
-			varMetric = metric;
-			DecimalFormat df = new DecimalFormat();
-			df.setMaximumFractionDigits(2);
-			text = df.format(metric);
-		}
+    // Element name
+    if (0 == columnIndex) {
+      text = getText(element);
+      // Variability rate
+    } else if (1 == columnIndex && element instanceof CapellaElement) {
+      Double metric = getVariabilityRate((EObject) element);
+      varMetric = metric;
+      DecimalFormat df = new DecimalFormat();
+      df.setMaximumFractionDigits(2);
+      text = df.format(metric);
+    }
 
-		return text;
-	}
+    return text;
+  }
 
-	/**
-	 * @see org.eclipse.jface.viewers.IColorProvider#getBackground(java.lang.Object)
-	 */
-	@Override
-	public Color getBackground(Object element) {
-		// Background color will be white to green scale
-		if (varMetric == null) {
-			return null;
-		}
-		if (varMetric == 0) {
-			return null;
-		}
-		// We always add 5 to include more contrast. Otherwise it is almost
-		// white for small values
-		varMetric = varMetric + 5;
-		// We check that it is no more than 100
-		Math.min(varMetric, 100);
-		// We get the inverse
-		Double result = Math.abs(varMetric - 100);
-		// We calculate green level
-		Integer greenValue = result.intValue() * 255 / 100;
-		// Create the color maintaining G and setting R and B values
-		return new Color(Display.getCurrent(), greenValue, 255, greenValue);
-	}
+  /**
+   * @see org.eclipse.jface.viewers.IColorProvider#getBackground(java.lang.Object)
+   */
+  @Override
+  public Color getBackground(Object element) {
+    // Background color will be white to green scale
+    if (varMetric == null) {
+      return null;
+    }
+    if (varMetric == 0) {
+      return null;
+    }
+    // We always add 5 to include more contrast. Otherwise it is almost
+    // white for small values
+    varMetric = varMetric + 5;
+    // We check that it is no more than 100
+    Math.min(varMetric, 100);
+    // We get the inverse
+    Double result = Math.abs(varMetric - 100);
+    // We calculate green level
+    Integer greenValue = result.intValue() * 255 / 100;
+    // Create the color maintaining G and setting R and B values
+    return new Color(Display.getCurrent(), greenValue, 255, greenValue);
+  }
 
-	/**
-	 * Get Variability Rate
-	 * 
-	 * @param element
-	 * @return
-	 */
-	public static Double getVariabilityRate(EObject element) {
-		// Return 100 if it contains associated features
-		if (FilteringUtils.hasAssociatedCriteria(element)) {
-			return 100.0;
-			// else Return 0 directly if it does not contain childs
-		} else if (!(element).eAllContents().hasNext()) {
-			return 0.0;
-		}
-		// Calculate in other cases
-		double numberOfChilds = 0;
-		double numberOfOptionalChilds = 0;
-		Iterator<EObject> i = ((CapellaElement) element).eAllContents();
-		while (i.hasNext()) {
-			EObject elt = i.next();
-			if (!FilteringUtils.isInstanceOfFilteringExcludedElements(elt)) {
-				numberOfChilds++;
-				if (FilteringUtils.hasAssociatedCriteria(elt)) {
-					numberOfOptionalChilds++;
-				}
-			}
-		}
-		if (numberOfChilds > 0) {
-			return (numberOfOptionalChilds / numberOfChilds) * 100;
-		}
-		return 0.0;
-	}
+  /**
+   * Get Variability Rate
+   * 
+   * @param element
+   * @return
+   */
+  public static Double getVariabilityRate(EObject element) {
+    // Return 100 if it contains associated features
+    if (FilteringUtils.hasAssociatedCriteria(element)) {
+      return 100.0;
+      // else Return 0 directly if it does not contain childs
+    } else if (!(element).eAllContents().hasNext()) {
+      return 0.0;
+    }
+    // Calculate in other cases
+    double numberOfChilds = 0;
+    double numberOfOptionalChilds = 0;
+    Iterator<EObject> i = ((CapellaElement) element).eAllContents();
+    while (i.hasNext()) {
+      EObject elt = i.next();
+      if (!FilteringUtils.isInstanceOfFilteringExcludedElements(elt)) {
+        numberOfChilds++;
+        if (FilteringUtils.hasAssociatedCriteria(elt)) {
+          numberOfOptionalChilds++;
+        }
+      }
+    }
+    if (numberOfChilds > 0) {
+      return (numberOfOptionalChilds / numberOfChilds) * 100;
+    }
+    return 0.0;
+  }
 }

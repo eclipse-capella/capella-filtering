@@ -18,14 +18,14 @@ import org.polarsys.capella.filtering.FilteringPackage;
  */
 public class AssociatedCriterionPropertySection extends CriterionSetPropertySection {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject eObjectToTest = super.selection(toTest);
-		return ((eObjectToTest != null)
-				&& (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getAssociatedFilteringCriterionSet()));
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject eObjectToTest = super.selection(toTest);
+    return ((eObjectToTest != null)
+        && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getAssociatedFilteringCriterionSet()));
+  }
 
 }

@@ -23,19 +23,19 @@ import org.polarsys.capella.filtering.FilteringResults;
 
 public class FilteringResultPkgItemContribution implements IMDEMenuItemContribution {
 
-	@Override
-	public EClass getMetaclass() {
-		return FilteringPackage.Literals.FILTERING_RESULT_PKG;
-	}
+  @Override
+  public EClass getMetaclass() {
+    return FilteringPackage.Literals.FILTERING_RESULT_PKG;
+  }
 
-	@Override
-	public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
-			ModelElement createdElement, EStructuralFeature feature) {
-		return new IdentityCommand();
-	}
+  @Override
+  public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
+      ModelElement createdElement, EStructuralFeature feature) {
+    return new IdentityCommand();
+  }
 
-	@Override
-	public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
-		return (modelElement instanceof FilteringResults || modelElement instanceof FilteringResultPkg);
-	}
+  @Override
+  public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
+    return (modelElement instanceof FilteringResults || modelElement instanceof FilteringResultPkg);
+  }
 }

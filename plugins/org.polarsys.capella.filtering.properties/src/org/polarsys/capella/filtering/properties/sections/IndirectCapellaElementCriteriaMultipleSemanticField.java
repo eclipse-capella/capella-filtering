@@ -37,121 +37,121 @@ import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
 
 public class IndirectCapellaElementCriteriaMultipleSemanticField extends MultipleSemanticField {
 
-	/**
-	 * @param parent
-	 * @param label
-	 * @param widgetFactory
-	 * @param controller
-	 */
-	public IndirectCapellaElementCriteriaMultipleSemanticField(Composite parent, String label,
-			TabbedPropertySheetWidgetFactory widgetFactory, IMultipleSemanticFieldController controller) {
-		super(parent, label, widgetFactory, controller);
-	}
+  /**
+   * @param parent
+   * @param label
+   * @param widgetFactory
+   * @param controller
+   */
+  public IndirectCapellaElementCriteriaMultipleSemanticField(Composite parent, String label,
+      TabbedPropertySheetWidgetFactory widgetFactory, IMultipleSemanticFieldController controller) {
+    super(parent, label, widgetFactory, controller);
+  }
 
-	/**
-	 * We use our own dialog to select the features. {@inheritDoc}
-	 */
-	@Override
-	protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
-			List<EObject> availableElements, String title, String message) {
-		Session session = SessionManager.INSTANCE.getSession(_semanticElement);
-		TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-		Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
-		final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
-				new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
-						((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
-				new CriteriaContentProvider(), projects);
-		dialog.setTitle(title);
-		dialog.setMessage(message);
-		dialog.setInput(projects);
-		dialog.setInitialElementSelections(currentElements);
-		if (dialog.open() != Window.OK) {
-			// User press cancel or close, return previous elements
-			return currentElements;
-		}
-		// Return the selection
-		List<EObject> checkedElements = new ArrayList<>();
-		for (Object o : dialog.getCheckedElements()) {
-			if (o instanceof EObject) {
-				checkedElements.add((EObject) o);
-			}
-		}
-		return checkedElements;
-	}
+  /**
+   * We use our own dialog to select the features. {@inheritDoc}
+   */
+  @Override
+  protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
+      List<EObject> availableElements, String title, String message) {
+    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
+        new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
+            ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
+        new CriteriaContentProvider(), projects);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setInput(projects);
+    dialog.setInitialElementSelections(currentElements);
+    if (dialog.open() != Window.OK) {
+      // User press cancel or close, return previous elements
+      return currentElements;
+    }
+    // Return the selection
+    List<EObject> checkedElements = new ArrayList<>();
+    for (Object o : dialog.getCheckedElements()) {
+      if (o instanceof EObject) {
+        checkedElements.add((EObject) o);
+      }
+    }
+    return checkedElements;
+  }
 
-	@Override
-	protected void handleDeleteButtonClicked() {
-		// Do nothing if already empty
-		if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).isEmpty()) {
-			return;
-		}
-		// Delete
-		AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
-			public void run() {
-				FilteringUtils.removeAssociatedCriteria(_semanticElement,
-						FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
-			}
-		};
-		FilteringUtils.executeCommand(command, _semanticElement);
-		setValueTextField(Collections.emptyList());
-	}
+  @Override
+  protected void handleDeleteButtonClicked() {
+    // Do nothing if already empty
+    if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).isEmpty()) {
+      return;
+    }
+    // Delete
+    AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+      public void run() {
+        FilteringUtils.removeAssociatedCriteria(_semanticElement,
+            FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
+      }
+    };
+    FilteringUtils.executeCommand(command, _semanticElement);
+    setValueTextField(Collections.emptyList());
+  }
 
-	/**
-	 * Handle Open button click event.
-	 * 
-	 * @param button
-	 */
-	@Override
-	protected void handleOpenButtonClicked(final Button button) {
-		Session session = SessionManager.INSTANCE.getSession(_semanticElement);
-		TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-		Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
-		final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
-				new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
-						((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
-				new CriteriaContentProvider(), projects);
-		String title = NamingHelper.getDefaultTitle(_semanticElement);
-		String message = NamingHelper.getDefaultMessage(_semanticElement,
-				(_semanticFeature != null) ? _semanticFeature.getName() : ""); //$NON-NLS-1$
-		dialog.setTitle(title);
-		dialog.setMessage(message);
-		dialog.setInput(projects);
-		List<FilteringCriterion> currentElements = FilteringUtils.getExplicitAssociatedCriteria(_semanticElement);
-		dialog.setInitialElementSelections(currentElements);
-		if (dialog.open() != Window.OK) {
-			// User press cancel or close, return previous elements
-			return;
-		}
-		// Return the selection
-		List<EObject> checkedElements = new ArrayList<>();
-		for (Object o : dialog.getCheckedElements()) {
-			if (o instanceof EObject) {
-				checkedElements.add((EObject) o);
-			}
-		}
-		AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
-			public void run() {
-				List<FilteringCriterion> featuresToAdd = new ArrayList<>();
-				List<FilteringCriterion> featuresToRemove = new ArrayList<>();
+  /**
+   * Handle Open button click event.
+   * 
+   * @param button
+   */
+  @Override
+  protected void handleOpenButtonClicked(final Button button) {
+    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
+        new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
+            ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
+        new CriteriaContentProvider(), projects);
+    String title = NamingHelper.getDefaultTitle(_semanticElement);
+    String message = NamingHelper.getDefaultMessage(_semanticElement,
+        (_semanticFeature != null) ? _semanticFeature.getName() : ""); //$NON-NLS-1$
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setInput(projects);
+    List<FilteringCriterion> currentElements = FilteringUtils.getExplicitAssociatedCriteria(_semanticElement);
+    dialog.setInitialElementSelections(currentElements);
+    if (dialog.open() != Window.OK) {
+      // User press cancel or close, return previous elements
+      return;
+    }
+    // Return the selection
+    List<EObject> checkedElements = new ArrayList<>();
+    for (Object o : dialog.getCheckedElements()) {
+      if (o instanceof EObject) {
+        checkedElements.add((EObject) o);
+      }
+    }
+    AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+      public void run() {
+        List<FilteringCriterion> featuresToAdd = new ArrayList<>();
+        List<FilteringCriterion> featuresToRemove = new ArrayList<>();
 
-				Collection<Object> toCheck = dialog.getCheckedElements();
-				Collection<Object> toUnCheck = dialog.getUnCheckedElements();
+        Collection<Object> toCheck = dialog.getCheckedElements();
+        Collection<Object> toUnCheck = dialog.getUnCheckedElements();
 
-				for (Object unCheckMe : toUnCheck) {
-					if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(unCheckMe)) {
-						featuresToRemove.add((FilteringCriterion) unCheckMe);
-					}
-				}
-				for (Object checkMe : toCheck) {
-					if (!FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(checkMe)) {
-						featuresToAdd.add((FilteringCriterion) checkMe);
-					}
-				}
-				FilteringUtils.addAssociatedCriteria(_semanticElement, featuresToAdd);
-				FilteringUtils.removeAssociatedCriteria(_semanticElement, featuresToRemove);
-			}
-		};
-		FilteringUtils.executeCommand(command, _semanticElement);
-		setValueTextField(FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
-	}
+        for (Object unCheckMe : toUnCheck) {
+          if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(unCheckMe)) {
+            featuresToRemove.add((FilteringCriterion) unCheckMe);
+          }
+        }
+        for (Object checkMe : toCheck) {
+          if (!FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(checkMe)) {
+            featuresToAdd.add((FilteringCriterion) checkMe);
+          }
+        }
+        FilteringUtils.addAssociatedCriteria(_semanticElement, featuresToAdd);
+        FilteringUtils.removeAssociatedCriteria(_semanticElement, featuresToRemove);
+      }
+    };
+    FilteringUtils.executeCommand(command, _semanticElement);
+    setValueTextField(FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
+  }
 }

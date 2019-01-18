@@ -23,20 +23,20 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class StandardItemContribution implements IMDEMenuItemContribution {
 
-	@Override
-	public EClass getMetaclass() {
-		return FilteringPackage.Literals.FILTERING_MODEL;
-	}
+  @Override
+  public EClass getMetaclass() {
+    return FilteringPackage.Literals.FILTERING_MODEL;
+  }
 
-	@Override
-	public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
-			ModelElement createdElement, EStructuralFeature feature) {
-		return new IdentityCommand();
-	}
+  @Override
+  public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
+      ModelElement createdElement, EStructuralFeature feature) {
+    return new IdentityCommand();
+  }
 
-	@Override
-	public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
-		return !(modelElement instanceof SystemEngineering
-				&& FilteringUtils.getFilteringModel((SystemEngineering) modelElement) != null);
-	}
+  @Override
+  public boolean selectionContribution(ModelElement modelElement, EClass cls, EStructuralFeature feature) {
+    return !(modelElement instanceof SystemEngineering
+        && FilteringUtils.getFilteringModel((SystemEngineering) modelElement) != null);
+  }
 }

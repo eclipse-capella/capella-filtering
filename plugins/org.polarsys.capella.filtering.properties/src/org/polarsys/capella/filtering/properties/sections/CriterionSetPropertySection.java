@@ -30,46 +30,46 @@ import org.polarsys.capella.filtering.properties.CriterionSetFilteringCriteriaCo
  */
 public class CriterionSetPropertySection extends SummaryPropertySection {
 
-	/**
-	 * Method to override {@inheritDoc}
-	 */
-	@Override
-	public boolean select(Object toTest) {
-		EObject eObjectToTest = super.selection(toTest);
-		return ((eObjectToTest != null)
-				&& (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringCriterionSet()));
-	}
+  /**
+   * Method to override {@inheritDoc}
+   */
+  @Override
+  public boolean select(Object toTest) {
+    EObject eObjectToTest = super.selection(toTest);
+    return ((eObjectToTest != null)
+        && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringCriterionSet()));
+  }
 
-	private CriteriaMultipleSemanticField features;
+  private CriteriaMultipleSemanticField features;
 
-	@Override
-	public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
-		super.createControls(parent, aTabbedPropertySheetPage);
+  @Override
+  public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
+    super.createControls(parent, aTabbedPropertySheetPage);
 
-		rootParentComposite.setLayout(new GridLayout());
-		rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		boolean displayedInWizard = isDisplayedInWizard();
-		features = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel,
-				getWidgetFactory(), new CriterionSetFilteringCriteriaController());
-		features.setDisplayedInWizard(displayedInWizard);
-	}
+    rootParentComposite.setLayout(new GridLayout());
+    rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    boolean displayedInWizard = isDisplayedInWizard();
+    features = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel, getWidgetFactory(),
+        new CriterionSetFilteringCriteriaController());
+    features.setDisplayedInWizard(displayedInWizard);
+  }
 
-	/**
-	 * @see org.polarsys.capella.core.ui.properties.sections.AbstractSection#loadData(org.polarsys.capella.core.data.capellacore.CapellaElement)
-	 */
-	@Override
-	public void loadData(EObject capellaElement) {
-		super.loadData(capellaElement);
-		features.loadData(capellaElement, FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria());
-	}
+  /**
+   * @see org.polarsys.capella.core.ui.properties.sections.AbstractSection#loadData(org.polarsys.capella.core.data.capellacore.CapellaElement)
+   */
+  @Override
+  public void loadData(EObject capellaElement) {
+    super.loadData(capellaElement);
+    features.loadData(capellaElement, FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria());
+  }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<AbstractSemanticField> getSemanticFields() {
-		List<AbstractSemanticField> fields = new ArrayList<>();
-		fields.add(features);
-		return fields;
-	}
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<AbstractSemanticField> getSemanticFields() {
+    List<AbstractSemanticField> fields = new ArrayList<>();
+    fields.add(features);
+    return fields;
+  }
 }

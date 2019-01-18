@@ -26,79 +26,79 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class CriteriaLabelDecorator implements ILabelDecorator {
 
-	/**
-	 * Image descriptor for Variability overlay.
-	 */
-	public static final ImageDescriptor FILTERING_OVERLAY_DESC = AbstractUIPlugin
-			.imageDescriptorFromPlugin(FilteringToolsPlugin.ID, "icons/ovr_optional.png"); //$NON-NLS-1$
+  /**
+   * Image descriptor for Variability overlay.
+   */
+  public static final ImageDescriptor FILTERING_OVERLAY_DESC = AbstractUIPlugin
+      .imageDescriptorFromPlugin(FilteringToolsPlugin.ID, "icons/ovr_optional.png"); //$NON-NLS-1$
 
-	@Override
-	public void addListener(ILabelProviderListener listener) {
-		//
-	}
+  @Override
+  public void addListener(ILabelProviderListener listener) {
+    //
+  }
 
-	@Override
-	public void dispose() {
-		//
-	}
+  @Override
+  public void dispose() {
+    //
+  }
 
-	@Override
-	public boolean isLabelProperty(Object element, String property) {
-		return false;
-	}
+  @Override
+  public boolean isLabelProperty(Object element, String property) {
+    return false;
+  }
 
-	@Override
-	public void removeListener(ILabelProviderListener listener) {
-		//
-	}
+  @Override
+  public void removeListener(ILabelProviderListener listener) {
+    //
+  }
 
-	@Override
-	public Image decorateImage(Image image, Object element) {
-		if (image == null) {
-			return null;
-		}
-		if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
-			ComposedImage img = decorateVariability(image);
-			ImageDescriptor descriptor = new ComposedImageDescriptor(img);
-			return FilteringToolsPlugin.getDefault().getImage(descriptor);
-		}
+  @Override
+  public Image decorateImage(Image image, Object element) {
+    if (image == null) {
+      return null;
+    }
+    if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
+      ComposedImage img = decorateVariability(image);
+      ImageDescriptor descriptor = new ComposedImageDescriptor(img);
+      return FilteringToolsPlugin.getDefault().getImage(descriptor);
+    }
 
-		// Null means no decoration
-		return null;
-	}
+    // Null means no decoration
+    return null;
+  }
 
-	private ComposedImage decorateVariability(Image image) {
-		List<Object> images = new ArrayList<>(2);
-		images.add(image);
-		images.add(FilteringToolsPlugin.getDefault().getImage(FILTERING_OVERLAY_DESC));
+  private ComposedImage decorateVariability(Image image) {
+    List<Object> images = new ArrayList<>(2);
+    images.add(image);
+    images.add(FilteringToolsPlugin.getDefault().getImage(FILTERING_OVERLAY_DESC));
 
-		return new ComposedImage(images) {
+    return new ComposedImage(images) {
 
-			@Override
-			public List<Point> getDrawPoints(Size size) {
-				List<Point> results = new ArrayList<>();
-				results.add(new Point());
-				Point overlay = new Point();
-				overlay.x = 0;
-				overlay.y = 7;
-				results.add(overlay);
-				return results;
-			}
-		};
-	}
+      @Override
+      public List<Point> getDrawPoints(Size size) {
+        List<Point> results = new ArrayList<>();
+        results.add(new Point());
+        Point overlay = new Point();
+        overlay.x = 0;
+        overlay.y = 7;
+        results.add(overlay);
+        return results;
+      }
+    };
+  }
 
-	@Override
-	public String decorateText(String text, Object element) {
-		if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
-			String decorator = FilteringUtils.getCommaSeparatedExplicitFeatures((CapellaElement) element);
-			if (decorator != null) {
-				return text + " [" + decorator + "]";
-			}
-		}
-		return text;
-	}
+  @Override
+  public String decorateText(String text, Object element) {
+    if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
+      String decorator = FilteringUtils.getCommaSeparatedExplicitFeatures((CapellaElement) element);
+      if (decorator != null) {
+        return text + " [" + decorator + "]";
+      }
+    }
+    return text;
+  }
 
-	private boolean isOptional(CapellaElement element) {
-		return !FilteringUtils.getExplicitAssociatedCriteria(element).isEmpty();
-	}
+  private boolean isOptional(CapellaElement element) {
+    return !FilteringUtils.getExplicitAssociatedCriteria(element).isEmpty();
+  }
 }
