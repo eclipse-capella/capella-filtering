@@ -64,29 +64,6 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.polarsys.capella.filtering.sirius.ui.selectHiddenCriteriaCommand"
-                  icon="icons/showHideCriteria.png"
-                  label="Show/hide Filtering Criteria"
-                  style="toggle">
-               <visibleWhen
-                     checkEnabled="false">
-                  <with
-                        variable="activeMenuSelection">
-                     <and>
-                        <count
-                              value="1">
-                        </count>
-                        <iterate
-                              ifEmpty="false">
-                           <instanceof
-                                 value="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
-                           </instanceof>
-                        </iterate>
-                     </and>
-                  </with>
-               </visibleWhen>
-            </command>
-            <command
                   commandId="org.polarsys.capella.filtering.sirius.ui.filters.optionals"
                   label="Hide Optionals"
                   style="toggle">

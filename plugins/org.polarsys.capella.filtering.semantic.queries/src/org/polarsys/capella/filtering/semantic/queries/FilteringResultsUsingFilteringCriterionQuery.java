@@ -36,7 +36,8 @@ public class FilteringResultsUsingFilteringCriterionQuery implements IQuery {
       // Loop through filtering Results
       FilteringResults filteringResults = FilteringUtils.getFilteringResults(filteringCriterion);
       if (filteringResults != null) {
-        for (AbstractFilteringResult abstractFilteringResult : filteringResults.getFilteringResults()) {
+        List<AbstractFilteringResult> allFilteringResults = FilteringUtils.getAllFilteringResults(filteringResults);
+        for (AbstractFilteringResult abstractFilteringResult : allFilteringResults) {
           FilteringCriterionSet FilteringCriterionSet = abstractFilteringResult.computeFilteringCriterionSet();
           List<FilteringCriterion> filteringCriteria = FilteringCriterionSet.getFilteringCriteria();
           // Add it to the result if it contains the feature

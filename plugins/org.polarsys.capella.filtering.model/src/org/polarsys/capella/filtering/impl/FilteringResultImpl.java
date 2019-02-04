@@ -23,37 +23,35 @@ import org.polarsys.capella.filtering.FilteringResult;
  * @generated
  */
 public class FilteringResultImpl extends FilteringCriterionSetImpl implements FilteringResult {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FilteringResultImpl() {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FilteringResultImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.FILTERING_RESULT;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.FILTERING_RESULT;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
 
-  public FilteringCriterionSet computeFilteringCriterionSet() {
-    // a FilteringResultImpl is a FilteringCriterionSetImpl => return this
-    return this;
+	public FilteringCriterionSet computeFilteringCriterionSet() {
+		// a FilteringResultImpl is a FilteringCriterionSetImpl => return this
+		return this;
 
-  }
+	}
 
 } // FilteringResultImpl

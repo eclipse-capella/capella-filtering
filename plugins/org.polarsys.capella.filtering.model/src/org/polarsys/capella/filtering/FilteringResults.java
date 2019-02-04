@@ -24,58 +24,53 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.polarsys.capella.filtering.FilteringResults#getFilteringResults <em>Filtering Results</em>}</li>
- * <li>{@link org.polarsys.capella.filtering.FilteringResults#getOwnedFilteringResultPkgs <em>Owned Filtering Result
- * Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.FilteringResults#getFilteringResults <em>Filtering Results</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.FilteringResults#getOwnedFilteringResultPkgs <em>Owned Filtering Result Pkgs</em>}</li>
  * </ul>
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults()
- * @model annotation="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint
- *        ExtendedElement='http://www.polarsys.org/capella/core/modeller/1.2.0#//SystemEngineering'"
- *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null'
- *        used\040in\040levels='null' usage\040examples='null' constraints='null'"
+ * @model annotation="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint ExtendedElement='http://www.polarsys.org/capella/core/modeller/1.2.0#//SystemEngineering'"
+ *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
  * @generated
  */
 
 public interface FilteringResults extends NamedElement, ElementExtension {
 
-  /**
-   * Returns the value of the '<em><b>Filtering Results</b></em>' containment reference list. The list contents are of
-   * type {@link org.polarsys.capella.filtering.AbstractFilteringResult}.
-   * 
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Filtering Results</em>' containment reference list isn't clear, there really should be
-   * more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Filtering Results</em>' containment reference list.
-   * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults_FilteringResults()
-   * @model containment="true" annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null'
-   *        usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
-   * @generated
-   */
+	/**
+	 * Returns the value of the '<em><b>Filtering Results</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.capella.filtering.AbstractFilteringResult}.
+	
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Filtering Results</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Filtering Results</em>' containment reference list.
+	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults_FilteringResults()
+	 * @model containment="true"
+	 *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
+	 * @generated
+	 */
 
-  EList<AbstractFilteringResult> getFilteringResults();
+	EList<AbstractFilteringResult> getFilteringResults();
 
-  /**
-   * Returns the value of the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list. The list
-   * contents are of type {@link org.polarsys.capella.filtering.FilteringResultPkg}.
-   * 
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Owned Filtering Result Pkgs</em>' reference list isn't clear, there really should be
-   * more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Owned Filtering Result Pkgs</em>' containment reference list.
-   * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults_OwnedFilteringResultPkgs()
-   * @model containment="true"
-   * @generated
-   */
+	/**
+	 * Returns the value of the '<em><b>Owned Filtering Result Pkgs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.capella.filtering.FilteringResultPkg}.
+	
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Filtering Result Pkgs</em>' reference list isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Filtering Result Pkgs</em>' containment reference list.
+	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults_OwnedFilteringResultPkgs()
+	 * @model containment="true"
+	 * @generated
+	 */
 
-  EList<FilteringResultPkg> getOwnedFilteringResultPkgs();
+	EList<FilteringResultPkg> getOwnedFilteringResultPkgs();
 
 } // FilteringResults

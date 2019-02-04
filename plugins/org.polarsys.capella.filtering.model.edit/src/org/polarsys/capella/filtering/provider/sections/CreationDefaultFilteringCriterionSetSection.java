@@ -22,14 +22,14 @@ import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
  * @generated
  */
 public class CreationDefaultFilteringCriterionSetSection extends NamedElementSection {
-  /**
-   * @generated
-   */
-  @Override
-  public boolean select(Object toTest) {
-    EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
+	/**
+	 * @generated
+	 */
+	@Override
+	public boolean select(Object toTest) {
+		EObject obj = CapellaAdapterHelper.resolveSemanticObject(toTest);
 
-    return obj != null && obj.eClass()
-        .equals(org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getCreationDefaultFilteringCriterionSet());
-  }
+		return obj != null && obj.eClass().equals(
+				org.polarsys.capella.filtering.FilteringPackage.eINSTANCE.getCreationDefaultFilteringCriterionSet());
+	}
 }

@@ -8,11 +8,11 @@
   Contributors:
        Thales - initial API and implementation
 -->
-=Appendix 1: Basic filtering Add-On Metamodel=
+=Appendix 1: Filtering Add-On Metamodel=
 
-To support the Add-On functionality the Capella metamodel is enriched with filtering related information. The Project element can now contain the Feature Model, the Configurations and the CreationDefaultFeatureSet while each MelodyElement can contain an AssociatedFeatureSet. The following figure shows how all these elements are related. 
+To support the Add-On functionality the Capella metamodel is extended with filtering related information. The Project element can now contain a FilteringModel,  FilteringResults and a CreationDefaultCriterionSet while each CapellaElement can contain an AssociatedFilteringCriterionSet. The following figure shows how all these elements are related. 
 
 
 
-<center>[[Image:Images/appendix_m2.png|center|580px]]</center>
+<center>[[Image:Images/appendix_m2.png|center|760px]]</center>
 

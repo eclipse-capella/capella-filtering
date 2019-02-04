@@ -62,19 +62,19 @@ public class MDCHK_D_FunctionalExchange_Functions extends AbstractModelConstrain
         String message = ""; //$NON-NLS-1$
         if (!missingOutputFeatures.isEmpty()) {
           message = ConstraintsUtil.getNameForMessage(outputFunctionObject) + " is missing " + "[" //$NON-NLS-2$
-              + FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingOutputFeatures) + "]"; //$NON-NLS-1$
+              + FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingOutputFeatures) + "]"; //$NON-NLS-1$
         }
         if (!missingInputFeatures.isEmpty()) {
           if (!message.isEmpty()) {
             message = message + " and ";
           }
           message = message + ConstraintsUtil.getNameForMessage(inputFunctionObject) + " is missing " + "[" //$NON-NLS-2$
-              + FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingInputFeatures) + "]"; //$NON-NLS-1$
+              + FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingInputFeatures) + "]"; //$NON-NLS-1$
 
         }
         if (!message.isEmpty()) {
           return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(fe),
-              FilteringUtils.getCommaSeparatedVariabilityFeaturesList(feFeatures), message);
+              FilteringUtils.getCommaSeparatedFilteringCriteriaList(feFeatures), message);
         }
       }
     }

@@ -13,25 +13,23 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * @generated
  */
 public class ExclusionFilteringResultSetImpl extends FilteringResultSetImpl implements ExclusionFilteringResultSet {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected ExclusionFilteringResultSetImpl() {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExclusionFilteringResultSetImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.EXCLUSION_FILTERING_RESULT_SET;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.EXCLUSION_FILTERING_RESULT_SET;
+	}
 
 } // ExclusionFilteringResultSetImpl

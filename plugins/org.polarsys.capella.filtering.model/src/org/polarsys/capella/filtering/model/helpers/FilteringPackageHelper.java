@@ -38,48 +38,48 @@ import org.polarsys.capella.filtering.FilteringResults;
  */
 public class FilteringPackageHelper implements IHelper {
 
-  /**
-   * @generated
-   */
-  public Object getValue(EObject object, EStructuralFeature feature, EAnnotation annotation) {
-    Object ret = null;
+	/**
+	 * @generated
+	 */
+	public Object getValue(EObject object, EStructuralFeature feature, EAnnotation annotation) {
+		Object ret = null;
 
-    if (ret == null && object instanceof FilteringModel) {
-      ret = FilteringModelHelper.getInstance().doSwitch((FilteringModel) object, feature);
-    }
-    if (ret == null && object instanceof FilteringCriterion) {
-      ret = FilteringCriterionHelper.getInstance().doSwitch((FilteringCriterion) object, feature);
-    }
-    if (ret == null && object instanceof FilteringCriterionSet) {
-      ret = FilteringCriterionSetHelper.getInstance().doSwitch((FilteringCriterionSet) object, feature);
-    }
-    if (ret == null && object instanceof FilteringResults) {
-      ret = FilteringResultsHelper.getInstance().doSwitch((FilteringResults) object, feature);
-    }
-    if (ret == null && object instanceof FilteringResult) {
-      ret = FilteringResultHelper.getInstance().doSwitch((FilteringResult) object, feature);
-    }
-    if (ret == null && object instanceof AssociatedFilteringCriterionSet) {
-      ret = AssociatedFilteringCriterionSetHelper.getInstance().doSwitch((AssociatedFilteringCriterionSet) object,
-          feature);
-    }
-    if (ret == null && object instanceof CreationDefaultFilteringCriterionSet) {
-      ret = CreationDefaultFilteringCriterionSetHelper.getInstance()
-          .doSwitch((CreationDefaultFilteringCriterionSet) object, feature);
-    }
-    if (ret == null && object instanceof FilteringResultPkg) {
-      ret = FilteringResultPkgHelper.getInstance().doSwitch((FilteringResultPkg) object, feature);
-    }
-    if (ret == null && object instanceof FilteringCriterionPkg) {
-      ret = FilteringCriterionPkgHelper.getInstance().doSwitch((FilteringCriterionPkg) object, feature);
-    }
-    if (ret == null && object instanceof ComposedFilteringResult) {
-      ret = ComposedFilteringResultHelper.getInstance().doSwitch((ComposedFilteringResult) object, feature);
-    }
-    if (ret == null && object instanceof AbstractFilteringResult) {
-      ret = AbstractFilteringResultHelper.getInstance().doSwitch((AbstractFilteringResult) object, feature);
-    }
-    return ret;
-  }
+		if (ret == null && object instanceof FilteringModel) {
+			ret = FilteringModelHelper.getInstance().doSwitch((FilteringModel) object, feature);
+		}
+		if (ret == null && object instanceof FilteringCriterion) {
+			ret = FilteringCriterionHelper.getInstance().doSwitch((FilteringCriterion) object, feature);
+		}
+		if (ret == null && object instanceof FilteringCriterionSet) {
+			ret = FilteringCriterionSetHelper.getInstance().doSwitch((FilteringCriterionSet) object, feature);
+		}
+		if (ret == null && object instanceof FilteringResults) {
+			ret = FilteringResultsHelper.getInstance().doSwitch((FilteringResults) object, feature);
+		}
+		if (ret == null && object instanceof FilteringResult) {
+			ret = FilteringResultHelper.getInstance().doSwitch((FilteringResult) object, feature);
+		}
+		if (ret == null && object instanceof AssociatedFilteringCriterionSet) {
+			ret = AssociatedFilteringCriterionSetHelper.getInstance().doSwitch((AssociatedFilteringCriterionSet) object,
+					feature);
+		}
+		if (ret == null && object instanceof CreationDefaultFilteringCriterionSet) {
+			ret = CreationDefaultFilteringCriterionSetHelper.getInstance()
+					.doSwitch((CreationDefaultFilteringCriterionSet) object, feature);
+		}
+		if (ret == null && object instanceof FilteringResultPkg) {
+			ret = FilteringResultPkgHelper.getInstance().doSwitch((FilteringResultPkg) object, feature);
+		}
+		if (ret == null && object instanceof FilteringCriterionPkg) {
+			ret = FilteringCriterionPkgHelper.getInstance().doSwitch((FilteringCriterionPkg) object, feature);
+		}
+		if (ret == null && object instanceof ComposedFilteringResult) {
+			ret = ComposedFilteringResultHelper.getInstance().doSwitch((ComposedFilteringResult) object, feature);
+		}
+		if (ret == null && object instanceof AbstractFilteringResult) {
+			ret = AbstractFilteringResultHelper.getInstance().doSwitch((AbstractFilteringResult) object, feature);
+		}
+		return ret;
+	}
 
 }

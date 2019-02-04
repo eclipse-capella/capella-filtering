@@ -53,7 +53,7 @@ public class MDCHK_D_Component_DeploymentLinks extends AbstractModelConstraint {
 
           if (!missingFeatures.isEmpty()) {
             statuses.add(ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(location),
-                FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingFeatures),
+                FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingFeatures),
                 ConstraintsUtil.getNameForMessage(deployedElement)));
           }
         }

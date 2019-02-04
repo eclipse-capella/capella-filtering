@@ -23,26 +23,24 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * @generated
  */
 public class AssociatedFilteringCriterionSetImpl extends FilteringCriterionSetImpl
-    implements AssociatedFilteringCriterionSet {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected AssociatedFilteringCriterionSetImpl() {
+		implements AssociatedFilteringCriterionSet {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssociatedFilteringCriterionSetImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.ASSOCIATED_FILTERING_CRITERION_SET;
+	}
 
 } // AssociatedFilteringCriterionSetImpl

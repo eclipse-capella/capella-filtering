@@ -52,13 +52,13 @@ public class Messages extends NLS {
 
   public static String FilteringExtractionAction_projectHasReferenceToLibrary;
 
-  public static String FilteringVariabilityMetricsDialog_0;
+  public static String FilteringMetricsDialog_0;
 
-  public static String FilteringVariabilityMetricsDialog_1;
+  public static String FilteringMetricsDialog_1;
 
-  public static String FilteringVariabilityMetricsDialog_2;
+  public static String FilteringMetricsDialog_2;
 
-  public static String FilteringVariabilityMetricsDialog_3;
+  public static String FilteringMetricsDialog_3;
 
   static {
     // initialize resource bundle

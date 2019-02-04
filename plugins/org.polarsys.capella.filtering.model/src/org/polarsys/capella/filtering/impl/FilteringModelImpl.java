@@ -37,172 +37,160 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriteria <em>Owned Filtering
- * Criteria</em>}</li>
- * <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriterionPkgs <em>Owned Filtering
- * Criterion Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriteria <em>Owned Filtering Criteria</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriterionPkgs <em>Owned Filtering Criterion Pkgs</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FilteringModelImpl extends NamedElementImpl implements FilteringModel {
 
-  /**
-   * The cached value of the '{@link #getOwnedFilteringCriteria() <em>Owned Filtering Criteria</em>}' containment
-   * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see #getOwnedFilteringCriteria()
-   * @generated
-   * @ordered
-   */
-  protected EList<FilteringCriterion> ownedFilteringCriteria;
+	/**
+	 * The cached value of the '{@link #getOwnedFilteringCriteria() <em>Owned Filtering Criteria</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getOwnedFilteringCriteria()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FilteringCriterion> ownedFilteringCriteria;
 
-  /**
-   * The cached value of the '{@link #getOwnedFilteringCriterionPkgs() <em>Owned Filtering Criterion Pkgs</em>}'
-   * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see #getOwnedFilteringCriterionPkgs()
-   * @generated
-   * @ordered
-   */
-  protected EList<FilteringCriterionPkg> ownedFilteringCriterionPkgs;
+	/**
+	 * The cached value of the '{@link #getOwnedFilteringCriterionPkgs() <em>Owned Filtering Criterion Pkgs</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getOwnedFilteringCriterionPkgs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FilteringCriterionPkg> ownedFilteringCriterionPkgs;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FilteringModelImpl() {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FilteringModelImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.FILTERING_MODEL;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.FILTERING_MODEL;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 
-  public EList<FilteringCriterion> getOwnedFilteringCriteria() {
+	public EList<FilteringCriterion> getOwnedFilteringCriteria() {
 
-    if (ownedFilteringCriteria == null) {
-      ownedFilteringCriteria = new EObjectContainmentEList<FilteringCriterion>(FilteringCriterion.class, this,
-          FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
-    }
-    return ownedFilteringCriteria;
-  }
+		if (ownedFilteringCriteria == null) {
+			ownedFilteringCriteria = new EObjectContainmentEList<FilteringCriterion>(FilteringCriterion.class, this,
+					FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
+		}
+		return ownedFilteringCriteria;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 
-  public EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs() {
+	public EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs() {
 
-    if (ownedFilteringCriterionPkgs == null) {
-      ownedFilteringCriterionPkgs = new EObjectContainmentEList<FilteringCriterionPkg>(FilteringCriterionPkg.class,
-          this, FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
-    }
-    return ownedFilteringCriterionPkgs;
-  }
+		if (ownedFilteringCriterionPkgs == null) {
+			ownedFilteringCriterionPkgs = new EObjectContainmentEList<FilteringCriterionPkg>(
+					FilteringCriterionPkg.class, this,
+					FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
+		}
+		return ownedFilteringCriterionPkgs;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-      return ((InternalEList<?>) getOwnedFilteringCriteria()).basicRemove(otherEnd, msgs);
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-      return ((InternalEList<?>) getOwnedFilteringCriterionPkgs()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+			return ((InternalEList<?>) getOwnedFilteringCriteria()).basicRemove(otherEnd, msgs);
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+			return ((InternalEList<?>) getOwnedFilteringCriterionPkgs()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-      return getOwnedFilteringCriteria();
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-      return getOwnedFilteringCriterionPkgs();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+			return getOwnedFilteringCriteria();
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+			return getOwnedFilteringCriterionPkgs();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-      getOwnedFilteringCriteria().clear();
-      getOwnedFilteringCriteria().addAll((Collection<? extends FilteringCriterion>) newValue);
-      return;
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-      getOwnedFilteringCriterionPkgs().clear();
-      getOwnedFilteringCriterionPkgs().addAll((Collection<? extends FilteringCriterionPkg>) newValue);
-      return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+			getOwnedFilteringCriteria().clear();
+			getOwnedFilteringCriteria().addAll((Collection<? extends FilteringCriterion>) newValue);
+			return;
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+			getOwnedFilteringCriterionPkgs().clear();
+			getOwnedFilteringCriterionPkgs().addAll((Collection<? extends FilteringCriterionPkg>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-      getOwnedFilteringCriteria().clear();
-      return;
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-      getOwnedFilteringCriterionPkgs().clear();
-      return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+			getOwnedFilteringCriteria().clear();
+			return;
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+			getOwnedFilteringCriterionPkgs().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
-      return ownedFilteringCriteria != null && !ownedFilteringCriteria.isEmpty();
-    case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
-      return ownedFilteringCriterionPkgs != null && !ownedFilteringCriterionPkgs.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
+			return ownedFilteringCriteria != null && !ownedFilteringCriteria.isEmpty();
+		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+			return ownedFilteringCriterionPkgs != null && !ownedFilteringCriterionPkgs.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // FilteringModelImpl

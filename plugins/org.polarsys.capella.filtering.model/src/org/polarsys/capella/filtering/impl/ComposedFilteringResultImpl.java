@@ -124,8 +124,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
       Stream<FilteringCriterionSet> intersectionFResultStm = intersectionFilteringResultSet.getFilteringResults()
           .stream().map(afResult -> afResult.computeFilteringCriterionSet());
 
-      intersectionFResult = FilteringCriterionSetHelper
-          .intersectionOf(intersectionFResultStm.collect(Collectors.toSet()));
+      intersectionFResult = FilteringCriterionSetHelper.unionOf(intersectionFResultStm.collect(Collectors.toSet()));
     }
     if (exclusionFilteringResultSet != null) {
       // compute exclusion criterion set
@@ -137,19 +136,15 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
     // compute union of (intersectionFilteringResultSet and
     // unionFilteringResultSet)
 
-    EList<FilteringCriterion> unionAndIntersection = FilteringCriterionSetHelper
-        .unionOf(unionFResult, intersectionFResult).getFilteringCriteria();
+    EList<FilteringCriterion> unionOfAll = FilteringCriterionSetHelper
+        .unionOf(unionFResult, intersectionFResult, excludingCriterionSet).getFilteringCriteria();
 
-    if (unionAndIntersection != null) {
+    if (unionOfAll != null) {
       computedCriterionSet = FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet();
-      computedCriterionSet.getFilteringCriteria().addAll(unionAndIntersection);
-
-      if (excludingCriterionSet != null) {
-
-        computedCriterionSet.getFilteringCriteria().removeAll(excludingCriterionSet.getFilteringCriteria());
-      }
+      computedCriterionSet.getFilteringCriteria().addAll(unionOfAll);
 
     }
+
     return computedCriterionSet;
 
   }

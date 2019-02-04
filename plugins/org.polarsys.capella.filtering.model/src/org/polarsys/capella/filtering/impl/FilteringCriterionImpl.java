@@ -24,25 +24,23 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * @generated
  */
 public class FilteringCriterionImpl extends NamedElementImpl implements FilteringCriterion {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FilteringCriterionImpl() {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FilteringCriterionImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.FILTERING_CRITERION;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.FILTERING_CRITERION;
+	}
 
 } // FilteringCriterionImpl

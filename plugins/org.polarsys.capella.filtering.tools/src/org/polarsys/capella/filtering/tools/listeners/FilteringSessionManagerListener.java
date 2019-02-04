@@ -11,9 +11,11 @@
 package org.polarsys.capella.filtering.tools.listeners;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionListener;
 import org.eclipse.sirius.business.api.session.SessionManagerListener;
+import org.polarsys.capella.common.data.modellingcore.ModelElement;
 import org.polarsys.capella.common.platform.sirius.ted.DataNotifier;
 import org.polarsys.capella.common.platform.sirius.ted.SemanticEditingDomainFactory.SemanticEditingDomain;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
@@ -50,6 +52,7 @@ public class FilteringSessionManagerListener extends SessionManagerListener.Stub
       dataNotifier.addAdapter(FilteringCriterion.class, adapter);
       dataNotifier.addAdapter(FilteringModel.class, adapter);
       dataNotifier.addAdapter(AssociatedFilteringCriterionSet.class, adapter);
+      dataNotifier.addAdapter(ModelElement.class, adapter);
       break;
     case SessionListener.CLOSED:
       dataNotifier.remove(adapter);

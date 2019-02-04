@@ -13,26 +13,24 @@ import org.polarsys.capella.filtering.IntersectionFilteringResultSet;
  * @generated
  */
 public class IntersectionFilteringResultSetImpl extends FilteringResultSetImpl
-    implements IntersectionFilteringResultSet {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected IntersectionFilteringResultSetImpl() {
+		implements IntersectionFilteringResultSet {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IntersectionFilteringResultSetImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.INTERSECTION_FILTERING_RESULT_SET;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.INTERSECTION_FILTERING_RESULT_SET;
+	}
 
 } // IntersectionFilteringResultSetImpl

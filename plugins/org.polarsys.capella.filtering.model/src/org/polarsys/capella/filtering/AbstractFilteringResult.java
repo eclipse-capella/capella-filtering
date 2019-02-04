@@ -16,14 +16,13 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface AbstractFilteringResult extends NamedElement {
 
-  /**
-   * 
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @model
-   * @generated
-   */
+	/**
+	
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
 
-  FilteringCriterionSet computeFilteringCriterionSet();
+	FilteringCriterionSet computeFilteringCriterionSet();
 
 } // AbstractFilteringResult

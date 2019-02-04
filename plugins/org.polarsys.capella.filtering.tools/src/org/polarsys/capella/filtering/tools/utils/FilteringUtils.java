@@ -17,12 +17,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -74,6 +80,8 @@ import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.polarsys.capella.core.data.capellacore.Namespace;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
+import org.polarsys.capella.core.data.la.LaFactory;
+import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.libraries.model.ICapellaModel;
 import org.polarsys.capella.core.model.handler.command.CapellaResourceHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
@@ -83,7 +91,9 @@ import org.polarsys.capella.core.sirius.ui.actions.OpenSessionAction;
 import org.polarsys.capella.core.sirius.ui.helper.SessionHelper;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
+import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
+import org.polarsys.capella.filtering.ExclusionFilteringResultSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionPkg;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
@@ -91,15 +101,220 @@ import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
+import org.polarsys.capella.filtering.FilteringResultSet;
 import org.polarsys.capella.filtering.FilteringResults;
+import org.polarsys.capella.filtering.IntersectionFilteringResultSet;
+import org.polarsys.capella.filtering.UnionFilteringResultSet;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.kitalpha.emde.model.ElementExtension;
 import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
+/**
+ * Utility class for Filtering metamodel and tools
+ *
+ */
 public class FilteringUtils {
 
   private static final Logger logger = ReportManagerRegistry.getInstance()
       .subscribe(IReportManagerDefaultComponents.DEFAULT);
+
+  public static Set<EObject> computeDerivation(AbstractFilteringResult abstractFResult, EObject root) {
+
+    Predicate<EObject> predicate = computePredicate(abstractFResult);
+    Set<EObject> derivation = computeDerivation(predicate, root);
+    return derivation;
+  }
+
+  private static Set<EObject> computeDerivation(Predicate<EObject> predicate, EObject root) {
+
+    Set<EObject> result = new HashSet<EObject>();
+
+    if (null != root) {
+      if (predicate.test(root)) {
+        result.add(root);
+      }
+      TreeIterator<EObject> it = root.eAllContents();
+
+      EObject current = null;
+
+      while (it.hasNext()) {
+        current = it.next();
+        if (predicate.test(current)) {
+          result.add(current);
+        }
+      }
+    }
+    return result;
+
+  }
+
+  /**
+   * Compute a predicate on ModelElement corresponding to specified filtering result
+   * 
+   * @param filteringResult
+   * @return
+   */
+  public static Predicate<EObject> computePredicate(FilteringResult filteringResult) {
+
+    Set<FilteringCriterion> filteringCriteria = new HashSet<FilteringCriterion>(filteringResult.getFilteringCriteria());
+
+    Predicate<EObject> predicate = elt -> isAssociatedWithAtLeastOneCriterionInclundingImplicits(elt,
+        filteringCriteria);
+
+    return predicate;
+  }
+
+  /**
+   * True if modelElement is associated with at least on criteria from specified criterionSet including implicit
+   * criteria
+   * 
+   * @param eObj
+   * @param criterionSet
+   * @return
+   */
+  private static boolean isAssociatedWithAtLeastOneCriterionInclundingImplicits(EObject eObj,
+      Set<FilteringCriterion> criterionSet) {
+
+    List<FilteringCriterion> explicitCriteria = getAssociatedCriteria(eObj);
+
+    Set<EObject> intersectionOf = intersectionOf(new HashSet<>(explicitCriteria), new HashSet<EObject>(criterionSet));
+
+    return !intersectionOf.isEmpty();
+
+  }
+
+  /**
+   * Compute set of elements corresponding to a derivation with a composed filtering result
+   * 
+   * @param composedFResult
+   * @return
+   */
+  public static Predicate<EObject> computePredicate(ComposedFilteringResult composedFResult) {
+
+    Predicate<EObject> predicate = elt -> true;
+
+    UnionFilteringResultSet unionResultSet = composedFResult.getUnionFilteringResultSet();
+    IntersectionFilteringResultSet intersectionResultSet = composedFResult.getIntersectionFilteringResultSet();
+    ExclusionFilteringResultSet exclusionResultSet = composedFResult.getExclusionFilteringResultSet();
+
+    Predicate<EObject> unionResultSetPredicate = computePredicate(unionResultSet);
+    Predicate<EObject> intersectionResultSetPredicate = computePredicate(intersectionResultSet);
+    Predicate<EObject> exclusionResultSetPredicate = computePredicate(exclusionResultSet);
+
+    predicate = predicate.and(unionResultSetPredicate).and(intersectionResultSetPredicate)
+        .and(exclusionResultSetPredicate);
+
+    return predicate;
+  }
+
+  /**
+   * Compute derivation for each child filtering result then compute their union
+   * 
+   * @param unionResultSet
+   * @param root
+   * @return
+   */
+  private static Predicate<EObject> computePredicate(UnionFilteringResultSet unionResultSet) {
+
+    if (unionResultSet == null) {
+      return elt -> true;
+    }
+
+    Predicate<EObject> predicate = elt -> false;
+
+    for (AbstractFilteringResult fR : unionResultSet.getFilteringResults()) {
+      predicate = predicate.or(computePredicate(fR));
+    }
+
+    return predicate;
+
+  }
+
+  private static Predicate<EObject> computePredicate(ExclusionFilteringResultSet exclusionResultSet) {
+
+    if (exclusionResultSet == null) {
+      return elt -> true;
+    }
+
+    Predicate<EObject> predicate = elt -> true;
+
+    for (AbstractFilteringResult fR : exclusionResultSet.getFilteringResults()) {
+      predicate = predicate.and(computePredicate(fR));
+    }
+
+    return predicate.negate();
+
+  }
+
+  private static Predicate<EObject> computePredicate(IntersectionFilteringResultSet intersectionResultSet) {
+    if (intersectionResultSet == null) {
+      return elt -> true;
+    }
+
+    Predicate<EObject> predicate = elt -> true;
+
+    for (AbstractFilteringResult fR : intersectionResultSet.getFilteringResults()) {
+      predicate = predicate.and(computePredicate(fR));
+    }
+
+    return predicate;
+
+  }
+
+  public static Predicate<EObject> computePredicate(AbstractFilteringResult abstractFilteringResult) {
+
+    // init predicate: element should not be an instance of a Filtering Metaclass (e.g. FilteringCriterion)
+    Predicate<EObject> predicate = eObj -> notInstanceOfFilteringPackageMetaclass(eObj);
+
+    if (abstractFilteringResult == null) {
+      return predicate;
+    }
+
+    if (abstractFilteringResult instanceof FilteringResult)
+      return predicate.and(computePredicate((FilteringResult) abstractFilteringResult));
+    else if (abstractFilteringResult instanceof ComposedFilteringResult)
+      return predicate.and(computePredicate((ComposedFilteringResult) abstractFilteringResult));
+    else
+      return elt -> true;
+  }
+
+  private static Set<EObject> unionOf(List<Set<EObject>> derivations) {
+    Set<EObject> union = new HashSet<>();
+    derivations.forEach(union::addAll);
+    return union;
+  }
+
+  /**
+   * Recursive implementation of intersection of multiple Sets of EObjects
+   * 
+   * @param derivations
+   * @return
+   */
+  private static Set<EObject> intersectionOf(List<Set<EObject>> derivations) {
+
+    Set<EObject> intersection = new HashSet<>();
+
+    if (derivations.size() == 0) {
+      return Collections.emptySet();
+    }
+
+    if (derivations.size() == 1) {
+      return derivations.get(0);
+    }
+
+    if (derivations.size() > 1) {
+
+      return intersectionOf(derivations.get(0), intersectionOf(derivations.subList(1, derivations.size())));
+    }
+
+    derivations.forEach(intersection::addAll);
+
+    return intersection;
+  }
+
+  private static Set<EObject> intersectionOf(Set<EObject> set1, Set<EObject> set2) {
+    return set1.stream().filter(set2::contains).collect(Collectors.toSet());
+  }
 
   public static boolean isVariantModel(EObject modelObject, boolean includeReferencedLibraries) {
     List<FilteringModel> filteringModels = getFilteringModels(modelObject, includeReferencedLibraries);
@@ -211,7 +426,7 @@ public class FilteringUtils {
   }
 
   /**
-   * Get the AssociatedFilteringCriterionSet of a Melody Element or null if it doesn't have
+   * Get the AssociatedFilteringCriterionSet of a Capella element or null if it doesn't have
    * 
    * @param melodyElement
    * @return
@@ -242,7 +457,7 @@ public class FilteringUtils {
       // If the explicit is empty then add the implicit
       if (featureList.isEmpty()) {
         // Add implicit features
-        List<FilteringCriterion> features = getImplicitAssociatedCriteria(capellaElement, visitedElements);
+        Set<FilteringCriterion> features = getImplicitAssociatedCriteria(capellaElement, visitedElements);
         for (FilteringCriterion feature : features) {
           if (!featureList.contains(feature)) {
             featureList.add(feature);
@@ -289,7 +504,7 @@ public class FilteringUtils {
     return featureList;
   }
 
-  public static List<FilteringCriterion> getImplicitAssociatedCriteria(EObject element) {
+  public static Set<FilteringCriterion> getImplicitAssociatedCriteria(EObject element) {
     return getImplicitAssociatedCriteria(element, new ArrayList<EObject>());
   }
 
@@ -297,8 +512,9 @@ public class FilteringUtils {
    * @param element
    * @return
    */
-  public static List<FilteringCriterion> getImplicitAssociatedCriteria(EObject element, List<EObject> visitedElements) {
-    List<FilteringCriterion> res = new ArrayList<FilteringCriterion>();
+  public static Set<FilteringCriterion> getImplicitAssociatedCriteria(EObject element, List<EObject> visitedElements) {
+
+    Set<FilteringCriterion> res = new HashSet<FilteringCriterion>();
     List<FilteringModel> filteringModels = getFilteringModels(element, true);
     if (!FilteringUtils.hasFilteringFeatures(filteringModels)) {
       return res;
@@ -307,8 +523,10 @@ public class FilteringUtils {
     for (FilteringCriterion currentFeature : FilteringUtils.getOwnedFilteringCriteria(filteringModels)) {
 
       if (FilteringToolsPlugin.getImplicitImpactCache().containsKey(currentFeature)) {
+
         logger.debug("Cache hit: " + currentFeature.hashCode() + " on "
             + FilteringToolsPlugin.getImplicitImpactCache().size() + " elements");
+
         Collection<?> expanded = FilteringToolsPlugin.getImplicitImpactCache().get(currentFeature);
         if (expanded.contains(element)) {
           res.add(currentFeature);
@@ -319,6 +537,7 @@ public class FilteringUtils {
 
       List<EObject> referencedElements = CrossReferencerHelper.getReferencingElements(currentFeature);
       List<CapellaElement> explictlyReferencedElements = new ArrayList<CapellaElement>();
+
       for (EObject referencedElement : referencedElements) {
         if (referencedElement instanceof AssociatedFilteringCriterionSet
             && referencedElement.eContainer() instanceof CapellaElement) {
@@ -331,9 +550,9 @@ public class FilteringUtils {
       }
 
       ExecutionManager executionManager = TransactionHelper.getExecutionManager(element);
-      CapellaDeleteCommand mdc = new ModelOnlyFilteringDeleteCommand(executionManager, explictlyReferencedElements,
-          true, false, false);
-      Set<?> expandedElements = mdc.getAllElementsToDelete();
+      CapellaDeleteCommand deleteCmd = new ModelOnlyFilteringDeleteCommand(executionManager,
+          explictlyReferencedElements, true, false, false);
+      Set<?> expandedElements = deleteCmd.getAllElementsToDelete();
 
       if (expandedElements.contains(element)) {
         res.add(currentFeature);
@@ -645,13 +864,13 @@ public class FilteringUtils {
    */
   public static String getCommaSeparatedExplicitFeatures(EObject element) {
     List<FilteringCriterion> featureList = getExplicitAssociatedCriteria(element);
-    return getCommaSeparatedVariabilityFeaturesList(featureList);
+    return getCommaSeparatedFilteringCriteriaList(featureList);
   }
 
   /**
    * Get a comma separated String of the given filtering features list
    */
-  public static String getCommaSeparatedVariabilityFeaturesList(List<FilteringCriterion> featureList) {
+  public static String getCommaSeparatedFilteringCriteriaList(List<FilteringCriterion> featureList) {
     if ((featureList == null) || featureList.isEmpty()) {
       return null;
     }
@@ -669,16 +888,16 @@ public class FilteringUtils {
   /**
    * Add associated features
    * 
-   * @param melodyElement
+   * @param capellaElement
    * @param filteringCriterions
    */
-  public static void addAssociatedCriteria(EObject melodyElement, List<FilteringCriterion> filteringCriterions) {
+  public static void addAssociatedCriteria(EObject capellaElement, Collection<FilteringCriterion> filteringCriterions) {
     // Get associated feature set
-    AssociatedFilteringCriterionSet featureSet = FilteringUtils.getAssociatedFilteringCriterionSet(melodyElement);
+    AssociatedFilteringCriterionSet featureSet = FilteringUtils.getAssociatedFilteringCriterionSet(capellaElement);
     // Create it if empty
     if ((featureSet == null) && !filteringCriterions.isEmpty()) {
       featureSet = FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet();
-      ((ExtensibleElement) melodyElement).getOwnedExtensions().add(featureSet);
+      ((ExtensibleElement) capellaElement).getOwnedExtensions().add(featureSet);
     }
     // Add the features
     for (FilteringCriterion filteringCriterion : filteringCriterions) {
@@ -694,7 +913,8 @@ public class FilteringUtils {
    * @param melodyElement
    * @param filteringCriterions
    */
-  public static void removeAssociatedCriteria(EObject melodyElement, List<FilteringCriterion> filteringCriterions) {
+  public static void removeAssociatedCriteria(EObject melodyElement,
+      Collection<FilteringCriterion> filteringCriterions) {
     // Get associated feature set
     AssociatedFilteringCriterionSet featureSet = FilteringUtils.getAssociatedFilteringCriterionSet(melodyElement);
     // Remove features
@@ -745,14 +965,55 @@ public class FilteringUtils {
     return file.getProject();
   }
 
+  public static Set<EObject> computeDerivation(FilteringResult filteringResult, ModelElement root) {
+
+    Set<EObject> allElementsWithAssociatedCriteria = getAllElementsWithAssociatedCriteria(root,
+        new HashSet<FilteringCriterion>(filteringResult.getFilteringCriteria()));
+
+    allElementsWithAssociatedCriteria = allElementsWithAssociatedCriteria.stream()
+        .filter(elt -> FilteringUtils.notInstanceOfFilteringPackageMetaclass(elt)).collect(Collectors.toSet());
+
+    return allElementsWithAssociatedCriteria;
+
+  }
+
   /**
-   * Get all the elements in the hierarchy of a given eObject that contains associated features
+   * Get all elements in the hierarchy of a given eObject that contains associated criteria
    * 
    * @param root
    * @return list
    */
-  public static List<EObject> getAllElementsWithAssociatedCriteria(EObject root) {
-    List<EObject> result = new ArrayList<EObject>();
+  public static Set<EObject> getAllElementsWithAssociatedCriteria(ModelElement root,
+      Set<FilteringCriterion> criterionSet) {
+
+    Set<EObject> result = new HashSet<EObject>();
+
+    if (null != root) {
+      if (isAssociatedWithAtLeastOneCriterion(root, criterionSet)) {
+        result.add(root);
+      }
+      TreeIterator<EObject> it = root.eAllContents();
+
+      EObject current = null;
+
+      while (it.hasNext()) {
+        current = it.next();
+        if (isAssociatedWithAtLeastOneCriterion(current, criterionSet)) {
+          result.add(current);
+        }
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Get all the elements in the hierarchy of a given eObject that contains associated criteria
+   * 
+   * @param root
+   * @return list
+   */
+  public static Set<EObject> getAllElementsWithAssociatedCriteria(EObject root) {
+    Set<EObject> result = new HashSet<EObject>();
 
     if (null != root) {
       if (hasAssociatedCriteria(root)) {
@@ -768,6 +1029,23 @@ public class FilteringUtils {
       }
     }
     return result;
+  }
+
+  /**
+   * True if modelElement is associated to all criteria in specified criterionSet
+   * 
+   * @param eObj
+   * @param criterionSet
+   * @return
+   */
+  private static boolean isAssociatedWithAtLeastOneCriterion(EObject eObj, Set<FilteringCriterion> criterionSet) {
+
+    List<FilteringCriterion> explicitCriteria = getExplicitAssociatedCriteria(eObj);
+
+    Set<EObject> intersectionOf = intersectionOf(new HashSet<>(explicitCriteria), new HashSet<EObject>(criterionSet));
+
+    return !intersectionOf.isEmpty();
+
   }
 
   /**
@@ -843,18 +1121,18 @@ public class FilteringUtils {
   /**
    * Some classes should not have associated feature sets
    * 
-   * @param eObj
+   * @param obj
    * @return true if it is excluded from having associated features
    */
-  public static boolean isInstanceOfFilteringExcludedElements(EObject eObj) {
-    return eObj instanceof FilteringModel || eObj instanceof AbstractFilteringResult || eObj instanceof FilteringResults
-        || eObj instanceof FilteringCriterion || eObj instanceof FilteringCriterionPkg
-        || eObj instanceof FilteringResultPkg || eObj instanceof AssociatedFilteringCriterionSet;
+  public static boolean isInstanceOfFilteringExcludedElements(Object obj) {
+    return obj instanceof FilteringModel || obj instanceof AbstractFilteringResult || obj instanceof FilteringResults
+        || obj instanceof FilteringCriterion || obj instanceof FilteringCriterionPkg
+        || obj instanceof FilteringResultPkg || obj instanceof AssociatedFilteringCriterionSet;
 
   }
 
-  public static boolean notInstanceOfFilteringPackageMetaclass(EObject eObj) {
-    return !isInstanceOfFilteringExcludedElements(eObj);
+  public static boolean notInstanceOfFilteringPackageMetaclass(Object obj) {
+    return (obj instanceof EObject) && !isInstanceOfFilteringExcludedElements((EObject) obj);
   }
 
   /**
@@ -1058,6 +1336,17 @@ public class FilteringUtils {
     // real contents
     File file = project.getFullPath().toFile();
     return ((file != null) && file.exists());
+  }
+
+  public static Collection<FilteringResultSet> getComposedResultChildren(ComposedFilteringResult composedResult) {
+
+    Collection<FilteringResultSet> children = new HashSet<>();
+
+    Optional.ofNullable(composedResult.getIntersectionFilteringResultSet()).ifPresent(children::add);
+    Optional.ofNullable(composedResult.getUnionFilteringResultSet()).ifPresent(children::add);
+    Optional.ofNullable(composedResult.getExclusionFilteringResultSet()).ifPresent(children::add);
+
+    return children;
   }
 
 }

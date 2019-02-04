@@ -12,6 +12,7 @@ package org.polarsys.capella.filtering.tools.actions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
@@ -34,7 +35,7 @@ public class FilteringOverviewAction extends AbstractTigAction implements IActio
     // Filter AssociatedFilteringCriterionSet elements in the Dialog
 
     ModelElement selectedElement = getSelectedElement();
-    List<EObject> elementsWithAssociatedCriteria = FilteringUtils.getAllElementsWithAssociatedCriteria(selectedElement);
+    Set<EObject> elementsWithAssociatedCriteria = FilteringUtils.getAllElementsWithAssociatedCriteria(selectedElement);
     List<EObject> associatedFeatureSetElements = new ArrayList<>();
     for (EObject eObject : elementsWithAssociatedCriteria) {
       if (eObject instanceof AssociatedFilteringCriterionSet) {

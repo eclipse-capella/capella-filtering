@@ -18,8 +18,7 @@ import org.polarsys.capella.core.data.capellacore.NamedElement;
  *
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringCriterion()
- * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null'
- *        used\040in\040levels='null' usage\040examples='null' constraints='null'"
+ * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
  * @generated
  */
 

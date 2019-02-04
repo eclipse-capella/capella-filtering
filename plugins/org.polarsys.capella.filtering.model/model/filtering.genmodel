@@ -36,7 +36,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//ComposedFilteringResult/ExclusionFilteringResultSet"/>
     </genClasses>
     <genClasses ecoreClass="filtering.ecore#//FilteringResultSet">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringResultSet/filteringResults"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference filtering.ecore#//FilteringResultSet/filteringResults"/>
     </genClasses>
     <genClasses image="false" ecoreClass="filtering.ecore#//AbstractFilteringResult">
       <genOperations ecoreOperation="filtering.ecore#//AbstractFilteringResult/computeFilteringCriterionSet"/>

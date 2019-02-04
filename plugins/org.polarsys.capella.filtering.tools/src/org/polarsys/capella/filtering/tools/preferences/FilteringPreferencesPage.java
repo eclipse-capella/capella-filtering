@@ -18,7 +18,7 @@ import org.polarsys.capella.common.ui.toolkit.fields.SpacerFieldEditor;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 
 /**
- * Variability preferences page. The Activator of this plugin contains the listener to refresh when the user click Apply
+ * Filtering preferences page. The Activator of this plugin contains the listener to refresh when the user click Apply
  * 
  * 
  */
@@ -42,13 +42,6 @@ public class FilteringPreferencesPage extends FieldEditorPreferencePage implemen
 
   @Override
   public void createFieldEditors() {
-    addField(new BooleanFieldEditor(FEATURES_DIAGRAM, Messages.FILTERING_PREFERENCES_PAGE_0, getFieldEditorParent()));
-    addField(new BooleanFieldEditor(OPTIONAL_DIAGRAM, Messages.FILTERING_PREFERENCES_PAGE_1, getFieldEditorParent()));
-    SpacerFieldEditor spacer = new SpacerFieldEditor(getFieldEditorParent());
-    addField(spacer);
-    addField(
-        new BooleanFieldEditor(SAVE_DECORATORS_DIAGRAM, Messages.FILTERING_PREFERENCES_PAGE_2, getFieldEditorParent()));
-    addField(spacer);
     addField(new BooleanFieldEditor(APPLICATION_PROJECT_WITH_DIFFERENT_ID, Messages.FILTERING_PREFERENCES_PAGE_3,
         getFieldEditorParent()));
   }

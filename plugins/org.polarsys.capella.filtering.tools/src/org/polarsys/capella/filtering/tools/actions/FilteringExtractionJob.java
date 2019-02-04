@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -29,6 +30,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -40,6 +42,7 @@ import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.common.tools.api.resource.ResourceSetSync;
 import org.eclipse.sirius.common.tools.api.resource.ResourceSetSync.ResourceStatus;
 import org.eclipse.swt.widgets.Display;
+import org.polarsys.capella.common.data.modellingcore.ModelElement;
 import org.polarsys.capella.common.ef.ExecutionManager;
 import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.common.ef.command.AbstractNonDirtyingCommand;
@@ -50,9 +53,11 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CrossReferencerHelper;
 import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteCommand;
+import org.polarsys.capella.core.sirius.analysis.tool.StringUtil;
 import org.polarsys.capella.core.sirius.ui.actions.DesignerControlAction;
 import org.polarsys.capella.core.sirius.ui.actions.DesignerControlAction.CapellaSiriusUncontrolCommand;
 import org.polarsys.capella.core.sirius.ui.helper.SessionHelper;
+import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringModel;
@@ -76,19 +81,46 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
   ExecutionManager executionManager = null;
   TransactionalEditingDomain editingDomain = null;
   ArrayList<Resource> resourcesToDelete = new ArrayList<>();
+  Collection<String> selectedFeaturesFullLabels;
 
   /**
    * @param name
    * @param domainId
    */
   public FilteringExtractionJob(IProject currentProject, IProject clonedProject,
-      List<FilteringCriterion> selectedFeatures, EObject configuration, String domainId) {
+      List<FilteringCriterion> selectedFeatures, AbstractFilteringResult filteringResult, String domainId) {
     this.domainId = domainId;
     this.currentProject = currentProject;
     this.clonedProject = clonedProject;
     this.selectedFeatures = selectedFeatures;
-    this.configuration = configuration;
+    this.configuration = filteringResult;
+    selectedFeaturesFullLabels = computeSelectedFeatureFullLabels(selectedFeatures);
+  }
 
+  private Set<String> computeSelectedFeatureFullLabels(List<FilteringCriterion> selectedFeatures) {
+
+    return selectedFeatures.parallelStream().filter(elt -> elt instanceof ModelElement)
+        .map(modelElt -> ((ModelElement) modelElt).getFullLabel()).map(this::removeProjectAndSysEngPaths)
+        .collect(Collectors.toSet());
+  }
+
+  private String removeProjectAndSysEngPaths(String fullLabel) {
+    return removeFirst2Segments(fullLabel);
+  }
+
+  private static String removeFirst2Segments(String fullLabel) {
+
+    String separator = "/";
+    if (fullLabel == null) {
+
+      return null;
+    }
+    int indexOfThirdOccurenceOfSeparator = fullLabel.indexOf(separator,
+        fullLabel.indexOf(separator, fullLabel.indexOf(separator) + 1) + 1);
+
+    String result = fullLabel.substring(indexOfThirdOccurenceOfSeparator);
+
+    return result;
   }
 
   /**
@@ -205,8 +237,10 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
               derivedFilteringModels = FilteringUtils.getFilteringModels(current, true);
               if (FilteringUtils.hasFilteringFeatures(rootSemanticObjectFilteringModels)
                   && FilteringUtils.hasFilteringFeatures(derivedFilteringModels)) {
+
                 List<FilteringCriterion> oldFeatures = FilteringUtils
                     .getOwnedFilteringCriteria(rootSemanticObjectFilteringModels);
+
                 newFeatures = FilteringUtils.getOwnedFilteringCriteria(derivedFilteringModels);
 
                 // associate new features of cloned project with
@@ -228,35 +262,42 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
           }
 
           /**
-           * All the elements tagged with a wrong feature and belong to the current model are deleted. This is to
+           * All the elements tagged with a wrong feature and belonging to the current model are deleted. This is to
            * prevent from deleting semantic objects located in referenced libraries.
            */
           // The elements that are going to be completely removed
           Set<EObject> elementsToDelete = new HashSet<>();
 
-          // The elements that are going to be uncontrol before
-          // removed
+          // The elements that are going to be uncontrol before removed
           List<EObject> elementsToUncontrol = new ArrayList<>();
+
           if (derivedFilteringModels != null) {
+
             for (Object feature : newFeatures) {
+
               final FilteringCriterion filteringCriterion = (FilteringCriterion) feature;
+
               if (!selectedFeatures.contains(mappingTable.get(filteringCriterion))) {
+
                 List<EObject> referencingElements = CrossReferencerHelper.getReferencingElements(filteringCriterion);
 
                 for (EObject eObject : referencingElements) {
+
                   EObject eContainer = eObject.eContainer();
+
                   if (eObject instanceof AssociatedFilteringCriterionSet && eContainer instanceof CapellaElement) {
+
                     final CapellaElement capellaElement = (CapellaElement) eContainer;
                     IModel model = ILibraryManager.INSTANCE.getModel(capellaElement);
+
                     if (currentModel != null && currentModel.equals(model)
-                    /*
-                     * && !isAlreadyContained(elementsToDelete, capellaElement)
-                     */) {
+
+                        && !isAlreadyContained(elementsToDelete, capellaElement)) {
                       // We delete the element only if it
                       // doesn't associated with a checked
-                      // feature
+                      // criterion
                       if (!hasOneCheckedFeature(capellaElement, mappingTable)) {
-                        // We add it to the delete list
+                        // We add it to the delete set
                         elementsToDelete.add(capellaElement);
                       }
                       // We remove unnecessary associated
@@ -290,6 +331,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
                   }
                 }
               }
+
             }
           }
 
@@ -316,12 +358,42 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
            * Delete the model elements to be deleted
            */
           elementsToDelete = new HashSet<>(EcoreUtil.filterDescendants(elementsToDelete));
-          CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, elementsToDelete, true, false,
-              true);
-          if (command.canExecute()) {
-            // execute the command
-            doExecuteNonDirtyingCommand(command);
+          if (!elementsToDelete.isEmpty()) {
+
+            CapellaDeleteCommand command = new CapellaDeleteCommand(executionManager, elementsToDelete, true, false,
+                true) {
+
+              @Override
+              public Collection<?> getAffectedObjects() {
+
+                Set<?> allElementsToDelete = getAllElementsToDelete();
+                if (allElementsToDelete == null)
+                  return Collections.emptySet();
+                return allElementsToDelete;
+              }
+            };
+            command.setLabel("MY DELETE COMMAND");
+
+            // {
+            //
+            // @Override
+            // public Collection<?> getAffectedObjects() {
+            // // to avoid NPE on parent classes
+            // // Set<?> set = getAllElementsToDelete();
+            // // if (set == null)
+            // return Collections.emptySet();
+            // }
+            //
+            // }
+            ;
+
+            if (command.canExecute()) {
+              // execute the command
+              doExecuteNonDirtyingCommand(command);
+            }
+
           }
+
         }
 
         // Refresh all representations
@@ -337,12 +409,37 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 
     } catch (CoreException e) {
       e.printStackTrace();
+
     } catch (IOException e) {
       e.printStackTrace();
+
     } finally {
       // Finally monitor done
       monitor.done();
     }
+  }
+
+  protected void doExecuteNonDirtyingCommand(final Command realCommand) {
+
+    executionManager.execute(new AbstractNonDirtyingCommand() {
+
+      @Override
+      public void run() {
+        // Collection<?> affectedObjects = realCommand.getAffectedObjects();
+        // if (affectedObjects != null)
+
+        realCommand.execute();
+      }
+
+      @Override
+      public Collection<?> getAffectedObjects() {
+        Collection<?> affectedObjects = realCommand.getAffectedObjects();
+        if (affectedObjects == null)
+          return Collections.emptyList();
+        return affectedObjects;
+      }
+    });
+
   }
 
   /**
@@ -351,7 +448,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
    */
   @Deprecated // TODO: takes 94% of CPU time in a derivation !
   // do not use list, use hasmap or treemap (contains fast)
-  boolean isAlreadyContained(List<EObject> elements, EObject current) {
+  boolean isAlreadyContained(Set<EObject> elements, EObject current) {
     if (!elements.contains(current)) {
       for (EObject elts : elements) {
         for (Iterator<EObject> iterator = elts.eAllContents(); iterator.hasNext();) {
@@ -381,9 +478,14 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
     for (Object newElement : newFeatures) {
       for (Object oldElement : oldFeatures) {
         if (newElement instanceof FilteringCriterion && oldElement instanceof FilteringCriterion) {
+
           FilteringCriterion newFeature = (FilteringCriterion) newElement;
           FilteringCriterion oldFeature = (FilteringCriterion) oldElement;
-          if (newFeature.getName().equals(oldFeature.getName())) {
+
+          String newFeatureLabel = removeFirst2Segments(newFeature.getFullLabel());
+          String oldFeatureLabel = removeFirst2Segments(oldFeature.getFullLabel());
+
+          if (newFeatureLabel.equals(oldFeatureLabel)) {
             mappingTable.put(newFeature, oldFeature);
           }
         }
@@ -397,6 +499,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
    * @return
    */
   private boolean hasOneCheckedFeature(CapellaElement elem, Map<FilteringCriterion, FilteringCriterion> mappingTable) {
+
     List<FilteringCriterion> associatedCriteria = FilteringUtils.getAssociatedCriteria(elem);
 
     for (FilteringCriterion associatedFeature : associatedCriteria) {
@@ -406,16 +509,6 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
     }
 
     return false;
-  }
-
-  protected void doExecuteNonDirtyingCommand(final Command realCommand) {
-    executionManager.execute(new AbstractNonDirtyingCommand() {
-      @Override
-      public void run() {
-        Collection<?> affectedObjects = realCommand.getAffectedObjects();
-        realCommand.execute();
-      }
-    });
   }
 
   /**

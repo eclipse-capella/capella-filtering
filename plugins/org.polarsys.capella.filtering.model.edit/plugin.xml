@@ -67,6 +67,12 @@
       <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
    </extension><extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated filtering -->
+      <factory class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory" supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider                org.eclipse.emf.edit.provider.IStructuredItemContentProvider                org.eclipse.emf.edit.provider.ITreeItemContentProvider                org.eclipse.emf.edit.provider.IItemLabelProvider                org.eclipse.emf.edit.provider.IItemPropertySource" uri="http://www.polarsys.org/capella/filtering/1.2.0"/>
+   </extension><extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated filtering -->
+      <extender class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory$EmdeChildCreationExtender" uri="http://www.polarsys.org/kitalpha/emde/1.0.0"/>
+   </extension><extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated filtering -->
       <factory class="org.polarsys.capella.filtering.provider.FilteringItemProviderAdapterFactory" supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider org.eclipse.emf.edit.provider.IStructuredItemContentProvider org.eclipse.emf.edit.provider.ITreeItemContentProvider org.eclipse.emf.edit.provider.IItemLabelProvider org.eclipse.emf.edit.provider.IItemPropertySource" uri="http://www.polarsys.org/capella/filtering/1.2.0"/>
    </extension><extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated filtering -->
@@ -74,10 +80,5 @@
    </extension>
 
 null
-null
-null
-null
-null
-null
-null
+
 </plugin>

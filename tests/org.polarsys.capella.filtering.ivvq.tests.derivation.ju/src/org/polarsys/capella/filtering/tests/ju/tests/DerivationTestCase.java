@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
@@ -39,7 +38,6 @@ import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.impl.scopes.FragmentedModelScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
@@ -48,13 +46,17 @@ import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResults;
+import org.polarsys.capella.filtering.tests.ju.FilteringTestHelper;
 import org.polarsys.capella.filtering.tools.actions.FilteringExtractionJob;
 import org.polarsys.capella.test.framework.api.BasicTestCase;
 import org.polarsys.capella.test.framework.helpers.IResourceHelpers;
 import org.polarsys.capella.test.framework.helpers.TestHelper;
 
 /**
- * Derivation test
+ * Filtering Derivation test.<br>
+ * Tests a set of derivation performed on {@link #getModelsUnderTest()} and compared against expected <br>
+ * derivation models identified by names with pattern given by {@link #getReferenceModelName(String, String)}
+ * 
  */
 @SuppressWarnings({ "nls" })
 public class DerivationTestCase extends BasicTestCase {
@@ -76,6 +78,12 @@ public class DerivationTestCase extends BasicTestCase {
 
   public List<String> getModelsUnderTest() {
     return Arrays.asList("sysmodel", "TestLib", "TestSPLProject");
+  }
+
+  private String getReferenceModelName(String originalModelName, String filteringResultName) {
+
+    return originalModelName + "_" + filteringResultName;
+
   }
 
   @Override
@@ -108,7 +116,7 @@ public class DerivationTestCase extends BasicTestCase {
     session.open(progressMonitor);
 
     // Get the configurations element from the model
-    FilteringResults FilteringResults = getConfigurationsElement(session.getSemanticResources());
+    FilteringResults FilteringResults = FilteringTestHelper.getFilteringResults(session.getSemanticResources());
 
     // foreach result derive and test
     for (AbstractFilteringResult filterResult : FilteringResults.getFilteringResults()) {
@@ -146,7 +154,8 @@ public class DerivationTestCase extends BasicTestCase {
       assertTrue("Session of derived project does not open!: " + getInfoOfCurrentTest(), sessionOfDerived.isOpen());
 
       // Get and open reference model
-      Session expectedResultSession = getSessionForTestModel(inputModelName + "_" + filterResult.getName());
+      String refModelName = getReferenceModelName(inputModelName, filterResult.getName());
+      Session expectedResultSession = getSessionForTestModel(refModelName);
 
       expectedResultSession.open(progressMonitor);
       assertTrue("Session of expected project does not open!: " + getInfoOfCurrentTest(),
@@ -176,20 +185,6 @@ public class DerivationTestCase extends BasicTestCase {
       derivedProject.delete(IResource.FORCE | IResource.ALWAYS_DELETE_PROJECT_CONTENT, progressMonitor);
     }
 
-  }
-
-  /**
-   * Find the first object of type FilteringResults in given resources.
-   */
-  public static FilteringResults getConfigurationsElement(Collection<Resource> semanticResources) {
-    Iterator<?> allContentsIterator = EcoreUtil.getAllContents(semanticResources);
-    while (allContentsIterator.hasNext()) {
-      Object object = allContentsIterator.next();
-      if (object instanceof FilteringResults) {
-        return (FilteringResults) object;
-      }
-    }
-    return null;
   }
 
   /**

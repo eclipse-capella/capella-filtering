@@ -27,86 +27,85 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
 
 /**
- * This is the item provider adapter for a {@link org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class CreationDefaultFilteringCriterionSetItemProvider extends FilteringCriterionSetItemProvider
-    implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-    IItemPropertySource {
-  /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public CreationDefaultFilteringCriterionSetItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CreationDefaultFilteringCriterionSetItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-  /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-    }
-    // begin-extension-code
-    checkChildCreationExtender(object);
-    // end-extension-code
-    return itemPropertyDescriptors;
-  }
+		}
+		// begin-extension-code
+		checkChildCreationExtender(object);
+		// end-extension-code
+		return itemPropertyDescriptors;
+	}
 
-  /**
-   * This returns CreationDefaultFilteringCriterionSet.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/CreationDefaultFilteringCriterionSet")); //$NON-NLS-1$
-  }
+	/**
+	 * This returns CreationDefaultFilteringCriterionSet.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CreationDefaultFilteringCriterionSet")); //$NON-NLS-1$
+	}
 
-  /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public String getText(Object object) {
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
 
-    String label = ((CreationDefaultFilteringCriterionSet) object).getName();
-    // begin-extension-code
-    return label == null || label.length() == 0 ? "[" + getString("_UI_CreationDefaultFilteringCriterionSet_type") + "]" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        : label;
-    // end-extension-code
-  }
+		String label = ((CreationDefaultFilteringCriterionSet) object).getName();
+		// begin-extension-code
+		return label == null || label.length() == 0
+				? "[" + getString("_UI_CreationDefaultFilteringCriterionSet_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		// end-extension-code
+	}
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-    super.notifyChanged(notification);
-  }
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
+		super.notifyChanged(notification);
+	}
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
 }

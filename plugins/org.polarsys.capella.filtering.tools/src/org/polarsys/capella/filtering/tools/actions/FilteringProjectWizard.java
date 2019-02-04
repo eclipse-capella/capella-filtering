@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.polarsys.capella.filtering.tools.actions;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +17,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
@@ -52,10 +50,9 @@ import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringModel;
-import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
-class FilteringProjectWizard extends BasicNewResourceWizard {
+class FilteringProjectWizard extends BasicNewResourceWizard implements IFilteringProjectWizard {
 
   protected IProject currentProject;
   protected IProject clonedProject;
@@ -116,7 +113,7 @@ class FilteringProjectWizard extends BasicNewResourceWizard {
 
       /**
        * Overrided with two objectives. Remove the existing options that are not important in this context and also
-       * contribute our information read only viewer of selected features. {@inheritDoc}
+       * contribute our information read only viewer of selected criteria. {@inheritDoc}
        */
       @Override
       protected void createProjectApproachGroup(Composite parent) {
@@ -170,6 +167,7 @@ class FilteringProjectWizard extends BasicNewResourceWizard {
    * @param featureSelectionGroup
    */
   protected void createCheckboxTableViewer(Group featureSelectionGroup) {
+
     viewer = CheckboxTableViewer.newCheckList(featureSelectionGroup, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 
     // TODO Improve disabling this read only TableViewer.

@@ -10,12 +10,16 @@
  *******************************************************************************/
 package org.polarsys.capella.filtering.tools.view;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -27,11 +31,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
@@ -72,9 +78,11 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.core.sirius.analysis.tool.StringUtil;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
+import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringResult;
@@ -82,19 +90,21 @@ import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.IImageKeys;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
+import org.polarsys.capella.filtering.tools.utils.ui.FilteringResultsContentProvider;
 
 public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionListener {
 
-  private static final String MESSAGE = "Diagrams reflect the filtering criteria";
+  private static final String MESSAGE = "Diagrams reflect the filtering result";
   private static final String MSG_CURRENT_RESULT = "Selected Result:";
 
   private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
-  private Composite selectionButtonComposite;
 
   ICheckStateListener viewerCheckStateListener;
 
   ContainerCheckedTreeViewer treeViewer;
-  CriteriaContentProvider contentProvider = new CriteriaContentProvider();
+
+  ITreeContentProvider contentProvider = new CriteriaContentProvider();
+
   private Project mainProject;
   private Collection<Project> projects = null;
 
@@ -104,17 +114,16 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
   private Collection<Object> checkedElements = null;
   private Collection<Object> uncheckedElements = null;
   private Collection<Object> undefinedElements = null;
-
-  private Combo filteringResultCombo;
-
+  private Composite selectionButtonComposite;
   protected List<AbstractFilteringResult> filteringResults;
 
   private Button unchekAllButton;
   private Button checkAllButton;
   private Button refreshButton;
 
-  private List<Control> allViewControls;
-  private List<Control> viewSubControls;
+  private Combo filteringResultCombo;
+  private Set<Control> allViewControls;
+  private Set<Control> viewSubControls;
   private Label currentSelectedResultLabel;
   private Button enableCheckBtn;
   private Composite topControlsComposite;
@@ -124,7 +133,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     checkedElements = new HashSet<>();
     uncheckedElements = new HashSet<>();
     undefinedElements = new HashSet<>();
-
   }
 
   public Collection<Object> getCheckedElements() {
@@ -138,12 +146,12 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
   @Override
   public void createPartControl(Composite parent) {
 
-    GridLayout gl_parent = new GridLayout(1, false);
-    gl_parent.marginWidth = 2;
-    gl_parent.horizontalSpacing = 2;
-    gl_parent.verticalSpacing = 1;
-    gl_parent.marginHeight = 1;
-    parent.setLayout(gl_parent);
+    GridLayout glParent = new GridLayout(1, false);
+    glParent.marginWidth = 2;
+    glParent.horizontalSpacing = 2;
+    glParent.verticalSpacing = 1;
+    glParent.marginHeight = 1;
+    parent.setLayout(glParent);
 
     // Message Area
     Composite composite = new Composite(parent, SWT.NONE);
@@ -151,18 +159,18 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     composite.setLayout(new GridLayout(1, false));
 
     topControlsComposite = new Composite(composite, SWT.NONE);
-    GridLayout gl_topControlsComposite = new GridLayout(2, false);
-    gl_topControlsComposite.verticalSpacing = 2;
-    topControlsComposite.setLayout(gl_topControlsComposite);
+    GridLayout glTopControlsComposite = new GridLayout(2, false);
+    glTopControlsComposite.verticalSpacing = 2;
+    topControlsComposite.setLayout(glTopControlsComposite);
     topControlsComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
-    Label lblEee = formToolkit.createLabel(topControlsComposite, MESSAGE, SWT.SHADOW_NONE);
+    formToolkit.createLabel(topControlsComposite, MESSAGE, SWT.SHADOW_NONE);
 
     enableCheckBtn = new Button(topControlsComposite, SWT.CHECK);
     formToolkit.adapt(enableCheckBtn, true, true);
-    // enableCheckBtn.setText("ON");
 
     enableCheckBtn.addSelectionListener(new SelectionAdapter() {
+
       @Override
       public void widgetSelected(SelectionEvent event) {
         Button btn = (Button) event.getSource();
@@ -170,17 +178,24 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
         FilteringToolsPlugin.getGlobalFilteringCache().setEnabled(enabled);
         viewSubControls.forEach(c -> c.setEnabled(enabled));
 
+        Object input = treeViewer.getInput();
+        if (input != null && input instanceof ComposedFilteringResult) {
+
+          treeViewer.getTree().setEnabled(false);
+        }
+
+        updateCheckUncheckAllEnableState();
+
       }
     });
 
     // Button and message area
-    viewSubControls = new ArrayList<Control>();
+    viewSubControls = new HashSet<Control>();
     selectionButtonComposite = createSelectionButtonsAfterMessageArea(parent);
     new Label(buttonComposite, SWT.NONE);
     new Label(buttonComposite, SWT.NONE);
     new Label(buttonComposite, SWT.NONE);
-
-    allViewControls = new ArrayList<>(viewSubControls);
+    allViewControls = new HashSet<>(viewSubControls);
     allViewControls.add(enableCheckBtn);
 
     // Tree Viewer Area
@@ -190,13 +205,10 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     // Set alphabetic sorter
     treeViewer.setComparator(new ViewerComparator());
 
-    // GridData gd_tree = new GridData(SWT.FILL, SWT.FILL, true, true);
-    // tree.setLayoutData(gd_tree);
     treeViewer.setContentProvider(contentProvider);
     treeViewer.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
     treeViewer.setInput(treeViewer.getInput());
 
-    // Lazy creation pattern.
     if (null == viewerCheckStateListener) {
       viewerCheckStateListener = createCheckStateListener();
     }
@@ -204,7 +216,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     treeViewer.addCheckStateListener(viewerCheckStateListener);
     viewSubControls.add(treeViewer.getTree());
 
-    // regiter this view as selection listener
+    // register this view as selection listener
     getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
     createActions();
@@ -243,15 +255,12 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     createRefreshButton(buttonComposite, enabledButtons);
 
-    // new Label(buttonComposite, SWT.NONE);
-    // formToolkit.paintBordersFor(tree);
-
     filteringResultCombo = new Combo(buttonComposite, SWT.READ_ONLY);
     filteringResultCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 
     filteringResultCombo.addListener(SWT.Selection, createFilteringResultComboListener());
 
-    Label label = formToolkit.createLabel(buttonComposite, MSG_CURRENT_RESULT, SWT.HORIZONTAL | SWT.SHADOW_NONE);
+    formToolkit.createLabel(buttonComposite, MSG_CURRENT_RESULT, SWT.HORIZONTAL | SWT.SHADOW_NONE);
     currentSelectedResultLabel = formToolkit.createLabel(buttonComposite, "", SWT.HORIZONTAL | SWT.SHADOW_NONE);
 
     currentSelectedResultLabel.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
@@ -280,7 +289,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
               FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
             }
 
-            // setCurrentResultLabelAsModified();
             updateControls();
           }
         }, enabledButtons);
@@ -343,79 +351,120 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
   public void refreshActiveDiagram() {
 
-    PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-      public void run() {
-        IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+    try {
+      PlatformUI.getWorkbench().getProgressService().run(false, false, new IRunnableWithProgress() {
 
-        if (editorPart instanceof DDiagramEditor) {
-          DRepresentation representation = ((DDiagramEditor) editorPart).getRepresentation();
+        @Override
+        public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+          IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+              .getActiveEditor();
 
-          TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(representation);
-          domain.getCommandStack().execute(new RecordingCommand(domain) {
-            @Override
-            protected void doExecute() {
-              DialectManager.INSTANCE.refresh(representation, new NullProgressMonitor());
-            }
-          });
+          if (editorPart instanceof DDiagramEditor) {
+            DRepresentation representation = ((DDiagramEditor) editorPart).getRepresentation();
+
+            TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(representation);
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+              @Override
+              protected void doExecute() {
+                DialectManager.INSTANCE.refresh(representation, new NullProgressMonitor());
+              }
+            });
+          }
 
         }
+      });
+    } catch (InvocationTargetException | InterruptedException e) {
+      e.printStackTrace();
+    }
 
-      }
-
-    });
   }
 
   /**
    * Return the DDiagram which is the parent of the given Sirius element, or the Sirius element itself if it is a
    * DDiagram
    */
-  private static DDiagram getDiagram(EObject context_p) {
+  private static DDiagram getDiagram(EObject context) {
     DDiagram result = null;
-    if (context_p instanceof DDiagram) {
-      result = (DDiagram) context_p;
-    } else if (context_p instanceof DDiagramElement) {
-      result = ((DDiagramElement) context_p).getParentDiagram();
+    if (context instanceof DDiagram) {
+      result = (DDiagram) context;
+    } else if (context instanceof DDiagramElement) {
+      result = ((DDiagramElement) context).getParentDiagram();
     }
     return result;
   }
 
+  /**
+   * 
+   * @return
+   */
   private ICheckStateListener createCheckStateListener() {
+
     return new ICheckStateListener() {
 
       @Override
       public void checkStateChanged(CheckStateChangedEvent event) {
 
         Object source = event.getSource();
-        Object[] checkedElements2 = ((ContainerCheckedTreeViewer) source).getCheckedElements();
-        List<Object> checkedList = Arrays.asList(checkedElements2);
+        Object[] checkedElements = ((ContainerCheckedTreeViewer) source).getCheckedElements();
+        List<Object> checkedList = Arrays.asList(checkedElements);
+
+        checkedList = filterNonFilteringElements(checkedList);
 
         Object treeRoot = treeViewer.getInput();
 
         if (treeRoot instanceof CapellaElement) {
           Project project = CapellaProjectHelper.getProject((EObject) treeRoot);
 
-          List<FilteringCriterion> filCriterionToCache = new ArrayList<>();
-          checkedList.forEach(obj -> {
-            if (obj instanceof FilteringCriterion)
-              filCriterionToCache.add((FilteringCriterion) obj);
-          });
+          GlobalFiteringCache globalFilteringCache = FilteringToolsPlugin.getGlobalFilteringCache();
+
           // no criterion is selected =>
           // flush the cache for current project
-          if (filCriterionToCache.isEmpty()) {
+          if (checkedList.isEmpty()) {
             FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
             return;
           }
 
-          FilteringResult filtResult = FilteringFactory.eINSTANCE.createFilteringResult();
+          Object firstElt = checkedList.get(0);
 
-          filtResult.getFilteringCriteria().addAll(filCriterionToCache);
+          if (!checkedList.isEmpty()) {
 
-          GlobalFiteringCache globalFilteringCache = FilteringToolsPlugin.getGlobalFilteringCache();
+            List<FilteringCriterion> filCriterionToCache = new ArrayList<>();
 
-          globalFilteringCache.setCurrentFilteringResult(project, filtResult);
+            checkedList.forEach(obj -> {
+              if (obj instanceof FilteringCriterion)
+                filCriterionToCache.add((FilteringCriterion) obj);
+            });
 
-          setCurrentResultLabelAsModified();
+            // no criterion is selected =>
+            // flush the cache for current project
+            if (filCriterionToCache.isEmpty()) {
+              FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
+              return;
+            }
+
+            FilteringResult filtResult = FilteringFactory.eINSTANCE.createFilteringResult();
+
+            filtResult.getFilteringCriteria().addAll(filCriterionToCache);
+
+            globalFilteringCache.setCurrentFilteringResult(project, filtResult);
+
+            setCurrentResultLabelAsModified();
+          }
+
+          if (firstElt instanceof ComposedFilteringResult) {
+            checkedList.stream().filter(obj -> obj instanceof AbstractFilteringResult).findFirst().ifPresent(obj -> {
+              globalFilteringCache.setCurrentFilteringResult(project, (AbstractFilteringResult) obj);
+              updateCurrentSelectedResultLabel(FilteringUtils.formatFilteringItemName((AbstractFilteringResult) obj));
+
+            });
+          }
         }
+      }
+
+      private List<Object> filterNonFilteringElements(List<Object> checkedList) {
+        return checkedList.stream().filter(obj -> FilteringUtils.isInstanceOfFilteringExcludedElements(obj))
+            .collect(Collectors.toList());
+
       }
 
     };
@@ -460,6 +509,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     // No filtering Result is available in current selected project
     if (filteringResults.isEmpty()) {
+
       filteringResultCombo.removeAll();
       filteringResultCombo.add("No FilteringResults");
       currentSelectedResultLabel.setData("");
@@ -471,6 +521,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     } else {// Filtering results available
       filteringResultCombo.removeAll();
       filteringResultCombo.add("Select a FilteringResult");
+
       AbstractFilteringResult selectedFiltResult = FilteringToolsPlugin.getGlobalFilteringCache().get(mainProject);
       // if a current result has already been selected (put into
       // global filtering cache) then we should focus on corresponding
@@ -487,7 +538,38 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
       doSelectionInComboBox();
       viewSubControls.forEach(c -> c.setEnabled(enableCheckBtn.getSelection()));
     }
+
     filteringResultCombo.pack();
+
+    updateTreeViewerEnableState();
+    updateCheckUncheckAllEnableState();
+
+  }
+
+  /**
+   * Disable the tree if the input is a {@link ComposedFilteringResult}.
+   * 
+   */
+  private void updateTreeViewerEnableState() {
+    Object input = treeViewer.getInput();
+    treeViewer.refresh();
+    treeViewer.getTree().setEnabled(!(input instanceof ComposedFilteringResult));
+  }
+
+  /**
+   * Disable check/uncheckAll buttons if the input is a {@link ComposedFilteringResult}.
+   * 
+   */
+  private void updateCheckUncheckAllEnableState() {
+    Object input = treeViewer.getInput();
+    if (input instanceof ComposedFilteringResult) {
+      checkAllButton.setEnabled(false);
+      unchekAllButton.setEnabled(false);
+    }
+    if (input instanceof SystemEngineering) {
+      checkAllButton.setEnabled(true);
+      unchekAllButton.setEnabled(true);
+    }
 
   }
 
@@ -519,11 +601,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
       }
 
-      // if selection is an EObject update the view
-      if (selectedEObject != null) {
-        handleSelection(selectedEObject);
-        updateControls();
-      }
+      handleSelection(selectedEObject);
+      updateControls();
+
     }
   }
 
@@ -533,25 +613,30 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
       eObject = ((DSemanticDecorator) eObject).getTarget();
     if (eObject instanceof DRepresentationDescriptor)
       eObject = ((DRepresentationDescriptor) eObject).getTarget();
+
     focusOn(eObject);
-    mainProject = CapellaProjectHelper.getProject(eObject);
-    projects = FilteringUtils.getMainAndReferencedVariantProjects(eObject);
-    updateControls();
+
+    if (eObject != null) {
+      mainProject = CapellaProjectHelper.getProject(eObject);
+      projects = FilteringUtils.getMainAndReferencedVariantProjects(eObject);
+    }
   }
 
   private void focusOn(EObject eObj) {
+    if (eObj == null) {
+      // focus on null object should clear to tree
+      treeViewer.setInput(null);
+    }
 
     Session session = SessionManager.INSTANCE.getSession(eObj);
-    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-    TransactionalAdapterFactoryLabelProvider labelProvider = new TransactionalAdapterFactoryLabelProvider(
-        transactionalEditingDomain, ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory());
-    treeViewer.setLabelProvider(labelProvider);
-    treeViewer.setInput(FilteringUtils.getSystemEngineering(eObj));
-  }
 
-  @Override
-  public void setFocus() {
-    // TODO Auto-generated method stub
+    if (session != null) {
+      TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+      TransactionalAdapterFactoryLabelProvider labelProvider = new TransactionalAdapterFactoryLabelProvider(
+          transactionalEditingDomain, ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory());
+      treeViewer.setLabelProvider(labelProvider);
+      treeViewer.setInput(FilteringUtils.getSystemEngineering(eObj));
+    }
 
   }
 
@@ -630,6 +715,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     if (parent != null) {
       ungrayCheckHierarchy(parent);
     }
+
   }
 
   protected boolean determineShouldBeAtLeastGrayChecked(Object treeElement) {
@@ -680,6 +766,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
   }
 
   private void doSelectionInComboBox() {
+
     // index 0 is the title of the combo
     if (filteringResultCombo.getSelectionIndex() == 0) {
       // update label for current selected result
@@ -687,7 +774,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
       return;
     }
 
-    // -1 for not to count the title of the combo
+    // -1 to take into account the added title of the combo as combo item
     int realIndex = filteringResultCombo.getSelectionIndex() - 1;
 
     // TODO combo only allows the selection of one element... If
@@ -698,6 +785,28 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     Project project = CapellaProjectHelper.getProject(filteringResult);
 
     FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, filteringResult);
+
+    if (filteringResult instanceof FilteringResult) {
+      contentProvider = new CriteriaContentProvider();
+      treeViewer.setContentProvider(contentProvider);
+      treeViewer.setInput(FilteringUtils.getSystemEngineering(filteringResult));
+      uncheckedElements.clear();
+      checkedElements.clear();
+
+      updateTreeViewerEnableState();
+      updateCheckUncheckAllEnableState();
+    }
+
+    if (filteringResult instanceof ComposedFilteringResult) {
+      contentProvider = new FilteringResultsContentProvider();
+      treeViewer.setContentProvider(contentProvider);
+      treeViewer.setInput(filteringResult);
+      uncheckedElements.clear();
+      checkedElements.clear();
+
+      updateTreeViewerEnableState();
+      updateCheckUncheckAllEnableState();
+    }
 
     // Uncheck all
     for (Object element : contentProvider.getElements(projects)) {
@@ -713,4 +822,11 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     // update label for current selected result
     updateCurrentSelectedResultLabel(FilteringUtils.formatFilteringItemName(filteringResult));
   }
+
+  @Override
+  public void setFocus() {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

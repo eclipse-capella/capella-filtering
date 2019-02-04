@@ -73,7 +73,7 @@ public class MDCHK_D_CapellaElement_Parents extends AbstractModelConstraint {
                         filteringCriteria);
                     if (!missingFeatures.isEmpty()) {
                       statuses.add(ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(eObj),
-                          FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingFeatures),
+                          FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingFeatures),
                           ConstraintsUtil.getNameForMessage(child)));
                     }
                   }

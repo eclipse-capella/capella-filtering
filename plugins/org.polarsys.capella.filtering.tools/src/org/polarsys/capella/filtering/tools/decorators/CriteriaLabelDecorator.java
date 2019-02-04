@@ -27,7 +27,7 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 public class CriteriaLabelDecorator implements ILabelDecorator {
 
   /**
-   * Image descriptor for Variability overlay.
+   * Image descriptor for Filtering overlay.
    */
   public static final ImageDescriptor FILTERING_OVERLAY_DESC = AbstractUIPlugin
       .imageDescriptorFromPlugin(FilteringToolsPlugin.ID, "icons/ovr_optional.png"); //$NON-NLS-1$
@@ -58,7 +58,7 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
       return null;
     }
     if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
-      ComposedImage img = decorateVariability(image);
+      ComposedImage img = decorateFiltering(image);
       ImageDescriptor descriptor = new ComposedImageDescriptor(img);
       return FilteringToolsPlugin.getDefault().getImage(descriptor);
     }
@@ -67,7 +67,7 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
     return null;
   }
 
-  private ComposedImage decorateVariability(Image image) {
+  private ComposedImage decorateFiltering(Image image) {
     List<Object> images = new ArrayList<>(2);
     images.add(image);
     images.add(FilteringToolsPlugin.getDefault().getImage(FILTERING_OVERLAY_DESC));

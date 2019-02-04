@@ -43,141 +43,141 @@ import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
  * @generated
  */
 public class FilteringCriterionItemProvider extends NamedElementItemProvider implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-  /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public FilteringCriterionItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringCriterionItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-  /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-    }
-    // begin-extension-code
-    checkChildCreationExtender(object);
-    // end-extension-code
-    return itemPropertyDescriptors;
-  }
+		}
+		// begin-extension-code
+		checkChildCreationExtender(object);
+		// end-extension-code
+		return itemPropertyDescriptors;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public boolean hasChildren(Object object) {
-    return hasChildren(object, true);
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean hasChildren(Object object) {
+		return hasChildren(object, true);
+	}
 
-  /**
-   * This returns FilteringCriterion.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/FilteringCriterion")); //$NON-NLS-1$
-  }
+	/**
+	 * This returns FilteringCriterion.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FilteringCriterion")); //$NON-NLS-1$
+	}
 
-  /**
-   * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public String getText(Object object) {
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
 
-    String label = ((FilteringCriterion) object).getName();
-    // begin-extension-code
-    return label == null || label.length() == 0 ? "[" + getString("_UI_FilteringCriterion_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    // end-extension-code
-  }
+		String label = ((FilteringCriterion) object).getName();
+		// begin-extension-code
+		return label == null || label.length() == 0 ? "[" + getString("_UI_FilteringCriterion_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		// end-extension-code
+	}
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating a
-   * viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-    super.notifyChanged(notification);
-  }
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
+		super.notifyChanged(notification);
+	}
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-   * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-    // begin-extension-code
-    {
-      CommandParameter commandParameter = createChildParameter(
-          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS, FilteringFactory.eINSTANCE.createFilteringModel());
-      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-        newChildDescriptors.add(commandParameter);
-      }
-    }
-    // end-extension-code
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createFilteringModel());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
 
-    // begin-extension-code
-    {
-      CommandParameter commandParameter = createChildParameter(
-          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-          FilteringFactory.eINSTANCE.createFilteringResults());
-      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-        newChildDescriptors.add(commandParameter);
-      }
-    }
-    // end-extension-code
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createFilteringResults());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
 
-    // begin-extension-code
-    {
-      CommandParameter commandParameter = createChildParameter(
-          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-          FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet());
-      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-        newChildDescriptors.add(commandParameter);
-      }
-    }
-    // end-extension-code
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
 
-    // begin-extension-code
-    {
-      CommandParameter commandParameter = createChildParameter(
-          EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
-          FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
-      if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-        newChildDescriptors.add(commandParameter);
-      }
-    }
-    // end-extension-code
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
 
-  }
+	}
 
-  /**
-   * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return FilteringEditPlugin.INSTANCE;
-  }
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return FilteringEditPlugin.INSTANCE;
+	}
 
 }

@@ -156,6 +156,33 @@
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            activeByDefault="true"
+            contentProvider="org.polarsys.capella.filtering.tools.utils.ui.FilteringResultsContentProvider"
+            id="org.polarsys.capella.filtering.tools.filteringContent"
+            labelProvider="org.polarsys.capella.filtering.tools.dialogs.FilteringLabelProvider"
+            name="Customizing Filtering Result Tree view"
+            priority="high">
+         <enablement>
+            <or>
+               <instanceof
+                     value="org.polarsys.capella.core.data.capellamodeller.Project">
+               </instanceof>
+               <instanceof
+                     value="org.polarsys.capella.core.data.capellamodeller.SystemEngineering">
+               </instanceof>
+               <instanceof
+                     value="org.polarsys.capella.filtering.FilteringResults">
+               </instanceof>
+               <instanceof
+                     value="org.polarsys.capella.filtering.ComposedFilteringResult">
+               </instanceof>
+               <instanceof
+                     value="org.polarsys.capella.filtering.FilteringResultSet">
+               </instanceof>
+            </or>
+         </enablement>
+      </navigatorContent>
       <commonFilter
             activeByDefault="true"
             description="Hides Associated Feature Set from Capella elements"
@@ -204,6 +231,7 @@
             </instanceof>
          </filterExpression>
       </commonFilter>
+
    </extension>
    <extension
          point="org.eclipse.ui.navigator.viewer">

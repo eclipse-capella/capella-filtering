@@ -16,8 +16,7 @@ package org.polarsys.capella.filtering;
  *
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResult()
- * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null'
- *        used\040in\040levels='null' usage\040examples='null' constraints='null'"
+ * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
  * @generated
  */
 

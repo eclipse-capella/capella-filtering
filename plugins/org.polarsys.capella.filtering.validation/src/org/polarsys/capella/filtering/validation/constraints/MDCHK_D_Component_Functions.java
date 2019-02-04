@@ -48,7 +48,7 @@ public class MDCHK_D_Component_Functions extends AbstractModelConstraint {
               componentFeatures);
           if (!missingFeatures.isEmpty()) {
             statuses.add(ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(component),
-                FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingFeatures),
+                FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingFeatures),
                 ConstraintsUtil.getNameForMessage(function)));
           }
         }

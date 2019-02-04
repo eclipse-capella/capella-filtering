@@ -12,7 +12,9 @@ package org.polarsys.capella.filtering.properties;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -31,7 +33,7 @@ public class CapellaElementImplicitCriteria extends AbstractMultipleSemanticFiel
    */
   @Override
   public List<EObject> loadValues(EObject semanticElement, EStructuralFeature semanticFeature) {
-    return getValues(semanticElement);
+    return new ArrayList<EObject>(getValues(semanticElement));
   }
 
   /**
@@ -39,8 +41,8 @@ public class CapellaElementImplicitCriteria extends AbstractMultipleSemanticFiel
    * @param semanticFeature
    * @return
    */
-  private List<EObject> getValues(EObject semanticElement) {
-    List<EObject> result = new ArrayList<>();
+  private Set<EObject> getValues(EObject semanticElement) {
+    Set<EObject> result = new HashSet<>();
     // Get implicit
     result.addAll(FilteringUtils.getImplicitAssociatedCriteria(semanticElement));
     return result;

@@ -47,7 +47,7 @@
 		<module>org.polarsys.capella.filtering.transition</module>
 		<module>org.polarsys.capella.filtering.validation</module>
 		<module>org.polarsys.capella.filtering.af</module>
-		
+		<module>org.polarsys.capella.filtering.commandline</module>		
 	</modules>
 </project>
 

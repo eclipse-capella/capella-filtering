@@ -45,9 +45,9 @@ public class FilteringForMetricsLabelProvider extends FilteringLabelProvider {
     // Element name
     if (0 == columnIndex) {
       text = getText(element);
-      // Variability rate
+      // Filtering rate
     } else if (1 == columnIndex && element instanceof CapellaElement) {
-      Double metric = getVariabilityRate((EObject) element);
+      Double metric = getFilteringRate((EObject) element);
       varMetric = metric;
       DecimalFormat df = new DecimalFormat();
       df.setMaximumFractionDigits(2);
@@ -88,7 +88,7 @@ public class FilteringForMetricsLabelProvider extends FilteringLabelProvider {
    * @param element
    * @return
    */
-  public static Double getVariabilityRate(EObject element) {
+  public static Double getFilteringRate(EObject element) {
     // Return 100 if it contains associated features
     if (FilteringUtils.hasAssociatedCriteria(element)) {
       return 100.0;

@@ -10,7 +10,7 @@
 -->
 =Installation and Uninstall=
 
-Minimum requirements: Capella
+Minimal requirements: Capella
 
 There are two options to install the Add-On:
 

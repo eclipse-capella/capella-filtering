@@ -100,10 +100,10 @@ public class FilteringMetricsDialog extends AbstractExportDialog {
     GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
     combo.setLayoutData(gd);
 
-    combo.add(Messages.FilteringVariabilityMetricsDialog_0);
+    combo.add(Messages.FilteringMetricsDialog_0);
     combo.setData(String.valueOf(initialSelection), getData());
 
-    combo.add(Messages.FilteringVariabilityMetricsDialog_1);
+    combo.add(Messages.FilteringMetricsDialog_1);
     combo.setData(String.valueOf(1), getData());
 
     // Get feature model and create the widgets if it exists
@@ -183,8 +183,8 @@ public class FilteringMetricsDialog extends AbstractExportDialog {
 
     columnViewer = new TreeViewerColumn(viewer, SWT.LEFT | SWT.FILL);
     column = columnViewer.getColumn();
-    column.setText(Messages.FilteringVariabilityMetricsDialog_2);
-    column.setToolTipText(Messages.FilteringVariabilityMetricsDialog_3);
+    column.setText(Messages.FilteringMetricsDialog_2);
+    column.setToolTipText(Messages.FilteringMetricsDialog_3);
     column.setWidth(150);
 
     viewer.getTree().setLinesVisible(true);
@@ -219,7 +219,7 @@ public class FilteringMetricsDialog extends AbstractExportDialog {
       row.add(me.getFullLabel());
       row.add(me.getLabel());
       // Add the metric
-      Double metric = FilteringForMetricsLabelProvider.getVariabilityRate(me);
+      Double metric = FilteringForMetricsLabelProvider.getFilteringRate(me);
       DecimalFormat df = new DecimalFormat();
       df.setMaximumFractionDigits(2);
       row.add(df.format(metric));

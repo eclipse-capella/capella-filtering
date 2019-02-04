@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.polarsys.capella.core.data.capellamodeller.Project;
+import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionPkg;
@@ -30,7 +31,7 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 /**
  * Filtering Criteria Content Provider.
  */
-public class CriteriaContentProvider implements IStructuredContentProvider, ITreeContentProvider {
+public class CriteriaContentProvider implements ITreeContentProvider {
 
   public Object[] getElements(Object inputElement) {
     return getChildren(inputElement);
@@ -55,7 +56,7 @@ public class CriteriaContentProvider implements IStructuredContentProvider, ITre
 
       return getChildren(((DSemanticDiagram) parentElement).getTarget());
 
-    } else if (parentElement instanceof EObject) {
+    } else if (parentElement instanceof SystemEngineering) {
       children.addAll(FilteringUtils.getMainAndReferencedVariantProjects((EObject) parentElement));
     }
     return children.toArray();

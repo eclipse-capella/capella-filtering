@@ -11,6 +11,7 @@
 package org.polarsys.capella.filtering.tools.dialogs;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -54,7 +55,7 @@ public class FilteringOverviewDialog extends AbstractExportDialog {
    * @param elements
    */
   public FilteringOverviewDialog(Shell parentShell, String dialogTitle, String dialogMessage, EObject root,
-      List<? extends EObject> elements) {
+      Collection<? extends EObject> elements) {
     super(parentShell, dialogTitle, dialogMessage, dialogTitle);
     this.root = root;
     setData(new TreeData(elements, null));

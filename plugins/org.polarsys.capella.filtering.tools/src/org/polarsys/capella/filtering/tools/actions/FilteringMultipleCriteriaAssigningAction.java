@@ -91,7 +91,9 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
     int elementCounter = 0;
     for (ModelElement element : selectedElements) {
       if (element instanceof CapellaElement) {
+
         elementCounter++;
+
         List<FilteringCriterion> elementFeatures = FilteringUtils.getExplicitAssociatedCriteria((element));
         for (EObject feature : elementFeatures) {
           if (!infoFeatures.containsKey(feature)) {
@@ -106,7 +108,7 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
       }
     }
 
-    // Search for global features
+    // Search for global criteria (i.e. criteria that are used by all selected elements)
     for (Object concreteFeature : availableFeatures) {
       Integer counter = infoFeatures.get(concreteFeature);
       if ((counter != null) && (counter == elementCounter)) {
@@ -121,9 +123,10 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
       // Execute a command with the user modifications
 
       AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+
         public void run() {
-          List<FilteringCriterion> featuresToAdd = new ArrayList<>();
-          List<FilteringCriterion> featuresToRemove = new ArrayList<>();
+          Set<FilteringCriterion> featuresToAdd = new HashSet<>();
+          Set<FilteringCriterion> featuresToRemove = new HashSet<>();
 
           Collection<Object> toCheck = checkedTreeSelectionDialog.getCheckedElements();
           Collection<Object> toUnCheck = checkedTreeSelectionDialog.getUnCheckedElements();
@@ -151,6 +154,8 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
               FilteringUtils.addAssociatedCriteria(mElement, featuresToAdd);
               FilteringUtils.removeAssociatedCriteria(mElement, featuresToRemove);
             }
+            featuresToAdd.clear();
+            featuresToRemove.clear();
           }
         }
       };

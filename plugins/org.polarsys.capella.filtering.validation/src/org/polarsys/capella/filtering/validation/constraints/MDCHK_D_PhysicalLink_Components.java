@@ -61,19 +61,19 @@ public class MDCHK_D_PhysicalLink_Components extends AbstractModelConstraint {
         String message = ""; //$NON-NLS-1$
         if (!missingOutputFeatures.isEmpty()) {
           message = ConstraintsUtil.getNameForMessage(outputObject) + " is missing " + "[" //$NON-NLS-2$
-              + FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingOutputFeatures) + "]"; //$NON-NLS-1$
+              + FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingOutputFeatures) + "]"; //$NON-NLS-1$
         }
         if (!missingInputFeatures.isEmpty()) {
           if (!message.isEmpty()) {
             message = message + " and ";
           }
           message = message + ConstraintsUtil.getNameForMessage(inputObject) + " is missing " + "[" //$NON-NLS-2$
-              + FilteringUtils.getCommaSeparatedVariabilityFeaturesList(missingInputFeatures) + "]"; //$NON-NLS-1$
+              + FilteringUtils.getCommaSeparatedFilteringCriteriaList(missingInputFeatures) + "]"; //$NON-NLS-1$
 
         }
         if (!message.isEmpty()) {
           return ctx.createFailureStatus(ConstraintsUtil.getNameForMessage(physicalLink),
-              FilteringUtils.getCommaSeparatedVariabilityFeaturesList(feFeatures), message);
+              FilteringUtils.getCommaSeparatedFilteringCriteriaList(feFeatures), message);
         }
       }
     }

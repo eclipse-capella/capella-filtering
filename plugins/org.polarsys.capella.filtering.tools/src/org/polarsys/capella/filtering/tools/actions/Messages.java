@@ -35,6 +35,7 @@ interface Messages {
   String FilteringProjectWizard_description = "Derive a new Capella project.";
   String FilteringProjectWizard_title = "Capella Project";
   String FilteringProjectWizard_CriteriaelectionGroup_title = "Filtering Criteria that are going to be used for derivation";
+  String ComposedFilteringProjectWizard_ComposedResultelectionGroup_title = "Composed Filtering Result that is going to be used for derivation";
   String AssignFilteringCriteriaAction_title = "Assign Filtering Criteria";
   String AssignFilteringCriteriaAction_message = "Select the desired Filtering Criteria for the selection";
   String FilteringExtractionAction_0 = "Problems found";

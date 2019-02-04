@@ -13,25 +13,23 @@ import org.polarsys.capella.filtering.UnionFilteringResultSet;
  * @generated
  */
 public class UnionFilteringResultSetImpl extends FilteringResultSetImpl implements UnionFilteringResultSet {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected UnionFilteringResultSetImpl() {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnionFilteringResultSetImpl() {
 
-    super();
+		super();
 
-  }
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FilteringPackage.Literals.UNION_FILTERING_RESULT_SET;
-  }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return FilteringPackage.Literals.UNION_FILTERING_RESULT_SET;
+	}
 
 } // UnionFilteringResultSetImpl

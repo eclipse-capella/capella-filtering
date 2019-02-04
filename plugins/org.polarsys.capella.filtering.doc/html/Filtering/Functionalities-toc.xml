@@ -1,42 +1,39 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc topic="html/Filtering/Functionalities.html" label="Functionalities">
 	<topic href="html/Filtering/Functionalities.html" label="Functionalities">
-		<topic href="html/Filtering/Functionalities.html#Defining_the_Variability_model" label="Defining the Variability model">
-			<topic href="html/Filtering/Functionalities.html#Adding_new_features_to_the_Variability_model" label="Adding new features to the Variability model"></topic>
+		<topic href="html/Filtering/Functionalities.html#Defining_the_Filtering_model" label="Defining the Filtering model">
+			<topic href="html/Filtering/Functionalities.html#Adding_new_criteria_to_the_Filtering_model" label="Adding new criteria to the Filtering model"></topic>
 		</topic>
-		<topic href="html/Filtering/Functionalities.html#Associate_Model_elements_with_Features" label="Associate Model elements with Features">
-			<topic href="html/Filtering/Functionalities.html#Multiple_elements_Assignation" label="Multiple elements Assignation"></topic>
-			<topic href="html/Filtering/Functionalities.html#Using_an_existing_Configuration_for_feature_assignation" label="Using an existing FilteringResult for feature assignation"></topic>
-			<topic href="html/Filtering/Functionalities.html#Automatic_assignation_when_creating_Model_Elements" label="Automatic assignation when creating Model Elements"></topic>
+		<topic href="html/Filtering/Functionalities.html#Associate_Model_elements_with_criteria" label="Associate Model elements with criteria">
+			<topic href="html/Filtering/Functionalities.html#Multiple_Elements_Assigning" label="Multiple Elements Assigning"></topic>
+			<topic href="html/Filtering/Functionalities.html#Using_an_existing_Filtering_Result_for_criterion_assigning" label="Using an existing Filtering Result for criterion assigning"></topic>
+			<topic href="html/Filtering/Functionalities.html#Automatic_assigning_when_creating_Model_Elements" label="Automatic assigning when creating Model Elements"></topic>
 		</topic>
-		<topic href="html/Filtering/Functionalities.html#Creating_specific_product_configurations" label="Creating specific product configurations">
-			<topic href="html/Filtering/Functionalities.html#Create_configurations" label="Create configurations"></topic>
+		<topic href="html/Filtering/Functionalities.html#Creating_specific_product_Filtering_Results" label="Creating specific product Filtering Results">
+			<topic href="html/Filtering/Functionalities.html#Create_Filtering_Results" label="Create Filtering Results"></topic>
 			<topic href="html/Filtering/Functionalities.html#Product_family_representation" label="Product family representation"></topic>
 		</topic>
 		<topic href="html/Filtering/Functionalities.html#Derivation_of_a_specific_Product" label="Derivation of a specific Product"></topic>
 		<topic href="html/Filtering/Functionalities.html#Derivation_with_libraries" label="Derivation with libraries">
 			<topic href="html/Filtering/Functionalities.html#Derivation_of_a_project_doesn.E2.80.99t_derive_its_referenced_libraries" label="Derivation of a project doesn’t derive its referenced libraries"></topic>
-			<topic href="html/Filtering/Functionalities.html#Variability_Features_from_Libraries" label="Variability Features from Libraries"></topic>
-			<topic href="html/Filtering/Functionalities.html#Source_and_application_project_ID" label="Source and application project ID"></topic>
+			<topic href="html/Filtering/Functionalities.html#Filtering_criteria_from_Libraries" label="Filtering criteria from Libraries"></topic>
+			<topic href="html/Filtering/Functionalities.html#Domain_and_application_project_IDs" label="Domain and application project IDs"></topic>
 		</topic>
 		<topic href="html/Filtering/Functionalities.html#Visualizing_filtering_in_Model_Elements" label="Visualizing filtering in Model Elements">
-			<topic href="html/Filtering/Functionalities.html#Variability_related_decorators" label="Variability related decorators"></topic>
-			<topic href="html/Filtering/Functionalities.html#Variability_Features_Overview" label="Variability Features Overview"></topic>
+			<topic href="html/Filtering/Functionalities.html#Filtering_related_decorators" label="Filtering related decorators"></topic>
+			<topic href="html/Filtering/Functionalities.html#Filtering_criteria_Overview" label="Filtering criteria Overview"></topic>
 		</topic>
-		<topic href="html/Filtering/Functionalities.html#Filtering_based_on_features" label="Filtering based on features">
+		<topic href="html/Filtering/Functionalities.html#Filtering_based_on_criterion" label="Filtering based on criterion">
 			<topic href="html/Filtering/Functionalities.html#Hide_Optionals_and_Hide_Common_filters" label="Hide Optionals and Hide Common filters"></topic>
-			<topic href="html/Filtering/Functionalities.html#Show_or_hide_elements_based_on_the_selection_of_a_set_of_features" label="Show or hide elements based on the selection of a set of features"></topic>
+			<topic href="html/Filtering/Functionalities.html#Show_or_hide_elements_based_on_the_selection_of_a_set_of_criteria" label="Show or hide elements based on the selection of a set of criteria"></topic>
 		</topic>
-		<topic href="html/Filtering/Functionalities.html#Pinning_feature_elements_in_the_diagram" label="Pinning feature elements in the diagram"></topic>
-		<topic href="html/Filtering/Functionalities.html#Select_feature_elements_in_the_diagram" label="Select feature elements in the diagram"></topic>
-		<topic href="html/Filtering/Functionalities.html#Variability_metrics" label="Variability metrics"></topic>
+		<topic href="html/Filtering/Functionalities.html#Pinning_criterion_elements_in_the_diagram" label="Pinning criterion elements in the diagram"></topic>
+		<topic href="html/Filtering/Functionalities.html#Select_criterion_elements_in_the_diagram" label="Select criterion elements in the diagram"></topic>
+		<topic href="html/Filtering/Functionalities.html#Filtering_metrics" label="Filtering metrics"></topic>
 		<topic href="html/Filtering/Functionalities.html#Propagation_of_filtering_in_transitions" label="Propagation of filtering in transitions"></topic>
 		<topic href="html/Filtering/Functionalities.html#Validation" label="Validation">
-			<topic href="html/Filtering/Functionalities.html#Integrity" label="Integrity"></topic>
-			<topic href="html/Filtering/Functionalities.html#Design" label="Design"></topic>
 		</topic>
 		<topic href="html/Filtering/Functionalities.html#Customize_Capella_Project_Explorer" label="Customize Capella Project Explorer"></topic>
-		<topic href="html/Filtering/Functionalities.html#Orchestra_compatibility" label="Orchestra compatibility"></topic>
-		<topic href="html/Filtering/Functionalities.html#Melody_Team_compatibility" label="Melody Team compatibility"></topic>
+		<topic href="html/Filtering/Functionalities.html#Melody_Team_compatibility" label="Capella Team compatibility"></topic>
 	</topic>
 </toc>

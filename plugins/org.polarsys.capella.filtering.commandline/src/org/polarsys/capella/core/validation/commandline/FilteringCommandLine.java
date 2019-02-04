@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -51,7 +52,10 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.model.helpers.query.CapellaQueries;
 import org.polarsys.capella.core.sirius.ui.helper.SessionHelper;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
+import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
+import org.polarsys.capella.filtering.FilteringResult;
+import org.polarsys.capella.filtering.tools.actions.ComposedFilteringExtractionJob;
 import org.polarsys.capella.filtering.tools.actions.FilteringExtractionJob;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
@@ -103,7 +107,7 @@ public class FilteringCommandLine extends AbstractCommandLine {
     String projectName = getProjectName(argHelper.getFilePath());
     IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
     if (!project.exists()) {
-      logError(Messages.project + projectName + Messages.not_exist);
+      logErrorAndThrowException(Messages.project + projectName + Messages.not_exist);
     }
     // file exists in the project ?
     try {
@@ -115,14 +119,14 @@ public class FilteringCommandLine extends AbstractCommandLine {
     IFile file = project.getFile(getRelativeFilePath(argHelper.getFilePath()));
     if (!file.exists()) {
       String message = Messages.aird + argHelper.getFilePath() + Messages.not_exist;
-      logError(message);
-      throw new CommandLineException(message);
+      logErrorAndThrowException(message);
+      ;
     }
   }
 
   @Override
   public void printHelp() {
-    System.out.println("Capella Filtering Command Line Derivator"); //$NON-NLS-1$
+    logInfo("Capella Filtering Command Line Derivator"); //$NON-NLS-1$
     super.printHelp();
   }
 
@@ -142,18 +146,17 @@ public class FilteringCommandLine extends AbstractCommandLine {
     String filteringResultId = ((FilteringArgumentHelper) argHelper).getFilteringResultId();
 
     if (isEmtyOrNull(filteringResultId)) {// validate selected EObjects
-      System.err.println("Filtering result id is null or empty!");
+      logErrorAndThrowException("Filtering result id is null or empty!");
     }
 
-    boolean status;
+    boolean status = false;
 
     try {
 
       status = execute(uri, filteringResultId, outputFolder);
 
     } catch (CoreException | FileNotFoundException | OperationCanceledException | InterruptedException exception) {
-      logError(exception.getMessage());
-      throw new CommandLineException(exception.getMessage());
+      logErrorAndThrowException(exception.getMessage());
     }
 
     if (status) {
@@ -171,34 +174,27 @@ public class FilteringCommandLine extends AbstractCommandLine {
     IProject currentProject = FilteringUtils.getEclipseProject(semanticRootElement);
 
     if (semanticRootElement == null) {
-      throw new CommandLineException("No semantic model found!"); //$NON-NLS-1$
+      logErrorAndThrowException("No semantic model found!"); //$NON-NLS-1$
     }
 
     ModelElement element = CapellaQueries.getInstance().getGetElementsQueries().getElementById(semanticRootElement,
         filteringResultId);
 
     if (!(element instanceof AbstractFilteringResult)) {
-      System.err.println("Id does not reference a Filtering Result!");
-      return false;
+      logErrorAndThrowException("Id does not reference a Filtering Result!"); //$NON-NLS-1$
     }
 
     AbstractFilteringResult filteringResult = (AbstractFilteringResult) element;
-
-    // create derivated empty project
-
-    // List<IProject> referencedProjects = Collections.emptyList();
-    // IProject clonedProject = helper.createNewEclipseProject(newProjectName, newPath, referencedProjects, monitor);
-    // SessionCreationHelper helper = new ProjectSessionCreationHelper(true, true, ProjectApproach.SingletonComponents);
 
     // Create derived project
     IWorkspace workspace = ResourcesPlugin.getWorkspace();
     String derivedProjectName = filteringResult.getName();
 
-    // If project already exists get a non existent project name
+    // If project already exists try to find a not used project name
     int i = 2;
 
     while (FilteringUtils.projectExists(derivedProjectName)) {
-      System.out.println("a project with name: " + derivedProjectName + " already exists");
+      logInfo("a project with name: " + derivedProjectName + " already exists");
       derivedProjectName = filteringResult.getName() + "_" + i; //$NON-NLS-1$
       i++;
     }
@@ -207,17 +203,22 @@ public class FilteringCommandLine extends AbstractCommandLine {
 
     IProgressMonitor progressMonitor = new NullProgressMonitor();
     derivedProject.create(progressMonitor);
-    derivedProject.open(progressMonitor); // TODO: NEEDED ?
+    derivedProject.open(progressMonitor);
 
     FilteringCriterionSet computedFilteringCriterionSet = filteringResult.computeFilteringCriterionSet();
 
-    // if (computedFilteringCriterionSet == null) {
-    // fail(getInfoOfCurrentTest() + "Filtering result is empty! (computed filtering criterion set is empty)");
-    // }
-
     // Create and run derivation Job
-    FilteringExtractionJob job = new FilteringExtractionJob(currentProject, derivedProject,
-        computedFilteringCriterionSet.getFilteringCriteria(), filteringResult, null);
+
+    IWorkspaceRunnable job = null;
+
+    if (filteringResult instanceof ComposedFilteringResult)
+      job = new ComposedFilteringExtractionJob(currentProject, derivedProject,
+          computedFilteringCriterionSet.getFilteringCriteria(), filteringResult, null);
+    else if (filteringResult instanceof FilteringResult) {
+      job = new FilteringExtractionJob(currentProject, derivedProject,
+          computedFilteringCriterionSet.getFilteringCriteria(), filteringResult, null);
+    }
+
     workspace.run(job, progressMonitor);
 
     Session session = SessionManager.INSTANCE.getSession(uri, new NullProgressMonitor());
@@ -239,7 +240,7 @@ public class FilteringCommandLine extends AbstractCommandLine {
     return;
   }
 
-  /**
+  /** Loads a list of EObject from URIs
    * @param project
    * @param uris
    * @throws CoreException

@@ -3,7 +3,6 @@ package org.polarsys.capella.filtering.tests.ju.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
