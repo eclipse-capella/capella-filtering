@@ -555,7 +555,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 				// begin-extension-code
 				if (ModelExtensionHelper.getInstance(object).isExtensionModelDisabled(
 						EcoreUtil.getRootContainer(object).eClass().getEPackage().getNsURI(),
-						"http://www.polarsys.org/capella/filtering/1.2.0")) { //$NON-NLS-1$
+						"http://www.polarsys.org/capella/filtering/1.3.0")) { //$NON-NLS-1$
 					return null;
 				}
 				// end-extension-code

@@ -70,10 +70,9 @@ public class DerivationTestCase extends BasicTestCase {
 
   @Override
   public List<String> getRequiredTestModels() {
-    return Arrays.asList("MyLib", "sysmodel", "sysmodel_Empty FilteringResult", "sysmodel_FilteringResult 1",
-        "sysmodel_FilteringResult 2", "TestLib", "TestLib_DieselFilteringResult", "TestLib_HybridFilteringResult",
-        "TestLib_PetrolFilteringResult", "TestSPLProject", "TestSPLProject_EmptyFilteringResult",
-        "TestSPLProject_FilteringResult");
+    return Arrays.asList("MyLib", "sysmodel", "sysmodel_S_FR1", "sysmodel_S_FR2", "sysmodel_S_Empty_FR", "TestLib",
+        "TestLib_DieselFilteringResult", "TestLib_HybridFilteringResult", "TestLib_PetrolFilteringResult",
+        "TestSPLProject", "TestSPLProject_EmptyFilteringResult", "TestSPLProject_FilteringResult");
   }
 
   public List<String> getModelsUnderTest() {

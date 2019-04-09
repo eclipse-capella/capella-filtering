@@ -51,9 +51,10 @@ public class CriteriaMultipleSemanticField extends MultipleSemanticField {
   @Override
   protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
       List<EObject> availableElements, String title, String message) {
-    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    
+    Session session = SessionManager.INSTANCE.getSession(semanticElement);
     TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(semanticElement);
     FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),

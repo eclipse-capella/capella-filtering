@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.polarsys.capella.filtering.sirius.analysis;singleton:=true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: org.polarsys.capella.filtering.sirius.analysis.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.capella.filtering.model,
  org.polarsys.capella.core.model.handler,
  org.eclipse.sirius.diagram,
- org.polarsys.capella.filtering.semantic.queries;bundle-version="1.2.0",
+ org.polarsys.capella.filtering.semantic.queries;bundle-version="1.3.0",
  org.polarsys.capella.core.model.helpers,
  org.eclipse.draw2d,
  org.eclipse.sirius.diagram.ui

@@ -30,19 +30,19 @@
             cache="true"
             mode="Batch">
          <package
-               namespaceUri="http://www.polarsys.org/capella/filtering/1.2.0">
+               namespaceUri="http://www.polarsys.org/capella/filtering/1.3.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/modeller/1.2.0">
+               namespaceUri="http://www.polarsys.org/capella/core/modeller/1.3.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/core/1.2.0">
+               namespaceUri="http://www.polarsys.org/capella/core/core/1.3.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/cs/1.2.0">
+               namespaceUri="http://www.polarsys.org/capella/core/cs/1.3.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/fa/1.2.0">
+               namespaceUri="http://www.polarsys.org/capella/core/fa/1.3.0">
          </package>
          <constraints
                categories="capella.category/filtering/integrity">

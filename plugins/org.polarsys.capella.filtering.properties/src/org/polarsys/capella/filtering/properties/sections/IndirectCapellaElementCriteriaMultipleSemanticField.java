@@ -54,9 +54,9 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
   @Override
   protected List<EObject> openTransferDialog(Button button, List<EObject> currentElements,
       List<EObject> availableElements, String title, String message) {
-    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    Session session = SessionManager.INSTANCE.getSession(semanticElement);
     TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(semanticElement);
     final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
@@ -82,17 +82,17 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
   @Override
   protected void handleDeleteButtonClicked() {
     // Do nothing if already empty
-    if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).isEmpty()) {
+    if (FilteringUtils.getExplicitAssociatedCriteria(semanticElement).isEmpty()) {
       return;
     }
     // Delete
     AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
       public void run() {
-        FilteringUtils.removeAssociatedCriteria(_semanticElement,
-            FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
+        FilteringUtils.removeAssociatedCriteria(semanticElement,
+            FilteringUtils.getExplicitAssociatedCriteria(semanticElement));
       }
     };
-    FilteringUtils.executeCommand(command, _semanticElement);
+    FilteringUtils.executeCommand(command, semanticElement);
     setValueTextField(Collections.emptyList());
   }
 
@@ -103,20 +103,20 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
    */
   @Override
   protected void handleOpenButtonClicked(final Button button) {
-    Session session = SessionManager.INSTANCE.getSession(_semanticElement);
+    Session session = SessionManager.INSTANCE.getSession(semanticElement);
     TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(_semanticElement);
+    Collection<Project> projects = FilteringUtils.getMainAndReferencedVariantProjects(semanticElement);
     final FilteringCriteriaSelectionDialog dialog = new FilteringCriteriaSelectionDialog(button.getShell(),
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
         new CriteriaContentProvider(), projects);
-    String title = NamingHelper.getDefaultTitle(_semanticElement);
-    String message = NamingHelper.getDefaultMessage(_semanticElement,
-        (_semanticFeature != null) ? _semanticFeature.getName() : ""); //$NON-NLS-1$
+    String title = NamingHelper.getDefaultTitle(semanticElement);
+    String message = NamingHelper.getDefaultMessage(semanticElement,
+        (semanticFeature != null) ? semanticFeature.getName() : ""); //$NON-NLS-1$
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setInput(projects);
-    List<FilteringCriterion> currentElements = FilteringUtils.getExplicitAssociatedCriteria(_semanticElement);
+    List<FilteringCriterion> currentElements = FilteringUtils.getExplicitAssociatedCriteria(semanticElement);
     dialog.setInitialElementSelections(currentElements);
     if (dialog.open() != Window.OK) {
       // User press cancel or close, return previous elements
@@ -138,20 +138,20 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
         Collection<Object> toUnCheck = dialog.getUnCheckedElements();
 
         for (Object unCheckMe : toUnCheck) {
-          if (FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(unCheckMe)) {
+          if (FilteringUtils.getExplicitAssociatedCriteria(semanticElement).contains(unCheckMe)) {
             featuresToRemove.add((FilteringCriterion) unCheckMe);
           }
         }
         for (Object checkMe : toCheck) {
-          if (!FilteringUtils.getExplicitAssociatedCriteria(_semanticElement).contains(checkMe)) {
+          if (!FilteringUtils.getExplicitAssociatedCriteria(semanticElement).contains(checkMe)) {
             featuresToAdd.add((FilteringCriterion) checkMe);
           }
         }
-        FilteringUtils.addAssociatedCriteria(_semanticElement, featuresToAdd);
-        FilteringUtils.removeAssociatedCriteria(_semanticElement, featuresToRemove);
+        FilteringUtils.addAssociatedCriteria(semanticElement, featuresToAdd);
+        FilteringUtils.removeAssociatedCriteria(semanticElement, featuresToRemove);
       }
     };
-    FilteringUtils.executeCommand(command, _semanticElement);
-    setValueTextField(FilteringUtils.getExplicitAssociatedCriteria(_semanticElement));
+    FilteringUtils.executeCommand(command, semanticElement);
+    setValueTextField(FilteringUtils.getExplicitAssociatedCriteria(semanticElement));
   }
 }

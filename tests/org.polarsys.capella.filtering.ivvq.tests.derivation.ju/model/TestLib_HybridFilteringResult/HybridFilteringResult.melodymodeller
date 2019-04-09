@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--Capella_Version_1.2.1-->
+<!--Capella_Version_1.3.1-->
 <org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:filtering="http://www.polarsys.org/capella/filtering/1.2.0"
-    xmlns:libraries="http://www.polarsys.org/capella/common/libraries/1.2.0" xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/1.2.0"
-    xmlns:org.polarsys.capella.core.data.capellacore="http://www.polarsys.org/capella/core/core/1.2.0"
-    xmlns:org.polarsys.capella.core.data.capellamodeller="http://www.polarsys.org/capella/core/modeller/1.2.0"
-    xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/1.2.0"
-    xmlns:org.polarsys.capella.core.data.ctx="http://www.polarsys.org/capella/core/ctx/1.2.0"
-    xmlns:org.polarsys.capella.core.data.epbs="http://www.polarsys.org/capella/core/epbs/1.2.0"
-    xmlns:org.polarsys.capella.core.data.fa="http://www.polarsys.org/capella/core/fa/1.2.0"
-    xmlns:org.polarsys.capella.core.data.information="http://www.polarsys.org/capella/core/information/1.2.0"
-    xmlns:org.polarsys.capella.core.data.information.datatype="http://www.polarsys.org/capella/core/information/datatype/1.2.0"
-    xmlns:org.polarsys.capella.core.data.information.datavalue="http://www.polarsys.org/capella/core/information/datavalue/1.2.0"
-    xmlns:org.polarsys.capella.core.data.la="http://www.polarsys.org/capella/core/la/1.2.0"
-    xmlns:org.polarsys.capella.core.data.oa="http://www.polarsys.org/capella/core/oa/1.2.0"
-    xmlns:org.polarsys.capella.core.data.pa="http://www.polarsys.org/capella/core/pa/1.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:filtering="http://www.polarsys.org/capella/filtering/1.3.0"
+    xmlns:libraries="http://www.polarsys.org/capella/common/libraries/1.3.0" xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/1.3.0"
+    xmlns:org.polarsys.capella.core.data.capellacore="http://www.polarsys.org/capella/core/core/1.3.0"
+    xmlns:org.polarsys.capella.core.data.capellamodeller="http://www.polarsys.org/capella/core/modeller/1.3.0"
+    xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/1.3.0"
+    xmlns:org.polarsys.capella.core.data.ctx="http://www.polarsys.org/capella/core/ctx/1.3.0"
+    xmlns:org.polarsys.capella.core.data.epbs="http://www.polarsys.org/capella/core/epbs/1.3.0"
+    xmlns:org.polarsys.capella.core.data.fa="http://www.polarsys.org/capella/core/fa/1.3.0"
+    xmlns:org.polarsys.capella.core.data.information="http://www.polarsys.org/capella/core/information/1.3.0"
+    xmlns:org.polarsys.capella.core.data.information.datatype="http://www.polarsys.org/capella/core/information/datatype/1.3.0"
+    xmlns:org.polarsys.capella.core.data.information.datavalue="http://www.polarsys.org/capella/core/information/datavalue/1.3.0"
+    xmlns:org.polarsys.capella.core.data.la="http://www.polarsys.org/capella/core/la/1.3.0"
+    xmlns:org.polarsys.capella.core.data.oa="http://www.polarsys.org/capella/core/oa/1.3.0"
+    xmlns:org.polarsys.capella.core.data.pa="http://www.polarsys.org/capella/core/pa/1.3.0"
     id="_Vb1nUNOpEeij-LBTbT3bIg"
     name="HybridFilteringResult">
   <ownedExtensions xsi:type="libraries:ModelInformation" id="f43c90fe-c74e-4f9f-8532-64aad8c0c9d1">
     <ownedReferences xsi:type="libraries:LibraryReference" id="7f9656d1-b9e1-4a70-97bd-87f2c692223a"
-        library="libraries:ModelInformation ../MyLib/MyLib.melodymodeller#e0549bf5-b384-4a9f-92a1-3fea48a94a25"/>
+        library="libraries:ModelInformation platform:/resource/MyLib/MyLib.melodymodeller#e0549bf5-b384-4a9f-92a1-3fea48a94a25"/>
   </ownedExtensions>
   <ownedEnumerationPropertyTypes xsi:type="org.polarsys.capella.core.data.capellacore:EnumerationPropertyType"
       id="95e15b95-b1d2-401e-afd3-3ffe90e57c40" name="ProgressStatus">
@@ -44,11 +44,11 @@
     <ownedExtensions xsi:type="filtering:FilteringResults" id="ade2f468-4575-4728-8583-010d8a241980"
         name="EngineFilteringResults">
       <filteringResults xsi:type="filtering:FilteringResult" id="ee4bd2ca-31cd-4ccf-b9d9-4fc770bdc64e"
-          name="DieselFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.melodymodeller#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
+          name="DieselFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="8ca5b856-0158-4e9f-8fbc-80c384fe36a0"
-          name="HybridFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
+          name="HybridFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="b3993f54-c307-4009-abbc-d2b94e4f2263"
-          name="EssenceFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.melodymodeller#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
+          name="EssenceFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
     </ownedExtensions>
     <ownedArchitectures xsi:type="org.polarsys.capella.core.data.oa:OperationalAnalysis"
         id="96fbc8b3-9371-46d3-8215-48a0ed574a37" name="Operational Analysis">
@@ -90,7 +90,7 @@
         <ownedAssociations xsi:type="org.polarsys.capella.core.data.information:Association"
             id="8039b6f5-2729-4f7e-8bbb-a95a9467f123" name="DataAssociation3" navigableMembers="#8423a942-9cc2-4560-a2be-103192e2460c">
           <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet" id="c7eb8a47-4d70-4cf7-bcf3-922aaaab71dd"
-              filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
+              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
           <ownedMembers xsi:type="org.polarsys.capella.core.data.information:Property"
               id="e14f5307-78ee-4f28-9a5c-385105ffc686" name="engine" abstractType="#a3d1bdc4-a79e-4015-a7b2-57992588250d"
               aggregationKind="ASSOCIATION">
@@ -206,7 +206,7 @@
         <ownedClasses xsi:type="org.polarsys.capella.core.data.information:Class"
             id="2303e097-584a-4a5a-b887-8fc8931a883b" name="Battery">
           <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet" id="15e7dab1-0eac-4502-9fa1-db4ed26ecf97"
-              filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
+              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
         </ownedClasses>
       </ownedDataPkg>
       <ownedSystemContext xsi:type="org.polarsys.capella.core.data.ctx:SystemContext"
