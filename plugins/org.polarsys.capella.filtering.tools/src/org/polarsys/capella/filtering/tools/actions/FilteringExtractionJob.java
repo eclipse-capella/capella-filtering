@@ -372,20 +372,6 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
                 return allElementsToDelete;
               }
             };
-            command.setLabel("MY DELETE COMMAND");
-
-            // {
-            //
-            // @Override
-            // public Collection<?> getAffectedObjects() {
-            // // to avoid NPE on parent classes
-            // // Set<?> set = getAllElementsToDelete();
-            // // if (set == null)
-            // return Collections.emptySet();
-            // }
-            //
-            // }
-            ;
 
             if (command.canExecute()) {
               // execute the command

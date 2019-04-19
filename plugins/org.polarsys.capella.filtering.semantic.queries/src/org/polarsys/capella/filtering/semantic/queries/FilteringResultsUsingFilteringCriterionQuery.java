@@ -33,6 +33,7 @@ public class FilteringResultsUsingFilteringCriterionQuery implements IQuery {
     List<Object> result = new ArrayList<>();
     if ((object instanceof FilteringCriterion)) {
       FilteringCriterion filteringCriterion = (FilteringCriterion) object;
+
       // Loop through filtering Results
       FilteringResults filteringResults = FilteringUtils.getFilteringResults(filteringCriterion);
       if (filteringResults != null) {
