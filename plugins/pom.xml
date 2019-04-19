@@ -37,6 +37,7 @@
 		<module>org.polarsys.capella.filtering.doc</module>
 		<module>org.polarsys.capella.filtering.menu.contribution</module>
 		<module>org.polarsys.capella.filtering.model</module>
+		<module>org.polarsys.capella.filtering.migration</module>
 		<module>org.polarsys.capella.filtering.model.cdo</module>
 		<module>org.polarsys.capella.filtering.model.edit</module>
 		<module>org.polarsys.capella.filtering.properties</module>
@@ -45,7 +46,7 @@
 		<module>org.polarsys.capella.filtering.sirius.ui</module>
 		<module>org.polarsys.capella.filtering.tools</module>
 		<module>org.polarsys.capella.filtering.transition</module>
-		<module>org.polarsys.capella.filtering.validation</module>
+		<module>org.polarsys.capella.filtering.validation</module>	
 	</modules>
 </project>
 
