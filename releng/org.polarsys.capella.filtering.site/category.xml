@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.polarsys.capella.filtering.feature_1.3.0.qualifier.jar" id="org.polarsys.capella.filtering.feature" version="1.3.0.qualifier">
+   <feature id="org.polarsys.capella.filtering.feature" version="1.3.0.qualifier">
+      <category name="org.polarsys.capella.filtering"/>
+   </feature>
+   <feature id="org.polarsys.capella.filtering.cdo.feature" version="1.3.0.qualifier">
       <category name="org.polarsys.capella.filtering"/>
    </feature>
    <category-def name="org.polarsys.capella.filtering" label="Filtering"/>
