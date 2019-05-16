@@ -4095,11 +4095,11 @@
     <ownedExtensions xsi:type="filtering:FilteringResults" id="5132681a-da8e-4451-9425-93e5e6a7b9ca"
         name="FilteringResults">
       <filteringResults xsi:type="filtering:FilteringResult" id="956368c4-cc06-4924-bf7a-c08a30fb8125"
-          name="FilteringResult 1" filteringCriteria="#1034cbfe-8574-4d63-b50f-7e26e1cad9d0"/>
+          name="S_FR1" filteringCriteria="#1034cbfe-8574-4d63-b50f-7e26e1cad9d0"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="e4525242-111b-4429-ba82-a953c9db6922"
-          name="FilteringResult 2" filteringCriteria="#5838b06b-9819-41e5-9c78-c28317169b22"/>
+          name="S_FR2" filteringCriteria="#5838b06b-9819-41e5-9c78-c28317169b22"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="1e4c55c1-2e3f-4096-b45e-75835fe7e2f4"
-          name="Empty FilteringResult"/>
+          name="S_Empty_FR"/>
     </ownedExtensions>
     <ownedExtensions xsi:type="filtering:FilteringModel" id="6bf2aaa1-a9e0-472c-8124-666962d09194"
         name="FilteringModel">
