@@ -31,21 +31,21 @@
 	
 		<!-- Plugins -->
 		<module>org.polarsys.capella.filtering</module>
+		<module>org.polarsys.capella.filtering.af</module>
 		<module>org.polarsys.capella.filtering.business.queries</module>
+		<module>org.polarsys.capella.filtering.commandline</module>
 		<module>org.polarsys.capella.filtering.doc</module>
-		<module>org.polarsys.capella.filtering.doremi.analysis</module>
-		<module>org.polarsys.capella.filtering.doremi.ui</module>
 		<module>org.polarsys.capella.filtering.menu.contribution</module>
 		<module>org.polarsys.capella.filtering.model</module>
 		<module>org.polarsys.capella.filtering.model.cdo</module>
 		<module>org.polarsys.capella.filtering.model.edit</module>
 		<module>org.polarsys.capella.filtering.properties</module>
 		<module>org.polarsys.capella.filtering.semantic.queries</module>
+		<module>org.polarsys.capella.filtering.sirius.analysis</module>
+		<module>org.polarsys.capella.filtering.sirius.ui</module>
 		<module>org.polarsys.capella.filtering.tools</module>
 		<module>org.polarsys.capella.filtering.transition</module>
 		<module>org.polarsys.capella.filtering.validation</module>
-		<module>org.polarsys.capella.filtering.af</module>
-		<module>org.polarsys.capella.filtering.commandline</module>		
 	</modules>
 </project>
 
