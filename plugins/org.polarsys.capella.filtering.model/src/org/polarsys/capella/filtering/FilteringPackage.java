@@ -268,12 +268,21 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Variability Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_MODEL__OWNED_VARIABILITY_FEATURES = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTERING_MODEL_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int FILTERING_MODEL_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionImpl <em>Criterion</em>}' class.
@@ -667,13 +676,22 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_CRITERION_SET__FILTERING_CRITERIA = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Variability Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_CRITERION_SET__VARIABILITY_FEATURES = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Criterion Set</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILTERING_CRITERION_SET_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int FILTERING_CRITERION_SET_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl <em>Results</em>}' class.
@@ -881,12 +899,21 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Configurations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULTS__CONFIGURATIONS = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Results</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTERING_RESULTS_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int FILTERING_RESULTS_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.capella.filtering.impl.FilteringResultImpl <em>Result</em>}' class.
@@ -1083,6 +1110,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_RESULT__FILTERING_CRITERIA = FILTERING_CRITERION_SET__FILTERING_CRITERIA;
+
+	/**
+	 * The feature id for the '<em><b>Variability Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT__VARIABILITY_FEATURES = FILTERING_CRITERION_SET__VARIABILITY_FEATURES;
 
 	/**
 	 * The number of structural features of the '<em>Result</em>' class.
@@ -1289,6 +1325,15 @@ public interface FilteringPackage extends EPackage {
 	int ASSOCIATED_FILTERING_CRITERION_SET__FILTERING_CRITERIA = FILTERING_CRITERION_SET__FILTERING_CRITERIA;
 
 	/**
+	 * The feature id for the '<em><b>Variability Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATED_FILTERING_CRITERION_SET__VARIABILITY_FEATURES = FILTERING_CRITERION_SET__VARIABILITY_FEATURES;
+
+	/**
 	 * The number of structural features of the '<em>Associated Filtering Criterion Set</em>' class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -1492,6 +1537,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int CREATION_DEFAULT_FILTERING_CRITERION_SET__FILTERING_CRITERIA = FILTERING_CRITERION_SET__FILTERING_CRITERIA;
+
+	/**
+	 * The feature id for the '<em><b>Variability Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATION_DEFAULT_FILTERING_CRITERION_SET__VARIABILITY_FEATURES = FILTERING_CRITERION_SET__VARIABILITY_FEATURES;
 
 	/**
 	 * The number of structural features of the '<em>Creation Default Filtering Criterion Set</em>' class. <!--
@@ -2558,6 +2612,17 @@ public interface FilteringPackage extends EPackage {
 	EReference getFilteringModel_OwnedFilteringCriterionPkgs();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.capella.filtering.FilteringModel#getOwnedVariabilityFeatures <em>Owned Variability Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Variability Features</em>'.
+	 * @see org.polarsys.capella.filtering.FilteringModel#getOwnedVariabilityFeatures()
+	 * @see #getFilteringModel()
+	 * @generated
+	 */
+	EReference getFilteringModel_OwnedVariabilityFeatures();
+
+	/**
 	 * Returns the meta object for class '{@link org.polarsys.capella.filtering.FilteringCriterion <em>Criterion</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Criterion</em>'.
@@ -2584,6 +2649,17 @@ public interface FilteringPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFilteringCriterionSet_FilteringCriteria();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.polarsys.capella.filtering.FilteringCriterionSet#getVariabilityFeatures <em>Variability Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Variability Features</em>'.
+	 * @see org.polarsys.capella.filtering.FilteringCriterionSet#getVariabilityFeatures()
+	 * @see #getFilteringCriterionSet()
+	 * @generated
+	 */
+	EReference getFilteringCriterionSet_VariabilityFeatures();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.capella.filtering.FilteringResults <em>Results</em>}'. <!--
@@ -2616,6 +2692,17 @@ public interface FilteringPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFilteringResults_OwnedFilteringResultPkgs();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.capella.filtering.FilteringResults#getConfigurations <em>Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Configurations</em>'.
+	 * @see org.polarsys.capella.filtering.FilteringResults#getConfigurations()
+	 * @see #getFilteringResults()
+	 * @generated
+	 */
+	EReference getFilteringResults_Configurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.capella.filtering.FilteringResult <em>Result</em>}'. <!--
@@ -2844,6 +2931,14 @@ public interface FilteringPackage extends EPackage {
 				.getFilteringModel_OwnedFilteringCriterionPkgs();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Variability Features</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILTERING_MODEL__OWNED_VARIABILITY_FEATURES = eINSTANCE.getFilteringModel_OwnedVariabilityFeatures();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringCriterionImpl <em>Criterion</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.capella.filtering.impl.FilteringCriterionImpl
@@ -2870,6 +2965,15 @@ public interface FilteringPackage extends EPackage {
 		EReference FILTERING_CRITERION_SET__FILTERING_CRITERIA = eINSTANCE.getFilteringCriterionSet_FilteringCriteria();
 
 		/**
+		 * The meta object literal for the '<em><b>Variability Features</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILTERING_CRITERION_SET__VARIABILITY_FEATURES = eINSTANCE
+				.getFilteringCriterionSet_VariabilityFeatures();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl <em>Results</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.polarsys.capella.filtering.impl.FilteringResultsImpl
@@ -2893,6 +2997,14 @@ public interface FilteringPackage extends EPackage {
 		 */
 		EReference FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS = eINSTANCE
 				.getFilteringResults_OwnedFilteringResultPkgs();
+
+		/**
+		 * The meta object literal for the '<em><b>Configurations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILTERING_RESULTS__CONFIGURATIONS = eINSTANCE.getFilteringResults_Configurations();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.capella.filtering.impl.FilteringResultImpl <em>Result</em>}' class.

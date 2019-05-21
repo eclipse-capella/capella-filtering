@@ -40,6 +40,7 @@ import org.polarsys.capella.filtering.FilteringResults;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl#getFilteringResults <em>Filtering Results</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl#getOwnedFilteringResultPkgs <em>Owned Filtering Result Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultsImpl#getConfigurations <em>Configurations</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +91,19 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@SuppressWarnings("unchecked")
+	public EList<FilteringResult> getConfigurations() {
+
+		return (EList<FilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS,
+				FilteringPackage.Literals.FILTERING_RESULTS__CONFIGURATIONS, true, true);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -100,6 +114,8 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 			return ((InternalEList<?>) getFilteringResults()).basicRemove(otherEnd, msgs);
 		case FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS:
 			return ((InternalEList<?>) getOwnedFilteringResultPkgs()).basicRemove(otherEnd, msgs);
+		case FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS:
+			return ((InternalEList<?>) getConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -115,6 +131,8 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 			return getFilteringResults();
 		case FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS:
 			return getOwnedFilteringResultPkgs();
+		case FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS:
+			return getConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +185,8 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 			return !getFilteringResults().isEmpty();
 		case FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS:
 			return !getOwnedFilteringResultPkgs().isEmpty();
+		case FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS:
+			return !getConfigurations().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

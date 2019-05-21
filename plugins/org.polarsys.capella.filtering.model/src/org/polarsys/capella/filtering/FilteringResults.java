@@ -26,6 +26,7 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.FilteringResults#getFilteringResults <em>Filtering Results</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.FilteringResults#getOwnedFilteringResultPkgs <em>Owned Filtering Result Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.FilteringResults#getConfigurations <em>Configurations</em>}</li>
  * </ul>
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults()
@@ -72,5 +73,24 @@ public interface FilteringResults extends NamedElement, ElementExtension {
 	 */
 
 	EList<FilteringResultPkg> getOwnedFilteringResultPkgs();
+
+	/**
+	 * Returns the value of the '<em><b>Configurations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.capella.filtering.FilteringResult}.
+	
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Configurations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Configurations</em>' containment reference list.
+	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringResults_Configurations()
+	 * @model containment="true" changeable="false"
+	 *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation deprecated='true'"
+	 * @generated
+	 */
+
+	EList<FilteringResult> getConfigurations();
 
 } // FilteringResults

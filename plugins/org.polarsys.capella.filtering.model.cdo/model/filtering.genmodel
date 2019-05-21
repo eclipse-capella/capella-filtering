@@ -35,14 +35,17 @@
     <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedFilteringCriteria"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedFilteringCriterionPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedVariabilityFeatures"/>
     </genClasses>
     <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterion"/>
     <genClasses image="false" ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet/filteringCriteria"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet/variabilityFeatures"/>
     </genClasses>
     <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/filteringResults"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/ownedFilteringResultPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/configurations"/>
     </genClasses>
     <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResult"/>
     <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AssociatedFilteringCriterionSet"/>
