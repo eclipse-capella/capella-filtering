@@ -3,6 +3,7 @@ package org.polarsys.capella.filtering;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 
-public interface FilteringResultSet extends EObject {
+public interface FilteringResultSet extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Filtering Results</b></em>' reference list.

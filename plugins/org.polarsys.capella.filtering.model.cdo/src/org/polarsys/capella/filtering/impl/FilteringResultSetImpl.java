@@ -7,11 +7,11 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResultSet;
@@ -27,7 +27,7 @@ import org.polarsys.capella.filtering.FilteringResultSet;
  *
  * @generated
  */
-public class FilteringResultSetImpl extends CDOObjectImpl implements FilteringResultSet {
+public class FilteringResultSetImpl extends NamedElementImpl implements FilteringResultSet {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -46,16 +46,6 @@ public class FilteringResultSetImpl extends CDOObjectImpl implements FilteringRe
 	@Override
 	protected EClass eStaticClass() {
 		return FilteringPackage.Literals.FILTERING_RESULT_SET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

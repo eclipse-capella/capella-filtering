@@ -227,8 +227,10 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		FilteringResultSetImpl filteringResultSet = new FilteringResultSetImpl();
     //begin-capella-code
 
+    filteringResultSet.setId(IdGenerator.createId());
+
     //end-capella-code
-		return filteringResultSet;
+    return filteringResultSet;
 	}
 
 	/**
@@ -239,8 +241,10 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		UnionFilteringResultSetImpl unionFilteringResultSet = new UnionFilteringResultSetImpl();
     //begin-capella-code
 
+    unionFilteringResultSet.setId(IdGenerator.createId());
+
     //end-capella-code
-		return unionFilteringResultSet;
+    return unionFilteringResultSet;
 	}
 
 	/**
@@ -251,8 +255,10 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		ExclusionFilteringResultSetImpl exclusionFilteringResultSet = new ExclusionFilteringResultSetImpl();
     //begin-capella-code
 
+    exclusionFilteringResultSet.setId(IdGenerator.createId());
+
     //end-capella-code
-		return exclusionFilteringResultSet;
+    return exclusionFilteringResultSet;
 	}
 
 	/**
@@ -263,8 +269,10 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		IntersectionFilteringResultSetImpl intersectionFilteringResultSet = new IntersectionFilteringResultSetImpl();
     //begin-capella-code
 
+    intersectionFilteringResultSet.setId(IdGenerator.createId());
+
     //end-capella-code
-		return intersectionFilteringResultSet;
+    return intersectionFilteringResultSet;
 	}
 
 	/**

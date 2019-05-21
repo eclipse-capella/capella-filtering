@@ -336,6 +336,22 @@ public class FilteringSwitch<T> extends Switch<T> {
 			FilteringResultSet filteringResultSet = (FilteringResultSet) theEObject;
 			T result = caseFilteringResultSet(filteringResultSet);
 			if (result == null)
+				result = caseNamedElement(filteringResultSet);
+			if (result == null)
+				result = caseAbstractNamedElement(filteringResultSet);
+			if (result == null)
+				result = caseCapellaElement(filteringResultSet);
+			if (result == null)
+				result = caseTraceableElement(filteringResultSet);
+			if (result == null)
+				result = casePublishableElement(filteringResultSet);
+			if (result == null)
+				result = caseModelElement(filteringResultSet);
+			if (result == null)
+				result = caseExtensibleElement(filteringResultSet);
+			if (result == null)
+				result = caseElement(filteringResultSet);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -368,6 +384,22 @@ public class FilteringSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseFilteringResultSet(unionFilteringResultSet);
 			if (result == null)
+				result = caseNamedElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseAbstractNamedElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseCapellaElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseTraceableElement(unionFilteringResultSet);
+			if (result == null)
+				result = casePublishableElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseModelElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseExtensibleElement(unionFilteringResultSet);
+			if (result == null)
+				result = caseElement(unionFilteringResultSet);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -377,6 +409,22 @@ public class FilteringSwitch<T> extends Switch<T> {
 			if (result == null)
 				result = caseFilteringResultSet(exclusionFilteringResultSet);
 			if (result == null)
+				result = caseNamedElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseAbstractNamedElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseCapellaElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseTraceableElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = casePublishableElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseModelElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseExtensibleElement(exclusionFilteringResultSet);
+			if (result == null)
+				result = caseElement(exclusionFilteringResultSet);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -385,6 +433,22 @@ public class FilteringSwitch<T> extends Switch<T> {
 			T result = caseIntersectionFilteringResultSet(intersectionFilteringResultSet);
 			if (result == null)
 				result = caseFilteringResultSet(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseNamedElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseAbstractNamedElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseCapellaElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseTraceableElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = casePublishableElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseModelElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseExtensibleElement(intersectionFilteringResultSet);
+			if (result == null)
+				result = caseElement(intersectionFilteringResultSet);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;

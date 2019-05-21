@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResultSet;
@@ -26,7 +27,7 @@ import org.polarsys.capella.filtering.FilteringResultSet;
  *
  * @generated
  */
-public class FilteringResultSetImpl extends EObjectImpl implements FilteringResultSet {
+public class FilteringResultSetImpl extends NamedElementImpl implements FilteringResultSet {
 
 	/**
 	 * The cached value of the '{@link #getFilteringResults() <em>Filtering Results</em>}' reference list. <!--

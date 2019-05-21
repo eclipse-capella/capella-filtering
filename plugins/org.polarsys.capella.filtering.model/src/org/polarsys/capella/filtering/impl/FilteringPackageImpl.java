@@ -612,6 +612,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		filteringResultPkgEClass.getESuperTypes().add(theCapellacorePackage.getNamespace());
 		filteringCriterionPkgEClass.getESuperTypes().add(theCapellacorePackage.getNamespace());
 		composedFilteringResultEClass.getESuperTypes().add(this.getAbstractFilteringResult());
+		filteringResultSetEClass.getESuperTypes().add(theCapellacorePackage.getNamedElement());
 		abstractFilteringResultEClass.getESuperTypes().add(theCapellacorePackage.getNamedElement());
 		unionFilteringResultSetEClass.getESuperTypes().add(this.getFilteringResultSet());
 		exclusionFilteringResultSetEClass.getESuperTypes().add(this.getFilteringResultSet());

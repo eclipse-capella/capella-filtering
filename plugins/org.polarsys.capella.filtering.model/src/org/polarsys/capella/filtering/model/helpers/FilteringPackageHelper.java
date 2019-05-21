@@ -80,8 +80,22 @@ public class FilteringPackageHelper implements IHelper {
 		if (ret == null && object instanceof ComposedFilteringResult) {
 			ret = ComposedFilteringResultHelper.getInstance().doSwitch((ComposedFilteringResult) object, feature);
 		}
+		if (ret == null && object instanceof FilteringResultSet) {
+			ret = FilteringResultSetHelper.getInstance().doSwitch((FilteringResultSet) object, feature);
+		}
 		if (ret == null && object instanceof AbstractFilteringResult) {
 			ret = AbstractFilteringResultHelper.getInstance().doSwitch((AbstractFilteringResult) object, feature);
+		}
+		if (ret == null && object instanceof UnionFilteringResultSet) {
+			ret = UnionFilteringResultSetHelper.getInstance().doSwitch((UnionFilteringResultSet) object, feature);
+		}
+		if (ret == null && object instanceof ExclusionFilteringResultSet) {
+			ret = ExclusionFilteringResultSetHelper.getInstance().doSwitch((ExclusionFilteringResultSet) object,
+					feature);
+		}
+		if (ret == null && object instanceof IntersectionFilteringResultSet) {
+			ret = IntersectionFilteringResultSetHelper.getInstance().doSwitch((IntersectionFilteringResultSet) object,
+					feature);
 		}
 		return ret;
 	}
