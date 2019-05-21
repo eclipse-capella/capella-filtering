@@ -39,5 +39,17 @@
             class="org.polarsys.capella.filtering.menu.contribution.FilteringResultPkgItemContribution"
             id="org.polarsys.capella.filtering.menu.contribution.FilteringResultPkgItemContribution">
       </MDEMenuItemContribution>
+      <MDEMenuItemContribution
+            class="org.polarsys.capella.filtering.menu.contribution.ExclusionFilteringResultSetItemContribution"
+            id="org.polarsys.capella.filtering.menu.contribution.ExclusionFilteringResultSetItemContribution">
+      </MDEMenuItemContribution>
+      <MDEMenuItemContribution
+            class="org.polarsys.capella.filtering.menu.contribution.IntersectionFilteringResultSetItemContribution"
+            id="org.polarsys.capella.filtering.menu.contribution.IntersectionFilteringResultSetItemContribution">
+      </MDEMenuItemContribution>
+      <MDEMenuItemContribution
+            class="org.polarsys.capella.filtering.menu.contribution.UnionFilteringResultSetItemContribution"
+            id="org.polarsys.capella.filtering.menu.contribution.UnionFilteringResultSetItemContribution">
+      </MDEMenuItemContribution>
    </extension>
 </plugin>

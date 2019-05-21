@@ -2484,13 +2484,202 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT_SET = 10;
 
 	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_EXTENSIONS = CapellacorePackage.NAMED_ELEMENT__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__ID = CapellacorePackage.NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Sid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__SID = CapellacorePackage.NAMED_ELEMENT__SID;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__NAME = CapellacorePackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__INCOMING_TRACES = CapellacorePackage.NAMED_ELEMENT__INCOMING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OUTGOING_TRACES = CapellacorePackage.NAMED_ELEMENT__OUTGOING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Visible In Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__VISIBLE_IN_DOC = CapellacorePackage.NAMED_ELEMENT__VISIBLE_IN_DOC;
+
+	/**
+	 * The feature id for the '<em><b>Visible In LM</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__VISIBLE_IN_LM = CapellacorePackage.NAMED_ELEMENT__VISIBLE_IN_LM;
+
+	/**
+	 * The feature id for the '<em><b>Summary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__SUMMARY = CapellacorePackage.NAMED_ELEMENT__SUMMARY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__DESCRIPTION = CapellacorePackage.NAMED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Review</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__REVIEW = CapellacorePackage.NAMED_ELEMENT__REVIEW;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES = CapellacorePackage.NAMED_ELEMENT__OWNED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Enumeration Property Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES = CapellacorePackage.NAMED_ELEMENT__OWNED_ENUMERATION_PROPERTY_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES = CapellacorePackage.NAMED_ELEMENT__APPLIED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Value Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS = CapellacorePackage.NAMED_ELEMENT__OWNED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Value Groups</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS = CapellacorePackage.NAMED_ELEMENT__APPLIED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__STATUS = CapellacorePackage.NAMED_ELEMENT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTERING_RESULT_SET__FILTERING_RESULTS = 0;
+	int FILTERING_RESULT_SET__FILTERING_RESULTS = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Result Set</em>' class.
@@ -2498,7 +2687,7 @@ public interface FilteringPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILTERING_RESULT_SET_FEATURE_COUNT = 1;
+	int FILTERING_RESULT_SET_FEATURE_COUNT = CapellacorePackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.capella.filtering.impl.UnionFilteringResultSetImpl <em>Union Filtering Result Set</em>}' class.
@@ -2508,6 +2697,195 @@ public interface FilteringPackage extends EPackage {
 	 * @generated
 	 */
 	int UNION_FILTERING_RESULT_SET = 12;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_EXTENSIONS = FILTERING_RESULT_SET__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__ID = FILTERING_RESULT_SET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Sid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__SID = FILTERING_RESULT_SET__SID;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__CONSTRAINTS = FILTERING_RESULT_SET__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__NAME = FILTERING_RESULT_SET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__INCOMING_TRACES = FILTERING_RESULT_SET__INCOMING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OUTGOING_TRACES = FILTERING_RESULT_SET__OUTGOING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Visible In Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__VISIBLE_IN_DOC = FILTERING_RESULT_SET__VISIBLE_IN_DOC;
+
+	/**
+	 * The feature id for the '<em><b>Visible In LM</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__VISIBLE_IN_LM = FILTERING_RESULT_SET__VISIBLE_IN_LM;
+
+	/**
+	 * The feature id for the '<em><b>Summary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__SUMMARY = FILTERING_RESULT_SET__SUMMARY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__DESCRIPTION = FILTERING_RESULT_SET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Review</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__REVIEW = FILTERING_RESULT_SET__REVIEW;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Enumeration Property Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES = FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Value Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Value Groups</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__STATUS = FILTERING_RESULT_SET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
@@ -2537,6 +2915,195 @@ public interface FilteringPackage extends EPackage {
 	int EXCLUSION_FILTERING_RESULT_SET = 13;
 
 	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_EXTENSIONS = FILTERING_RESULT_SET__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__ID = FILTERING_RESULT_SET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Sid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__SID = FILTERING_RESULT_SET__SID;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__CONSTRAINTS = FILTERING_RESULT_SET__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__NAME = FILTERING_RESULT_SET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__INCOMING_TRACES = FILTERING_RESULT_SET__INCOMING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OUTGOING_TRACES = FILTERING_RESULT_SET__OUTGOING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Visible In Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__VISIBLE_IN_DOC = FILTERING_RESULT_SET__VISIBLE_IN_DOC;
+
+	/**
+	 * The feature id for the '<em><b>Visible In LM</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__VISIBLE_IN_LM = FILTERING_RESULT_SET__VISIBLE_IN_LM;
+
+	/**
+	 * The feature id for the '<em><b>Summary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__SUMMARY = FILTERING_RESULT_SET__SUMMARY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__DESCRIPTION = FILTERING_RESULT_SET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Review</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__REVIEW = FILTERING_RESULT_SET__REVIEW;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Enumeration Property Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES = FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Value Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Value Groups</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__STATUS = FILTERING_RESULT_SET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -2562,6 +3129,195 @@ public interface FilteringPackage extends EPackage {
 	 * @generated
 	 */
 	int INTERSECTION_FILTERING_RESULT_SET = 14;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_EXTENSIONS = FILTERING_RESULT_SET__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__ID = FILTERING_RESULT_SET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Sid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__SID = FILTERING_RESULT_SET__SID;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__CONSTRAINTS = FILTERING_RESULT_SET__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__NAME = FILTERING_RESULT_SET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__INCOMING_TRACES = FILTERING_RESULT_SET__INCOMING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Traces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OUTGOING_TRACES = FILTERING_RESULT_SET__OUTGOING_TRACES;
+
+	/**
+	 * The feature id for the '<em><b>Visible In Doc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__VISIBLE_IN_DOC = FILTERING_RESULT_SET__VISIBLE_IN_DOC;
+
+	/**
+	 * The feature id for the '<em><b>Visible In LM</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__VISIBLE_IN_LM = FILTERING_RESULT_SET__VISIBLE_IN_LM;
+
+	/**
+	 * The feature id for the '<em><b>Summary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__SUMMARY = FILTERING_RESULT_SET__SUMMARY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__DESCRIPTION = FILTERING_RESULT_SET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Review</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__REVIEW = FILTERING_RESULT_SET__REVIEW;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Enumeration Property Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES = FILTERING_RESULT_SET__OWNED_ENUMERATION_PROPERTY_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Owned Property Value Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__OWNED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property Value Groups</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS = FILTERING_RESULT_SET__APPLIED_PROPERTY_VALUE_GROUPS;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__STATUS = FILTERING_RESULT_SET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.

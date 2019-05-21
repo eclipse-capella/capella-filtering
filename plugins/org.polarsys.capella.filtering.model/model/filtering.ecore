@@ -173,7 +173,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ExclusionFilteringResultSet"
         eType="#//ExclusionFilteringResultSet" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilteringResultSet">
+  <eClassifiers xsi:type="ecore:EClass" name="FilteringResultSet" eSuperTypes="platform:/plugin/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="filteringResults" upperBound="-1"
         eType="#//AbstractFilteringResult"/>
   </eClassifiers>

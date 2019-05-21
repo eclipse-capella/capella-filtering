@@ -117,8 +117,20 @@
         <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection" id="org.polarsys.capella.filtering.provider.contributions.ComposedFilteringResultItemContribution.section" tab="Base">
             <input type="org.polarsys.capella.filtering.ComposedFilteringResult"/>
         </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultSetSection" id="org.polarsys.capella.filtering.provider.contributions.FilteringResultSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.FilteringResultSet"/>
+        </propertySection>
         <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" id="org.polarsys.capella.filtering.provider.contributions.AbstractFilteringResultItemContribution.section" tab="Base">
             <input type="org.polarsys.capella.filtering.AbstractFilteringResult"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.UnionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.contributions.UnionFilteringResultSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.UnionFilteringResultSet"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ExclusionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.contributions.ExclusionFilteringResultSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.ExclusionFilteringResultSet"/>
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.IntersectionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.contributions.IntersectionFilteringResultSetItemContribution.section" tab="Base">
+            <input type="org.polarsys.capella.filtering.IntersectionFilteringResultSet"/>
         </propertySection>
 </propertySections>
     </extension>
@@ -146,7 +158,15 @@
         </propertySection>
         <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection" id="org.polarsys.capella.filtering.provider.sections.ComposedFilteringResultSection.section" tab="Base">
         </propertySection>
+        <propertySection class="org.polarsys.capella.filtering.provider.sections.FilteringResultSetSection" filter="org.polarsys.capella.filtering.provider.sections.FilteringResultSetSection" id="org.polarsys.capella.filtering.provider.sections.FilteringResultSetSection.section" tab="Base">
+        </propertySection>
         <propertySection class="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" filter="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection" id="org.polarsys.capella.filtering.provider.sections.AbstractFilteringResultSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.UnionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.sections.UnionFilteringResultSetSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.ExclusionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.sections.ExclusionFilteringResultSetSection.section" tab="Base">
+        </propertySection>
+        <propertySection class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection" filter="org.polarsys.capella.filtering.provider.sections.IntersectionFilteringResultSetSection" id="org.polarsys.capella.filtering.provider.sections.IntersectionFilteringResultSetSection.section" tab="Base">
         </propertySection>
 </propertySections>
     </extension>

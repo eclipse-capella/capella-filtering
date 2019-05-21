@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.polarsys.capella.filtering.ExclusionFilteringResultSet;
 
 /**
  * This is the item provider adapter for a {@link org.polarsys.capella.filtering.ExclusionFilteringResultSet} object.
@@ -42,6 +43,9 @@ public class ExclusionFilteringResultSetItemProvider extends FilteringResultSetI
 			super.getPropertyDescriptors(object);
 
 		}
+		// begin-extension-code
+		checkChildCreationExtender(object);
+		// end-extension-code
 		return itemPropertyDescriptors;
 	}
 
@@ -63,8 +67,10 @@ public class ExclusionFilteringResultSetItemProvider extends FilteringResultSetI
 	@Override
 	public String getText(Object object) {
 
+		String label = ((ExclusionFilteringResultSet) object).getName();
 		// begin-extension-code
-		return "[" + getString("_UI_ExclusionFilteringResultSet_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return label == null || label.length() == 0 ? "[" + getString("_UI_ExclusionFilteringResultSet_type") + "]" //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+				: label;
 		// end-extension-code
 	}
 

@@ -227,6 +227,8 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		FilteringResultSetImpl filteringResultSet = new FilteringResultSetImpl();
 		//begin-capella-code
 
+		filteringResultSet.setId(IdGenerator.createId());
+
 		//end-capella-code
 		return filteringResultSet;
 	}
@@ -238,6 +240,8 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 	public UnionFilteringResultSet createUnionFilteringResultSet() {
 		UnionFilteringResultSetImpl unionFilteringResultSet = new UnionFilteringResultSetImpl();
 		//begin-capella-code
+
+		unionFilteringResultSet.setId(IdGenerator.createId());
 
 		//end-capella-code
 		return unionFilteringResultSet;
@@ -251,6 +255,8 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		ExclusionFilteringResultSetImpl exclusionFilteringResultSet = new ExclusionFilteringResultSetImpl();
 		//begin-capella-code
 
+		exclusionFilteringResultSet.setId(IdGenerator.createId());
+
 		//end-capella-code
 		return exclusionFilteringResultSet;
 	}
@@ -262,6 +268,8 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 	public IntersectionFilteringResultSet createIntersectionFilteringResultSet() {
 		IntersectionFilteringResultSetImpl intersectionFilteringResultSet = new IntersectionFilteringResultSetImpl();
 		//begin-capella-code
+
+		intersectionFilteringResultSet.setId(IdGenerator.createId());
 
 		//end-capella-code
 		return intersectionFilteringResultSet;
@@ -402,6 +410,58 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		ComposedFilteringResult composedFilteringResult = createComposedFilteringResult();
 		composedFilteringResult.setName(name_p);
 		return composedFilteringResult;
+	}
+
+	/**
+	 * Creates class and sets its name
+	 * (This method comes from a customization of the standard EMF generator)
+	 *
+	 * @param name_p : default name of created element
+	 * @generated
+	 */
+	public FilteringResultSet createFilteringResultSet(String name_p) {
+		FilteringResultSet filteringResultSet = createFilteringResultSet();
+		filteringResultSet.setName(name_p);
+		return filteringResultSet;
+	}
+
+	/**
+	 * Creates class and sets its name
+	 * (This method comes from a customization of the standard EMF generator)
+	 *
+	 * @param name_p : default name of created element
+	 * @generated
+	 */
+	public UnionFilteringResultSet createUnionFilteringResultSet(String name_p) {
+		UnionFilteringResultSet unionFilteringResultSet = createUnionFilteringResultSet();
+		unionFilteringResultSet.setName(name_p);
+		return unionFilteringResultSet;
+	}
+
+	/**
+	 * Creates class and sets its name
+	 * (This method comes from a customization of the standard EMF generator)
+	 *
+	 * @param name_p : default name of created element
+	 * @generated
+	 */
+	public ExclusionFilteringResultSet createExclusionFilteringResultSet(String name_p) {
+		ExclusionFilteringResultSet exclusionFilteringResultSet = createExclusionFilteringResultSet();
+		exclusionFilteringResultSet.setName(name_p);
+		return exclusionFilteringResultSet;
+	}
+
+	/**
+	 * Creates class and sets its name
+	 * (This method comes from a customization of the standard EMF generator)
+	 *
+	 * @param name_p : default name of created element
+	 * @generated
+	 */
+	public IntersectionFilteringResultSet createIntersectionFilteringResultSet(String name_p) {
+		IntersectionFilteringResultSet intersectionFilteringResultSet = createIntersectionFilteringResultSet();
+		intersectionFilteringResultSet.setName(name_p);
+		return intersectionFilteringResultSet;
 	}
 
 	// end-capella-code

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -18,8 +19,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.polarsys.capella.core.data.capellacore.provider.NamedElementItemProvider;
+import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringPackage;
 
+import org.polarsys.capella.filtering.FilteringResultSet;
+import org.polarsys.kitalpha.emde.model.EmdePackage;
+import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
 import org.polarsys.kitalpha.emde.extension.edit.ExtensionItemProviderAdapter;
 
 /**
@@ -29,7 +35,7 @@ import org.polarsys.kitalpha.emde.extension.edit.ExtensionItemProviderAdapter;
  * @superClass ExtensionItemProviderAdapter <!-- end-user-doc -->
  * @generated
  */
-public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter implements IEditingDomainItemProvider,
+public class FilteringResultSetItemProvider extends NamedElementItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -52,6 +58,9 @@ public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter
 
 			addFilteringResultsPropertyDescriptor(object);
 		}
+		// begin-extension-code
+		checkChildCreationExtender(object);
+		// end-extension-code
 		return itemPropertyDescriptors;
 	}
 
@@ -132,8 +141,9 @@ public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter
 	@Override
 	public String getText(Object object) {
 
+		String label = ((FilteringResultSet) object).getName();
 		// begin-extension-code
-		return "[" + getString("_UI_FilteringResultSet_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return label == null || label.length() == 0 ? "[" + getString("_UI_FilteringResultSet_type") + "]" : label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		// end-extension-code
 	}
 
@@ -158,6 +168,50 @@ public class FilteringResultSetItemProvider extends ExtensionItemProviderAdapter
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createFilteringModel());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
+
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createFilteringResults());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
+
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createAssociatedFilteringCriterionSet());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
+
+		// begin-extension-code
+		{
+			CommandParameter commandParameter = createChildParameter(
+					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
+					FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
+			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
+				newChildDescriptors.add(commandParameter);
+			}
+		}
+		// end-extension-code
+
 	}
 
 	/**
