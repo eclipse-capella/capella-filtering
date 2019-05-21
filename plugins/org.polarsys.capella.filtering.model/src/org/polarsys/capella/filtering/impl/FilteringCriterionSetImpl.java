@@ -32,6 +32,7 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * </p>
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl#getFilteringCriteria <em>Filtering Criteria</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl#getVariabilityFeatures <em>Variability Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +48,16 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	 * @ordered
 	 */
 	protected EList<FilteringCriterion> filteringCriteria;
+
+	/**
+	 * The cached value of the '{@link #getVariabilityFeatures() <em>Variability Features</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariabilityFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FilteringCriterion> variabilityFeatures;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -82,6 +93,21 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	public EList<FilteringCriterion> getVariabilityFeatures() {
+
+		if (variabilityFeatures == null) {
+			variabilityFeatures = new EObjectResolvingEList<FilteringCriterion>(FilteringCriterion.class, this,
+					FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES);
+		}
+		return variabilityFeatures;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -90,6 +116,8 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 		switch (featureID) {
 		case FilteringPackage.FILTERING_CRITERION_SET__FILTERING_CRITERIA:
 			return getFilteringCriteria();
+		case FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES:
+			return getVariabilityFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,6 +161,8 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 		switch (featureID) {
 		case FilteringPackage.FILTERING_CRITERION_SET__FILTERING_CRITERIA:
 			return filteringCriteria != null && !filteringCriteria.isEmpty();
+		case FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES:
+			return variabilityFeatures != null && !variabilityFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

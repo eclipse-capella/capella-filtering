@@ -93,179 +93,179 @@ public class FilteringFactoryImpl extends EFactoryImpl implements FilteringFacto
 		}
 	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringModel createFilteringModel() {
-    FilteringModelImpl filteringModel = new FilteringModelImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringModel createFilteringModel() {
+		FilteringModelImpl filteringModel = new FilteringModelImpl();
     //begin-capella-code
 
     filteringModel.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringModel;
-  }
+		return filteringModel;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringCriterion createFilteringCriterion() {
-    FilteringCriterionImpl filteringCriterion = new FilteringCriterionImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringCriterion createFilteringCriterion() {
+		FilteringCriterionImpl filteringCriterion = new FilteringCriterionImpl();
     //begin-capella-code
 
     filteringCriterion.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringCriterion;
-  }
+		return filteringCriterion;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringResults createFilteringResults() {
-    FilteringResultsImpl filteringResults = new FilteringResultsImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringResults createFilteringResults() {
+		FilteringResultsImpl filteringResults = new FilteringResultsImpl();
     //begin-capella-code
 
     filteringResults.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringResults;
-  }
+		return filteringResults;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringResult createFilteringResult() {
-    FilteringResultImpl filteringResult = new FilteringResultImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringResult createFilteringResult() {
+		FilteringResultImpl filteringResult = new FilteringResultImpl();
     //begin-capella-code
 
     filteringResult.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringResult;
-  }
+		return filteringResult;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public AssociatedFilteringCriterionSet createAssociatedFilteringCriterionSet() {
-    AssociatedFilteringCriterionSetImpl associatedFilteringCriterionSet = new AssociatedFilteringCriterionSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssociatedFilteringCriterionSet createAssociatedFilteringCriterionSet() {
+		AssociatedFilteringCriterionSetImpl associatedFilteringCriterionSet = new AssociatedFilteringCriterionSetImpl();
     //begin-capella-code
 
     associatedFilteringCriterionSet.setId(IdGenerator.createId());
 
     //end-capella-code
-    return associatedFilteringCriterionSet;
-  }
+		return associatedFilteringCriterionSet;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public CreationDefaultFilteringCriterionSet createCreationDefaultFilteringCriterionSet() {
-    CreationDefaultFilteringCriterionSetImpl creationDefaultFilteringCriterionSet = new CreationDefaultFilteringCriterionSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CreationDefaultFilteringCriterionSet createCreationDefaultFilteringCriterionSet() {
+		CreationDefaultFilteringCriterionSetImpl creationDefaultFilteringCriterionSet = new CreationDefaultFilteringCriterionSetImpl();
     //begin-capella-code
 
     creationDefaultFilteringCriterionSet.setId(IdGenerator.createId());
 
     //end-capella-code
-    return creationDefaultFilteringCriterionSet;
-  }
+		return creationDefaultFilteringCriterionSet;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringResultPkg createFilteringResultPkg() {
-    FilteringResultPkgImpl filteringResultPkg = new FilteringResultPkgImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringResultPkg createFilteringResultPkg() {
+		FilteringResultPkgImpl filteringResultPkg = new FilteringResultPkgImpl();
     //begin-capella-code
 
     filteringResultPkg.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringResultPkg;
-  }
+		return filteringResultPkg;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringCriterionPkg createFilteringCriterionPkg() {
-    FilteringCriterionPkgImpl filteringCriterionPkg = new FilteringCriterionPkgImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringCriterionPkg createFilteringCriterionPkg() {
+		FilteringCriterionPkgImpl filteringCriterionPkg = new FilteringCriterionPkgImpl();
     //begin-capella-code
 
     filteringCriterionPkg.setId(IdGenerator.createId());
 
     //end-capella-code
-    return filteringCriterionPkg;
-  }
+		return filteringCriterionPkg;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public ComposedFilteringResult createComposedFilteringResult() {
-    ComposedFilteringResultImpl composedFilteringResult = new ComposedFilteringResultImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComposedFilteringResult createComposedFilteringResult() {
+		ComposedFilteringResultImpl composedFilteringResult = new ComposedFilteringResultImpl();
     //begin-capella-code
 
     composedFilteringResult.setId(IdGenerator.createId());
 
     //end-capella-code
-    return composedFilteringResult;
-  }
+		return composedFilteringResult;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public FilteringResultSet createFilteringResultSet() {
-    FilteringResultSetImpl filteringResultSet = new FilteringResultSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FilteringResultSet createFilteringResultSet() {
+		FilteringResultSetImpl filteringResultSet = new FilteringResultSetImpl();
     //begin-capella-code
 
     //end-capella-code
-    return filteringResultSet;
-  }
+		return filteringResultSet;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public UnionFilteringResultSet createUnionFilteringResultSet() {
-    UnionFilteringResultSetImpl unionFilteringResultSet = new UnionFilteringResultSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnionFilteringResultSet createUnionFilteringResultSet() {
+		UnionFilteringResultSetImpl unionFilteringResultSet = new UnionFilteringResultSetImpl();
     //begin-capella-code
 
     //end-capella-code
-    return unionFilteringResultSet;
-  }
+		return unionFilteringResultSet;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public ExclusionFilteringResultSet createExclusionFilteringResultSet() {
-    ExclusionFilteringResultSetImpl exclusionFilteringResultSet = new ExclusionFilteringResultSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExclusionFilteringResultSet createExclusionFilteringResultSet() {
+		ExclusionFilteringResultSetImpl exclusionFilteringResultSet = new ExclusionFilteringResultSetImpl();
     //begin-capella-code
 
     //end-capella-code
-    return exclusionFilteringResultSet;
-  }
+		return exclusionFilteringResultSet;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public IntersectionFilteringResultSet createIntersectionFilteringResultSet() {
-    IntersectionFilteringResultSetImpl intersectionFilteringResultSet = new IntersectionFilteringResultSetImpl();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntersectionFilteringResultSet createIntersectionFilteringResultSet() {
+		IntersectionFilteringResultSetImpl intersectionFilteringResultSet = new IntersectionFilteringResultSetImpl();
     //begin-capella-code
 
     //end-capella-code
-    return intersectionFilteringResultSet;
-  }
+		return intersectionFilteringResultSet;
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

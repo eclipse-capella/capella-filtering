@@ -89,6 +89,7 @@ public class FilteringModelItemProvider extends NamedElementItemProvider impleme
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
 			childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
+			childrenFeatures.add(FilteringPackage.Literals.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES);
 		}
 		return childrenFeatures;
 	}
@@ -151,6 +152,7 @@ public class FilteringModelItemProvider extends NamedElementItemProvider impleme
 		switch (notification.getFeatureID(FilteringModel.class)) {
 		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA:
 		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
+		case FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

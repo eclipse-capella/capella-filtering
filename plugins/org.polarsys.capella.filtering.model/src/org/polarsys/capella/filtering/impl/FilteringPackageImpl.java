@@ -266,6 +266,15 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFilteringModel_OwnedVariabilityFeatures() {
+		return (EReference) filteringModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -290,6 +299,15 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFilteringCriterionSet_VariabilityFeatures() {
+		return (EReference) filteringCriterionSetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -311,6 +329,15 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 */
 	public EReference getFilteringResults_OwnedFilteringResultPkgs() {
 		return (EReference) filteringResultsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFilteringResults_Configurations() {
+		return (EReference) filteringResultsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -494,15 +521,18 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		filteringModelEClass = createEClass(FILTERING_MODEL);
 		createEReference(filteringModelEClass, FILTERING_MODEL__OWNED_FILTERING_CRITERIA);
 		createEReference(filteringModelEClass, FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS);
+		createEReference(filteringModelEClass, FILTERING_MODEL__OWNED_VARIABILITY_FEATURES);
 
 		filteringCriterionEClass = createEClass(FILTERING_CRITERION);
 
 		filteringCriterionSetEClass = createEClass(FILTERING_CRITERION_SET);
 		createEReference(filteringCriterionSetEClass, FILTERING_CRITERION_SET__FILTERING_CRITERIA);
+		createEReference(filteringCriterionSetEClass, FILTERING_CRITERION_SET__VARIABILITY_FEATURES);
 
 		filteringResultsEClass = createEClass(FILTERING_RESULTS);
 		createEReference(filteringResultsEClass, FILTERING_RESULTS__FILTERING_RESULTS);
 		createEReference(filteringResultsEClass, FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS);
+		createEReference(filteringResultsEClass, FILTERING_RESULTS__CONFIGURATIONS);
 
 		filteringResultEClass = createEClass(FILTERING_RESULT);
 
@@ -596,6 +626,9 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		initEReference(getFilteringModel_OwnedFilteringCriterionPkgs(), this.getFilteringCriterionPkg(), null,
 				"ownedFilteringCriterionPkgs", null, 0, -1, FilteringModel.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFilteringModel_OwnedVariabilityFeatures(), this.getFilteringCriterion(), null,
+				"ownedVariabilityFeatures", null, 0, -1, FilteringModel.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				!IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filteringCriterionEClass, FilteringCriterion.class, "FilteringCriterion", !IS_ABSTRACT, //$NON-NLS-1$
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -605,6 +638,9 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		initEReference(getFilteringCriterionSet_FilteringCriteria(), this.getFilteringCriterion(), null,
 				"filteringCriteria", null, 0, -1, FilteringCriterionSet.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFilteringCriterionSet_VariabilityFeatures(), this.getFilteringCriterion(), null,
+				"variabilityFeatures", null, 0, -1, FilteringCriterionSet.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				!IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filteringResultsEClass, FilteringResults.class, "FilteringResults", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -614,6 +650,9 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		initEReference(getFilteringResults_OwnedFilteringResultPkgs(), this.getFilteringResultPkg(), null,
 				"ownedFilteringResultPkgs", null, 0, -1, FilteringResults.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFilteringResults_Configurations(), this.getFilteringResult(), null, "configurations", null, 0, //$NON-NLS-1$
+				-1, FilteringResults.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filteringResultEClass, FilteringResult.class, "FilteringResult", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -749,6 +788,8 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 				"usage examples", null, //$NON-NLS-1$
 				"constraints", null //$NON-NLS-1$
 		});
+		addAnnotation(getFilteringModel_OwnedVariabilityFeatures(), source, new String[] { "deprecated", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 		addAnnotation(filteringCriterionEClass, source, new String[] { "description", null, //$NON-NLS-1$
 				"usage guideline", null, //$NON-NLS-1$
 				"used in levels", null, //$NON-NLS-1$
@@ -767,6 +808,8 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 				"usage examples", null, //$NON-NLS-1$
 				"constraints", null //$NON-NLS-1$
 		});
+		addAnnotation(getFilteringCriterionSet_VariabilityFeatures(), source, new String[] { "deprecated", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 		addAnnotation(filteringResultsEClass, source, new String[] { "description", null, //$NON-NLS-1$
 				"usage guideline", null, //$NON-NLS-1$
 				"used in levels", null, //$NON-NLS-1$
@@ -778,6 +821,8 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 				"used in levels", null, //$NON-NLS-1$
 				"usage examples", null, //$NON-NLS-1$
 				"constraints", null //$NON-NLS-1$
+		});
+		addAnnotation(getFilteringResults_Configurations(), source, new String[] { "deprecated", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		});
 		addAnnotation(filteringResultEClass, source, new String[] { "description", null, //$NON-NLS-1$
 				"usage guideline", null, //$NON-NLS-1$

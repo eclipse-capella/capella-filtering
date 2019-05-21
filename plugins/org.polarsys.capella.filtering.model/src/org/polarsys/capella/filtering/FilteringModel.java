@@ -26,6 +26,7 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.FilteringModel#getOwnedFilteringCriteria <em>Owned Filtering Criteria</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.FilteringModel#getOwnedFilteringCriterionPkgs <em>Owned Filtering Criterion Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.FilteringModel#getOwnedVariabilityFeatures <em>Owned Variability Features</em>}</li>
  * </ul>
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringModel()
@@ -72,5 +73,24 @@ public interface FilteringModel extends NamedElement, ElementExtension {
 	 */
 
 	EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Variability Features</b></em>' containment reference list.
+	 * The list contents are of type {@link org.polarsys.capella.filtering.FilteringCriterion}.
+	
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Variability Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Variability Features</em>' containment reference list.
+	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringModel_OwnedVariabilityFeatures()
+	 * @model containment="true" changeable="false"
+	 *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation deprecated='true'"
+	 * @generated
+	 */
+
+	EList<FilteringCriterion> getOwnedVariabilityFeatures();
 
 } // FilteringModel

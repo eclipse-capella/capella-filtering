@@ -89,6 +89,7 @@ public class FilteringResultsItemProvider extends NamedElementItemProvider imple
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(FilteringPackage.Literals.FILTERING_RESULTS__FILTERING_RESULTS);
 			childrenFeatures.add(FilteringPackage.Literals.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS);
+			childrenFeatures.add(FilteringPackage.Literals.FILTERING_RESULTS__CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -151,6 +152,7 @@ public class FilteringResultsItemProvider extends NamedElementItemProvider imple
 		switch (notification.getFeatureID(FilteringResults.class)) {
 		case FilteringPackage.FILTERING_RESULTS__FILTERING_RESULTS:
 		case FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS:
+		case FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

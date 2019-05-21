@@ -66,6 +66,7 @@ public class FilteringCriterionSetItemProvider extends NamedElementItemProvider 
 			super.getPropertyDescriptors(object);
 
 			addFilteringCriteriaPropertyDescriptor(object);
+			addVariabilityFeaturesPropertyDescriptor(object);
 		}
 		// begin-extension-code
 		checkChildCreationExtender(object);
@@ -88,6 +89,28 @@ public class FilteringCriterionSetItemProvider extends NamedElementItemProvider 
 				getString("_UI_PropertyDescriptor_description", "_UI_FilteringCriterionSet_filteringCriteria_feature", //$NON-NLS-1$//$NON-NLS-2$
 						"_UI_FilteringCriterionSet_type"), //$NON-NLS-1$
 				FilteringPackage.Literals.FILTERING_CRITERION_SET__FILTERING_CRITERIA, true, false, true, null, null,
+				// begin-extension-code
+				null));
+		// end-extension-code
+	}
+
+	/**
+	 * This adds a property descriptor for the Variability Features feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVariabilityFeaturesPropertyDescriptor(Object object) {
+
+		// begin-extension-code
+		itemPropertyDescriptors.add(createItemPropertyDescriptor
+		// end-extension-code
+		(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_FilteringCriterionSet_variabilityFeatures_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_FilteringCriterionSet_variabilityFeatures_feature", //$NON-NLS-1$//$NON-NLS-2$
+						"_UI_FilteringCriterionSet_type"), //$NON-NLS-1$
+				FilteringPackage.Literals.FILTERING_CRITERION_SET__VARIABILITY_FEATURES, false, false, false, null,
+				null,
 				// begin-extension-code
 				null));
 		// end-extension-code

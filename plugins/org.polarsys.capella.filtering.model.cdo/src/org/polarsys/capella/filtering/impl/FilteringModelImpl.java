@@ -39,6 +39,7 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriteria <em>Owned Filtering Criteria</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedFilteringCriterionPkgs <em>Owned Filtering Criterion Pkgs</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringModelImpl#getOwnedVariabilityFeatures <em>Owned Variability Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +91,19 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@SuppressWarnings("unchecked")
+	public EList<FilteringCriterion> getOwnedVariabilityFeatures() {
+
+		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES,
+				FilteringPackage.Literals.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES, true, true);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -100,6 +114,8 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 			return ((InternalEList<?>) getOwnedFilteringCriteria()).basicRemove(otherEnd, msgs);
 		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
 			return ((InternalEList<?>) getOwnedFilteringCriterionPkgs()).basicRemove(otherEnd, msgs);
+		case FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES:
+			return ((InternalEList<?>) getOwnedVariabilityFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -115,6 +131,8 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 			return getOwnedFilteringCriteria();
 		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
 			return getOwnedFilteringCriterionPkgs();
+		case FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES:
+			return getOwnedVariabilityFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +185,8 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 			return !getOwnedFilteringCriteria().isEmpty();
 		case FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERION_PKGS:
 			return !getOwnedFilteringCriterionPkgs().isEmpty();
+		case FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES:
+			return !getOwnedVariabilityFeatures().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

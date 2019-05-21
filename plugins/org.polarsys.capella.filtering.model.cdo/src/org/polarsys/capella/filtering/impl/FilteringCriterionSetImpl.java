@@ -32,6 +32,7 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * </p>
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl#getFilteringCriteria <em>Filtering Criteria</em>}</li>
+ *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionSetImpl#getVariabilityFeatures <em>Variability Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,6 +71,19 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@SuppressWarnings("unchecked")
+	public EList<FilteringCriterion> getVariabilityFeatures() {
+
+		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES,
+				FilteringPackage.Literals.FILTERING_CRITERION_SET__VARIABILITY_FEATURES, true, true);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -78,6 +92,8 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 		switch (featureID) {
 		case FilteringPackage.FILTERING_CRITERION_SET__FILTERING_CRITERIA:
 			return getFilteringCriteria();
+		case FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES:
+			return getVariabilityFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,6 +137,8 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 		switch (featureID) {
 		case FilteringPackage.FILTERING_CRITERION_SET__FILTERING_CRITERIA:
 			return !getFilteringCriteria().isEmpty();
+		case FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES:
+			return !getVariabilityFeatures().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
