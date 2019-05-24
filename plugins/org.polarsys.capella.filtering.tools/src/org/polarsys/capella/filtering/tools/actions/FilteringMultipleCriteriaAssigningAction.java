@@ -12,7 +12,6 @@ package org.polarsys.capella.filtering.tools.actions;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +33,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.polarsys.capella.common.data.modellingcore.ModelElement;
 import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
 import org.polarsys.capella.common.ui.actions.AbstractTigAction;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.model.handler.helpers.CapellaAdapterHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
@@ -56,30 +54,23 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
 
     // Get the selected elements as Set (since resolving semantic elements
     // below can add duplicates)
-    final Set<ModelElement> selectedElements = new HashSet<>(getSelectedElements());
-
-    // resolve semantic elements and add them to the set
-    resolveSemanticElements(selectedElements);
-
-    // Remove elements that we were not able to adapt to melodyElements, for
-    // example Notes in diagrams
-    selectedElements.removeAll(Collections.singletonList(null));
+    Set<EObject> semanticElements = resolveSemanticElements(getSelectedElements());
 
     // Display message there were no valid diagram element selected
-    if (selectedElements.isEmpty()) {
+    if (semanticElements.isEmpty()) {
       MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
           Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
       return;
     }
 
     // Calculate intersection of feature model for all selected elements
-    Collection<FilteringModel> filteringModels = FilteringUtils.getCommonFilteringModels(selectedElements, true);
+    Collection<FilteringModel> filteringModels = FilteringUtils.getCommonFilteringModels(semanticElements, true);
     if (filteringModels.isEmpty()) {
       MessageDialog.openInformation(getActiveShell(), Messages.FilteringMultipleCriteriaAssigningAction_0, // $NON-NLS-1$
           Messages.FilteringMultipleCriteriaAssigningAction_1); // $NON-NLS-1$
       return;
-
     }
+
     Collection<FilteringCriterion> availableFeatures = FilteringUtils.getOwnedFilteringCriteria(filteringModels);
     Collection<Object> globalFeatures = new ArrayList<>();
     List<Object> checkedFeatures = new ArrayList<>();
@@ -88,22 +79,16 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
 
     // Fill checkedFeatures list and prepare the counter to check if a
     // feature is contained by all selected elements
-    int elementCounter = 0;
-    for (ModelElement element : selectedElements) {
-      if (element instanceof CapellaElement) {
-
-        elementCounter++;
-
-        List<FilteringCriterion> elementFeatures = FilteringUtils.getExplicitAssociatedCriteria((element));
-        for (EObject feature : elementFeatures) {
-          if (!infoFeatures.containsKey(feature)) {
-            infoFeatures.put(feature, 1);
-            if (!checkedFeatures.contains(feature)) {
-              checkedFeatures.add(feature);
-            }
-          } else {
-            infoFeatures.put(feature, infoFeatures.get(feature) + 1);
+    for (EObject element : semanticElements) {
+      List<FilteringCriterion> elementFeatures = FilteringUtils.getExplicitAssociatedCriteria((element));
+      for (EObject feature : elementFeatures) {
+        if (!infoFeatures.containsKey(feature)) {
+          infoFeatures.put(feature, 1);
+          if (!checkedFeatures.contains(feature)) {
+            checkedFeatures.add(feature);
           }
+        } else {
+          infoFeatures.put(feature, infoFeatures.get(feature) + 1);
         }
       }
     }
@@ -111,7 +96,7 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
     // Search for global criteria (i.e. criteria that are used by all selected elements)
     for (Object concreteFeature : availableFeatures) {
       Integer counter = infoFeatures.get(concreteFeature);
-      if ((counter != null) && (counter == elementCounter)) {
+      if ((counter != null) && (counter == semanticElements.size())) {
         globalFeatures.add(concreteFeature);
       }
     }
@@ -138,44 +123,40 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
             toUnCheck.removeAll(undefined);
           }
 
-          for (ModelElement element : selectedElements) {
-            if (element instanceof CapellaElement) {
-              CapellaElement mElement = (CapellaElement) element;
-              for (Object unCheckMe : toUnCheck) {
-                if (FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(unCheckMe)) {
-                  featuresToRemove.add((FilteringCriterion) unCheckMe);
-                }
+          for (EObject element : semanticElements) {
+            for (Object unCheckMe : toUnCheck) {
+              if (FilteringUtils.getExplicitAssociatedCriteria(element).contains(unCheckMe)) {
+                featuresToRemove.add((FilteringCriterion) unCheckMe);
               }
-              for (Object checkMe : toCheck) {
-                if (!FilteringUtils.getExplicitAssociatedCriteria(mElement).contains(checkMe)) {
-                  featuresToAdd.add((FilteringCriterion) checkMe);
-                }
-              }
-              FilteringUtils.addAssociatedCriteria(mElement, featuresToAdd);
-              FilteringUtils.removeAssociatedCriteria(mElement, featuresToRemove);
             }
+            for (Object checkMe : toCheck) {
+              if (!FilteringUtils.getExplicitAssociatedCriteria(element).contains(checkMe)) {
+                featuresToAdd.add((FilteringCriterion) checkMe);
+              }
+            }
+            FilteringUtils.addAssociatedCriteria(element, featuresToAdd);
+            FilteringUtils.removeAssociatedCriteria(element, featuresToRemove);
             featuresToAdd.clear();
             featuresToRemove.clear();
           }
         }
       };
-      FilteringUtils.executeCommand(command, selectedElements);
+      FilteringUtils.executeCommand(command, semanticElements);
     }
   }
 
   /**
    * Enrich provided Set with resolved semantic elements
    */
-  private void resolveSemanticElements(Set<ModelElement> selectedElements) {
-
-    for (ModelElement elt : selectedElements) {
+  private Set<EObject> resolveSemanticElements(Collection<ModelElement> selectedElements) {
+    HashSet<EObject> result = new HashSet<EObject>();
+    for (EObject elt : selectedElements) {
       EObject semanticObject = CapellaAdapterHelper.resolveSemanticObject(elt);
-      if (semanticObject instanceof CapellaElement) {
-        selectedElements.add((CapellaElement) semanticObject);
+      if (semanticObject != null) {
+        result.add(semanticObject);
       }
-
     }
-
+    return result;
   }
 
   /**
