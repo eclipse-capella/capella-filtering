@@ -99,6 +99,7 @@ import org.polarsys.capella.filtering.FilteringCriterionPkg;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringModel;
+import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
 import org.polarsys.capella.filtering.FilteringResultSet;
@@ -1121,14 +1122,22 @@ public class FilteringUtils {
   /**
    * Some classes should not have associated feature sets
    * 
+   * All filtering classes except Exclusion/Intersection/Union are allowed
+   * 
    * @param obj
    * @return true if it is excluded from having associated features
    */
   public static boolean isInstanceOfFilteringExcludedElements(Object obj) {
-    return obj instanceof FilteringModel || obj instanceof AbstractFilteringResult || obj instanceof FilteringResults
-        || obj instanceof FilteringCriterion || obj instanceof FilteringCriterionPkg
-        || obj instanceof FilteringResultPkg || obj instanceof AssociatedFilteringCriterionSet;
-
+    if (obj instanceof ExclusionFilteringResultSet || obj instanceof IntersectionFilteringResultSet
+        || obj instanceof UnionFilteringResultSet) {
+      return false;
+    }
+    if (obj instanceof EObject) {
+      if (FilteringPackage.eINSTANCE.equals(((EObject) obj).eClass().getEPackage())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public static boolean notInstanceOfFilteringPackageMetaclass(Object obj) {

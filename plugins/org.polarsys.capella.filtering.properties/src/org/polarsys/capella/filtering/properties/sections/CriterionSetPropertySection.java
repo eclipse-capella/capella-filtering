@@ -19,28 +19,32 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection;
 import org.polarsys.capella.core.ui.properties.fields.AbstractSemanticField;
+import org.polarsys.capella.filtering.ExclusionFilteringResultSet;
+import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringPackage;
+import org.polarsys.capella.filtering.IntersectionFilteringResultSet;
+import org.polarsys.capella.filtering.UnionFilteringResultSet;
 import org.polarsys.capella.filtering.properties.CriterionSetFilteringCriteriaController;
+import org.polarsys.capella.filtering.properties.fields.CriteriaMultipleSemanticField;
 
 /**
  * Class to extend by FilteringCriterionSet supertypes
- * 
- * 
  */
-public class CriterionSetPropertySection extends SummaryPropertySection {
+public class CriterionSetPropertySection extends DefaultNamedElementSection {
 
-  /**
-   * Method to override {@inheritDoc}
-   */
+  private CriteriaMultipleSemanticField criteria;
+
   @Override
   public boolean select(Object toTest) {
-    EObject eObjectToTest = super.selection(toTest);
-    return ((eObjectToTest != null)
-        && (eObjectToTest.eClass() == FilteringPackage.eINSTANCE.getFilteringCriterionSet()));
+    EObject obj = selection(toTest);
+    if (obj instanceof ExclusionFilteringResultSet || obj instanceof IntersectionFilteringResultSet
+        || obj instanceof UnionFilteringResultSet) {
+      return false;
+    }
+    return obj instanceof FilteringCriterionSet;
   }
-
-  private CriteriaMultipleSemanticField features;
 
   @Override
   public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
@@ -48,10 +52,9 @@ public class CriterionSetPropertySection extends SummaryPropertySection {
 
     rootParentComposite.setLayout(new GridLayout());
     rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-    boolean displayedInWizard = isDisplayedInWizard();
-    features = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel, getWidgetFactory(),
+    criteria = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel, getWidgetFactory(),
         new CriterionSetFilteringCriteriaController());
-    features.setDisplayedInWizard(displayedInWizard);
+    criteria.setDisplayedInWizard(isDisplayedInWizard());
   }
 
   /**
@@ -60,7 +63,7 @@ public class CriterionSetPropertySection extends SummaryPropertySection {
   @Override
   public void loadData(EObject capellaElement) {
     super.loadData(capellaElement);
-    features.loadData(capellaElement, FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria());
+    criteria.loadData(capellaElement, FilteringPackage.eINSTANCE.getFilteringCriterionSet_FilteringCriteria());
   }
 
   /**
@@ -69,7 +72,8 @@ public class CriterionSetPropertySection extends SummaryPropertySection {
   @Override
   public List<AbstractSemanticField> getSemanticFields() {
     List<AbstractSemanticField> fields = new ArrayList<>();
-    fields.add(features);
+    fields.addAll(super.getSemanticFields());
+    fields.add(criteria);
     return fields;
   }
 }

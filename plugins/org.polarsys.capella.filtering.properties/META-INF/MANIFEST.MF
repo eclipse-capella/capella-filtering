@@ -8,7 +8,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.polarsys.capella.core.ui.properties,
  org.polarsys.capella.core.data.information.datatype.properties,
  org.polarsys.capella.filtering.model,
- org.polarsys.capella.filtering.tools
+ org.polarsys.capella.filtering.tools,
+ org.polarsys.kitalpha.ad.services
 Export-Package: org.polarsys.capella.filtering.properties,
  org.polarsys.capella.filtering.properties.sections
 Bundle-Localization: plugin
