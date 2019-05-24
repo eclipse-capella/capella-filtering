@@ -1,22 +1,30 @@
-package org.polarsys.capella.filtering.tests.ju.tests;
-
-import static org.junit.Assert.assertEquals;
+package org.polarsys.capella.filtering.tests.ju.tests.misc;
 
 import java.util.Arrays;
-import org.junit.Before;
-import org.junit.Test;
+
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.model.helpers.FilteringCriterionSetHelper;
+import org.polarsys.capella.test.framework.api.BasicTestCase;
 
-public class FilteringCriterionSetHelperTest {
+public class FilteringCriterionSetHelperTest extends BasicTestCase {
 
   FilteringCriterion criteria1, criteria2, criteria3, criteria4, criteria5;
 
-  @Before
-  public void setup() {
+  @Override
+  public void test() throws Exception {
+    testUnionOf();
+    testIntersectionOfOverlapingLists();
+    testIntersectionOfDistinctLists();
+    testIntersectionOf3OverlapingLists();
+    testIntersectionOf2OverlapingAnd1Distinct();
+  }
+
+  @Override
+  public void setUp() throws Exception {
+    super.setUp();
     criteria1 = FilteringFactory.eINSTANCE.createFilteringCriterion();
     criteria1.setName("criteria1");
     criteria2 = FilteringFactory.eINSTANCE.createFilteringCriterion();
@@ -29,8 +37,7 @@ public class FilteringCriterionSetHelperTest {
     criteria5.setName("criteria5");
   }
 
-  @Test
-  public void testUnionOf() {
+  private void testUnionOf() {
     AssociatedFilteringCriterionSet filteringCriterionSetA = FilteringFactory.eINSTANCE
         .createAssociatedFilteringCriterionSet();
 
@@ -53,8 +60,7 @@ public class FilteringCriterionSetHelperTest {
     assertEquals(expectedSet.getFilteringCriteria(), unionSet.getFilteringCriteria());
   }
 
-  @Test
-  public void testIntersectionOfOverlapingLists() {
+  private void testIntersectionOfOverlapingLists() {
 
     AssociatedFilteringCriterionSet filteringCriterionSetA = FilteringFactory.eINSTANCE
         .createAssociatedFilteringCriterionSet();
@@ -77,8 +83,7 @@ public class FilteringCriterionSetHelperTest {
     assertEquals(expectedSet.getFilteringCriteria(), intersectionSet.getFilteringCriteria());
   }
 
-  @Test
-  public void testIntersectionOfDistinctLists() {
+  private void testIntersectionOfDistinctLists() {
 
     AssociatedFilteringCriterionSet filteringCriterionSetA = FilteringFactory.eINSTANCE
         .createAssociatedFilteringCriterionSet();
@@ -100,8 +105,7 @@ public class FilteringCriterionSetHelperTest {
     assertEquals(emptySet.getFilteringCriteria(), intersectionSet.getFilteringCriteria());
   }
 
-  @Test
-  public void testIntersectionOf3OverlapingLists() {
+  private void testIntersectionOf3OverlapingLists() {
 
     AssociatedFilteringCriterionSet filteringCriterionSetA = FilteringFactory.eINSTANCE
         .createAssociatedFilteringCriterionSet();
@@ -130,8 +134,7 @@ public class FilteringCriterionSetHelperTest {
     assertEquals(expectedSet.getFilteringCriteria(), intersectionSet.getFilteringCriteria());
   }
 
-  @Test
-  public void testIntersectionOf2OverlapingAnd1Distinct() {
+  private void testIntersectionOf2OverlapingAnd1Distinct() {
 
     AssociatedFilteringCriterionSet filteringCriterionSetA = FilteringFactory.eINSTANCE
         .createAssociatedFilteringCriterionSet();
@@ -158,4 +161,5 @@ public class FilteringCriterionSetHelperTest {
 
     assertEquals(emptySet.getFilteringCriteria(), intersectionSet.getFilteringCriteria());
   }
+
 }

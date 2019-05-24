@@ -9,9 +9,9 @@
  *    Thales - initial API and implementation
  *******************************************************************************/
 
-package org.polarsys.capella.filtering.tests.ju.tests;
+package org.polarsys.capella.filtering.tests.ju.tests.misc;
 
-import static org.polarsys.capella.filtering.tests.ju.FilteringTestHelper.areEqualIgnoreOrder;
+import static org.polarsys.capella.filtering.tests.ju.tests.helpers.FilteringTestHelper.areEqualIgnoreOrder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.sirius.analysis.FilteringServices;
-import org.polarsys.capella.filtering.tests.ju.FilteringTestHelper;
+import org.polarsys.capella.filtering.tests.ju.tests.helpers.FilteringTestHelper;
 import org.polarsys.capella.test.framework.api.BasicTestCase;
 
 public class FilteringServicesTest extends BasicTestCase {
