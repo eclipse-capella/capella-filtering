@@ -20,9 +20,12 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
+import org.polarsys.capella.common.helpers.EcoreUtil2;
+import org.polarsys.capella.core.data.capellamodeller.CapellamodellerPackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
+import org.polarsys.capella.core.model.helpers.SystemEngineeringExt;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionPkg;
 import org.polarsys.capella.filtering.FilteringModel;
@@ -58,6 +61,9 @@ public class CriteriaContentProvider implements ITreeContentProvider {
 
     } else if (parentElement instanceof SystemEngineering) {
       children.addAll(FilteringUtils.getMainAndReferencedVariantProjects((EObject) parentElement));
+      
+    } else if (parentElement instanceof EObject) {
+      return getChildren(EcoreUtil2.getFirstContainer((EObject)parentElement, CapellamodellerPackage.Literals.SYSTEM_ENGINEERING));
     }
     return children.toArray();
   }

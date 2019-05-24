@@ -599,7 +599,7 @@ public class FilteringUtils {
    * @param includeReferencedLibraries
    * @return The intersection of FilteringModels for the given list of eObjects
    */
-  public static Collection<FilteringModel> getCommonFilteringModels(Collection<ModelElement> eObjects,
+  public static Collection<FilteringModel> getCommonFilteringModels(Collection<EObject> eObjects,
       boolean includeReferencedLibraries) {
     Collection<FilteringModel> filteringModels = null;
     for (EObject element : eObjects) {
@@ -1115,7 +1115,7 @@ public class FilteringUtils {
    * @param command
    * @param elements
    */
-  public static void executeCommand(AbstractReadWriteCommand command, Collection<ModelElement> elements) {
+  public static void executeCommand(AbstractReadWriteCommand command, Collection<EObject> elements) {
     executeCommand(command, TransactionHelper.getEditingDomain(elements));
   }
 
