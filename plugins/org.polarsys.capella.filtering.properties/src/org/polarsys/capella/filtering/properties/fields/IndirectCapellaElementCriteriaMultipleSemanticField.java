@@ -8,7 +8,7 @@
  * Contributors:
  *    Thales - initial API and implementation
  *******************************************************************************/
-package org.polarsys.capella.filtering.properties.sections;
+package org.polarsys.capella.filtering.properties.fields;
 
 import java.util.ArrayList;
 import java.util.Collection;
