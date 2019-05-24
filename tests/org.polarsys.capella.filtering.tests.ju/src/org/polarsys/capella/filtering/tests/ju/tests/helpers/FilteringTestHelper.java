@@ -9,7 +9,7 @@
  *    Thales - initial API and implementation
  *******************************************************************************/
 
-package org.polarsys.capella.filtering.tests.ju;
+package org.polarsys.capella.filtering.tests.ju.tests.helpers;
 
 import java.util.Collection;
 import java.util.Iterator;

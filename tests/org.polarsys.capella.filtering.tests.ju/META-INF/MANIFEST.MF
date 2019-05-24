@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.capella.filtering.tests.ju
 Bundle-Version: 1.2.0.qualifier
-Bundle-Activator: org.polarsys.capella.filtering.tests.ju.Activator
+Bundle-Activator: org.polarsys.capella.filtering.tests.ju.activator.Activator
 Require-Bundle: org.polarsys.capella.filtering.tools,
  org.polarsys.capella.filtering.model,
  org.eclipse.emf.diffmerge.ui,
@@ -13,5 +13,7 @@ Require-Bundle: org.polarsys.capella.filtering.tools,
  org.polarsys.capella.filtering.business.queries;bundle-version="1.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: org.polarsys.capella.filtering.tests.ju.tests
+Export-Package: org.polarsys.capella.filtering.tests.ju.tests.derivation,
+ org.polarsys.capella.filtering.tests.ju.tests.helpers,
+ org.polarsys.capella.filtering.tests.ju.tests.misc
 Bundle-Vendor: %providerName

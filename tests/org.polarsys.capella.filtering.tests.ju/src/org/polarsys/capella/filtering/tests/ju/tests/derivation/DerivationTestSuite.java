@@ -8,7 +8,7 @@
  * Contributors:
  *    Thales - initial API and implementation
  *******************************************************************************/
-package org.polarsys.capella.filtering.tests.ju.tests;
+package org.polarsys.capella.filtering.tests.ju.tests.derivation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class DerivationTestSuite extends BasicTestSuite {
   @Override
   protected List<BasicTestArtefact> getTests() {
     List<BasicTestArtefact> testCases = new ArrayList<>();
-    testCases.add(new DerivationTestCase());
+    testCases.add(new DerivationTest());
     return testCases;
   }
 

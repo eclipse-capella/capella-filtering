@@ -8,7 +8,7 @@
  * Contributors:
  *    Thales - initial API and implementation
  *******************************************************************************/
-package org.polarsys.capella.filtering.tests.ju.tests;
+package org.polarsys.capella.filtering.tests.ju.tests.derivation;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -46,7 +46,7 @@ import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResults;
-import org.polarsys.capella.filtering.tests.ju.FilteringTestHelper;
+import org.polarsys.capella.filtering.tests.ju.tests.helpers.FilteringTestHelper;
 import org.polarsys.capella.filtering.tools.actions.FilteringExtractionJob;
 import org.polarsys.capella.test.framework.api.BasicTestCase;
 import org.polarsys.capella.test.framework.helpers.IResourceHelpers;
@@ -59,7 +59,7 @@ import org.polarsys.capella.test.framework.helpers.TestHelper;
  * 
  */
 @SuppressWarnings({ "nls" })
-public class DerivationTestCase extends BasicTestCase {
+public class DerivationTest extends BasicTestCase {
   private IProgressMonitor progressMonitor = new NullProgressMonitor();
 
   Session session = null;

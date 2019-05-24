@@ -9,9 +9,7 @@
  *    Thales - initial API and implementation
  *******************************************************************************/
 
-package org.polarsys.capella.filtering.tests.ju.tests;
-
-import static org.junit.Assert.assertEquals;
+package org.polarsys.capella.filtering.tests.ju.tests.misc;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,8 +17,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.junit.Before;
-import org.junit.Test;
 import org.polarsys.capella.core.data.la.LaFactory;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
@@ -31,8 +27,9 @@ import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.IntersectionFilteringResultSet;
 import org.polarsys.capella.filtering.UnionFilteringResultSet;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.capella.test.framework.api.BasicTestCase;
 
-public class FilteringUtilsTest {
+public class FilteringUtilsTest extends BasicTestCase {
 
   ComposedFilteringResult CR_1_AND_2, CR_1_OR_2, CR_1_OR_2_NOT_R3;
   FilteringResult R1, R2, R3;
@@ -41,8 +38,9 @@ public class FilteringUtilsTest {
   LogicalComponent LC1, LC2, LC3, LC4, LC5, LC6, LC7, LC8;
   Set<LogicalComponent> ALL_LCs;
 
-  @Before
-  public void setup() {
+  @Override
+  public void setUp() throws Exception {
+    super.setUp();
     criteria1 = FilteringFactory.eINSTANCE.createFilteringCriterion();
     criteria1.setName("criteria1");
     criteria2 = FilteringFactory.eINSTANCE.createFilteringCriterion();
@@ -76,8 +74,17 @@ public class FilteringUtilsTest {
     CR_1_OR_2_NOT_R3 = createResultAsORCompositionThenNotOf(R1, R2, R3);
   }
 
-  @Test
-  public void R1_GIVES_LC_1_2_5_6_8() {
+  @Override
+  public void test() throws Exception {
+    R1_GIVES_LC_1_2_5_6_8();
+    R2_GIVES_LC_2_3_6_7_8();
+    R3_GIVES_LC_3_4_7_8();
+    R1_AND_R2_GIVES_LC_2_6_8();
+    R1_OR_R2_GIVES_ALL_BUT_LC_4();
+    R1_OR_R2_NOT_R3_GIVES_LC1_LC2_LC5_LC6();
+  }
+
+  private void R1_GIVES_LC_1_2_5_6_8() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(R1, RootLC);
 
@@ -86,8 +93,7 @@ public class FilteringUtilsTest {
     assertEquals(expectedDerivation, actualDerivation);
   }
 
-  @Test
-  public void R2_GIVES_LC_2_3_6_7_8() {
+  private void R2_GIVES_LC_2_3_6_7_8() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(R2, RootLC);
 
@@ -96,8 +102,7 @@ public class FilteringUtilsTest {
     assertEquals(expectedDerivation, actualDerivation);
   }
 
-  @Test
-  public void R3_GIVES_LC_3_4_7_8() {
+  private void R3_GIVES_LC_3_4_7_8() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(R3, RootLC);
 
@@ -106,8 +111,7 @@ public class FilteringUtilsTest {
     assertEquals(expectedDerivation, actualDerivation);
   }
 
-  @Test
-  public void R1_AND_R2_GIVES_LC_2_6_8() {
+  private void R1_AND_R2_GIVES_LC_2_6_8() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(CR_1_AND_2, RootLC);
 
@@ -116,8 +120,7 @@ public class FilteringUtilsTest {
     assertEquals(expectedDerivation, actualDerivation);
   }
 
-  @Test
-  public void R1_OR_R2_GIVES_ALL_BUT_LC_4() {
+  private void R1_OR_R2_GIVES_ALL_BUT_LC_4() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(CR_1_OR_2, RootLC);
 
@@ -128,8 +131,7 @@ public class FilteringUtilsTest {
     assertEquals(expectedDerivation, actualDerivation);
   }
 
-  @Test
-  public void R1_OR_R2_NOT_R3_GIVES_LC1_LC2_LC5_LC6() {
+  private void R1_OR_R2_NOT_R3_GIVES_LC1_LC2_LC5_LC6() {
 
     Set<EObject> actualDerivation = FilteringUtils.computeDerivation(CR_1_OR_2_NOT_R3, RootLC);
 
