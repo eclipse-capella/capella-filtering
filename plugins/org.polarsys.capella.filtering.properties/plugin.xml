@@ -141,6 +141,23 @@
          
       </propertySections>
    </extension>
-   
-   
+   <extension
+         point="org.polarsys.capella.core.data.business.queries.MDEBusinessQueries">
+      <MDEBusinessQueries
+            class="org.polarsys.capella.filtering.properties.ExclusionFilteringResultBusinessQuery"
+            id="org.polarsys.capella.filtering.properties.ExclusionFilteringResultBusinessQuery">
+      </MDEBusinessQueries>
+      <MDEBusinessQueries
+            class="org.polarsys.capella.filtering.properties.IntersectionFilteringResultBusinessQuery"
+            id="org.polarsys.capella.filtering.properties.IntersectionFilteringResultBusinessQuery">
+      </MDEBusinessQueries>
+      <MDEBusinessQueries
+            class="org.polarsys.capella.filtering.properties.UnionFilteringResultBusinessQuery"
+            id="org.polarsys.capella.filtering.properties.UnionFilteringResultBusinessQuery">
+      </MDEBusinessQueries>
+      <MDEBusinessQueries
+            class="org.polarsys.capella.filtering.properties.FilteringResultBusinessQuery"
+            id="org.polarsys.capella.filtering.properties.FilteringResultBusinessQuery">
+      </MDEBusinessQueries>
+   </extension>
 </plugin>

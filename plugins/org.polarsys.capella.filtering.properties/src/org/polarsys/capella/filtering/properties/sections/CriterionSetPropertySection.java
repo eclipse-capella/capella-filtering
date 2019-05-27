@@ -52,7 +52,7 @@ public class CriterionSetPropertySection extends DefaultNamedElementSection {
 
     rootParentComposite.setLayout(new GridLayout());
     rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-    criteria = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel, getWidgetFactory(),
+    criteria = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.PropertySection_filteringLabel, getWidgetFactory(),
         new CriterionSetFilteringCriteriaController());
     criteria.setDisplayedInWizard(isDisplayedInWizard());
   }
