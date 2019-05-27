@@ -28,9 +28,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -53,7 +51,6 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CrossReferencerHelper;
 import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteCommand;
-import org.polarsys.capella.core.sirius.analysis.tool.StringUtil;
 import org.polarsys.capella.core.sirius.ui.actions.DesignerControlAction;
 import org.polarsys.capella.core.sirius.ui.actions.DesignerControlAction.CapellaSiriusUncontrolCommand;
 import org.polarsys.capella.core.sirius.ui.helper.SessionHelper;
@@ -64,9 +61,6 @@ import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.tools.extract.FilteringExtractor;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
-/**
- * TODO Manage to show the progress monitor information.
- */
 /**
  * TODO A workspace runnable is used instead of a Job because resources modification notifications caused several
  * exceptions in Capella Project Explorer and Properties views.
@@ -99,9 +93,8 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 
   private Set<String> computeSelectedFeatureFullLabels(List<FilteringCriterion> selectedFeatures) {
 
-    return selectedFeatures.parallelStream().filter(elt -> elt instanceof ModelElement)
-        .map(modelElt -> ((ModelElement) modelElt).getFullLabel()).map(this::removeProjectAndSysEngPaths)
-        .collect(Collectors.toSet());
+    return selectedFeatures.parallelStream().filter(ModelElement.class::isInstance).map(ModelElement::getFullLabel)
+        .map(this::removeProjectAndSysEngPaths).collect(Collectors.toSet());
   }
 
   private String removeProjectAndSysEngPaths(String fullLabel) {
@@ -130,44 +123,48 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
   public void run(IProgressMonitor monitor) {
     try {
 
+      SubMonitor subMonitor = SubMonitor.convert(monitor, Messages.FilteringExtractionJob_0, 12);
+      subMonitor.setTaskName(Messages.FilteringExtractionJob_TaskName);
+      subMonitor.subTask(Messages.FilteringExtractionJob_0 + currentProject.getName());
+
+      subMonitor.split(1);
       FilteringExtractor extractor = new FilteringExtractor(clonedProject, domainId);
+
       /**
        * A new eclipse project has been created (copy nature from the cloned project)
        */
       extractor.cloneProjectNature(currentProject);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
 
+      subMonitor.split(1);
+      subMonitor.subTask(Messages.FilteringExtractionJob_1);
       /**
        * We copy all files including '.melodymodeller', '.aird', '.melodyfragment', '.airdfragment' and '.afm' files
        * into the newly created eclipse project.
        */
       Map<String, String> oldReferenceToNewReference = extractor.cloneModels(currentProject);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
 
+      subMonitor.split(1);
+      subMonitor.subTask(Messages.FilteringExtractionJob_2);
       /**
        * Then we update the reference from the 'aird' model to the 'melodymodeller' and 'afm' models, because the models
        * filename have changed.
        */
       extractor.updateReferences(oldReferenceToNewReference);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
+
+      subMonitor.split(1);
 
       /**
        * The cloned model is opened in a Sirius session
        */
       // Aird Models
       List<IFile> airdModels = FilteringUtils.getAirdModels(clonedProject);
-      for (IFile aird : airdModels) {
-        Session session = FilteringUtils.openSession(aird);
 
-        if (!session.isOpen()) {
-          session.open(monitor);
-        }
+      subMonitor.setWorkRemaining(airdModels.size() * 20);
+
+      for (IFile aird : airdModels) {
+        subMonitor.subTask(Messages.FilteringExtractionJob_3);
+
+        Session session = FilteringUtils.openSession(aird, subMonitor.split(4));
 
         // This will prevent exceptions for external modifications and
         // deletions.
@@ -177,6 +174,9 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
             return new ArrayList<>();
           }
         });
+
+        subMonitor.subTask(Messages.FilteringExtractionJob_4);
+        subMonitor.split(2);
 
         editingDomain = session.getTransactionalEditingDomain();
         executionManager = ExecutionManagerRegistry.getInstance().getExecutionManager(editingDomain);
@@ -256,10 +256,8 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
             }
           }
 
-          // Cancel control
-          if (monitor.isCanceled()) {
-            throw new OperationCanceledException();
-          }
+          subMonitor.subTask(Messages.FilteringExtractionJob_5);
+          subMonitor.split(1);
 
           /**
            * All the elements tagged with a wrong feature and belonging to the current model are deleted. This is to
@@ -331,14 +329,11 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
                   }
                 }
               }
-
             }
           }
 
-          // Cancel control
-          if (monitor.isCanceled()) {
-            throw new OperationCanceledException();
-          }
+          subMonitor.subTask(Messages.FilteringExtractionJob_6);
+          subMonitor.split(1);
 
           /**
            * Uncontrol elements to be deleted
@@ -348,10 +343,6 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
            */
           for (EObject eObject : elementsToUncontrol) {
             performUncontrol(eObject);
-            // Cancel control
-            if (monitor.isCanceled()) {
-              throw new OperationCanceledException();
-            }
           }
 
           /**
@@ -377,26 +368,26 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
               // execute the command
               doExecuteNonDirtyingCommand(command);
             }
-
           }
-
         }
+
+        subMonitor.subTask(Messages.FilteringExtractionJob_8);
+        subMonitor.split(8);
 
         // Refresh all representations
         FilteringUtils.refreshAllRepresentations(session, executionManager);
 
+        subMonitor.subTask(Messages.FilteringExtractionJob_9);
+
         // Save and close session
-        session.save(new NullProgressMonitor());
+        session.save(subMonitor.split(3));
         SessionHelper.closeUiSessions(Collections.singletonList(clonedProject));
 
         // Refresh workspace
-        clonedProject.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+        clonedProject.refreshLocal(IResource.DEPTH_INFINITE, subMonitor.split(1));
       }
 
-    } catch (CoreException e) {
-      e.printStackTrace();
-
-    } catch (IOException e) {
+    } catch (CoreException | IOException e) {
       e.printStackTrace();
 
     } finally {

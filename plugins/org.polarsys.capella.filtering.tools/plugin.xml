@@ -82,6 +82,12 @@
                   <objectClass
                         name="org.polarsys.capella.core.data.capellamodeller.Project">
                   </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.FilteringResultSet">
+                  </objectClass>
+                  <objectClass
+                        name="org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet">
+                  </objectClass>
                </or>
             </not>
          </visibility>
