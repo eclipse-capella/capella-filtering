@@ -138,7 +138,7 @@ public class FilteringExtractionAction implements IActionDelegate {
       if (clonedProject != null) {
 
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        ProgressMonitorDialog pmd = new ProgressMonitorDialog(shell);
+        ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(shell);
 
         try {
           // We create the runnable
@@ -146,21 +146,21 @@ public class FilteringExtractionAction implements IActionDelegate {
               filteringResult, domainId);
 
           // We open the dialog
-          pmd.setBlockOnOpen(false);
-          pmd.setCancelable(true);
-          pmd.open();
+          progressMonitorDialog.setBlockOnOpen(false);
+          progressMonitorDialog.setCancelable(true);
+          progressMonitorDialog.open();
           // Once it is open then the workspace runnable start
           // It is executed as workspaceRunnable to perform an atomic
           // resources changes
           // See FilteringExtractionJob comments
-          workspace.run(job, pmd.getProgressMonitor());
+          workspace.run(job, progressMonitorDialog.getProgressMonitor());
 
         } catch (CoreException exception) {
           // Error performing derivation
           MessageDialog.openError(shell, Messages.FilteringExtractionAction_2, Messages.FilteringExtractionAction_3);
         } finally {
           // Close the progress monitor dialog
-          pmd.close();
+          progressMonitorDialog.close();
         }
       }
     }

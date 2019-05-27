@@ -25,8 +25,9 @@ interface Messages {
   String FilteringExtractionJob_5 = "Calculating elements for removal";
   String FilteringExtractionJob_6 = "Preparation of fragment:";
   String FilteringExtractionJob_7 = "Remove: ";
-  String FilteringExtractionJob_8 = "Saving and closing session";
-  String FilteringExtractionJob_TaskName = "Performing derivation. Please wait.";
+  String FilteringExtractionJob_8 = "Refreshing existing diagrams";
+  String FilteringExtractionJob_9 = "Saving and closing session";
+  String FilteringExtractionJob_TaskName = "Performing derivation. Please wait...";
   String FilteringMetricsAction_0 = "Filtering metrics";
   String FilteringMetricsAction_1 = "Filtering related metrics";
   String FilteringMultipleCriteriaAssigningAction_0 = "Info";

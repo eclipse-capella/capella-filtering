@@ -17,15 +17,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.xml.transform.stream.StreamSource;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -33,6 +29,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
@@ -80,8 +77,6 @@ import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.polarsys.capella.core.data.capellacore.Namespace;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
-import org.polarsys.capella.core.data.la.LaFactory;
-import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.core.libraries.model.ICapellaModel;
 import org.polarsys.capella.core.model.handler.command.CapellaResourceHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
@@ -326,16 +321,25 @@ public class FilteringUtils {
    * @param aird
    * @return
    */
-  public static Session openSession(IFile aird) {
-    OpenSessionAction openSessionAction = new OpenSessionAction();
-    openSessionAction.setOpenActivityExplorer(false);
+  public static Session openSession(IFile aird, IProgressMonitor monitor) {
+    // since this method is already executed in a job
+    // override the run method in order to avoid the runnable
+
+    OpenSessionAction openSessionAction = new OpenSessionAction() {
+
+      @Override
+      public void run() {
+        doOpenSessions(monitor);
+      }
+    };
+
     openSessionAction.setRunInProgressService(false);
+    openSessionAction.setOpenActivityExplorer(false);
     openSessionAction.selectionChanged(new StructuredSelection(aird));
-    // Open the session.
+
     openSessionAction.run();
 
-    Session session = SessionHelper.getSession(aird);
-    return session;
+    return SessionHelper.getSession(aird);
   }
 
   /**
@@ -1128,16 +1132,7 @@ public class FilteringUtils {
    * @return true if it is excluded from having associated features
    */
   public static boolean isInstanceOfFilteringExcludedElements(Object obj) {
-    if (obj instanceof ExclusionFilteringResultSet || obj instanceof IntersectionFilteringResultSet
-        || obj instanceof UnionFilteringResultSet) {
-      return false;
-    }
-    if (obj instanceof EObject) {
-      if (FilteringPackage.eINSTANCE.equals(((EObject) obj).eClass().getEPackage())) {
-        return true;
-      }
-    }
-    return false;
+    return obj instanceof EObject && FilteringPackage.eINSTANCE.equals(((EObject) obj).eClass().getEPackage());
   }
 
   public static boolean notInstanceOfFilteringPackageMetaclass(Object obj) {
