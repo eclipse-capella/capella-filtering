@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.polarsys.capella.core.data.capellacore.provider.NamedElementItemProvider;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringPackage;
@@ -156,6 +157,12 @@ public class FilteringResultSetItemProvider extends NamedElementItemProvider imp
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(FilteringResultSet.class)) {
+		case FilteringPackage.FILTERING_RESULT_SET__FILTERING_RESULTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

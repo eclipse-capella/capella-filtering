@@ -74,11 +74,11 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
     rootParentComposite.setLayout(new GridLayout());
     rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    criteria = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel,
+    criteria = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.PropertySection_filteringLabel,
         getWidgetFactory(), new CapellaElementCriteria());
     criteria.setDisplayedInWizard(isDisplayedInWizard());
 
-    implicitCriteria = new ReadOnlyMultipleSemanticField(getReferencesGroup(), Messages.implicitCriteriaLabel,
+    implicitCriteria = new ReadOnlyMultipleSemanticField(getReferencesGroup(), Messages.PropertySection_implicitCriteriaLabel,
         getWidgetFactory(), new CapellaElementImplicitCriteria());
     implicitCriteria.setEnabled(false);
     implicitCriteria.setDisplayedInWizard(isDisplayedInWizard());

@@ -14,7 +14,6 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.polarsys.capella.common.ui.toolkit.fields.SpacerFieldEditor;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 
 /**
@@ -42,14 +41,14 @@ public class FilteringPreferencesPage extends FieldEditorPreferencePage implemen
 
   @Override
   public void createFieldEditors() {
-    addField(new BooleanFieldEditor(APPLICATION_PROJECT_WITH_DIFFERENT_ID, Messages.FILTERING_PREFERENCES_PAGE_3,
+    addField(new BooleanFieldEditor(APPLICATION_PROJECT_WITH_DIFFERENT_ID, Messages.FilteringPreferencesPage_DifferentId,
         getFieldEditorParent()));
   }
 
   @Override
   public void init(IWorkbench workbench) {
     setPreferenceStore(FilteringToolsPlugin.getDefault().getPreferenceStore());
-    setDescription(Messages.FILTERING_PREFERENCES_PAGE_4);
+    setDescription(Messages.FilteringPreferencesPage_Description);
   }
 
 }
