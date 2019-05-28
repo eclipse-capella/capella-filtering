@@ -33,17 +33,19 @@ import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper.TriStateBoolean;
 import org.polarsys.capella.core.ui.properties.fields.AbstractSemanticField;
 import org.polarsys.capella.core.ui.properties.sections.AbstractSection;
+import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.properties.CapellaElementCriteria;
 import org.polarsys.capella.filtering.properties.CapellaElementImplicitCriteria;
-import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.capella.filtering.properties.fields.IndirectCapellaElementCriteriaMultipleSemanticField;
+import org.polarsys.capella.filtering.properties.fields.ReadOnlyMultipleSemanticField;
+import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
 
 /**
- * 
- * 
+ * The tab Filtering is enabled on all CapellaElements and none of Filtering ones except Union/Exception/Intersection
  */
 public class CapellaFilteringPropertySection extends AbstractSection implements IFilter {
 
-  private IndirectCapellaElementCriteriaMultipleSemanticField features;
+  private IndirectCapellaElementCriteriaMultipleSemanticField criteria;
   private ReadOnlyMultipleSemanticField implicitCriteria;
 
   /**
@@ -52,12 +54,13 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
   @Override
   public boolean select(Object toTest) {
     EObject eObj = CapellaAdapterHelper.resolveSemanticObject(toTest);
-    // Filter CapellaElement
     if (!(eObj instanceof CapellaElement)) {
       return false;
     }
-    // Filter our types
-    return !(FilteringUtils.isInstanceOfFilteringExcludedElements(eObj));
+    if (eObj != null && eObj.eClass() != null && FilteringPackage.eINSTANCE.equals(eObj.eClass().getEPackage())) {
+      return false;
+    }
+    return ViewpointHelper.isViewpointActive(eObj);
   }
 
   /**
@@ -71,16 +74,14 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
     rootParentComposite.setLayout(new GridLayout());
     rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    boolean displayedInWizard = isDisplayedInWizard();
-
-    features = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel,
+    criteria = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.filteringLabel,
         getWidgetFactory(), new CapellaElementCriteria());
-    features.setDisplayedInWizard(displayedInWizard);
+    criteria.setDisplayedInWizard(isDisplayedInWizard());
 
     implicitCriteria = new ReadOnlyMultipleSemanticField(getReferencesGroup(), Messages.implicitCriteriaLabel,
         getWidgetFactory(), new CapellaElementImplicitCriteria());
     implicitCriteria.setEnabled(false);
-    implicitCriteria.setDisplayedInWizard(displayedInWizard);
+    implicitCriteria.setDisplayedInWizard(isDisplayedInWizard());
   }
 
   /**
@@ -94,7 +95,7 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
     // The second parameter is the semanticFeature but we do not include
     // anyone.
     // Filtering criterion is not direct attribute of CapellaElement
-    features.loadData(capellaElement, null);
+    criteria.loadData(capellaElement, null);
     implicitCriteria.loadData(capellaElement, null);
   }
 
@@ -133,7 +134,7 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
   public List<AbstractSemanticField> getSemanticFields() {
     List<AbstractSemanticField> fields = new ArrayList<>();
 
-    fields.add(features);
+    fields.add(criteria);
     fields.add(implicitCriteria);
 
     return fields;
