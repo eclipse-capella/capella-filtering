@@ -80,7 +80,6 @@ import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
-import org.polarsys.capella.core.sirius.analysis.tool.StringUtil;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -95,7 +94,6 @@ import org.polarsys.capella.filtering.tools.utils.ui.FilteringResultsContentProv
 public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionListener {
 
   private static final String MESSAGE = "Diagrams reflect the filtering result";
-  private static final String MSG_CURRENT_RESULT = "Selected Result:";
 
   private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 
@@ -124,7 +122,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
   private Combo filteringResultCombo;
   private Set<Control> allViewControls;
   private Set<Control> viewSubControls;
-  private Label currentSelectedResultLabel;
+  private Label modifiedResultLabel;
   private Button enableCheckBtn;
   private Composite topControlsComposite;
   private Composite buttonComposite;
@@ -260,14 +258,14 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     filteringResultCombo.addListener(SWT.Selection, createFilteringResultComboListener());
 
-    formToolkit.createLabel(buttonComposite, MSG_CURRENT_RESULT, SWT.HORIZONTAL | SWT.SHADOW_NONE);
-    currentSelectedResultLabel = formToolkit.createLabel(buttonComposite, "", SWT.HORIZONTAL | SWT.SHADOW_NONE);
+    formToolkit.createLabel(buttonComposite, "", SWT.HORIZONTAL | SWT.SHADOW_NONE);
+    modifiedResultLabel = formToolkit.createLabel(buttonComposite, "", SWT.HORIZONTAL | SWT.SHADOW_NONE);
 
-    currentSelectedResultLabel.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
-    currentSelectedResultLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+    modifiedResultLabel.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
+    modifiedResultLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
 
-    viewSubControls.addAll(Arrays.asList(unchekAllButton, checkAllButton, refreshButton, currentSelectedResultLabel,
-        filteringResultCombo));
+    viewSubControls.addAll(
+        Arrays.asList(unchekAllButton, checkAllButton, refreshButton, modifiedResultLabel, filteringResultCombo));
 
     return buttonComposite;
   }
@@ -326,7 +324,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
               allCriteriaResult.getFilteringCriteria().addAll(allFilteringCriteria);
               FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
-            setCurrentResultLabelAsModified();
+            tagModifiedResultLabel();
           }
         }, enabled);
 
@@ -448,14 +446,13 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
             globalFilteringCache.setCurrentFilteringResult(project, filtResult);
 
-            setCurrentResultLabelAsModified();
+            tagModifiedResultLabel();
           }
 
           if (firstElt instanceof ComposedFilteringResult) {
             checkedList.stream().filter(obj -> obj instanceof AbstractFilteringResult).findFirst().ifPresent(obj -> {
               globalFilteringCache.setCurrentFilteringResult(project, (AbstractFilteringResult) obj);
-              updateCurrentSelectedResultLabel(FilteringUtils.formatFilteringItemName((AbstractFilteringResult) obj));
-
+              resetModifiedResultLabel();
             });
           }
         }
@@ -473,12 +470,17 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
   /**
    * Update label for selected results with "MODIFIED" tag
    */
-  private void setCurrentResultLabelAsModified() {
-    String oldText = currentSelectedResultLabel.getData().toString();
-    if (!StringUtil.isNullOrEmpty(oldText)) {
-      currentSelectedResultLabel.setText(oldText + " (MODIFIED)");
-      currentSelectedResultLabel.getParent().pack(true);
-    }
+  private void tagModifiedResultLabel() {
+    setModifiedResultLabel("(MODIFIED)");
+  }
+
+  private void resetModifiedResultLabel() {
+    setModifiedResultLabel("");
+  }
+
+  private void setModifiedResultLabel(String text) {
+    modifiedResultLabel.setText(text);
+    modifiedResultLabel.getParent().pack(true);
   }
 
   private Listener createFilteringResultComboListener() {
@@ -496,13 +498,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     };
   }
 
-  private void updateCurrentSelectedResultLabel(String formatFilteringItemName) {
-    currentSelectedResultLabel.setData(formatFilteringItemName);
-    currentSelectedResultLabel.setText(formatFilteringItemName);
-    currentSelectedResultLabel.getParent().pack(true);
-
-  }
-
   private void updateControls() {
 
     filteringResults = FilteringUtils.getFilteringResults(projects);
@@ -512,9 +507,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
       filteringResultCombo.removeAll();
       filteringResultCombo.add("No FilteringResults");
-      currentSelectedResultLabel.setData("");
-      currentSelectedResultLabel.setText("");
-      currentSelectedResultLabel.getParent().pack(true);
+      modifiedResultLabel.setData("");
+      modifiedResultLabel.setText("");
+      modifiedResultLabel.getParent().pack(true);
       treeViewer.setInput(null);
       viewSubControls.forEach(c -> c.setEnabled(false));
 
@@ -769,8 +764,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     // index 0 is the title of the combo
     if (filteringResultCombo.getSelectionIndex() == 0) {
-      // update label for current selected result
-      updateCurrentSelectedResultLabel("");
+      resetModifiedResultLabel();
       return;
     }
 
@@ -819,14 +813,14 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
       undefinedElements.remove(vf);
     }
 
-    // update label for current selected result
-    updateCurrentSelectedResultLabel(FilteringUtils.formatFilteringItemName(filteringResult));
+    // reset the modified status
+    resetModifiedResultLabel();
   }
 
   @Override
   public void setFocus() {
     // TODO Auto-generated method stub
-    
+
   }
 
 }
