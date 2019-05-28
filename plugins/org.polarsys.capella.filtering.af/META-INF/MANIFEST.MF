@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Bundle-SymbolicName: org.polarsys.capella.filtering.af;singleton:=true
 Require-Bundle: org.polarsys.kitalpha.ad.viewpoint.ui,
  org.polarsys.capella.filtering.sirius.analysis;bundle-version="1.2.0",
- org.polarsys.capella.filtering;bundle-version="1.2.0",
  org.polarsys.capella.filtering.model;bundle-version="1.0.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
