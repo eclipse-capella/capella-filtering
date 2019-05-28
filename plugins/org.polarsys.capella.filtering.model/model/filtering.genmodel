@@ -10,14 +10,17 @@
     <genClasses ecoreClass="filtering.ecore#//FilteringModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringModel/ownedFilteringCriteria"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringModel/ownedFilteringCriterionPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference filtering.ecore#//FilteringModel/ownedVariabilityFeatures"/>
     </genClasses>
     <genClasses ecoreClass="filtering.ecore#//FilteringCriterion"/>
     <genClasses image="false" ecoreClass="filtering.ecore#//FilteringCriterionSet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringCriterionSet/filteringCriteria"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference filtering.ecore#//FilteringCriterionSet/variabilityFeatures"/>
     </genClasses>
     <genClasses ecoreClass="filtering.ecore#//FilteringResults">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringResults/filteringResults"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//FilteringResults/ownedFilteringResultPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference filtering.ecore#//FilteringResults/configurations"/>
     </genClasses>
     <genClasses ecoreClass="filtering.ecore#//FilteringResult"/>
     <genClasses ecoreClass="filtering.ecore#//AssociatedFilteringCriterionSet"/>
@@ -36,7 +39,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference filtering.ecore#//ComposedFilteringResult/ExclusionFilteringResultSet"/>
     </genClasses>
     <genClasses ecoreClass="filtering.ecore#//FilteringResultSet">
-      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference filtering.ecore#//FilteringResultSet/filteringResults"/>
     </genClasses>
     <genClasses image="false" ecoreClass="filtering.ecore#//AbstractFilteringResult">

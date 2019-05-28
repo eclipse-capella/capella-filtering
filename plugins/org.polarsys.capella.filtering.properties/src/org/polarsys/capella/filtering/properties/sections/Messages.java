@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2019 THALES GLOBAL SERVICES.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,9 +10,18 @@
  *******************************************************************************/
 package org.polarsys.capella.filtering.properties.sections;
 
-interface Messages {
+import org.eclipse.osgi.util.NLS;
 
-  public static String filteringLabel = "Filtering Criteria";
-  public static String implicitCriteriaLabel = "Implicit Criteria";
+public class Messages extends NLS {
+  private static final String BUNDLE_NAME = "org.polarsys.capella.filtering.properties.sections.messages"; //$NON-NLS-1$
+  public static String PropertySection_filteringLabel;
+  public static String PropertySection_filteringResults;
+  public static String PropertySection_implicitCriteriaLabel;
+  static {
+    // initialize resource bundle
+    NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+  }
 
+  private Messages() {
+  }
 }
