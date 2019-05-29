@@ -63,18 +63,32 @@
                class="org.polarsys.capella.core.data.core.properties.sections.DefaultNamedElementSection"
                filter="org.polarsys.capella.filtering.properties.sections.DefaultNamedElementFilter"
                id="org.polarsys.capella.filtering.properties.sections.BasicFilteringFeaturePropertySection">
+               <input type="org.polarsys.capella.filtering.ComposedFilteringResult"/>
+               <input type="org.polarsys.capella.filtering.FilteringCriterion"/>
+               <input type="org.polarsys.capella.filtering.FilteringCriterionPkg"/>
+               <input type="org.polarsys.capella.filtering.FilteringModel"/>
+               <input type="org.polarsys.capella.filtering.FilteringResultPkg"/>
+               <input type="org.polarsys.capella.filtering.FilteringResults"/>
+               <input type="org.polarsys.capella.filtering.FilteringResultSet"/>
          </propertySection>
          
          <propertySection tab="Base"
                class="org.polarsys.capella.filtering.properties.sections.CriterionSetPropertySection"
                filter="org.polarsys.capella.filtering.properties.sections.CriterionSetPropertySection"
                id="org.polarsys.capella.filtering.properties.sections.CriterionSetPropertySection">
+               <input type="org.polarsys.capella.filtering.AssociatedFilteringCriterionSet"/>
+               <input type="org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet"/>
+               <input type="org.polarsys.capella.filtering.FilteringResult"/>
+               <input type="org.polarsys.capella.filtering.FilteringCriterionSet"/>
          </propertySection>
          
          <propertySection tab="Base"
                class="org.polarsys.capella.filtering.properties.sections.ComposedResultSetPropertySection"
                filter="org.polarsys.capella.filtering.properties.sections.ComposedResultSetPropertySection"
                id="org.polarsys.capella.filtering.properties.sections.ComposedResultSetPropertySection">
+               <input type="org.polarsys.capella.filtering.ExclusionFilteringResultSet"/>
+               <input type="org.polarsys.capella.filtering.IntersectionFilteringResultSet"/>
+               <input type="org.polarsys.capella.filtering.UnionFilteringResultSet"/>
          </propertySection>
          
       </propertySections>
