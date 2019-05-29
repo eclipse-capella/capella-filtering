@@ -172,8 +172,8 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
         new CriteriaContentProvider(), projects);
-    checkedTreeSelectionDialog.setTitle(Messages.AssignFilteringCriteriaAction_title); // $NON-NLS-1$
-    checkedTreeSelectionDialog.setMessage(Messages.AssignFilteringCriteriaAction_message); // $NON-NLS-1$
+    checkedTreeSelectionDialog.setTitle(Messages.AssignFilteringCriteriaAction_title);
+    checkedTreeSelectionDialog.setMessage(Messages.AssignFilteringCriteriaAction_message);
     checkedTreeSelectionDialog.setInput(projects);
     checkedTreeSelectionDialog.setInitialElementSelections(checkedFeatures);
     checkedTreeSelectionDialog.setImage(AbstractUIPlugin

@@ -31,6 +31,7 @@ import org.polarsys.capella.core.ui.properties.controllers.IMultipleSemanticFiel
 import org.polarsys.capella.core.ui.properties.fields.MultipleSemanticField;
 import org.polarsys.capella.core.ui.properties.helpers.NamingHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
+import org.polarsys.capella.filtering.tools.actions.Messages;
 import org.polarsys.capella.filtering.tools.dialogs.FilteringCriteriaSelectionDialog;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
@@ -61,8 +62,8 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
         new CriteriaContentProvider(), projects);
-    dialog.setTitle(title);
-    dialog.setMessage(message);
+    dialog.setTitle(Messages.AssignFilteringCriteriaAction_title);
+    dialog.setMessage(Messages.AssignFilteringCriteriaAction_message);
     dialog.setInput(projects);
     dialog.setInitialElementSelections(currentElements);
     if (dialog.open() != Window.OK) {
@@ -110,11 +111,8 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
         new CriteriaContentProvider(), projects);
-    String title = NamingHelper.getDefaultTitle(_semanticElement);
-    String message = NamingHelper.getDefaultMessage(_semanticElement,
-        (_semanticFeature != null) ? _semanticFeature.getName() : ""); //$NON-NLS-1$
-    dialog.setTitle(title);
-    dialog.setMessage(message);
+    dialog.setTitle(Messages.AssignFilteringCriteriaAction_title);
+    dialog.setMessage(Messages.AssignFilteringCriteriaAction_message);
     dialog.setInput(projects);
     List<FilteringCriterion> currentElements = FilteringUtils.getExplicitAssociatedCriteria(_semanticElement);
     dialog.setInitialElementSelections(currentElements);
