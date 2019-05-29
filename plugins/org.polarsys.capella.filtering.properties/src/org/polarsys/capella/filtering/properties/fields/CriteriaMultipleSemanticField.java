@@ -28,6 +28,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.ui.properties.controllers.IMultipleSemanticFieldController;
 import org.polarsys.capella.core.ui.properties.fields.MultipleSemanticField;
+import org.polarsys.capella.filtering.tools.actions.Messages;
 import org.polarsys.capella.filtering.tools.dialogs.FilteringCriteriaSelectionDialog;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
@@ -58,8 +59,8 @@ public class CriteriaMultipleSemanticField extends MultipleSemanticField {
         new TransactionalAdapterFactoryLabelProvider(transactionalEditingDomain,
             ((AdapterFactoryEditingDomain) transactionalEditingDomain).getAdapterFactory()),
         new CriteriaContentProvider(), projects);
-    dialog.setTitle(title);
-    dialog.setMessage(message);
+    dialog.setTitle(Messages.AssignFilteringCriteriaAction_title);
+    dialog.setMessage(Messages.AssignFilteringCriteriaAction_message);
     dialog.setInput(projects);
     dialog.setInitialElementSelections(currentElements);
     if (dialog.open() != Window.OK) {

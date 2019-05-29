@@ -15,7 +15,7 @@ package org.polarsys.capella.filtering.tools.actions;
  * 
  * 
  */
-interface Messages {
+public interface Messages {
 
   String FilteringExtractionJob_0 = "Derivation of:";
   String FilteringExtractionJob_1 = "Copying files";
