@@ -64,3 +64,12 @@ filtering_preferences_icon.png
 filtering_select_criteria.png
 filtering_set_criteria.png
 filtering_show_hide_criteria_icon.png
+Example1.png
+Example2.png
+Example3.png
+Example4.png
+Example5.png
+Example6.png
+Example7.png
+Example8.png
+Example9.png

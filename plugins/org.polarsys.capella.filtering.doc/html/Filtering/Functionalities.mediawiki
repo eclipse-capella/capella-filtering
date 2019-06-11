@@ -165,10 +165,34 @@ Different operators can be used to compose filtering results under a parent Comp
 
 
 
-
 When selecting a criteria in the Filtering Model, the user could see in the Semantic Browser the filtering results referencing this criteria.
 
 <center>[[Image:Images/functionalities_criterion_referencing_results.png|520px]]</center>
+
+==== Example ====
+Let us imagine a model containing the following System Functions:
+
+[[Image:Images/Example1.png|520px]]
+
+Let us consider the following ''Simple'' Filtering Result 1:
+
+[[Image:Images/Example2.png|350px]]
+
+And ''Simple'' Filtering Result 2:
+
+[[Image:Images/Example3.png|350px]]
+
+A ''Composed'' Filtering Result A, containing the ''Union'' operator for Filtering Result 1 and Filtering Result 2 will provide the following result:
+
+[[Image:Images/Example9.png|160px]] [[Image:Images/Example4.png|520px]]
+
+A ''Composed'' Filtering Result B, containing the ''Intersection'' operator for Filtering Result 1 and Filtering Result 2 will provide the following result:
+
+[[Image:Images/Example8.png|155px]] [[Image:Images/Example5.png|520px]]
+
+A ''Composed'' Filtering Result C containing the the ''Union'' operator for Filtering Result 1 and Filtering Result 2 and the ''Exclusion'' operator of the ''Composed'' Filtering Result B, will provide the following result:
+
+[[Image:Images/Example7.png|180px]] [[Image:Images/Example6.png|520px]] 
 
 ===Product family Representation===
 
