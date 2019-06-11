@@ -135,7 +135,7 @@
          <action
                class="org.polarsys.capella.filtering.tools.actions.FilteringMetricsAction"
                enablesFor="1"
-               icon="icons/filteringMetric.pngfilteringMetric.png"
+               icon="icons/filteringMetric.png"
                id="org.polarsys.capella.filtering.tools.FilteringMetrics.systemsEngineering"
                label="Filtering metrics"
                menubarPath="org.polarsys.capella.filtering.tools.menu3/org.polarsys.capella.filtering.tools.separator3">
