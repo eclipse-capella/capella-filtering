@@ -10,7 +10,7 @@ Require-Bundle: org.polarsys.capella.core.commandline.core,
  org.polarsys.capella.core.platform.sirius.ui.project,
  org.polarsys.capella.filtering.model,
  org.eclipse.ui
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.capella.core.validation.commandline
 Bundle-Localization: plugin
