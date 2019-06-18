@@ -381,12 +381,14 @@ public class FilteringUtils {
   public static List<Project> getReferencedProjects(Project project) {
     List<Project> res = new ArrayList<Project>();
     Session session = SessionManager.INSTANCE.getSession(project);
-    TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
-    IModel model = ILibraryManager.INSTANCE.getModel(project);
-    Collection<IModel> allReferences = LibraryManagerExt.getAllReferences(model);
-    for (IModel lib : allReferences) {
-      if (lib instanceof ICapellaModel) {
-        res.add(((ICapellaModel) lib).getProject(transactionalEditingDomain));
+    if (session != null) {
+      TransactionalEditingDomain transactionalEditingDomain = session.getTransactionalEditingDomain();
+      IModel model = ILibraryManager.INSTANCE.getModel(project);
+      Collection<IModel> allReferences = LibraryManagerExt.getAllReferences(model);
+      for (IModel lib : allReferences) {
+        if (lib instanceof ICapellaModel) {
+          res.add(((ICapellaModel) lib).getProject(transactionalEditingDomain));
+        }
       }
     }
     return res;
