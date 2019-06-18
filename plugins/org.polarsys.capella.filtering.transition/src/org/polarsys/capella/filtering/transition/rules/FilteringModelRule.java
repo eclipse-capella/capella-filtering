@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
+import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.transition.common.constants.ITransitionConstants;
 import org.polarsys.capella.core.transition.common.handlers.attachment.AttachmentHelper;
 import org.polarsys.capella.core.transition.common.rules.AbstractUpdateRule;
@@ -52,12 +52,12 @@ public class FilteringModelRule extends AbstractUpdateRule {
    */
   @Override
   protected EObject getDefaultContainer(EObject element_p, EObject result_p, IContext context_p) {
-    return (SystemEngineering) context_p.get(ITransitionConstants.TRANSFORMATION_TARGET_ROOT);
+    return (Project) context_p.get(ITransitionConstants.TRANSFORMATION_TARGET_ROOT);
   }
 
   @Override
   protected EObject getBestContainer(EObject element_p, EObject result_p, IContext context_p) {
-    return (SystemEngineering) context_p.get(ITransitionConstants.TRANSFORMATION_TARGET_ROOT);
+    return (Project) context_p.get(ITransitionConstants.TRANSFORMATION_TARGET_ROOT);
   }
 
   /**

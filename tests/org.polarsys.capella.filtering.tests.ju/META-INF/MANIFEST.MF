@@ -9,8 +9,9 @@ Require-Bundle: org.polarsys.capella.filtering.tools,
  org.eclipse.emf.diffmerge.ui,
  org.polarsys.capella.test.framework;bundle-version="1.2.1",
  org.eclipse.emf.common,
- org.polarsys.capella.filtering.sirius.analysis;bundle-version="1.2.0",
- org.polarsys.capella.filtering.business.queries;bundle-version="1.2.0"
+ org.polarsys.capella.filtering.sirius.analysis,
+ org.polarsys.capella.filtering.business.queries,
+ org.polarsys.capella.test.transition.ju
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.capella.filtering.tests.ju.tests.derivation,

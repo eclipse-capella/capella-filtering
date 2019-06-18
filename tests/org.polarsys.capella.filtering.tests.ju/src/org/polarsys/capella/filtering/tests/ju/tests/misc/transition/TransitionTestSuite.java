@@ -8,30 +8,26 @@
  * Contributors:
  *    Thales - initial API and implementation
  *******************************************************************************/
-package org.polarsys.capella.filtering.tests.ju.tests.misc;
+package org.polarsys.capella.filtering.tests.ju.tests.misc.transition;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.polarsys.capella.filtering.tests.ju.tests.misc.transition.TransitionTestSuite;
 import org.polarsys.capella.test.framework.api.BasicTestArtefact;
 import org.polarsys.capella.test.framework.api.BasicTestSuite;
 
 import junit.framework.Test;
 
-public class MiscTestSuite extends BasicTestSuite {
+public class TransitionTestSuite extends BasicTestSuite {
 
   public static Test suite() {
-    return new MiscTestSuite();
+    return new TransitionTestSuite();
   }
 
   @Override
   protected List<BasicTestArtefact> getTests() {
     List<BasicTestArtefact> testCases = new ArrayList<>();
-    testCases.add(new FilteringCriterionSetHelperTest());
-    testCases.add(new FilteringServicesTest());
-    testCases.add(new FilteringUtilsTest());
-    testCases.add(new TransitionTestSuite());
+    testCases.add(new FunctionalTransitionTestCase());
 
     return testCases;
   }
