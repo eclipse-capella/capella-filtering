@@ -223,6 +223,13 @@
       </ownedLogicalContext>
       <ownedLogicalComponent xsi:type="org.polarsys.capella.core.data.la:LogicalComponent"
           id="eb1e8db3-a464-463f-b45d-28b4e0702088" name="Logical System">
+        <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" id="9dcc4737-470d-4cb3-93bd-b568eb8f842a"
+            name="LogicalComponent 1" abstractType="#ccefe212-df01-4926-9d04-dcf1acdcc4bc"/>
+        <ownedLogicalComponents xsi:type="org.polarsys.capella.core.data.la:LogicalComponent"
+            id="ccefe212-df01-4926-9d04-dcf1acdcc4bc" name="LogicalComponent 1">
+          <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet" id="0a4ba05c-bd82-4bb2-98c6-f1736fd20299"
+              filteringCriteria="#93e1e58d-2b4c-4607-95a1-d759dbcdeaa7"/>
+        </ownedLogicalComponents>
         <ownedSystemRealizations xsi:type="org.polarsys.capella.core.data.la:SystemRealization"
             id="7754429f-039a-48c2-a740-a127c7b6bb6a" targetElement="#f5580db0-9fb6-4db6-becc-23f5691268a4"
             sourceElement="#eb1e8db3-a464-463f-b45d-28b4e0702088"/>
