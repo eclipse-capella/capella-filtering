@@ -489,7 +489,7 @@ Now the user is able to see and modify the Associated criterion set elements.
 <center>[[Image:Images/functionalities_customize_view_set.png|620px]]</center>
 
 
-==Capella Team compatibility==
+==Team for Capella compatibility==
 
 Filtering information is exported when users '''export''' the model to a remote repository.  After connecting to a remote model all the presented functionalities are available except the derivation.
 
