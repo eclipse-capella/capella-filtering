@@ -46,7 +46,8 @@ public interface FilteringCriterionSet extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Filtering Criteria</em>' reference list.
 	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringCriterionSet_FilteringCriteria()
-	 * @model annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
+	 * @model annotation="http://www.polarsys.org/capella/semantic"
+	 *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
 	 * @generated
 	 */
 

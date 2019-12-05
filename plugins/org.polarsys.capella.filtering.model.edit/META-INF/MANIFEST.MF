@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.capella.filtering.model.edit;singleton:=true
+Automatic-Module-Name: org.polarsys.capella.filtering.model.edit
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.polarsys.capella.filtering.provider.FilteringEditPlugin$Implementation

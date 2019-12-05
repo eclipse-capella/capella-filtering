@@ -2,7 +2,6 @@
 package org.polarsys.capella.filtering.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.ExclusionFilteringResultSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -147,6 +145,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public UnionFilteringResultSet getUnionFilteringResultSet() {
 
 		return unionFilteringResultSet;
@@ -180,6 +179,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setUnionFilteringResultSet(UnionFilteringResultSet newUnionFilteringResultSet) {
 
 		if (newUnionFilteringResultSet != unionFilteringResultSet) {
@@ -207,6 +207,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public IntersectionFilteringResultSet getIntersectionFilteringResultSet() {
 
 		return intersectionFilteringResultSet;
@@ -240,6 +241,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setIntersectionFilteringResultSet(IntersectionFilteringResultSet newIntersectionFilteringResultSet) {
 
 		if (newIntersectionFilteringResultSet != intersectionFilteringResultSet) {
@@ -269,6 +271,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public ExclusionFilteringResultSet getExclusionFilteringResultSet() {
 
 		return exclusionFilteringResultSet;
@@ -302,6 +305,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setExclusionFilteringResultSet(ExclusionFilteringResultSet newExclusionFilteringResultSet) {
 
 		if (newExclusionFilteringResultSet != exclusionFilteringResultSet) {

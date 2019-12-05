@@ -114,6 +114,15 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_MODEL__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_MODEL__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -336,6 +345,15 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_CRITERION__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_CRITERION__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -529,6 +547,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_CRITERION_SET__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -743,6 +770,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_RESULTS__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULTS__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -967,6 +1003,15 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT__OWNED_CONSTRAINTS = FILTERING_CRITERION_SET__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT__OWNED_MIGRATED_ELEMENTS = FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1178,6 +1223,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATED_FILTERING_CRITERION_SET__OWNED_CONSTRAINTS = FILTERING_CRITERION_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATED_FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS = FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1394,6 +1448,15 @@ public interface FilteringPackage extends EPackage {
 	int CREATION_DEFAULT_FILTERING_CRITERION_SET__OWNED_CONSTRAINTS = FILTERING_CRITERION_SET__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATION_DEFAULT_FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS = FILTERING_CRITERION_SET__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1606,6 +1669,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_RESULT_PKG__OWNED_CONSTRAINTS = CapellacorePackage.NAMESPACE__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_PKG__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMESPACE__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1855,6 +1927,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_CRITERION_PKG__OWNED_CONSTRAINTS = CapellacorePackage.NAMESPACE__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_CRITERION_PKG__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMESPACE__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2107,6 +2188,15 @@ public interface FilteringPackage extends EPackage {
 	int ABSTRACT_FILTERING_RESULT__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_FILTERING_RESULT__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -2301,6 +2391,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSED_FILTERING_RESULT__OWNED_CONSTRAINTS = ABSTRACT_FILTERING_RESULT__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSED_FILTERING_RESULT__OWNED_MIGRATED_ELEMENTS = ABSTRACT_FILTERING_RESULT__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2529,6 +2628,15 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT_SET__OWNED_CONSTRAINTS = CapellacorePackage.NAMED_ELEMENT__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS = CapellacorePackage.NAMED_ELEMENT__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2742,6 +2850,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS = FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2960,6 +3077,15 @@ public interface FilteringPackage extends EPackage {
 	int EXCLUSION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUSION_FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS = FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3174,6 +3300,15 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERSECTION_FILTERING_RESULT_SET__OWNED_CONSTRAINTS = FILTERING_RESULT_SET__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Migrated Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS = FILTERING_RESULT_SET__OWNED_MIGRATED_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

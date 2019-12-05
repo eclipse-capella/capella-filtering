@@ -2,17 +2,13 @@
 package org.polarsys.capella.filtering.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.ExclusionFilteringResultSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -147,6 +143,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public UnionFilteringResultSet getUnionFilteringResultSet() {
 
 		return (UnionFilteringResultSet) eDynamicGet(
@@ -173,11 +170,13 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setUnionFilteringResultSet(UnionFilteringResultSet newUnionFilteringResultSet) {
 
 		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
 				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__UNION_FILTERING_RESULT_SET,
 				newUnionFilteringResultSet);
+
 	}
 
 	/**
@@ -185,6 +184,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public IntersectionFilteringResultSet getIntersectionFilteringResultSet() {
 
 		return (IntersectionFilteringResultSet) eDynamicGet(
@@ -211,11 +211,13 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setIntersectionFilteringResultSet(IntersectionFilteringResultSet newIntersectionFilteringResultSet) {
 
 		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
 				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__INTERSECTION_FILTERING_RESULT_SET,
 				newIntersectionFilteringResultSet);
+
 	}
 
 	/**
@@ -223,6 +225,7 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public ExclusionFilteringResultSet getExclusionFilteringResultSet() {
 
 		return (ExclusionFilteringResultSet) eDynamicGet(
@@ -249,11 +252,13 @@ public class ComposedFilteringResultImpl extends AbstractFilteringResultImpl imp
 	 * @generated
 	 */
 
+	@Override
 	public void setExclusionFilteringResultSet(ExclusionFilteringResultSet newExclusionFilteringResultSet) {
 
 		eDynamicSet(FilteringPackage.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
 				FilteringPackage.Literals.COMPOSED_FILTERING_RESULT__EXCLUSION_FILTERING_RESULT_SET,
 				newExclusionFilteringResultSet);
+
 	}
 
 	/**

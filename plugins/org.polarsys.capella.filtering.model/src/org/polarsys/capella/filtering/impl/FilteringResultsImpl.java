@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
@@ -99,6 +98,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 * @generated
 	 */
 
+	@Override
 	public EList<AbstractFilteringResult> getFilteringResults() {
 
 		if (filteringResults == null) {
@@ -113,6 +113,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringResultPkg> getOwnedFilteringResultPkgs() {
 
 		if (ownedFilteringResultPkgs == null) {
@@ -128,6 +129,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringResult> getConfigurations() {
 
 		if (configurations == null) {

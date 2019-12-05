@@ -19,12 +19,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.polarsys.capella.common.data.activity.ActivityPackage;
 import org.polarsys.capella.common.data.behavior.BehaviorPackage;
-import org.polarsys.capella.common.data.modellingcore.ModellingcorePackage;
+import org.polarsys.capella.common.data.modellingcore.ModellingcorePackage
+;
 import org.polarsys.capella.core.data.capellacommon.CapellacommonPackage;
 
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
-
-import org.polarsys.capella.core.data.capellamodeller.CapellamodellerPackage;
 
 import org.polarsys.capella.core.data.cs.CsPackage;
 
@@ -41,14 +40,11 @@ import org.polarsys.capella.core.data.interaction.InteractionPackage;
 import org.polarsys.capella.core.data.la.LaPackage;
 
 import org.polarsys.capella.core.data.oa.OaPackage;
-
 import org.polarsys.capella.core.data.pa.PaPackage;
 
 import org.polarsys.capella.core.data.requirement.RequirementPackage;
 
 import org.polarsys.capella.filtering.AbstractFilteringResult;
-import org.polarsys.capella.core.data.sharedmodel.SharedmodelPackage;
-
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
@@ -188,7 +184,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link FilteringPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc
@@ -203,9 +199,10 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 			return (FilteringPackage) EPackage.Registry.INSTANCE.getEPackage(FilteringPackage.eNS_URI);
 
 		// Obtain or create and register package
-		FilteringPackageImpl theFilteringPackage = (FilteringPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof FilteringPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new FilteringPackageImpl());
+		Object registeredFilteringPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		FilteringPackageImpl theFilteringPackage = registeredFilteringPackage instanceof FilteringPackageImpl
+				? (FilteringPackageImpl) registeredFilteringPackage
+				: new FilteringPackageImpl();
 
 		isInited = true;
 
@@ -245,6 +242,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringModel() {
 		return filteringModelEClass;
 	}
@@ -253,6 +251,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringModel_OwnedFilteringCriteria() {
 		return (EReference) filteringModelEClass.getEStructuralFeatures().get(0);
 	}
@@ -261,6 +260,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringModel_OwnedFilteringCriterionPkgs() {
 		return (EReference) filteringModelEClass.getEStructuralFeatures().get(1);
 	}
@@ -270,6 +270,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringModel_OwnedVariabilityFeatures() {
 		return (EReference) filteringModelEClass.getEStructuralFeatures().get(2);
 	}
@@ -278,6 +279,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringCriterion() {
 		return filteringCriterionEClass;
 	}
@@ -286,6 +288,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringCriterionSet() {
 		return filteringCriterionSetEClass;
 	}
@@ -294,6 +297,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringCriterionSet_FilteringCriteria() {
 		return (EReference) filteringCriterionSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -303,6 +307,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringCriterionSet_VariabilityFeatures() {
 		return (EReference) filteringCriterionSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -311,6 +316,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringResults() {
 		return filteringResultsEClass;
 	}
@@ -319,6 +325,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResults_FilteringResults() {
 		return (EReference) filteringResultsEClass.getEStructuralFeatures().get(0);
 	}
@@ -327,6 +334,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResults_OwnedFilteringResultPkgs() {
 		return (EReference) filteringResultsEClass.getEStructuralFeatures().get(1);
 	}
@@ -336,6 +344,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResults_Configurations() {
 		return (EReference) filteringResultsEClass.getEStructuralFeatures().get(2);
 	}
@@ -344,6 +353,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringResult() {
 		return filteringResultEClass;
 	}
@@ -352,6 +362,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociatedFilteringCriterionSet() {
 		return associatedFilteringCriterionSetEClass;
 	}
@@ -360,6 +371,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCreationDefaultFilteringCriterionSet() {
 		return creationDefaultFilteringCriterionSetEClass;
 	}
@@ -368,6 +380,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringResultPkg() {
 		return filteringResultPkgEClass;
 	}
@@ -376,6 +389,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResultPkg_OwnedFilteringResults() {
 		return (EReference) filteringResultPkgEClass.getEStructuralFeatures().get(0);
 	}
@@ -384,6 +398,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResultPkg_OwnedFilteringResultPkgs() {
 		return (EReference) filteringResultPkgEClass.getEStructuralFeatures().get(1);
 	}
@@ -392,6 +407,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringCriterionPkg() {
 		return filteringCriterionPkgEClass;
 	}
@@ -400,6 +416,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringCriterionPkg_OwnedFilteringCriteria() {
 		return (EReference) filteringCriterionPkgEClass.getEStructuralFeatures().get(0);
 	}
@@ -408,6 +425,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringCriterionPkg_OwnedFilteringCriterionPkgs() {
 		return (EReference) filteringCriterionPkgEClass.getEStructuralFeatures().get(1);
 	}
@@ -416,6 +434,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getComposedFilteringResult() {
 		return composedFilteringResultEClass;
 	}
@@ -424,6 +443,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComposedFilteringResult_UnionFilteringResultSet() {
 		return (EReference) composedFilteringResultEClass.getEStructuralFeatures().get(0);
 	}
@@ -432,6 +452,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComposedFilteringResult_IntersectionFilteringResultSet() {
 		return (EReference) composedFilteringResultEClass.getEStructuralFeatures().get(1);
 	}
@@ -440,6 +461,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComposedFilteringResult_ExclusionFilteringResultSet() {
 		return (EReference) composedFilteringResultEClass.getEStructuralFeatures().get(2);
 	}
@@ -448,6 +470,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFilteringResultSet() {
 		return filteringResultSetEClass;
 	}
@@ -456,6 +479,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFilteringResultSet_FilteringResults() {
 		return (EReference) filteringResultSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -464,6 +488,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractFilteringResult() {
 		return abstractFilteringResultEClass;
 	}
@@ -472,6 +497,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUnionFilteringResultSet() {
 		return unionFilteringResultSetEClass;
 	}
@@ -480,6 +506,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExclusionFilteringResultSet() {
 		return exclusionFilteringResultSetEClass;
 	}
@@ -488,6 +515,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntersectionFilteringResultSet() {
 		return intersectionFilteringResultSetEClass;
 	}
@@ -496,6 +524,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FilteringFactory getFilteringFactory() {
 		return (FilteringFactory) getEFactoryInstance();
 	}
@@ -740,7 +769,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * @generated
 	 */
 	protected void createExtensionAnnotations() {
-		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/extension"; //$NON-NLS-1$	
+		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/extension"; //$NON-NLS-1$
 		addAnnotation(this, source, new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
 				"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
 				"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
@@ -755,7 +784,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * @generated
 	 */
 	protected void createDslfactoryAnnotations() {
-		String source = "http://www.polarsys.org/kitalpha/dsl/2007/dslfactory"; //$NON-NLS-1$	
+		String source = "http://www.polarsys.org/kitalpha/dsl/2007/dslfactory"; //$NON-NLS-1$
 		addAnnotation(this, source, new String[] { "extensibleProviderFactory", "true", //$NON-NLS-1$ //$NON-NLS-2$
 				"childCreationExtenders", "true", //$NON-NLS-1$ //$NON-NLS-2$
 				"useUUIDs", "true", //$NON-NLS-1$ //$NON-NLS-2$
@@ -770,7 +799,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * @generated
 	 */
 	protected void createDocumentationAnnotations() {
-		String source = "http://www.polarsys.org/kitalpha/ecore/documentation"; //$NON-NLS-1$	
+		String source = "http://www.polarsys.org/kitalpha/ecore/documentation"; //$NON-NLS-1$
 		addAnnotation(this, source, new String[] { "description", null, //$NON-NLS-1$
 				"usage guideline", null, //$NON-NLS-1$
 				"used in levels", null, //$NON-NLS-1$
@@ -852,7 +881,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * @generated
 	 */
 	protected void createConstraintAnnotations() {
-		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"; //$NON-NLS-1$	
+		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"; //$NON-NLS-1$
 		addAnnotation(filteringModelEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
 				"http://www.polarsys.org/capella/core/modeller/1.3.0#//SystemEngineering" //$NON-NLS-1$
 		});
@@ -874,7 +903,7 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	 * @generated
 	 */
 	protected void createSemanticAnnotations() {
-		String source = "http://www.polarsys.org/capella/semantic"; //$NON-NLS-1$	
+		String source = "http://www.polarsys.org/capella/semantic"; //$NON-NLS-1$
 		addAnnotation(getFilteringModel_OwnedFilteringCriteria(), source, new String[] {});
 		addAnnotation(getFilteringCriterionSet_FilteringCriteria(), source, new String[] {});
 		addAnnotation(getFilteringResults_FilteringResults(), source, new String[] {});

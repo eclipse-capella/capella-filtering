@@ -50,6 +50,7 @@ public interface FilteringModel extends NamedElement, ElementExtension {
 	 * @return the value of the '<em>Owned Filtering Criteria</em>' containment reference list.
 	 * @see org.polarsys.capella.filtering.FilteringPackage#getFilteringModel_OwnedFilteringCriteria()
 	 * @model containment="true"
+	 *        annotation="http://www.polarsys.org/capella/semantic"
 	 *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
 	 * @generated
 	 */

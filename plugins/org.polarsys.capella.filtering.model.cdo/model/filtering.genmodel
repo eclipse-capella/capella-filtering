@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.polarsys.capella.filtering.model.cdo/src"
+    modelPluginID="org.polarsys.capella.filtering.model.cdo" modelName="Filtering"
+    nonNLSMarkers="true" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic"
+    complianceLevel="8.0" copyrightFields="false" optimizedHasChildren="true" runtimeVersion="2.11"
+    usedGenPackages="platform:/plugin/org.polarsys.capella.common.data.activity.gen.cdo/model/Activity.genmodel#//activity platform:/plugin/org.polarsys.capella.common.data.behavior.gen.cdo/model/Behavior.genmodel#//behavior platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//capellacore platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//oa platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//ctx platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//la platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//pa platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//epbs platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//requirement platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//capellacommon platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//information platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//cs platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//fa platform:/plugin/org.polarsys.capella.core.data.gen.cdo/model/CapellaModeller.genmodel#//interaction platform:/plugin/org.polarsys.kitalpha.emde.model.cdo/model/eMDE.genmodel#//emde platform:/plugin/org.polarsys.capella.common.data.core.gen.cdo/model/ModellingCore.genmodel#//modellingcore">
+  <foreignModel>../../org.polarsys.capella.filtering/model/filtering.ecore</foreignModel>
+  <modelPluginVariables>org.polarsys.capella.core.data.helpers</modelPluginVariables>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.menu.contributions</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.menu.dynamic</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.ui.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.sharedmodel.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.requirement.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.common.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.core.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.cs.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.ctx.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.epbs.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.fa.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.information.communication.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.information.datatype.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.information.datavalue.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.information.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.interaction.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.la.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.modeller.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.oa.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.pa.deployment.properties</editPluginVariables>
+  <editPluginVariables>org.polarsys.capella.core.data.pa.properties</editPluginVariables>
+  <genPackages prefix="Filtering" basePackage="org.polarsys.capella" disposableProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="../../org.polarsys.capella.filtering.model/model/filtering.ecore#/">
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedFilteringCriteria"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedFilteringCriterionPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringModel/ownedVariabilityFeatures"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterion"/>
+    <genClasses image="false" ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet/filteringCriteria"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionSet/variabilityFeatures"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/filteringResults"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/ownedFilteringResultPkgs"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResults/configurations"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResult"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AssociatedFilteringCriterionSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//CreationDefaultFilteringCriterionSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultPkg/ownedFilteringResults"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultPkg/ownedFilteringResultPkgs"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionPkg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriteria"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringCriterionPkg/ownedFilteringCriterionPkgs"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/UnionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/IntersectionFilteringResultSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ComposedFilteringResult/ExclusionFilteringResultSet"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultSet">
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ../../org.polarsys.capella.filtering.model/model/filtering.ecore#//FilteringResultSet/filteringResults"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AbstractFilteringResult">
+      <genOperations ecoreOperation="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//AbstractFilteringResult/computeFilteringCriterionSet"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//UnionFilteringResultSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//ExclusionFilteringResultSet"/>
+    <genClasses ecoreClass="../../org.polarsys.capella.filtering.model/model/filtering.ecore#//IntersectionFilteringResultSet"/>
+  </genPackages>
+</genmodel:GenModel>

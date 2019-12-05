@@ -20,10 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 
 import org.polarsys.capella.filtering.AbstractFilteringResult;
@@ -72,6 +69,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<AbstractFilteringResult> getFilteringResults() {
 
 		return (EList<AbstractFilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__FILTERING_RESULTS,
@@ -84,6 +82,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringResultPkg> getOwnedFilteringResultPkgs() {
 
 		return (EList<FilteringResultPkg>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__OWNED_FILTERING_RESULT_PKGS,
@@ -97,6 +96,7 @@ public class FilteringResultsImpl extends NamedElementImpl implements FilteringR
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringResult> getConfigurations() {
 
 		return (EList<FilteringResult>) eDynamicGet(FilteringPackage.FILTERING_RESULTS__CONFIGURATIONS,

@@ -83,6 +83,7 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterion> getFilteringCriteria() {
 
 		if (filteringCriteria == null) {
@@ -98,6 +99,7 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterion> getVariabilityFeatures() {
 
 		if (variabilityFeatures == null) {

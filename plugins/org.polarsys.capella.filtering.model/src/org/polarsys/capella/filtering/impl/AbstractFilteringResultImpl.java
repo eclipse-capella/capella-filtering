@@ -4,7 +4,6 @@ package org.polarsys.capella.filtering.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
@@ -41,6 +40,7 @@ public abstract class AbstractFilteringResultImpl extends NamedElementImpl imple
 	 * @generated
 	 */
 
+	@Override
 	public FilteringCriterionSet computeFilteringCriterionSet() {
 
 		// TODO: implement this method

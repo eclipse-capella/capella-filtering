@@ -20,15 +20,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacommon.GenericTrace;
 
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
 import org.polarsys.capella.core.data.capellacore.NamingRule;
-import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
+
 import org.polarsys.capella.core.data.capellacore.Trace;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
@@ -37,7 +35,6 @@ import org.polarsys.capella.core.data.requirement.RequirementsTrace;
 
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
-import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
 
 /**
@@ -83,6 +80,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Trace> getOwnedTraces() {
 
 		return (EList<Trace>) eDynamicGet(FilteringPackage.FILTERING_RESULT_PKG__OWNED_TRACES,
@@ -95,7 +93,8 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 * @generated NOT
 	 */
 
-	public EList<GenericTrace> getContainedGenericTraces() {
+	@Override
+  public EList<GenericTrace> getContainedGenericTraces() {
 
 		return ECollections.emptyEList();
 
@@ -107,7 +106,8 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 * @generated NOT
 	 */
 
-	public EList<RequirementsTrace> getContainedRequirementsTraces() {
+	@Override
+  public EList<RequirementsTrace> getContainedRequirementsTraces() {
 
 		return ECollections.emptyEList();
 
@@ -119,6 +119,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<NamingRule> getNamingRules() {
 
 		return (EList<NamingRule>) eDynamicGet(FilteringPackage.FILTERING_RESULT_PKG__NAMING_RULES,
@@ -131,6 +132,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<AbstractFilteringResult> getOwnedFilteringResults() {
 
 		return (EList<AbstractFilteringResult>) eDynamicGet(
@@ -144,6 +146,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringResultPkg> getOwnedFilteringResultPkgs() {
 
 		return (EList<FilteringResultPkg>) eDynamicGet(

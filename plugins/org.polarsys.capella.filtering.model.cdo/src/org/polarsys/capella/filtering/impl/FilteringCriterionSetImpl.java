@@ -17,8 +17,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -64,6 +62,7 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringCriterion> getFilteringCriteria() {
 
 		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_CRITERION_SET__FILTERING_CRITERIA,
@@ -77,6 +76,7 @@ public abstract class FilteringCriterionSetImpl extends NamedElementImpl impleme
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringCriterion> getVariabilityFeatures() {
 
 		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_CRITERION_SET__VARIABILITY_FEATURES,

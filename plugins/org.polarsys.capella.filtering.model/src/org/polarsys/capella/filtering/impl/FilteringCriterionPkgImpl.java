@@ -12,7 +12,6 @@
 package org.polarsys.capella.filtering.impl;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
@@ -22,13 +21,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacommon.GenericTrace;
 
 import org.polarsys.capella.core.data.capellacore.NamingRule;
-import org.polarsys.capella.core.data.capellacore.PropertyValuePkg;
 import org.polarsys.capella.core.data.capellacore.Trace;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
@@ -119,6 +116,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated
 	 */
 
+	@Override
 	public EList<Trace> getOwnedTraces() {
 
 		if (ownedTraces == null) {
@@ -134,7 +132,8 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated NOT
 	 */
 
-	public EList<GenericTrace> getContainedGenericTraces() {
+	@Override
+  public EList<GenericTrace> getContainedGenericTraces() {
 
 		return ECollections.emptyEList();
 
@@ -146,7 +145,8 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated NOT
 	 */
 
-	public EList<RequirementsTrace> getContainedRequirementsTraces() {
+	@Override
+  public EList<RequirementsTrace> getContainedRequirementsTraces() {
 
 		return ECollections.emptyEList();
 
@@ -157,6 +157,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated
 	 */
 
+	@Override
 	public EList<NamingRule> getNamingRules() {
 
 		if (namingRules == null) {
@@ -171,6 +172,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterion> getOwnedFilteringCriteria() {
 
 		if (ownedFilteringCriteria == null) {
@@ -185,6 +187,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs() {
 
 		if (ownedFilteringCriterionPkgs == null) {

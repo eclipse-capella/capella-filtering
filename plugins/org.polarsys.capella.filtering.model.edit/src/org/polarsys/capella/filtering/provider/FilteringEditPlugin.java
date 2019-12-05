@@ -11,8 +11,6 @@
 
 package org.polarsys.capella.filtering.provider;
 
-import java.util.MissingResourceException;
-
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -96,33 +94,6 @@ public final class FilteringEditPlugin extends EMFPlugin {
 			//
 			plugin = this;
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public Object getImage(String key) {
-		Object image = super.getImage(key);
-		if (image == null)
-			return delegatedGetImage(key);
-		return image;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected Object delegatedGetImage(String key) throws MissingResourceException {
-		for (int i = 0; i < delegateResourceLocators.length; ++i) {
-			try {
-				Object image = delegateResourceLocators[i].getImage(key);
-				if (image != null)
-					return image;
-			} catch (MissingResourceException exception) {
-			}
-		}
-		return null;
 	}
 
 }

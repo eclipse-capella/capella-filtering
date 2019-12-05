@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
@@ -98,6 +97,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterion> getOwnedFilteringCriteria() {
 
 		if (ownedFilteringCriteria == null) {
@@ -112,6 +112,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs() {
 
 		if (ownedFilteringCriterionPkgs == null) {
@@ -128,6 +129,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 * @generated
 	 */
 
+	@Override
 	public EList<FilteringCriterion> getOwnedVariabilityFeatures() {
 
 		if (ownedVariabilityFeatures == null) {

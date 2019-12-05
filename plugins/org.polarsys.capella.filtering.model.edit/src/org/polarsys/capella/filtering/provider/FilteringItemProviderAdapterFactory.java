@@ -14,8 +14,8 @@ package org.polarsys.capella.filtering.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -38,14 +38,11 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.polarsys.capella.core.data.sharedmodel.GenericPkg;
-import org.polarsys.capella.core.data.sharedmodel.SharedmodelPackage;
-import org.polarsys.capella.core.data.sharedmodel.util.SharedmodelSwitch;
 import org.polarsys.capella.filtering.FilteringFactory;
-import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.util.FilteringAdapterFactory;
+
 import org.polarsys.kitalpha.emde.extension.ModelExtensionHelper;
-import org.polarsys.kitalpha.emde.extension.edit.ChildCreationExtenderManager;
+
 import org.polarsys.kitalpha.emde.model.EmdePackage;
 import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
@@ -393,6 +390,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -402,6 +400,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -447,6 +446,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -456,6 +456,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -466,6 +467,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -479,6 +481,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (filteringModelItemProvider != null)
 			filteringModelItemProvider.dispose();
@@ -620,7 +623,8 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		@Override
+    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
@@ -630,7 +634,8 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		public ResourceLocator getResourceLocator() {
+		@Override
+    public ResourceLocator getResourceLocator() {
 			return FilteringEditPlugin.INSTANCE;
 		}
 	}

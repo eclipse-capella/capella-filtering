@@ -7,11 +7,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
+
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResultSet;
@@ -63,6 +62,7 @@ public class FilteringResultSetImpl extends NamedElementImpl implements Filterin
 	 * @generated
 	 */
 
+	@Override
 	public EList<AbstractFilteringResult> getFilteringResults() {
 
 		if (filteringResults == null) {

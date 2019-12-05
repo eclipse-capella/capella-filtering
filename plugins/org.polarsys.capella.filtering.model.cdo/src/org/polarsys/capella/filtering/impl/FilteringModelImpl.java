@@ -20,8 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
@@ -71,6 +69,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringCriterion> getOwnedFilteringCriteria() {
 
 		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_MODEL__OWNED_FILTERING_CRITERIA,
@@ -83,6 +82,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringCriterionPkg> getOwnedFilteringCriterionPkgs() {
 
 		return (EList<FilteringCriterionPkg>) eDynamicGet(
@@ -97,6 +97,7 @@ public class FilteringModelImpl extends NamedElementImpl implements FilteringMod
 	 */
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FilteringCriterion> getOwnedVariabilityFeatures() {
 
 		return (EList<FilteringCriterion>) eDynamicGet(FilteringPackage.FILTERING_MODEL__OWNED_VARIABILITY_FEATURES,

@@ -22,7 +22,6 @@ import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.kitalpha.emde.model.EmdePackage;
 import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
-import org.polarsys.kitalpha.emde.extension.edit.ExtensionItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link org.polarsys.capella.filtering.AbstractFilteringResult} object. <!--
