@@ -19,10 +19,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.polarsys.capella.common.mdsofa.common.constant.ICommonConstants;
+import org.polarsys.capella.common.ui.providers.MDEAdapterFactoryLabelProvider;
 import org.polarsys.capella.common.ui.toolkit.viewers.data.TreeData;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.model.utils.EObjectExt2;
-import org.polarsys.capella.core.ui.toolkit.viewers.CapellaElementLabelProvider;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 /**
@@ -30,7 +30,7 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  * 
  * 
  */
-public class FilteringLabelProvider extends CapellaElementLabelProvider implements IColorProvider {
+public class FilteringLabelProvider extends MDEAdapterFactoryLabelProvider implements IColorProvider {
   /**
    * Foreground color for referencing elements.
    */

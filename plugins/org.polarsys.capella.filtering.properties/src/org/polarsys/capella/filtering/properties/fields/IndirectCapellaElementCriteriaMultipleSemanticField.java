@@ -29,7 +29,6 @@ import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.ui.properties.controllers.IMultipleSemanticFieldController;
 import org.polarsys.capella.core.ui.properties.fields.MultipleSemanticField;
-import org.polarsys.capella.core.ui.properties.helpers.NamingHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.tools.actions.Messages;
 import org.polarsys.capella.filtering.tools.dialogs.FilteringCriteriaSelectionDialog;
@@ -88,6 +87,7 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
     }
     // Delete
     AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+      @Override
       public void run() {
         FilteringUtils.removeAssociatedCriteria(semanticElement,
             FilteringUtils.getExplicitAssociatedCriteria(semanticElement));
@@ -128,6 +128,7 @@ public class IndirectCapellaElementCriteriaMultipleSemanticField extends Multipl
       }
     }
     AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
+      @Override
       public void run() {
         List<FilteringCriterion> featuresToAdd = new ArrayList<>();
         List<FilteringCriterion> featuresToRemove = new ArrayList<>();
