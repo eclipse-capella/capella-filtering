@@ -558,7 +558,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 				// begin-extension-code
 				if (ModelExtensionHelper.getInstance(object).isExtensionModelDisabled(
 						EcoreUtil.getRootContainer(object).eClass().getEPackage().getNsURI(),
-						"http://www.polarsys.org/capella/filtering/1.3.0")) { //$NON-NLS-1$
+						"http://www.polarsys.org/capella/filtering/1.4.0")) { //$NON-NLS-1$
 					return null;
 				}
 				// end-extension-code
@@ -624,7 +624,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 		 * @generated
 		 */
 		@Override
-    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
@@ -635,7 +635,7 @@ public class FilteringItemProviderAdapterFactory extends FilteringAdapterFactory
 		 * @generated
 		 */
 		@Override
-    public ResourceLocator getResourceLocator() {
+		public ResourceLocator getResourceLocator() {
 			return FilteringEditPlugin.INSTANCE;
 		}
 	}
