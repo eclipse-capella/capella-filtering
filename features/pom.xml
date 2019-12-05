@@ -29,6 +29,6 @@
 	<modules>
 		<module>org.polarsys.capella.filtering.feature</module>
 		<module>org.polarsys.capella.filtering.cdo.feature</module>
-		
+		<module>org.polarsys.capella.filtering.tests.feature</module>
 	</modules>
 </project>

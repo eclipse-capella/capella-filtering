@@ -6,5 +6,9 @@
    <feature id="org.polarsys.capella.filtering.cdo.feature" version="1.3.0.qualifier">
       <category name="org.polarsys.capella.filtering"/>
    </feature>
+   <feature id="org.polarsys.capella.filtering.tests.feature">
+      <category name="org.polarsys.capella.filtering.tests"/>
+   </feature>
    <category-def name="org.polarsys.capella.filtering" label="Filtering"/>
+   <category-def name="org.polarsys.capella.filtering.tests" label="Filtering Tests"/>
 </site>

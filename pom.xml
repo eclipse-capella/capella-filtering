@@ -298,6 +298,22 @@
 											dir="${project.build.directory}/${packagedAddonName}/eclipse/features"
 											includes="**/META-INF/**" />
 									</delete>
+																		
+									<!-- delete test feature (not included in dropins) -->
+									<delete includeemptydirs="true">
+										<fileset
+											dir="${project.build.directory}/${packagedAddonName}/eclipse/features"
+											includes="**/org.polarsys.capella.filtering.tests*/**" />													  
+									</delete>
+									
+									
+									<!-- delete test plugin (not included in dropins) -->
+									<delete>
+										<fileset
+											dir="${project.build.directory}/${packagedAddonName}/eclipse/plugins"
+											includes="org.polarsys.capella.filtering.tests.ju*" />
+									</delete>
+									
 									<zip
 										destfile="${project.build.directory}/${packagedAddonName}-dropins-${unqualifiedVersion}.${buildQualifier}.zip">
 										<fileset dir="${project.build.directory}">
