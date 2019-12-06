@@ -49,8 +49,8 @@ public class ComposedResultSetPropertySection extends DefaultNamedElementSection
   public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
     super.createControls(parent, aTabbedPropertySheetPage);
 
-    rootParentComposite.setLayout(new GridLayout());
-    rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    parent.setLayout(new GridLayout());
+    parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     
     filteringResults = new MultipleSemanticField(getReferencesGroup(),
         Messages.PropertySection_filteringResults, getWidgetFactory(), new AbstractMultipleSemanticFieldController() {

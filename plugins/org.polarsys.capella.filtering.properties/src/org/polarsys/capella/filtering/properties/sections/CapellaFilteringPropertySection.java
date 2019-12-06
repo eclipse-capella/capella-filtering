@@ -71,8 +71,8 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
   public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
     super.createControls(parent, aTabbedPropertySheetPage);
 
-    rootParentComposite.setLayout(new GridLayout());
-    rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    parent.setLayout(new GridLayout());
+    parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
     criteria = new IndirectCapellaElementCriteriaMultipleSemanticField(getReferencesGroup(), Messages.PropertySection_filteringLabel,
         getWidgetFactory(), new CapellaElementCriteria());
@@ -111,17 +111,17 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
       if (selected instanceof CapellaElement) {
         if (selected.eClass().equals(CsPackage.eINSTANCE.getPart())) {
           boolean allowMultiplePart = TriStateBoolean.True
-              .equals(CapellaProjectHelper.isReusableComponentsDriven((Part) selected));
+              .equals(CapellaProjectHelper.isReusableComponentsDriven(selected));
           if (!allowMultiplePart) {
             AbstractType type = ((Part) selected).getAbstractType();
             if ((type != null) && !(type instanceof ConfigurationItem)) {
               super.setInput(part, new StructuredSelection(type));
-              loadData((CapellaElement) type);
+              loadData(type);
               return;
             }
           }
         }
-        loadData((CapellaElement) selected);
+        loadData(selected);
       }
     }
     super.setInput(part, selection);

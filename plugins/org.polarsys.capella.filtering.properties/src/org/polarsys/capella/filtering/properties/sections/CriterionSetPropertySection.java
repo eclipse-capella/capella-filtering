@@ -50,8 +50,8 @@ public class CriterionSetPropertySection extends DefaultNamedElementSection {
   public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
     super.createControls(parent, aTabbedPropertySheetPage);
 
-    rootParentComposite.setLayout(new GridLayout());
-    rootParentComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+    parent.setLayout(new GridLayout());
+    parent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     criteria = new CriteriaMultipleSemanticField(getReferencesGroup(), Messages.PropertySection_filteringLabel, getWidgetFactory(),
         new CriterionSetFilteringCriteriaController());
     criteria.setDisplayedInWizard(isDisplayedInWizard());
