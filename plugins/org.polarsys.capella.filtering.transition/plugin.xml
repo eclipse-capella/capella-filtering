@@ -2,7 +2,7 @@
 <!-- NOTE that this version must be greater or equal to 3.4 to avoid extension point loading problems -->
 <?eclipse version="3.4"?>
 <!--
-  Copyright (c) 2018 THALES GLOBAL SERVICES.
+  Copyright (c) 2018, 2019 THALES GLOBAL SERVICES.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
