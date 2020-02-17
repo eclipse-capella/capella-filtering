@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature id="org.polarsys.capella.filtering.feature" version="1.4.0.qualifier">
+   <feature id="org.polarsys.capella.filtering.feature" version="1.4.1.qualifier">
       <category name="org.polarsys.capella.filtering"/>
    </feature>
-   <feature id="org.polarsys.capella.filtering.cdo.feature" version="1.4.0.qualifier">
+   <feature id="org.polarsys.capella.filtering.cdo.feature" version="1.4.1.qualifier">
       <category name="org.polarsys.capella.filtering"/>
    </feature>
    <feature id="org.polarsys.capella.filtering.tests.feature">

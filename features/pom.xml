@@ -14,15 +14,13 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.polarsys</groupId>
 	<artifactId>org.polarsys.capella.filtering.features</artifactId>
-	<version>1.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.polarsys</groupId>
 		<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-		<version>1.4.0-SNAPSHOT</version>
+		<version>1.4.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
