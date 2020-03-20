@@ -30,7 +30,7 @@
             cache="true"
             mode="Batch">
          <package
-               namespaceUri="http://www.polarsys.org/capella/filtering/1.4.1">
+               namespaceUri="http://www.polarsys.org/capella/filtering/1.4.0">
          </package>
          <package
                namespaceUri="http://www.polarsys.org/capella/core/modeller/1.4.0">

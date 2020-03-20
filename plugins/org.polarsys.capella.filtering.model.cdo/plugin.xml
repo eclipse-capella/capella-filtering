@@ -16,7 +16,7 @@
 
    <extension point="org.eclipse.emf.ecore.factory_override">
       <factory
-            uri="http://www.polarsys.org/capella/filtering/1.4.1"
+            uri="http://www.polarsys.org/capella/filtering/1.4.0"
             class="org.polarsys.capella.filtering.impl.FilteringFactoryImpl"
       />
    </extension>

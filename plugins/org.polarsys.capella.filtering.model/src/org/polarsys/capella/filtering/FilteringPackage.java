@@ -46,7 +46,7 @@ public interface FilteringPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.polarsys.org/capella/filtering/1.4.1"; //$NON-NLS-1$
+	String eNS_URI = "http://www.polarsys.org/capella/filtering/1.4.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
