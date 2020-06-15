@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2019 THALES GLOBAL SERVICES.
+  Copyright (c) 2019, 2020 THALES GLOBAL SERVICES.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -21,7 +21,7 @@
 	<artifactId>org.polarsys.capella.addon.filtering</artifactId>
 	<!-- If you update this version please change addonUnqualifiedVersion to 
 		be the same -->
-	<version>1.4.0-SNAPSHOT</version>
+	<version>1.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 
@@ -110,7 +110,7 @@
 						<artifact>
 							<groupId>org.polarsys</groupId>
 							<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-							<version>1.4.0-SNAPSHOT</version>
+							<version>1.4.1-SNAPSHOT</version>
 							<classifier>releng/org.polarsys.capella.filtering.update/capella.target-definition</classifier>
 						</artifact>
 					</target>

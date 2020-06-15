@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature id="org.polarsys.capella.filtering.feature" version="1.4.0.qualifier">
+   <feature id="org.polarsys.capella.filtering.feature.source" version="1.4.1.qualifier">
       <category name="org.polarsys.capella.filtering"/>
    </feature>
-   <feature id="org.polarsys.capella.filtering.cdo.feature" version="1.4.0.qualifier">
-      <category name="org.polarsys.capella.filtering"/>
+   <feature id="org.polarsys.capella.filtering.cdo.feature.source" version="1.4.1.qualifier">
+      <category name="org.polarsys.capella.filtering.collaboration"/>
    </feature>
    <feature id="org.polarsys.capella.filtering.tests.feature">
       <category name="org.polarsys.capella.filtering.tests"/>
    </feature>
    <category-def name="org.polarsys.capella.filtering" label="Filtering"/>
+   <category-def name="org.polarsys.capella.filtering.collaboration" label="Filtering Collaboration"/>
    <category-def name="org.polarsys.capella.filtering.tests" label="Filtering Tests"/>
 </site>
