@@ -79,6 +79,7 @@ import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.libraries.model.ICapellaModel;
 import org.polarsys.capella.core.model.handler.command.CapellaResourceHelper;
+import org.polarsys.capella.core.model.handler.helpers.CapellaAdapterHelper;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.core.model.handler.helpers.CrossReferencerHelper;
 import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteCommand;
@@ -456,10 +457,10 @@ public class FilteringUtils {
     List<FilteringCriterion> featureList = new ArrayList<FilteringCriterion>();
 
     if (element instanceof CapellaElement) {
-      CapellaElement capellaElement = (CapellaElement) element;
+      CapellaElement capellaElement = (CapellaElement) CapellaAdapterHelper.resolveBusinessObject(element);
 
       // Add its own features. Explicit
-      featureList.addAll(getExplicitAssociatedCriteria(element));
+      featureList.addAll(getExplicitAssociatedCriteria(capellaElement));
 
       // If the explicit is empty then add the implicit
       if (featureList.isEmpty()) {
