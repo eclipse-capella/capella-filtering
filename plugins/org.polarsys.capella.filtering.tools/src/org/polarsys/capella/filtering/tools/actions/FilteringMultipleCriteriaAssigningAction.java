@@ -50,6 +50,7 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
 
   protected FilteringCriteriaSelectionDialog checkedTreeSelectionDialog;
 
+  @SuppressWarnings("deprecation")
   public void run(IAction action) {
 
     // Get the selected elements as Set (since resolving semantic elements
@@ -151,7 +152,7 @@ public class FilteringMultipleCriteriaAssigningAction extends AbstractTigAction 
   private Set<EObject> resolveSemanticElements(Collection<ModelElement> selectedElements) {
     HashSet<EObject> result = new HashSet<EObject>();
     for (EObject elt : selectedElements) {
-      EObject semanticObject = CapellaAdapterHelper.resolveSemanticObject(elt);
+      EObject semanticObject = CapellaAdapterHelper.resolveDescriptorOrBusinessObject(elt);
       if (semanticObject != null) {
         result.add(semanticObject);
       }
