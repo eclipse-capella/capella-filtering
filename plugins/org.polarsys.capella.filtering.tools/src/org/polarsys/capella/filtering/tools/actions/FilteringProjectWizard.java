@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,7 +41,6 @@ import org.polarsys.capella.common.tools.report.config.registry.ReportManagerReg
 import org.polarsys.capella.common.tools.report.util.IReportManagerDefaultComponents;
 import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper.ProjectApproach;
-import org.polarsys.capella.core.platform.sirius.ui.project.internal.CapellaProjectContentsLocationArea;
 import org.polarsys.capella.core.platform.sirius.ui.project.internal.ProjectContentsLocationArea;
 import org.polarsys.capella.core.platform.sirius.ui.project.internal.WizardNewProjectCreationPage;
 import org.polarsys.capella.core.platform.sirius.ui.project.operations.ProjectSessionCreationHelper;
@@ -108,7 +107,7 @@ class FilteringProjectWizard extends BasicNewResourceWizard implements IFilterin
        */
       @Override
       protected ProjectContentsLocationArea handleDefaultProjectLocation(Composite parent) {
-        return new CapellaProjectContentsLocationArea(getErrorReporter(), parent);
+        return new FilteringProjectContentsLocationArea(getErrorReporter(), parent);
       }
 
       /**
