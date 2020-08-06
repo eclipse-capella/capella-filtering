@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.polarsys.capella.core.data.la.LaFactory;
 import org.polarsys.capella.core.data.la.LogicalComponent;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
@@ -41,6 +42,7 @@ public class FilteringUtilsTest extends BasicTestCase {
   @Override
   public void setUp() throws Exception {
     super.setUp();
+    
     criteria1 = FilteringFactory.eINSTANCE.createFilteringCriterion();
     criteria1.setName("criteria1");
     criteria2 = FilteringFactory.eINSTANCE.createFilteringCriterion();
@@ -64,6 +66,10 @@ public class FilteringUtilsTest extends BasicTestCase {
     RootLC = LaFactory.eINSTANCE.createLogicalComponent("RootLC");
 
     RootLC.getOwnedLogicalComponents().addAll(ALL_LCs);
+    
+    // Create a Resource just to make CapellaAdapterHelper#resolveEObject(Object, boolean, boolean) works properly.
+    ResourceImpl resource = new ResourceImpl();
+    resource.getContents().add(RootLC);
 
     R1 = createResultWithCriteria("R1", Arrays.asList(criteria1, criteria2));
     R2 = createResultWithCriteria("R2", Arrays.asList(criteria2, criteria3));
