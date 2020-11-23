@@ -106,7 +106,15 @@ pipeline {
 		        			['org.polarsys.capella.filtering.tests.ju.MainTestSuite'])		        			 
 	        		}
 	        		
-	        		junit '*.xml'
+	        		tester.publishTests()
+				}
+			}
+		}
+		
+		stage('Sonar') {
+			steps {
+				script {
+					sonar.runSonar("eclipse_capella-filtering", "eclipse/capella-filtering", 'sonarcloud-token-filtering')
 				}
 			}
 		}
@@ -114,7 +122,7 @@ pipeline {
   
 	post {
     	always {
-       		archiveArtifacts artifacts: '**/*.log, *.log, *.xml, **/*.layout'
+       		archiveArtifacts artifacts: '**/*.log, *.log, *.xml, **/*.layout, *.exec'
     	}
     	
     	success  {
