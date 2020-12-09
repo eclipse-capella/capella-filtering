@@ -95,7 +95,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 */
 
 	@Override
-  public EList<GenericTrace> getContainedGenericTraces() {
+	public EList<GenericTrace> getContainedGenericTraces() {
 
 		return ECollections.emptyEList();
 
@@ -108,7 +108,7 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 	 */
 
 	@Override
-  public EList<RequirementsTrace> getContainedRequirementsTraces() {
+	public EList<RequirementsTrace> getContainedRequirementsTraces() {
 
 		return ECollections.emptyEList();
 

@@ -28,9 +28,7 @@ import org.polarsys.capella.core.data.capellacommon.GenericTrace;
 
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
 import org.polarsys.capella.core.data.capellacore.NamingRule;
-
 import org.polarsys.capella.core.data.capellacore.Trace;
-
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
 
 import org.polarsys.capella.core.data.requirement.RequirementsTrace;
@@ -96,7 +94,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@Override
-  public EList<GenericTrace> getContainedGenericTraces() {
+	public EList<GenericTrace> getContainedGenericTraces() {
 
 		return ECollections.emptyEList();
 
@@ -109,7 +107,7 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 	 */
 
 	@Override
-  public EList<RequirementsTrace> getContainedRequirementsTraces() {
+	public EList<RequirementsTrace> getContainedRequirementsTraces() {
 
 		return ECollections.emptyEList();
 
