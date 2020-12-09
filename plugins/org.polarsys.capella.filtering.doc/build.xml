@@ -11,12 +11,13 @@
   Contributors:
        Thales - initial API and implementation
 -->
+
 <project name="project" default="generate-html">
 	
 	<!-- This property should be set to the path to wikitext standalone package or it can be run inside the current eclipse 
 	 platform if it contains mylyn/mediawiki plugins.
         
-     Set to ${eclipse.home}/plugins and run the build.xml with the following option checked 
+     	Set to ${eclipse.home}/plugins and run the build.xml with the following option checked 
 	 RunAs/ExternalToolsConfiguration/JRE/RunInTheSameJREThanWorkspace
 	-->
 	<property name="wikitext.standalone" value="${eclipse.home}/plugins"/>
@@ -26,11 +27,15 @@
 			<include name="*.jar"/>
 		</fileset>
 	</path>
-        
-	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties" />
 
+    <taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/ant/tasks.properties" />
+    <!--
+	
+	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/ant/tasks.properties" />
+	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
+    -->	
 	<target name="generate-html" description="Generate HTML from textile source">
-		<wikitext-to-html markupLanguage="MediaWiki">
+		<wikitext-to-html markupLanguage="MediaWiki" formatOutput="true">
 			<fileset dir="${basedir}">
 				<include name="**/*.mediawiki"/>
 			</fileset>

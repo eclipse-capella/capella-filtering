@@ -28,11 +28,7 @@ In this Add-On, Capella elements are enriched with filtering related information
 {| class="prettytable"
 |-
 |
-
-
-|
-'''Contributions:''' The new actions are available in the Filtering submenu of Capella Project Explorer elements and Diagram elements. It also contributes to Decorators, Semantic browser and Validations. Filtering AddOn also contributes a View (''Diagram Filtering Criteria Visibility'')
-
+'''Contributions:''' The new actions are available in the Filtering submenu of Project Explorer elements and Diagram elements. It also contributes to Decorators, Semantic browser and Validations. Filtering AddOn also contributes a View (''Diagram Filtering Criteria Visibility'')
 |}
 
 

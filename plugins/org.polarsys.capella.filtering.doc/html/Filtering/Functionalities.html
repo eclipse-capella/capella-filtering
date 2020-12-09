@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<link rel="stylesheet" type="text/css" href="PLUGINS_ROOT/org.polarsys.capella.doc/html/styles.css" media="all"/>
+		<title>Functionalities</title>
+		<link type="text/css" rel="stylesheet" href="PLUGINS_ROOT/org.polarsys.capella.doc/html/styles.css"/>
 	</head>
 	<body>
 		<h1 id="Functionalities">Functionalities</h1>
@@ -18,7 +19,7 @@
 			<b>FilteringModel</b> element which is created as a child of System Engineering. For creating a FilteringModel right-click the System Engineering model element.
 		</p>
 		<p><center>
-			<img width="540" border="0" src="Images/functionalities_define_filtering_model.png"/></center>
+			<img border="0" src="Images/functionalities_define_filtering_model.png"/></center>
 		</p>
 		<p>
 			<br/>
@@ -26,12 +27,12 @@
 		<h3 id="Adding_new_criteria_to_the_Filtering_model">Adding new criteria to the Filtering model</h3>
 		<p>New criterion could be added once the user creates the FilteringModel element.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_adding_filtering_model_criterion.png"/></center>
+			<img border="0" src="Images/functionalities_adding_filtering_model_criterion.png"/></center>
 		</p>
 		<p>The user can also create constraints for documentation.</p>
 		<p>Criteria can also be organized in a package hierarchy:</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_adding_filtering_model_pkg.png"/></center>
+			<img border="0" src="Images/functionalities_adding_filtering_model_pkg.png"/></center>
 		</p>
 		<p>
 			<br/>
@@ -39,35 +40,35 @@
 		<h2 id="Associate_Model_elements_with_Criteria">Associate Model elements with Criteria</h2>
 		<p>Each Capella element contains a Filtering properties section. Double click an element or see the Properties view of a given element.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_associate_criteria.png"/></center>
+			<img border="0" src="Images/functionalities_associate_criteria.png"/></center>
 		</p>
 		<p>A criterion selector will appear and the user can select the criterion or set of criteria associated with the given element.</p>
 		<p>If no filtering criterion is assigned explicitly to a given Capella element, it is still possible that this element could be assigned implicitly to a criterion. For example: a Part element of a given optional element or the child of an optional element. This derived property of a Capella element is called Implicit Criteria.</p>
 		<p>Also, the action to associate criterion to model elements is available selecting a Capella element, right click, and  </p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_define_filtering_model_assign.png"/></center>
+			<img border="0" src="Images/functionalities_define_filtering_model_assign.png"/></center>
 		</p>
 		<h3 id="Multiple_Elements_Assigning">Multiple Elements Assigning</h3>
 		<p>The user can also select multiple model elements and apply criterion selections to all of them.</p>
 		<p><center>
-			<img width="400" border="0" src="Images/functionalities_multiple_assign.png"/></center>
+			<img border="0" src="Images/functionalities_multiple_assign.png"/></center>
 		</p>
 		<p>The initial state of this dialog shows the current criteria status of the selected elements. These figures present possible initial states of the assigning dialog and its meaning:</p>
 		<table class="prettytable">
 			<tr>
 				<td>
 					<p><center>
-						<img width="240" border="0" src="Images/functionalities_multiple_assign_choice.png"/></center>
+						<img border="0" src="Images/functionalities_multiple_assign_choice.png"/></center>
 					</p>
 				</td>
 				<td>
 					<p><center>
-						<img width="240" border="0" src="Images/functionalities_multiple_assign_choice2.png"/></center>
+						<img border="0" src="Images/functionalities_multiple_assign_choice2.png"/></center>
 					</p>
 				</td>
 				<td>
 					<p><center>
-						<img width="240" border="0" src="Images/functionalities_multiple_assign_choice3.png"/></center>
+						<img border="0" src="Images/functionalities_multiple_assign_choice3.png"/></center>
 					</p>
 				</td>
 			</tr>
@@ -92,27 +93,27 @@
 		<h3 id="Using_an_existing_Filtering_Result_for_criterion_assigning">Using an existing Filtering Result for criterion assigning</h3>
 		<p>Users may want to assign to model elements the criterion that were previously assigned to an existing Filtering Result (). A dedicated selector in the Assign Filtering Criteria dialog allows the user to reuse criterion selections.</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_use_result.png"/></center>
+			<img border="0" src="Images/functionalities_use_result.png"/></center>
 		</p>
 		<h3 id="Automatic_assigning_when_creating_Model_Elements">Automatic assigning when creating Model Elements</h3>
 		<p>If the user is modifying the Capella model by adding new elements that will contribute to a criterion (or to a given criterion selection), then it will be interesting to be able to automatically assign criterion when creating any model element. First the user should create a Creation Default Filtering Criterion Set element as child of System Engineering and then select the criterion in the properties view of this element.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_automatic_assignation.png"/></center>
+			<img border="0" src="Images/functionalities_automatic_assignation.png"/></center>
 		</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_automatic_assignation_assign.png"/></center>
+			<img border="0" src="Images/functionalities_automatic_assignation_assign.png"/></center>
 		</p>
 		<h2 id="Creating_specific_product_Filtering_Results">Creating specific product Filtering Results</h2>
 		<h3 id="Create_Filtering_Results">Create Filtering Results</h3>
 		<p>Once Domain Engineers provide a Generic Model to derive products, Application Engineers can use it to extract products based on their criterion selections.</p>
 		<p>To create filtering results (aka configurations) first the user should create a FilteringResults element as child of the System Engineering element.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_results.png"/></center>
+			<img border="0" src="Images/functionalities_create_results.png"/></center>
 		</p>
 		<p>Then the user could create a specific FilteringResult as child of the filtering results element and select its criterion in its properties view.</p>
 		<p>Filtering results can be organized into a hierarchy of packages:</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_result_pkg.png"/></center>
+			<img border="0" src="Images/functionalities_create_result_pkg.png"/></center>
 		</p>
 		<p>
 			<br/>
@@ -124,14 +125,14 @@
 		</ul>
 		<h4 id="Create_.28simple.29_Filtering_Result">Create (simple) Filtering Result</h4>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_result.png"/></center>
+			<img border="0" src="Images/functionalities_create_result.png"/></center>
 		</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_result_assign.png"/></center>
+			<img border="0" src="Images/functionalities_create_result_assign.png"/></center>
 		</p>
 		<h4 id="Create_Composed_Filtering_Result">Create Composed Filtering Result</h4>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_composed_result.png"/></center>
+			<img border="0" src="Images/functionalities_create_composed_result.png"/></center>
 		</p>
 		<p>Different operators can be used to compose filtering results under a parent Composed Filtering Result:</p>
 		<ul>
@@ -140,47 +141,47 @@
 			<li>Excludes operator: removes a set of elements from a baseline composition. It is not a standalone composing operator since it excludes a computed derivation from a baseline composition of union and/or intersection operators.</li>
 		</ul>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_composed_result_operators.png"/></center>
+			<img border="0" src="Images/functionalities_create_composed_result_operators.png"/></center>
 		</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_composed_result_assign.png"/></center>
+			<img border="0" src="Images/functionalities_create_composed_result_assign.png"/></center>
 		</p>
 		<p>When selecting a criteria in the Filtering Model, the user could see in the Semantic Browser the filtering results referencing this criteria.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_criterion_referencing_results.png"/></center>
+			<img border="0" src="Images/functionalities_criterion_referencing_results.png"/></center>
 		</p>
 		<h4 id="Example">Example</h4>
 		<p>Let us imagine a model containing the following System Functions:</p>
 		<p>
-			<img width="520" border="0" src="Images/Example1.png"/>
+			<img border="0" src="Images/Example1.png"/>
 		</p>
 		<p>Let us consider the following 
 			<i>Simple</i> Filtering Result 1:
 		</p>
 		<p>
-			<img width="350" border="0" src="Images/Example2.png"/>
+			<img border="0" src="Images/Example2.png"/>
 		</p>
 		<p>And 
 			<i>Simple</i> Filtering Result 2:
 		</p>
 		<p>
-			<img width="350" border="0" src="Images/Example3.png"/>
+			<img border="0" src="Images/Example3.png"/>
 		</p>
 		<p>A 
 			<i>Composed</i> Filtering Result A, containing the 
 			<i>Union</i> operator for Filtering Result 1 and Filtering Result 2 will provide the following result:
 		</p>
 		<p>
-			<img width="160" border="0" src="Images/Example9.png"/> 
-			<img width="520" border="0" src="Images/Example4.png"/>
+			<img border="0" src="Images/Example9.png"/> 
+			<img border="0" src="Images/Example4.png"/>
 		</p>
 		<p>A 
 			<i>Composed</i> Filtering Result B, containing the 
 			<i>Intersection</i> operator for Filtering Result 1 and Filtering Result 2 will provide the following result:
 		</p>
 		<p>
-			<img width="155" border="0" src="Images/Example8.png"/> 
-			<img width="520" border="0" src="Images/Example5.png"/>
+			<img border="0" src="Images/Example8.png"/> 
+			<img border="0" src="Images/Example5.png"/>
 		</p>
 		<p>A 
 			<i>Composed</i> Filtering Result C containing the the 
@@ -189,84 +190,72 @@
 			<i>Composed</i> Filtering Result B, will provide the following result:
 		</p>
 		<p>
-			<img width="180" border="0" src="Images/Example7.png"/> 
-			<img width="520" border="0" src="Images/Example6.png"/> 
+			<img border="0" src="Images/Example7.png"/> 
+			<img border="0" src="Images/Example6.png"/> 
 		</p>
 		<h3 id="Product_family_Representation">Product family Representation</h3>
-		<p>If necessary activate Filtering viewpoint by right clicking on aird file and clicking 
-			<b>Viewpoints selection</b>
-		</p>
-		<p><center>
-			<img width="420" border="0" src="Images/functionalities_activate_viewpoint.png"/></center>
-		</p>
 		<p>Right click on 
 			<b>System Engineering</b> element and then 
-			<b>New Diagram / Table -&gt; [FILTERING] Product family</b>
+			<b>New Diagram / Table &gt; [FILTERING] Product family</b>
 		</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_create_table_filtering.png"/></center>
+			<img border="0" src="Images/functionalities_create_table_filtering.png"/></center>
 		</p>
 		<p>The matrix allows modifying, creating and deleting filtering results and criteria. It also allows applying filters and other basic cross table functionalities.</p>
 		<p><center>
-			<img width="480" border="0" src="Images/functionalities_table_filtering.png"/></center>
+			<img border="0" src="Images/functionalities_table_filtering.png"/></center>
 		</p>
 		<h2 id="Derivation_of_a_specific_Product">Derivation of a specific Product</h2>
 		<p>This action is available right clicking in a FilteringResult element.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_perform_derivation.png"/></center>
+			<img border="0" src="Images/functionalities_perform_derivation.png"/></center>
 		</p>
 		<p>The user should open the Project and Capella session if closed. Also there is the restriction that a generic product project can only contains one Capella systems engineering project.</p>
 		<p>In the following dialog the users should introduce the name of the product that is going to be extracted. By default it will be the name of the selected FilteringResult. A new project will be created in the workspace.
 			This specific product will contain only the elements that were associated to the selected criterion in the case of a simple filtering result.
 			In case of a composed filtering result, derived product is computed using operators (union, intersection and exclusion) on a set of filtering results.</p>
 		<p><center>
-			<img width="380" border="0" src="Images/functionalities_perform_derivation_create.png"/></center>
+			<img border="0" src="Images/functionalities_perform_derivation_create.png"/></center>
 		</p>
 		<table class="prettytable">
 			<tr>
-				<td></td>
 				<td>
 					<p>Notice that description hyperlinks could reference an incorrect element if the session of the Domain project is opened while the session of a derived project is also opened.</p>
 				</td>
 			</tr>
 		</table>
 		<h2 id="Derivation_with_libraries">Derivation with libraries</h2>
-		<h3 id="Derivation_of_a_project_doesn.E2.80.99t_derive_its_referenced_libraries">Derivation of a project doesn’t derive its referenced libraries</h3>
+		<h3 id="Derivation_of_a_project_doesn.27t_derive_its_referenced_libraries">Derivation of a project doesn't derive its referenced libraries</h3>
 		<table class="prettytable">
 			<tr>
-				<td></td>
 				<td>
-					<p>Derivation of a model referencing libraries will not derive the referenced libraries. So on, libraries will remain untouched/not derived and ALL its referenced elements will remain referenced by the application project even if these library’s elements were not assigned to the criterion of the derivation.</p>
+					<p>Derivation of a model referencing libraries will not derive the referenced libraries. So on, libraries will remain untouched/not derived and ALL its referenced elements will remain referenced by the application project even if these library's elements were not assigned to the criterion of the derivation.</p>
 				</td>
 			</tr>
 		</table>
 		<h3 id="Filtering_Criteria_from_Libraries">Filtering Criteria from Libraries</h3>
 		<p>When a model references libraries, it is possible to assign criterion defined in referenced libraries to elements from the given model. Such criterion will be available on the assigning wizard.</p>
 		<p><center>
-			<img width="640" border="0" src="Images/functionalities_derivation_libraries_assign_menu.png"/></center>
+			<img border="0" src="Images/functionalities_derivation_libraries_assign_menu.png"/></center>
 		</p>
 		<p><center>
-			<img width="380" border="0" src="Images/functionalities_derivation_libraries_assign.png"/></center>
+			<img border="0" src="Images/functionalities_derivation_libraries_assign.png"/></center>
 		</p>
 		<p>
 			<i>The set of available criterion in the wizard depends on model elements to be assigned; In case where assigning is made on elements from a referenced library, criterion defined in the project will not be proposed (to avoid cycle dependency between library and project)</i>
 		</p>
 		<h3 id="Domain_and_application_project_IDs">Domain and application project IDs</h3>
-		<p>Capella can’t have two projects with the same ID and referencing the same library.</p>
+		<p>Capella can't have two projects with the same ID and referencing the same library.</p>
 		<p>If your project has at least one reference to a library, you must check the corresponding option in Filtering preference page.</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_preferences_icon.png"/> Preferences
-			</b>
+			<b>Windows &gt; Preferences &gt; Capella &gt; Filtering</b>
 		</p>
 		<p><center>
-			<img width="540" border="0" src="Images/functionalities_derivation_libraries_preferences.png"/></center>
+			<img border="0" src="Images/functionalities_derivation_libraries_preferences.png"/></center>
 		</p>
 		<p>After derivation, application project will have a different project ID. It means, if you use DiffMerge for application/domain model comparison, it will fail. By default, DiffMerge use ID for comparison between models.</p>
 		<table class="prettytable">
 			<tr>
-				<td></td>
 				<td>
 					<p>If you want to use DiffMerge between application and domain model, please follow these instructions:</p>
 					<ol>
@@ -275,15 +264,15 @@
 							<b>Close Session</b>. For domain, application and library models.
 						</li>
 						<li>Open Navigator View: 
-							<b>Window-&gt;Show View-&gt;Other…-&gt;General-&gt;Navigator</b>
+							<b>Window &gt; Show View &gt; Other... &gt; General &gt; Navigator</b>
 						</li>
 						<li>Change ID in capella application model: 
 							<b>Right click</b> on capella application model and select 
-							<b>Open With-&gt;Text Editor</b>. Change ID of the capella with the domain capella ID. (ID look like: 
-							<i>&lt;org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" … id="1c751911-23e0-426f-8cc6-42cec0bb20d7"  name="toto"&gt;</i>
+							<b>Open With &gt; Text Editor</b>. Change ID of the capella with the domain capella ID. (ID look like: 
+							<i>&lt;org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" ... id="1c751911-23e0-426f-8cc6-42cec0bb20d7" name="toto" &gt;</i>
 						</li>
 						<li>Change ID in aird application model: Change reference to the .capella (reference to capella look like: 
-							<i>toto.capella#1c751911-23e0-426f-8cc6-42cec0bb20d7</i>)
+							<i>toto.melodymodeller#1c751911-23e0-426f-8cc6-42cec0bb20d7</i>)
 						</li>
 						<li>Now you can use DiffMerge, but always with closed session.</li>
 						<li>Restore Application ID before open any session.</li>
@@ -295,27 +284,27 @@
 		<h3 id="Filtering_related_decorators">Filtering related decorators</h3>
 		<p>Once you select a criterion for a given element it appears in the Semantic Browser, as a suffix in the Capella Project Explorer and also with a question mark decorator in the diagram. The decorator appears in the top-right side of the elements and in the center in the case of links.</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_visualizing_decorator.png"/></center>
+			<img border="0" src="Images/functionalities_visualizing_decorator.png"/></center>
 		</p>
 		<p>There are some preferences that could be adjusted for this visualization
 			For the Capella Navigator, image and text criterion decorators could be activated / deactivated in</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_visualizing_decorator_preferences.png"/></center>
+			<img border="0" src="Images/functionalities_visualizing_decorator_preferences.png"/></center>
 		</p>
 		<p>For Capella diagrams decorators could be activated / deactivated using a layer.</p>
 		<p><center>
-			<img width="540" border="0" src="Images/functionalities_filtering_preferences.png"/></center>
+			<img border="0" src="Images/functionalities_filtering_preferences.png"/></center>
 		</p>
 		<h3 id="Filtering_Criteria_Overview">Filtering Criteria Overview</h3>
 		<p>A global overview of the associated criterion could be obtained right clicking in a model element and selecting 
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_criteria_overview_icon.png"/>  Filtering Criteria Overview
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_criteria_overview_icon.png"/>  Filtering Criteria Overview
 			</b>.
 		</p>
 		<p>The overview will show the elements with criterion assigning and also their related elements. For a full overview perform the action at Project element level.</p>
 		<p><center>
-			<img width="460" border="0" src="Images/functionalities_overview.png"/></center>
+			<img border="0" src="Images/functionalities_overview.png"/></center>
 		</p>
 		<p>This Overview has filtering options by selecting a criterion or by introducing an element name. It is also possible to export this overview as CSV or TXT file.</p>
 		<h2 id="Filtering_based_on_criterion">Filtering based on criterion</h2>
@@ -323,15 +312,15 @@
 		<h3 id="Hide_Optionals_and_Hide_Common_filters">Hide Optionals and Hide Common filters</h3>
 		<p>Right click in the Diagram canvas</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_hide_optionals_icon.png"/> Hide Optionals
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_hide_optionals_icon.png"/> Hide Optionals
 			</b>
 		</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_hide_common_icon.png"/> Hide Common
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_hide_common_icon.png"/> Hide Common
 			</b>
 		</p>
 		<p>These filters could be used to hide all the optional elements (those that have associated criterion) or to hide common elements respectively. Common elements are those that are not associated with any criterion and therefore are part of the core of the product family. If a filter is active in the Diagram it appears as checked.</p>
@@ -339,31 +328,31 @@
 		<p>In order to hide/show elements based on filtering criterion/results you need to activate the Diagram Filtering Criteria Visibility view.</p>
 		<p>You need to activate the view using the check box "Diagrams reflect the filtering result":</p>
 		<p><center>
-			<img width="240" border="0" src="Images/functionalities_diag_vis_show_view.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_show_view.png"/></center>
 		</p>
 		<p>Once the view is shown, you need to click on and .aird file or a child element to load the Filtering Model into the view:</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_diag_vis_select_model.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_select_model.png"/></center>
 		</p>
 		<p>Now you need to activate the view to start filtering your model:</p>
 		<p><center>
-			<img width="460" border="0" src="Images/functionalities_diag_vis_activate_view.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_activate_view.png"/></center>
 		</p>
 		<p>You can select a filtering result in the drop down menu:</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_diag_vis_select_result.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_select_result.png"/></center>
 		</p>
 		<p>In the case of simple result the tree viewer displays a set of criterion:</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_diag_vis_simple_result.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_simple_result.png"/></center>
 		</p>
 		<p>In the case of composed results the tree viewer displays a read only set of child results:</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_diag_vis_compose_result.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_compose_result.png"/></center>
 		</p>
 		<p>You can modify the set of selected criterion and then hit "Refresh" button on the view to see the result in the diagram :</p>
 		<p><center>
-			<img width="600" border="0" src="Images/functionalities_diag_vis_hit_refresh.png"/></center>
+			<img border="0" src="Images/functionalities_diag_vis_hit_refresh.png"/></center>
 		</p>
 		<table class="prettytable">
 			<tr>
@@ -376,18 +365,18 @@
 		<h2 id="Pinning_criterion_elements_in_the_diagram">Pinning criterion elements in the diagram</h2>
 		<p>Right click in the Diagram canvas:</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_pin_criteria.png"/> Pin/unpin criterion
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_pin_criteria.png"/> Pin/unpin criterion
 			</b>
 		</p>
 		<p>The user can pin/unpin the associated diagram elements of a given set of criterion. </p>
 		<h2 id="Select_criterion_elements_in_the_diagram">Select criterion elements in the diagram</h2>
 		<p>Right click in the Diagram canvas:</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_select_criteria.png"/> 
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_select_criteria.png"/> 
 			</b>
 			<b> Select criterion</b>
 		</p>
@@ -399,9 +388,9 @@
 			</b> model element.
 		</p>
 		<p>
-			<img width="16" border="0" src="Images/filtering_icon.png"/> 
-			<b>Filtering -&gt; 
-				<img width="16" border="0" src="Images/filtering_metrics_icon.png"/> Filtering metrics
+			<img border="0" src="Images/filtering_icon.png"/> 
+			<b>Filtering &gt; 
+				<img border="0" src="Images/filtering_metrics_icon.png"/> Filtering metrics
 			</b>
 		</p>
 		<p>The optional ratio helps to understand where is the filtering in the model and the relative size of the optional elements. The optional rate showed for each model element is defined as:</p>
@@ -409,48 +398,48 @@
 			<b>Optional ratio (element) =</b> 100 if element is optional. 0 if element is not optional and it has no child. Else optional ration will be (number of optional children / total number of children)
 		</p>
 		<p><center>
-			<img width="480" border="0" src="Images/functionalities_metrics.png"/></center>
+			<img border="0" src="Images/functionalities_metrics.png"/></center>
 		</p>
 		<h2 id="Propagation_of_filtering_in_transitions">Propagation of filtering in transitions</h2>
 		<p>Filtering information will be propagated between layers using the default Capella Transitions. For example the following screenshot shows the transition of an optional Actor from System Analysis to Logic Architecture.</p>
 		<p><center>
-			<img width="520" border="0" src="Images/functionalities_transitions.png"/></center>
+			<img border="0" src="Images/functionalities_transitions.png"/></center>
 		</p>
 		<p>The transition of filtering information could be deactivated in</p>
 		<p>
-			<b>Window -&gt; Preferences -&gt; Capella -&gt; Transition/Generation</b>
+			<b>Window &gt; Preferences &gt; Capella &gt; Transition/Generation</b>
 		</p>
 		<p><center>
-			<img width="580" border="0" src="Images/functionalities_transitions_preferences.png"/></center>
+			<img border="0" src="Images/functionalities_transitions_preferences.png"/></center>
 		</p>
 		<p>Below DiffMerge wizard allow the user to see the effects of the transition and also to be able to decide for each transition if the filtering information should be propagated or not.</p>
 		<p><center>
-			<img width="680" border="0" src="Images/functionalities_transitions_merge.png"/></center>
+			<img border="0" src="Images/functionalities_transitions_merge.png"/></center>
 		</p>
 		<h2 id="Validation">Validation</h2>
 		<p>The Filtering Add-On contributes new constraints to Capella Models mainly to assure the consistency of the filtering information assigned to model elements. This constraints could be shown, activated or deactivated at</p>
 		<p>
-			<b>Window -&gt; Preferences -&gt; Model Validation -&gt; Constraints</b>
+			<b>Window &gt; Preferences &gt; Model Validation &gt; Constraints</b>
 		</p>
 		<p><center>
-			<img width="640" border="0" src="Images/functionalities_validation.png"/></center>
+			<img border="0" src="Images/functionalities_validation.png"/></center>
 		</p>
 		<p>To run a validation the user should perform the standard Capella validation on any Capella element.</p>
 		<p><center>
-			<img width="440" border="0" src="Images/functionalities_validation_menu.png"/></center>
+			<img border="0" src="Images/functionalities_validation_menu.png"/></center>
 		</p>
 		<h2 id="Customize_Capella_Project_Explorer">Customize Capella Project Explorer</h2>
 		<p>The user could customize the Capella Project Explorer in order to show or hide the filtering related elements.</p>
 		<p><center>
-			<img width="380" border="0" src="Images/functionalities_customize_view.png"/></center>
+			<img border="0" src="Images/functionalities_customize_view.png"/></center>
 		</p>
 		<p><center>
-			<img width="300" border="0" src="Images/functionalities_customize_view_filters.png"/></center>
+			<img border="0" src="Images/functionalities_customize_view_filters.png"/></center>
 		</p>
 		<p>The AssociatedFilteringCriterionSet elements are hidden to users by default. All the functionalities are available without showing these elements so showing them is not recommended. If still a user wants to show them, the user should customize the Capella Project Explorer view accordingly.</p>
 		<p>Now the user is able to see and modify the Associated criterion set elements.</p>
 		<p><center>
-			<img width="620" border="0" src="Images/functionalities_customize_view_set.png"/></center>
+			<img border="0" src="Images/functionalities_customize_view_set.png"/></center>
 		</p>
 		<h2 id="Team_for_Capella_compatibility">Team for Capella compatibility</h2>
 		<p>Filtering information is exported when users 
