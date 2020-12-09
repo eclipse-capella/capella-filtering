@@ -85,13 +85,13 @@ public class FilteringExtractionAction implements IActionDelegate {
       return;
     }
 
-    // Check that the project contains a melodymodeller
+    // Check that the project contains a capella
     // This is important for CDO as the project does not contain the
     // semantic model
     try {
       if (FilteringUtils.getSemanticModels(project).isEmpty()) {
         MessageDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-            Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_melodymodellerFileNotFound);
+            Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_capellaFileNotFound);
         return;
       }
     } catch (CoreException exception) {

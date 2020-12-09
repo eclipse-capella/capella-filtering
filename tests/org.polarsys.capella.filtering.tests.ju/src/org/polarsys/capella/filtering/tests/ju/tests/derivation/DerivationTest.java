@@ -175,7 +175,7 @@ public class DerivationTest extends BasicTestCase {
       checkProjectsContainSameIResources(expectedResultProject, derivedProject);
       // References to semantic resources
       checkReferencedSemanticResources(expectedResultSession, sessionOfDerived);
-      // Compare .melodymodeller files
+      // Compare .capella files
       checkSemanticResourcesAreEqual(TestHelper.getSemanticResource(expectedResultSession),
           TestHelper.getSemanticResource(sessionOfDerived));
 

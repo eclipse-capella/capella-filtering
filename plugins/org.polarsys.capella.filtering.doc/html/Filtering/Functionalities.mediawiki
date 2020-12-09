@@ -296,8 +296,8 @@ If you want to use DiffMerge between application and domain model, please follow
 
 # Close all opened sessions: '''Right click''' on *.aird and select '''Close Session'''. For domain, application and library models.
 # Open Navigator View: '''Window-&gt;Show View-&gt;Other…-&gt;General-&gt;Navigator'''
-# Change ID in melodymodeller application model: '''Right click''' on melodymodeller application model and select '''Open With-&gt;Text Editor'''. Change ID of the melodymodeller with the domain melodymodeller ID. (ID look like: ''&lt;<nowiki>org.polarsys.capella.core.data.capellamodeller</nowiki>:Project xmi:version="2.0" … id="1c751911-23e0-426f-8cc6-42cec0bb20d7"  name="toto"&gt;''
-# Change ID in aird application model: Change reference to the .melodymodeller (reference to melodymodeller look like: ''<nowiki>toto.me</nowiki>lodymodeller#1c751911-23e0-426f-8cc6-42cec0bb20d7'')
+# Change ID in capella application model: '''Right click''' on capella application model and select '''Open With-&gt;Text Editor'''. Change ID of the capella with the domain capella ID. (ID look like: ''&lt;<nowiki>org.polarsys.capella.core.data.capellamodeller</nowiki>:Project xmi:version="2.0" … id="1c751911-23e0-426f-8cc6-42cec0bb20d7"  name="toto"&gt;''
+# Change ID in aird application model: Change reference to the .capella (reference to capella look like: ''<nowiki>toto.me</nowiki>lodymodeller#1c751911-23e0-426f-8cc6-42cec0bb20d7'')
 # Now you can use DiffMerge, but always with closed session.
 # Restore Application ID before open any session.
 
