@@ -109,7 +109,7 @@ public class FilteringExtractor {
 
         if (CapellaResourceHelper.CAPELLA_MODEL_FILE_EXTENSION.equals(ext)
             || ViewpointMetadata.STORAGE_EXTENSION.equals(ext)) {
-          // .melodymodeller or .afm file, keep old -> new reference
+          // .capella or .afm file, keep old -> new reference
           oldReferenceToNewReference.put(resource.getName(), newPath.lastSegment());
         }
         // Else if it is any other element
@@ -157,8 +157,8 @@ public class FilteringExtractor {
       if (resource instanceof IFile) {
         IFile file = (IFile) resource;
         // Only update references if the file is a melody special file
-        // All aird, aird fragments and melodymodeller fragments must
-        // update its references to the new melodymodeller
+        // All aird, aird fragments and capella fragments must
+        // update its references to the new capella
         if (CapellaResourceHelper.isAirdResource(resource, false)
             || CapellaResourceHelper.isCapellaResource(resource, false)) {
           replace(file, oldReferenceToNewReference);

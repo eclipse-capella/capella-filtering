@@ -50,7 +50,7 @@ public class Messages extends NLS {
 
   public static String FilteringExtractionAction_3;
 
-  public static String FilteringExtractionAction_melodymodellerFileNotFound;
+  public static String FilteringExtractionAction_capellaFileNotFound;
 
   public static String FilteringExtractionAction_projectHasReferenceToLibrary;
 

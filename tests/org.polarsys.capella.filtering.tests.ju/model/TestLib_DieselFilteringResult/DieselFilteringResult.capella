@@ -20,7 +20,7 @@
     name="DieselFilteringResult">
   <ownedExtensions xsi:type="libraries:ModelInformation" id="f43c90fe-c74e-4f9f-8532-64aad8c0c9d1">
     <ownedReferences xsi:type="libraries:LibraryReference" id="7f9656d1-b9e1-4a70-97bd-87f2c692223a"
-        library="libraries:ModelInformation platform:/resource/MyLib/MyLib.melodymodeller#e0549bf5-b384-4a9f-92a1-3fea48a94a25"/>
+        library="libraries:ModelInformation platform:/resource/MyLib/MyLib.capella#e0549bf5-b384-4a9f-92a1-3fea48a94a25"/>
   </ownedExtensions>
   <ownedEnumerationPropertyTypes xsi:type="org.polarsys.capella.core.data.capellacore:EnumerationPropertyType"
       id="95e15b95-b1d2-401e-afd3-3ffe90e57c40" name="ProgressStatus">
@@ -44,11 +44,11 @@
     <ownedExtensions xsi:type="filtering:FilteringResults" id="ade2f468-4575-4728-8583-010d8a241980"
         name="EngineFilteringResults">
       <filteringResults xsi:type="filtering:FilteringResult" id="ee4bd2ca-31cd-4ccf-b9d9-4fc770bdc64e"
-          name="DieselFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
+          name="DieselFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.capella#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="8ca5b856-0158-4e9f-8fbc-80c384fe36a0"
-          name="HybridFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
+          name="HybridFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.capella#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="b3993f54-c307-4009-abbc-d2b94e4f2263"
-          name="PetrolFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
+          name="PetrolFilteringResult" filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.capella#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
     </ownedExtensions>
     <ownedArchitectures xsi:type="org.polarsys.capella.core.data.oa:OperationalAnalysis"
         id="96fbc8b3-9371-46d3-8215-48a0ed574a37" name="Operational Analysis">
@@ -88,7 +88,7 @@
         <ownedAssociations xsi:type="org.polarsys.capella.core.data.information:Association"
             id="229879fa-ae7b-4318-a57d-c0797916e976" name="DataAssociation1" navigableMembers="#7087b19c-e9aa-4b4e-b63a-c5ae65ff4fef">
           <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet" id="36b33ed8-5373-4a32-ae36-e433c1437a23"
-              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
+              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.capella#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
           <ownedMembers xsi:type="org.polarsys.capella.core.data.information:Property"
               id="9a90ef1c-f471-4157-870c-5c39c4060edd" name="engine" abstractType="#a3d1bdc4-a79e-4015-a7b2-57992588250d"
               aggregationKind="ASSOCIATION">
@@ -193,7 +193,7 @@
         <ownedClasses xsi:type="org.polarsys.capella.core.data.information:Class"
             id="2e886d68-4e8b-4dc0-9775-a151f7e2af70" name="FAP">
           <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet" id="b2311854-9c2a-4390-9ad6-e034c3541d00"
-              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.melodymodeller#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
+              filteringCriteria="filtering:FilteringCriterion platform:/resource/MyLib/MyLib.capella#c44b52c8-3b8b-4757-a147-4123f5f033ee"/>
         </ownedClasses>
         <ownedClasses xsi:type="org.polarsys.capella.core.data.information:Class"
             id="a3d1bdc4-a79e-4015-a7b2-57992588250d" name="Engine">

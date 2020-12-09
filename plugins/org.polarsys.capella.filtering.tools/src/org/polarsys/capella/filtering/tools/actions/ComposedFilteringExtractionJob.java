@@ -156,7 +156,7 @@ public class ComposedFilteringExtractionJob implements IWorkspaceRunnable {
       subMonitor.subTask(Messages.FilteringExtractionJob_1);
 
       /**
-       * We copy all files including '.melodymodeller', '.aird', '.melodyfragment', '.airdfragment' and '.afm' files
+       * We copy all files including '.capella', '.aird', '.melodyfragment', '.airdfragment' and '.afm' files
        * into the newly created eclipse project.
        */
       Map<String, String> oldReferenceToNewReference = extractor.cloneModels(currentProject);
@@ -165,7 +165,7 @@ public class ComposedFilteringExtractionJob implements IWorkspaceRunnable {
       subMonitor.subTask(Messages.FilteringExtractionJob_2);
 
       /**
-       * Then we update the reference from the 'aird' model to the 'melodymodeller' and 'afm' models, because the models
+       * Then we update the reference from the 'aird' model to the 'capella' and 'afm' models, because the models
        * filename have changed.
        */
       extractor.updateReferences(oldReferenceToNewReference);
