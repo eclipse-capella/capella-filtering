@@ -30,10 +30,10 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.diffmerge.api.IComparison;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
+import org.eclipse.emf.diffmerge.generic.api.IComparison;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.impl.scopes.FragmentedModelScope;
 import org.eclipse.emf.ecore.EObject;
@@ -216,7 +216,7 @@ public class DerivationTest extends BasicTestCase {
   private class TestCaseMatchPolicy extends DefaultMatchPolicy {
 
     @Override
-    public Object getMatchID(EObject element, IModelScope scope) {
+    public Object getMatchID(EObject element, ITreeDataScope<EObject> scope) {
       // Use the name as match id for projects because in case of library,
       // derived projects have different Capella id.
       if (element instanceof Project) {
