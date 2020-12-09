@@ -7,8 +7,6 @@ http://www.eclipse.org/legal/epl-2.0
 org.polarsys.capella.filtering.doc/html/Filtering/Images
 
 appendix_m2.png
-derivation_icon.png
-functionalities_activate_viewpoint.png
 functionalities_adding_filtering_model_criterion.png
 functionalities_associate_criteria.png
 functionalities_automatic_assignation.png
@@ -38,21 +36,16 @@ functionalities_table_filtering.png
 functionalities_transitions.png
 functionalities_transitions_merge.png
 functionalities_transitions_preferences.png
-functionalities_transitions_preferences_log.png
 functionalities_use_result.png
 functionalities_validation.png
 functionalities_validation_menu.png
 functionalities_filtering_preferences.png
-functionalities_filtering_preferences_decorators_on_export.png
 functionalities_filtering_preferences_show_criteria_diagram.png
 functionalities_visualizing_decorator.png
 functionalities_visualizing_decorator_preferences.png
 info.png
-install_about.png
-install_about_message.png
 install_features.png
 introduction_concept.png
-migration_image.png
 filtering_assign_icon.png
 filtering_criteria_overview_icon.png
 filtering_hide_common_icon.png
@@ -60,7 +53,6 @@ filtering_hide_optionals_icon.png
 filtering_icon.png
 filtering_metrics_icon.png
 filtering_pin_criteria.png
-filtering_preferences_icon.png
 filtering_select_criteria.png
 filtering_set_criteria.png
 filtering_show_hide_criteria_icon.png
