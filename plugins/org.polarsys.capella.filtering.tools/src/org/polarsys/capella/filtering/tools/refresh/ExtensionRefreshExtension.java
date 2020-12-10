@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,6 +20,7 @@ import org.eclipse.sirius.diagram.description.filter.CompositeFilterDescription;
 import org.eclipse.sirius.diagram.description.filter.FilterDescription;
 import org.eclipse.sirius.diagram.ui.business.api.helper.graphicalfilters.CompositeFilterApplicationBuilder;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
+import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
 
 public class ExtensionRefreshExtension implements IRefreshExtension {
 
@@ -27,7 +28,9 @@ public class ExtensionRefreshExtension implements IRefreshExtension {
 
   @Override
   public void beforeRefresh(DDiagram diagram) {
-    process(diagram);
+    if (ViewpointHelper.isViewpointActive(diagram)) {
+      process(diagram);
+    }
   }
 
   @Override
