@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -171,22 +171,17 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
     formToolkit.adapt(enableCheckBtn, true, true);
 
     enableCheckBtn.addSelectionListener(new SelectionAdapter() {
-
       @Override
       public void widgetSelected(SelectionEvent event) {
         Button btn = (Button) event.getSource();
         boolean enabled = btn.getSelection();
-        FilteringToolsPlugin.getGlobalFilteringCache().setEnabled(enabled);
+        FilteringToolsPlugin.getGlobalFilteringCache().setEnabled(mainProject, enabled);
         viewSubControls.forEach(c -> c.setEnabled(enabled));
-
         Object input = treeViewer.getInput();
-        if (input != null && input instanceof ComposedFilteringResult) {
-
+        if (input instanceof ComposedFilteringResult) {
           treeViewer.getTree().setEnabled(false);
         }
-
         updateCheckUncheckAllEnableState();
-
       }
     });
 
@@ -508,7 +503,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     // No filtering Result is available in current selected project
     if (filteringResults.isEmpty()) {
-
+      enableCheckBtn.setSelection(false);
       filteringResultCombo.removeAll();
       filteringResultCombo.add("No FilteringResults");
       modifiedResultLabel.setData("");
@@ -516,19 +511,20 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
       modifiedResultLabel.getParent().pack(true);
       treeViewer.setInput(null);
       viewSubControls.forEach(c -> c.setEnabled(false));
-
     } else {// Filtering results available
       filteringResultCombo.removeAll();
       filteringResultCombo.add("Select a FilteringResult");
 
-      AbstractFilteringResult selectedFiltResult = FilteringToolsPlugin.getGlobalFilteringCache().get(mainProject);
+      boolean filterEnabled = FilteringToolsPlugin.getGlobalFilteringCache().isEnabled(mainProject);
+      AbstractFilteringResult selectedFilterResult = FilteringToolsPlugin.getGlobalFilteringCache().getCurrentFilteringResult(mainProject);
+      enableCheckBtn.setSelection(filterEnabled);
       // if a current result has already been selected (put into
       // global filtering cache) then we should focus on corresponding
       // filtering result in the combo box
       int selectedFiltResultIndex = 0;
       int index = 1;
       for (AbstractFilteringResult filteringResult : filteringResults) {
-        if (filteringResult.equals(selectedFiltResult))
+        if (filteringResult.equals(selectedFilterResult))
           selectedFiltResultIndex = index;
         filteringResultCombo.add(FilteringUtils.formatFilteringItemName(filteringResult));
         index++;
@@ -654,12 +650,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
   @Override
   public void dispose() {
-
     super.dispose();
     getSite().getWorkbenchWindow().getSelectionService().removeSelectionListener(this);
     FilteringToolsPlugin.getGlobalFilteringCache().clear();
-    FilteringToolsPlugin.getGlobalFilteringCache().disable();
-
   }
 
   @Override
