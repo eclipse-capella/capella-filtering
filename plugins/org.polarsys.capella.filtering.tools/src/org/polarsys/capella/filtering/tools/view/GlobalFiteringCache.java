@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
+ * 
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ * 
+ * Contributors:
+ *    Thales - initial API and implementation
+ *******************************************************************************/
 package org.polarsys.capella.filtering.tools.view;
 
 import java.util.HashMap;
@@ -9,25 +21,34 @@ import org.polarsys.capella.filtering.AbstractFilteringResult;
 public class GlobalFiteringCache {
   @SuppressWarnings("unused")
   private static final long serialVersionUID = 4483023425603579476L;
-
-  private boolean isEnabled;
-  private Map<Project, AbstractFilteringResult> cache = new HashMap<>();
+  private Map<Project, FilteringResultState> cache = new HashMap<>();
 
   public GlobalFiteringCache() {
     // TODO Auto-generated constructor stub
   }
 
   public void setCurrentFilteringResult(Project project, AbstractFilteringResult filteringResult) {
-    cache.put(project, filteringResult);
-
+    FilteringResultState filteringResultState = cache.get(project);
+    if (filteringResultState != null) {
+      filteringResultState.setFilteringResult(filteringResult);
+    } else {
+      cache.put(project, new FilteringResultState(true, filteringResult));
+    }
+  }
+  
+  public AbstractFilteringResult getCurrentFilteringResult(Project project) {
+    FilteringResultState filteringResultState = cache.get(project);
+    if (filteringResultState != null) {
+      return filteringResultState.getFilteringResult();
+    }
+    return null;
   }
 
   public void clear() {
     cache.clear();
-
   }
 
-  public AbstractFilteringResult get(Project project) {
+  public FilteringResultState get(Project project) {
     return cache.get(project);
   }
 
@@ -35,21 +56,28 @@ public class GlobalFiteringCache {
     cache.remove(project);
   }
 
-  public boolean isEnabled() {
-    return isEnabled;
+  public boolean isEnabled(Project project) {
+    if (cache.get(project) == null) {
+      return false;
+    }
+    return cache.get(project).isEnabled();
   }
 
-  public void enable() {
-    this.isEnabled = true;
+  public void enable(Project project) {
+   setEnabled(project, true);
   }
 
-  public void disable() {
-    this.isEnabled = false;
+  public void disable(Project project) {
+    setEnabled(project, false);
   }
 
-  public void setEnabled(boolean enabled) {
-    this.isEnabled = enabled;
-
+  public void setEnabled(Project project, boolean enabled) {
+    FilteringResultState filteringResultState = cache.get(project);
+    if (filteringResultState != null) {
+      filteringResultState.setEnabled(enabled);
+    } else {
+      cache.put(project, new FilteringResultState(enabled, null));
+    }
   }
 
   @Override
