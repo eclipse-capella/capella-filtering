@@ -74,7 +74,7 @@
       </filters>
     </ownedRepresentations>
     <ownedRepresentationExtensions xsi:type="description_2:DiagramExtensionDescription" name="FilteringDiagExtension" viewpointURI="viewpoint:/org.polarsys.capella.core.sirius.analysis/.*" representationName=".*">
-      <layers name="Filtering Criteria Decoration" activeByDefault="true">
+      <layers name="Filtering Criteria Decoration">
         <decorationDescriptionsSet>
           <decorationDescriptions xsi:type="description:GenericDecorationDescription" name="HasAssociatedFilteringCriteria" position="NORTH_EAST" distributionDirection="HORIZONTAL" preconditionExpression="service:view.hasDecorationPLText" imageExpression="/org.polarsys.capella.filtering.sirius.analysis/icons/optionalDecorator.png"/>
         </decorationDescriptionsSet>
