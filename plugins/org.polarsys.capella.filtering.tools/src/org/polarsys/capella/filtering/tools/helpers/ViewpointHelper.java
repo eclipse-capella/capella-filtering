@@ -13,6 +13,7 @@
 package org.polarsys.capella.filtering.tools.helpers;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.polarsys.kitalpha.ad.services.manager.ViewpointManager;
 
 public class ViewpointHelper {
@@ -27,6 +28,18 @@ public class ViewpointHelper {
       return (element != null)
           ? ViewpointManager.getInstance(element).isReferenced(VIEWPOINT_ID)
               && !ViewpointManager.getInstance(element).isInactive(VIEWPOINT_ID)
+          : false;
+    } catch (IllegalArgumentException ex) {
+      // element is invalid, silent failure
+    }
+    return false;
+  }
+  
+  public static boolean isViewpointActive(ResourceSet rs) {
+    try {
+      return (rs != null)
+          ? ViewpointManager.getInstance(rs).isReferenced(VIEWPOINT_ID)
+              && !ViewpointManager.getInstance(rs).isInactive(VIEWPOINT_ID)
           : false;
     } catch (IllegalArgumentException ex) {
       // element is invalid, silent failure
