@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
+import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 
 public class CriteriaLabelDecorator implements ILabelDecorator {
@@ -54,10 +55,11 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
 
   @Override
   public Image decorateImage(Image image, Object element) {
-    if (image == null) {
+    if (!(element instanceof CapellaElement) || !ViewpointHelper.isViewpointActive((CapellaElement) element)
+        || image == null) {
       return null;
     }
-    if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
+    if (isOptional((CapellaElement) element)) {
       ComposedImage img = decorateFiltering(image);
       ImageDescriptor descriptor = new ComposedImageDescriptor(img);
       return FilteringToolsPlugin.getDefault().getImage(descriptor);
@@ -89,7 +91,8 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
 
   @Override
   public String decorateText(String text, Object element) {
-    if (element instanceof CapellaElement && isOptional((CapellaElement) element)) {
+    if (element instanceof CapellaElement && ViewpointHelper.isViewpointActive((CapellaElement) element)
+        && isOptional((CapellaElement) element)) {
       String decorator = FilteringUtils.getCommaSeparatedExplicitFeatures((CapellaElement) element);
       if (decorator != null) {
         return text + " [" + decorator + "]";
