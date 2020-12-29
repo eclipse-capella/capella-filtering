@@ -197,26 +197,25 @@ public class FilteringExtractor {
     // Create a temp file to be replaced with the original at the end
     File outputFile = File.createTempFile(file.getName(), "temp", file.getParentFile());
     Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
-    BufferedReader breader = new BufferedReader(reader);
-    Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
-    BufferedWriter bwriter = new BufferedWriter(writer);
-    // Start replacing
-    String line;
-    while ((line = breader.readLine()) != null) {
-      for (Map.Entry<String, String> entry : oldReferenceToNewReference.entrySet()) {
-        // This replace all occurrences and it does not require to
-        // compute a regex as replaceAll method
-        line = line.replace(entry.getKey(), entry.getValue());
+    try (BufferedReader breader = new BufferedReader(reader)) {
+      Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
+      try (BufferedWriter bwriter = new BufferedWriter(writer)) {
+        // Start replacing
+        String line;
+        while ((line = breader.readLine()) != null) {
+          for (Map.Entry<String, String> entry : oldReferenceToNewReference.entrySet()) {
+            // This replace all occurrences and it does not require to
+            // compute a regex as replaceAll method
+            line = line.replace(entry.getKey(), entry.getValue());
+          }
+          if (PREFS.getBoolean(FilteringPreferencesPage.APPLICATION_PROJECT_WITH_DIFFERENT_ID, false)) {
+            line = line.replace(_domainId, _newId);
+          }
+          bwriter.write(line);
+          bwriter.newLine();
+        }
       }
-      if (PREFS.getBoolean(FilteringPreferencesPage.APPLICATION_PROJECT_WITH_DIFFERENT_ID, false)) {
-        line = line.replace(_domainId, _newId);
-      }
-      bwriter.write(line);
-      bwriter.newLine();
     }
-    // Close readers and writers
-    breader.close();
-    bwriter.close();
     // Replace
     replaceFiles(file, outputFile);
   }
