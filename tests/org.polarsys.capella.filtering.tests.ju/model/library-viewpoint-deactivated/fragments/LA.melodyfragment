@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Capella_Version_1.4.2-->
+<org.polarsys.capella.core.data.la:LogicalArchitecture xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/1.4.0"
+    xmlns:org.polarsys.capella.core.data.ctx="http://www.polarsys.org/capella/core/ctx/1.4.0"
+    xmlns:org.polarsys.capella.core.data.fa="http://www.polarsys.org/capella/core/fa/1.4.0"
+    xmlns:org.polarsys.capella.core.data.information="http://www.polarsys.org/capella/core/information/1.4.0"
+    xmlns:org.polarsys.capella.core.data.la="http://www.polarsys.org/capella/core/la/1.4.0"
+    id="c5d48b76-ab18-4b2c-878c-530f97a3f72e"
+    name="Logical Architecture">
+  <ownedFunctionPkg xsi:type="org.polarsys.capella.core.data.la:LogicalFunctionPkg"
+      id="82410308-6363-4524-b8ee-43e0315ec534" name="Logical Functions">
+    <ownedLogicalFunctions xsi:type="org.polarsys.capella.core.data.la:LogicalFunction"
+        id="6e304169-0607-495c-99d5-a9afbb8594bb" name="Root Logical Function">
+      <ownedFunctionRealizations xsi:type="org.polarsys.capella.core.data.fa:FunctionRealization"
+          id="93745917-4d20-4059-9eca-502def61eb32" targetElement="org.polarsys.capella.core.data.ctx:SystemFunction ../library-viewpoint-deactivated.melodymodeller#012ce935-eb91-4059-a680-1e0c0c063d39"
+          sourceElement="#6e304169-0607-495c-99d5-a9afbb8594bb"/>
+    </ownedLogicalFunctions>
+  </ownedFunctionPkg>
+  <ownedAbstractCapabilityPkg xsi:type="org.polarsys.capella.core.data.la:CapabilityRealizationPkg"
+      id="4996c01a-1e95-4bad-9ebf-a386a6c9ee2f" name="Capabilities"/>
+  <ownedInterfacePkg xsi:type="org.polarsys.capella.core.data.cs:InterfacePkg" id="58e2515a-13d8-4481-a38a-567c10dcb2b4"
+      name="Interfaces"/>
+  <ownedDataPkg xsi:type="org.polarsys.capella.core.data.information:DataPkg" id="12b7995d-1474-4f15-b621-370eada6092f"
+      name="Data"/>
+  <ownedLogicalComponentPkg xsi:type="org.polarsys.capella.core.data.la:LogicalComponentPkg"
+      id="5abaf2b9-7deb-462c-bdc9-a22a5bcb75f2" name="Structure">
+    <ownedParts xsi:type="org.polarsys.capella.core.data.cs:Part" id="0f739709-e8e7-4eb7-8da6-ea52bc8b752c"
+        name="Logical System" abstractType="#d3d412d4-3407-4a27-82c1-a440db290d2d"/>
+    <ownedLogicalComponents xsi:type="org.polarsys.capella.core.data.la:LogicalComponent"
+        id="d3d412d4-3407-4a27-82c1-a440db290d2d" name="Logical System">
+      <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" id="f9b982d7-d7a8-42f5-95a4-d8c3bc900e0a"
+          name="LC 1" abstractType="#bd12fef8-5f52-47c5-b2d0-ec05fe54dec3"/>
+      <ownedComponentRealizations xsi:type="org.polarsys.capella.core.data.cs:ComponentRealization"
+          id="6ec220b0-64ec-4351-9fec-f3cd775be10d" targetElement="org.polarsys.capella.core.data.ctx:SystemComponent ../library-viewpoint-deactivated.melodymodeller#3a6289df-7a66-4717-a9c9-bb5a0c97e903"
+          sourceElement="#d3d412d4-3407-4a27-82c1-a440db290d2d"/>
+      <ownedLogicalComponents xsi:type="org.polarsys.capella.core.data.la:LogicalComponent"
+          id="bd12fef8-5f52-47c5-b2d0-ec05fe54dec3" name="LC 1"/>
+    </ownedLogicalComponents>
+  </ownedLogicalComponentPkg>
+  <ownedSystemAnalysisRealizations xsi:type="org.polarsys.capella.core.data.la:SystemAnalysisRealization"
+      id="8353e6e2-b902-4fb4-b8b7-1cc38bf1ba8f" targetElement="org.polarsys.capella.core.data.ctx:SystemAnalysis ../library-viewpoint-deactivated.melodymodeller#c246a1c5-dd2d-4644-8de7-ab0c190267b5"
+      sourceElement="#c5d48b76-ab18-4b2c-878c-530f97a3f72e"/>
+</org.polarsys.capella.core.data.la:LogicalArchitecture>

@@ -11,7 +11,8 @@ Require-Bundle: org.polarsys.capella.filtering.tools,
  org.eclipse.emf.common,
  org.polarsys.capella.filtering.sirius.analysis,
  org.polarsys.capella.filtering.business.queries,
- org.polarsys.capella.test.transition.ju
+ org.polarsys.capella.test.transition.ju,
+ org.polarsys.capella.test.migration.ju
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.capella.filtering.tests.ju.tests.derivation,
