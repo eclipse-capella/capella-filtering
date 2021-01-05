@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.polarsys.capella.filtering.tests.ju.tests.derivation.DerivationTestSuite;
+import org.polarsys.capella.filtering.tests.ju.tests.misc.ActivatedFilterMigrationTest;
 import org.polarsys.capella.filtering.tests.ju.tests.misc.MiscTestSuite;
 import org.polarsys.capella.test.framework.api.BasicTestArtefact;
 import org.polarsys.capella.test.framework.api.BasicTestSuite;
@@ -34,6 +35,7 @@ public class MainTestSuite extends BasicTestSuite {
     testCases.add(new DerivationTestSuite());
     testCases.add(new MiscTestSuite());
 
+    testCases.add(new ActivatedFilterMigrationTest());
     return testCases;
   }
 
