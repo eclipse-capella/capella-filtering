@@ -228,6 +228,10 @@ In case of a composed filtering result, derived product is computed using operat
 |-
 |
 Please note that the session must be saved before performing the derivation so that every ongoing change is taken into account.
+If any referenced models contain a unsaved session, a pop-up inviting you to save will be displayed.
+<center>[[Image:Images/dirtyModels.png]]</center>
+
+
 Also notice that description hyperlinks could reference an incorrect element if the session of the Domain project is opened while the session of a derived project is also opened.
 
 |}
@@ -308,10 +312,11 @@ For the Capella Navigator, image and text criterion decorators could be activate
 <center>[[Image:Images/functionalities_visualizing_decorator_preferences.png]]</center>
 
 
-For Capella diagrams decorators could be activated / deactivated using a layer.
+For Capella diagrams, decorators can be activated / deactivated using a layer.
 
 <center>[[Image:Images/functionalities_filtering_preferences.png]]</center>
 
+Please note the layer activation is not persisted in the model. This means that if needed, you should re-activate the layer for new sessions.
 
 
 ===Filtering Criteria Overview===

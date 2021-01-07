@@ -12,12 +12,16 @@
  *******************************************************************************/
 package org.polarsys.capella.filtering.tools.actions;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.action.IAction;
@@ -28,10 +32,13 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
+import org.polarsys.capella.common.libraries.IModel;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
@@ -48,6 +55,9 @@ import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
  */
 public class FilteringExtractionAction implements IActionDelegate {
 
+  private static final int DERIVATION_DO_NOT_SAVE_AND_CONTINUE = 0;
+  private static final int DERIVATION_SAVE_AND_CONTINUE = 1;
+
   // Preferences
   private static final IEclipsePreferences PREFS = InstanceScope.INSTANCE
       .getNode(FilteringToolsPlugin.getDefault().getPluginId());
@@ -63,25 +73,25 @@ public class FilteringExtractionAction implements IActionDelegate {
 
     // Get the project from the selected filteringResult
     IProject project = FilteringUtils.getEclipseProject(filteringResult);
+    Shell activeShell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 
     // Check that the project was found
     if (project == null) {
       // Problems found getting the project
-      MessageDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-          Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_1);
+      MessageDialog.openError(activeShell, Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_1);
       return;
     }
 
     // Get domain project id
-    Project domainMelodyProject = CapellaProjectHelper.getProject(filteringResult);
-    String domainId = domainMelodyProject.getId();
+    Project capellaProject = CapellaProjectHelper.getProject(filteringResult);
+    String domainId = capellaProject.getId();
 
     // Check domain project has no reference to library, otherwise, user
     // must check corresponding option in Filtering preference page
     if (!PREFS.getBoolean(FilteringPreferencesPage.APPLICATION_PROJECT_WITH_DIFFERENT_ID, false)
-        && !FilteringUtils.getReferencedLibraries(domainMelodyProject).isEmpty()) {
-      MessageDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-          Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_projectHasReferenceToLibrary);
+        && !FilteringUtils.getReferencedLibraries(capellaProject).isEmpty()) {
+      MessageDialog.openError(activeShell, Messages.FilteringExtractionAction_0,
+          Messages.FilteringExtractionAction_projectHasReferenceToLibrary);
       return;
     }
 
@@ -90,20 +100,61 @@ public class FilteringExtractionAction implements IActionDelegate {
     // semantic model
     try {
       if (FilteringUtils.getSemanticModels(project).isEmpty()) {
-        MessageDialog.openError(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-            Messages.FilteringExtractionAction_0, Messages.FilteringExtractionAction_capellaFileNotFound);
+        MessageDialog.openError(activeShell, Messages.FilteringExtractionAction_0,
+            Messages.FilteringExtractionAction_connectedProject);
         return;
       }
     } catch (CoreException exception) {
       return;
     }
 
-    // Open wizard to select features and new project name
+    // Check the presence of any dirty referenced models.
+    // If any exist, invite the user to save them or to continue without saving.
+    Map<IModel, Session> dirtyReferencedModels = FilteringUtils.getDirtyReferencedModels(capellaProject);
+
+    if (dirtyReferencedModels.isEmpty()) {
+      doAction(filteringResult, project, domainId);
+    } else {
+      String dirtyModelNames = FilteringUtils.extractModelNames(dirtyReferencedModels.keySet());
+      String dialogTitle = Messages.FilteringDirtyReferencedModels_dialog_title;
+      String dialogMessage = NLS.bind(Messages.FilteringDirtyReferencedModels_dialog_message, dirtyModelNames);
+      String saveOptionTitle = Messages.FilteringDirtyReferencedModels_dialog_continue_with_saving;
+      String noSaveOptionTitle = Messages.FilteringDirtyReferencedModels_dialog_continue_without_saving;
+
+      MessageDialog dialog = new MessageDialog(activeShell, dialogTitle, null, dialogMessage, MessageDialog.WARNING,
+          new String[] { noSaveOptionTitle, saveOptionTitle }, 1);
+      int result = dialog.open();
+
+      switch (result) {
+
+      case DERIVATION_SAVE_AND_CONTINUE:
+        saveAndContinue(filteringResult, project, domainId, dirtyReferencedModels.values());
+        break;
+
+      case DERIVATION_DO_NOT_SAVE_AND_CONTINUE:
+        doAction(filteringResult, project, domainId);
+        break;
+
+      default:
+        break;
+      }
+
+    }
+  }
+
+  private void saveAndContinue(AbstractFilteringResult filteringResult, IProject project, String domainId,
+      Collection<Session> dirtySessions) {
+    IProgressMonitor progressMonitor = new NullProgressMonitor();
+
+    for (Session dirtySession : dirtySessions) {
+      dirtySession.save(progressMonitor);
+    }
+
     doAction(filteringResult, project, domainId);
   }
 
   /**
-   * Dispatches action to appropriate handler
+   * Dispatches the 'Open wizard to select features and new project' action to the appropriate handler.
    * 
    * @param filteringResult
    * @param project
@@ -170,8 +221,7 @@ public class FilteringExtractionAction implements IActionDelegate {
 
   private void doAction(ComposedFilteringResult filteringResult, IProject project, String domainId) {
 
-    final IFilteringProjectWizard wizard = new ComposedFilteringProjectWizard(project,
-        (ComposedFilteringResult) filteringResult);
+    final IFilteringProjectWizard wizard = new ComposedFilteringProjectWizard(project, filteringResult);
 
     ((BasicNewResourceWizard) wizard).init(PlatformUI.getWorkbench(), StructuredSelection.EMPTY);
 

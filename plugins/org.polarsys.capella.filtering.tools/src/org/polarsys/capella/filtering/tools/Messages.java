@@ -50,7 +50,7 @@ public class Messages extends NLS {
 
   public static String FilteringExtractionAction_3;
 
-  public static String FilteringExtractionAction_capellaFileNotFound;
+  public static String FilteringExtractionAction_connectedProject;
 
   public static String FilteringExtractionAction_projectHasReferenceToLibrary;
 
@@ -61,6 +61,11 @@ public class Messages extends NLS {
   public static String FilteringMetricsDialog_2;
 
   public static String FilteringMetricsDialog_3;
+
+  public static String FilteringDirtyReferencedModels_dialog_title;
+  public static String FilteringDirtyReferencedModels_dialog_message;
+  public static String FilteringDirtyReferencedModels_dialog_continue_without_saving;
+  public static String FilteringDirtyReferencedModels_dialog_continue_with_saving;
 
   static {
     // initialize resource bundle
