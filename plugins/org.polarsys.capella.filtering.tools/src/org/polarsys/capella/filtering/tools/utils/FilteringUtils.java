@@ -16,9 +16,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
@@ -51,6 +53,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.sirius.business.api.session.SessionStatus;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizer;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizerFactory;
@@ -364,7 +367,7 @@ public class FilteringUtils {
 
   public static Collection<Project> getMainAndReferencedVariantProjects(EObject object) {
     Collection<Project> result = new HashSet<Project>();
-    Project mainPrj = CapellaProjectHelper.getProject((EObject) object);
+    Project mainPrj = CapellaProjectHelper.getProject(object);
     if (mainPrj != null) {
       List<Project> projects = FilteringUtils.getReferencedProjects(mainPrj);
       projects.add(mainPrj);
@@ -498,7 +501,7 @@ public class FilteringUtils {
     if (element instanceof CapellaElement) {
 
       // Get the feature set
-      FilteringCriterionSet featureSet = getAssociatedFilteringCriterionSet((CapellaElement) element);
+      FilteringCriterionSet featureSet = getAssociatedFilteringCriterionSet(element);
 
       // Return empty list if no associated feature set
       if (featureSet == null) {
@@ -1141,7 +1144,7 @@ public class FilteringUtils {
   }
 
   public static boolean notInstanceOfFilteringPackageMetaclass(Object obj) {
-    return (obj instanceof EObject) && !isInstanceOfFilteringExcludedElements((EObject) obj);
+    return (obj instanceof EObject) && !isInstanceOfFilteringExcludedElements(obj);
   }
 
   /**
@@ -1356,6 +1359,52 @@ public class FilteringUtils {
     Optional.ofNullable(composedResult.getExclusionFilteringResultSet()).ifPresent(children::add);
 
     return children;
+  }
+
+  /**
+   * Returns a map of dirty referenced [model, session] for the current project. The analysis takes into account the
+   * project itself and all the referenced libraries.
+   * 
+   * @param project
+   *          the project.
+   * @return a map of dirty referenced [model, session] for the current project.
+   */
+  public static Map<IModel, Session> getDirtyReferencedModels(Project project) {
+    TransactionalEditingDomain editingDomain = TransactionHelper.getEditingDomain(project);
+
+    if (editingDomain != null) {
+      IModel rootModel = ILibraryManager.INSTANCE.getModel(editingDomain);
+
+      if (rootModel != null) {
+        Collection<IModel> referencedLibraries = LibraryManagerExt.getAllReferences(rootModel);
+        Set<IModel> modelsToAnalyse = new HashSet<>(referencedLibraries);
+        modelsToAnalyse.add(rootModel);
+
+        Map<IModel, Session> modelToUnsavedSession = new HashMap<>();
+
+        for (Session session : SessionManager.INSTANCE.getSessions()) {
+          if (session.getStatus() == SessionStatus.DIRTY) {
+            TransactionalEditingDomain sessionEditingDomain = session.getTransactionalEditingDomain();
+            IModel sessionModel = ILibraryManager.INSTANCE.getModel(sessionEditingDomain);
+
+            if (modelsToAnalyse.contains(sessionModel)) {
+              modelToUnsavedSession.put(sessionModel, session);
+            }
+          }
+        }
+        return modelToUnsavedSession;
+      }
+    }
+
+    return Collections.emptyMap();
+  }
+
+  public static String extractModelNames(Collection<IModel> models) {
+
+    return models.stream() //
+        .map(model -> model.getIdentifier().getName()) //
+        .map(name -> new Path(name).removeFileExtension().toString()) //
+        .collect(Collectors.joining(", "));
   }
 
 }

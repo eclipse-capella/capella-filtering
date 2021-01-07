@@ -221,7 +221,11 @@
 			<tr>
 				<td>
 					<p>Please note that the session must be saved before performing the derivation so that every ongoing change is taken into account.
-						Also notice that description hyperlinks could reference an incorrect element if the session of the Domain project is opened while the session of a derived project is also opened.</p>
+						If any referenced models contain a unsaved session, a pop-up inviting you to save will be displayed.
+<center>
+						<img border="0" src="Images/dirtyModels.png"/></center>
+					</p>
+					<p>Also notice that description hyperlinks could reference an incorrect element if the session of the Domain project is opened while the session of a derived project is also opened.</p>
 				</td>
 			</tr>
 		</table>
@@ -292,10 +296,11 @@
 		<p><center>
 			<img border="0" src="Images/functionalities_visualizing_decorator_preferences.png"/></center>
 		</p>
-		<p>For Capella diagrams decorators could be activated / deactivated using a layer.</p>
+		<p>For Capella diagrams, decorators can be activated / deactivated using a layer.</p>
 		<p><center>
 			<img border="0" src="Images/functionalities_filtering_preferences.png"/></center>
 		</p>
+		<p>Please note the layer activation is not persisted in the model. This means that if needed, you should re-activate the layer for new sessions.</p>
 		<h3 id="Filtering_Criteria_Overview">Filtering Criteria Overview</h3>
 		<p>A global overview of the associated criterion could be obtained right clicking in a model element and selecting 
 			<img border="0" src="Images/filtering_icon.png"/> 
