@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Command Line Support</title>
+		<link type="text/css" rel="stylesheet" href="PLUGINS_ROOT/org.polarsys.capella.doc/html/styles.css"/>
+	</head>
+	<body>
+		<h1 id="Command_Line_Support">Command Line Support</h1>
+		<h2 id="Overview">Overview</h2>
+		<p>The Filtering add-on provides the capacity to launch a derivation process from the command line.</p>
+		<p>Please visit the 
+			<a href="/wiki/../help/topic/org.polarsys.capella.commandline.doc/html/19.%20Command%20Line%20Support/19.1.%20Core%20Mechanism%20and%20Applications.html" title="../help/topic/org.polarsys.capella.commandline.doc/html/19.%20Command%20Line%20Support/19.1.%20Core%20Mechanism%20and%20Applications.html">Capella Command Line</a> documentation section in order to learn more about this aspect.
+		</p>
+		<p>In addition to the Capella Command Line core mechanism parameters, Filtering Command Line provides the following:</p>
+		<table id="commonParameters">
+			<tr>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td>filteringresultid</td>
+				<td>mandatory</td>
+				<td>defines the id of the Filtering Result model element used for the derivation process</td>
+			</tr>
+			<tr>
+				<td>derivationprojectname</td>
+				<td>optional</td>
+				<td>defines the derivation project name, if absent then the Filtering Result name will be used instead, in case of name conflicts the project name is incremented</td>
+			</tr>
+		</table>
+		<p>You can use the 
+			<b>-help</b> argument to see all of the applicable arguments for the Filtering Command Line.
+		</p>
+		<h2 id="Command_Line_Application_Examples">Command Line Application Examples</h2>
+		<p>For all the examples bellow we assume the existence of:</p>
+		<ul>
+			<li>A Filtering Result model element (name: FilteringResult 1, id: 4e535130-528c-49ff-b27e-69833f15f395)</li>
+			<li>A Capella model (name: derivationProject) already imported in the workspace that contains the above Filtering Result model element</li>
+		</ul>
+		<h3 id="Derivation">Derivation</h3>
+		<p><u>
+			<b>Using the Filtering Result name as the Project Derivation name</b></u>
+		</p>
+		<pre>
+&lt;CapellaInstallationPath&gt;/capellac.exe -nosplash
+-application org.polarsys.capella.core.commandline.core
+-appid org.polarsys.capella.filtering.commandline
+-data &lt;workspacePath&gt;
+-input "derivationProject"
+-filteringresultid 4e535130-528c-49ff-b27e-69833f15f395
+</pre>
+		<p>This command line will create a new derivation project in the workspace, based on the Filtering Result id that will have the same name as the Filtering Result (FilteringResult 1). If a project with this name already exists, then the derivation project name will be incremented (FilteringResult 1_2, FilteringResult 1_3, etc).</p>
+		<p><u>
+			<b>Specifying the Project Derivation name</b></u>
+		</p>
+		<pre>
+&lt;CapellaInstallationPath&gt;/capellac.exe -nosplash
+-application org.polarsys.capella.core.commandline.core
+-appid org.polarsys.capella.filtering.commandline
+-data &lt;workspacePath&gt;
+-input "derivationProject"
+-filteringresultid 4e535130-528c-49ff-b27e-69833f15f395
+-derivationprojectname "customProjectName"
+</pre>
+		<p>This command line will create a new derivation project in the workspace, having as name the value specified in the -derivationprojectname argument (customProjectName). If a project with this name already exists, then the derivation project name will be incremented (customProjectName_2, customProjectName_3, etc).</p>
+	</body>
+</html>

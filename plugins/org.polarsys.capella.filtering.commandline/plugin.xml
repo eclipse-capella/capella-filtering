@@ -16,8 +16,8 @@
    <extension
          point="org.polarsys.capella.core.commandline.core.commandline">
       <CommandlineExtension
-            class="org.polarsys.capella.core.validation.commandline.FilteringCommandLine"
-            id="filtering.derivation">
+            class="org.polarsys.capella.core.validation.commandline.DerivationCommandLine"
+            id="org.polarsys.capella.filtering.commandline">
       </CommandlineExtension>
    </extension>
 

@@ -12,37 +12,29 @@
  *******************************************************************************/
 package org.polarsys.capella.core.validation.commandline;
 
+import org.polarsys.capella.common.application.ArgumentsHelper;
 import org.polarsys.capella.core.commandline.core.CommandLineArgumentHelper;
 
-/**
- */
 public class FilteringArgumentHelper extends CommandLineArgumentHelper {
 
   private String filteringResultId;
+  private String derivationProjectName;
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public void parseArgs(String[] args) {
     super.parseArgs(args);
 
-    // parse validation specific args
-    for (int i = 0; i < args.length; i++) {
-      String arg = args[i].toLowerCase();
-
-      if (FilteringCommandLineConstants.FILTERING_RESULT_ID.equalsIgnoreCase(arg)) {
-        filteringResultId = args[++i];
-
-      }
-    }
+    ArgumentsHelper helper = ArgumentsHelper.getInstance();
+    filteringResultId = helper.getString(FilteringCommandLineConstants.FILTERING_RESULT_ID);
+    derivationProjectName = helper.getString(FilteringCommandLineConstants.DERIVATION_PROJECT_NAME);
   }
 
-  /**
-   * @return the filteringResultId
-   */
   public String getFilteringResultId() {
     return filteringResultId;
+  }
+
+  public String getDerivationProjectName() {
+    return derivationProjectName;
   }
 
 }

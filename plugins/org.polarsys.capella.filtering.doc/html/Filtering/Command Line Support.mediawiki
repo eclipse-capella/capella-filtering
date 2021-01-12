@@ -1,0 +1,64 @@
+= Command Line Support =
+
+== Overview ==
+
+The Filtering add-on provides the capacity to launch a derivation process from the command line.
+
+Please visit the [[../help/topic/org.polarsys.capella.commandline.doc/html/19.%20Command%20Line%20Support/19.1.%20Core%20Mechanism%20and%20Applications.html | Capella Command Line]] documentation section in order to learn more about this aspect.
+
+			
+In addition to the Capella Command Line core mechanism parameters, Filtering Command Line provides the following:
+
+{| id="commonParameters"
+!Name
+!Category
+!Description
+|-
+|filteringresultid
+|mandatory
+|defines the id of the Filtering Result model element used for the derivation process
+|-
+|derivationprojectname
+|optional
+|defines the derivation project name, if absent then the Filtering Result name will be used instead, in case of name conflicts the project name is incremented
+|}
+
+You can use the '''-help''' argument to see all of the applicable arguments for the Filtering Command Line.
+
+
+== Command Line Application Examples ==
+For all the examples bellow we assume the existence of:
+
+* A Filtering Result model element (name: FilteringResult 1, id: 4e535130-528c-49ff-b27e-69833f15f395)
+* A Capella model (name: derivationProject) already imported in the workspace that contains the above Filtering Result model element
+
+=== Derivation ===
+
+<u>'''Using the Filtering Result name as the Project Derivation name'''</u>
+
+<pre>
+<CapellaInstallationPath>/capellac.exe -nosplash
+-application org.polarsys.capella.core.commandline.core
+-appid org.polarsys.capella.filtering.commandline
+-data <workspacePath>
+-input "derivationProject"
+-filteringresultid 4e535130-528c-49ff-b27e-69833f15f395
+</pre>
+
+
+This command line will create a new derivation project in the workspace, based on the Filtering Result id that will have the same name as the Filtering Result (FilteringResult 1). If a project with this name already exists, then the derivation project name will be incremented (FilteringResult 1_2, FilteringResult 1_3, etc).
+
+<u>'''Specifying the Project Derivation name'''</u>
+
+<pre>
+<CapellaInstallationPath>/capellac.exe -nosplash
+-application org.polarsys.capella.core.commandline.core
+-appid org.polarsys.capella.filtering.commandline
+-data <workspacePath>
+-input "derivationProject"
+-filteringresultid 4e535130-528c-49ff-b27e-69833f15f395
+-derivationprojectname "customProjectName"
+</pre>
+
+
+This command line will create a new derivation project in the workspace, having as name the value specified in the -derivationprojectname argument (customProjectName). If a project with this name already exists, then the derivation project name will be incremented (customProjectName_2, customProjectName_3, etc).
