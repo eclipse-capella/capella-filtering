@@ -17,4 +17,5 @@ package org.polarsys.capella.core.validation.commandline;
 public class FilteringCommandLineConstants {
 
   public static final String FILTERING_RESULT_ID = "-filteringresultid";//$NON-NLS-1$
+  public static final String DERIVATION_PROJECT_NAME = "-derivationprojectname";//$NON-NLS-1$
 }
