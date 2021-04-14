@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--Capella_Version_1.4.2-->
+<!--Capella_Version_5.1.0-->
 <org.polarsys.capella.core.data.pa:PhysicalArchitecture xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/1.4.0"
-    xmlns:org.polarsys.capella.core.data.fa="http://www.polarsys.org/capella/core/fa/1.4.0"
-    xmlns:org.polarsys.capella.core.data.information="http://www.polarsys.org/capella/core/information/1.4.0"
-    xmlns:org.polarsys.capella.core.data.la="http://www.polarsys.org/capella/core/la/1.4.0"
-    xmlns:org.polarsys.capella.core.data.pa="http://www.polarsys.org/capella/core/pa/1.4.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/5.0.0"
+    xmlns:org.polarsys.capella.core.data.fa="http://www.polarsys.org/capella/core/fa/5.0.0"
+    xmlns:org.polarsys.capella.core.data.information="http://www.polarsys.org/capella/core/information/5.0.0"
+    xmlns:org.polarsys.capella.core.data.la="http://www.polarsys.org/capella/core/la/5.0.0"
+    xmlns:org.polarsys.capella.core.data.pa="http://www.polarsys.org/capella/core/pa/5.0.0"
     id="527ead1a-664a-4a88-bac3-e352d9eef50b"
     name="Physical Architecture">
   <ownedFunctionPkg xsi:type="org.polarsys.capella.core.data.pa:PhysicalFunctionPkg"
@@ -14,7 +14,7 @@
     <ownedPhysicalFunctions xsi:type="org.polarsys.capella.core.data.pa:PhysicalFunction"
         id="4b57623b-0127-41e9-b7cc-f7e09a30f75a" name="Root Physical Function">
       <ownedFunctionRealizations xsi:type="org.polarsys.capella.core.data.fa:FunctionRealization"
-          id="e3bb61b1-8911-47d2-8e32-b26f7b739125" targetElement="org.polarsys.capella.core.data.la:LogicalFunction ../model-viewpoint-activated.melodymodeller#051ec5a8-1327-46f6-b6cc-8872ebdd8301"
+          id="e3bb61b1-8911-47d2-8e32-b26f7b739125" targetElement="org.polarsys.capella.core.data.la:LogicalFunction ../model-viewpoint-activated.capella#051ec5a8-1327-46f6-b6cc-8872ebdd8301"
           sourceElement="#4b57623b-0127-41e9-b7cc-f7e09a30f75a"/>
     </ownedPhysicalFunctions>
   </ownedFunctionPkg>
@@ -33,13 +33,13 @@
       <ownedFeatures xsi:type="org.polarsys.capella.core.data.cs:Part" id="94363f3d-23c7-49b1-8c5a-3a28573578a5"
           name="PC 1" abstractType="#672d0c3e-2b4a-447f-a4b1-79173bdce43f"/>
       <ownedComponentRealizations xsi:type="org.polarsys.capella.core.data.cs:ComponentRealization"
-          id="18671c49-223b-4566-b4d9-f4e9502bf8c4" targetElement="org.polarsys.capella.core.data.la:LogicalComponent ../model-viewpoint-activated.melodymodeller#ffc9a3bf-988c-450b-b52a-cd14ebec7ae3"
+          id="18671c49-223b-4566-b4d9-f4e9502bf8c4" targetElement="org.polarsys.capella.core.data.la:LogicalComponent ../model-viewpoint-activated.capella#ffc9a3bf-988c-450b-b52a-cd14ebec7ae3"
           sourceElement="#b32dcf1b-b0a1-4ef7-b887-df871a62efe1"/>
       <ownedPhysicalComponents xsi:type="org.polarsys.capella.core.data.pa:PhysicalComponent"
           id="672d0c3e-2b4a-447f-a4b1-79173bdce43f" name="PC 1" nature="NODE"/>
     </ownedPhysicalComponents>
   </ownedPhysicalComponentPkg>
   <ownedLogicalArchitectureRealizations xsi:type="org.polarsys.capella.core.data.pa:LogicalArchitectureRealization"
-      id="6bcef998-ac0e-4bf2-83d0-ffc919b8e5a7" targetElement="org.polarsys.capella.core.data.la:LogicalArchitecture ../model-viewpoint-activated.melodymodeller#91f996bb-003c-4788-9631-24510b63db2a"
+      id="6bcef998-ac0e-4bf2-83d0-ffc919b8e5a7" targetElement="org.polarsys.capella.core.data.la:LogicalArchitecture ../model-viewpoint-activated.capella#91f996bb-003c-4788-9631-24510b63db2a"
       sourceElement="#527ead1a-664a-4a88-bac3-e352d9eef50b"/>
 </org.polarsys.capella.core.data.pa:PhysicalArchitecture>

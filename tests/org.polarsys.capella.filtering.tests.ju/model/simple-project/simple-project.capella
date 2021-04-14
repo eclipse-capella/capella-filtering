@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--Capella_Version_null-->
+<!--Capella_Version_5.1.0-->
 <org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:filtering="http://www.polarsys.org/capella/filtering/5.0.0"
     xmlns:libraries="http://www.polarsys.org/capella/common/libraries/5.0.0" xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/5.0.0"
@@ -20,7 +20,7 @@
     name="simple-project">
   <ownedExtensions xsi:type="libraries:ModelInformation" id="f256105c-8fd1-41dc-a34a-70257df7ee3e">
     <ownedReferences xsi:type="libraries:LibraryReference" id="3316e24c-93d6-466e-b095-6f1fac13052b"
-        library="libraries:ModelInformation ../simple-library/simple-library.capella#c3cb0612-e3d0-46b0-ac94-84cce034d712"/>
+        library="libraries:ModelInformation platform:/resource/simple-library/simple-library.capella#c3cb0612-e3d0-46b0-ac94-84cce034d712"/>
   </ownedExtensions>
   <ownedEnumerationPropertyTypes xsi:type="org.polarsys.capella.core.data.capellacore:EnumerationPropertyType"
       id="930b820f-4c53-4b56-a4d8-ea5de12d967b" name="ProgressStatus">
