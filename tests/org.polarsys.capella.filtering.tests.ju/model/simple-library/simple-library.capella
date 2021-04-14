@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--Capella_Version_null-->
+<!--Capella_Version_5.1.0-->
 <org.polarsys.capella.core.data.capellamodeller:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:libraries="http://www.polarsys.org/capella/common/libraries/5.0.0"
     xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/5.0.0"
@@ -20,7 +20,7 @@
     name="simple-library">
   <ownedExtensions xsi:type="libraries:ModelInformation" id="c3cb0612-e3d0-46b0-ac94-84cce034d712">
     <ownedReferences xsi:type="libraries:LibraryReference" id="73438bd6-094d-4991-9ec4-4152077aa781"
-        library="libraries:ModelInformation ../simple-library-child/simple-library-child.capella#7cd8b7e9-85d4-49a3-8639-988f561f32d1"
+        library="libraries:ModelInformation platform:/resource/simple-library-child/simple-library-child.capella#7cd8b7e9-85d4-49a3-8639-988f561f32d1"
         accessPolicy="readAndWrite"/>
   </ownedExtensions>
   <ownedEnumerationPropertyTypes xsi:type="org.polarsys.capella.core.data.capellacore:EnumerationPropertyType"
