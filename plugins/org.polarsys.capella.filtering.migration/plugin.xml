@@ -17,18 +17,11 @@
    <extension
          point="org.polarsys.capella.core.data.migration.migrationContributions">
       <migrationContribution
+            class="org.polarsys.capella.filtering.migration.contribution.FilteringMigrationContribution">
+      </migrationContribution>
+      <migrationContribution
             class="org.polarsys.capella.filtering.migration.contribution.ActivatedFilterMigrationContribution">
       </migrationContribution>
-   </extension>
-   <extension
-         point="org.polarsys.kitalpha.resourcereuse.resources">
-      <resource
-            domain="AF"
-            id="com.thalesgroup.mde.melody.productline"
-            name="Basic Variability"
-            path="/org.polarsys.capella.filtering.migration/migration/BasicVariability.vp#_MB6moB21EeaZT-H7SsDabc"
-            tags="vp, stateReadOnly, stateHidden">
-      </resource>
    </extension>
 
 </plugin>
