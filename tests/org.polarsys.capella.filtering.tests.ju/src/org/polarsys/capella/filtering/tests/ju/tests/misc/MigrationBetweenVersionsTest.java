@@ -17,19 +17,19 @@ import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.test.framework.api.BasicTestCase;
 
 /**
- * As a migration test might be broken while bump process, 
- * this junit ensures that migration contribution still exist and properly registered.
+ * As a migration test might be broken while bump process, this junit ensures that :
  * 
- * This test ensures that Filtering viewpoint is properly registering a migration contribution 
- * to specify that current EFactory is registered for the prefix of old releases of filtering
- * (which is the same across versions)
+ * - Filtering migration contribution still exist and properly registered
+ * 
+ * - specify that current EFactory is registered for the prefix of old releases of filtering (which is the same across
+ * versions)
  */
 public class MigrationBetweenVersionsTest extends BasicTestCase {
 
   @Override
   public void test() throws Exception {
     // It tests existence of a MigrationContribution providing this requirement and properly loaded.
-    assertTrue(MigrationHelpers.getInstance().getEFactory(FilteringPackage.eNS_PREFIX, null, null) != null);
+    assertNotNull(MigrationHelpers.getInstance().getEFactory(FilteringPackage.eNS_PREFIX, null, null));
   }
 
 }
