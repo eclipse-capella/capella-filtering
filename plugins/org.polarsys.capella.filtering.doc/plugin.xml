@@ -21,7 +21,7 @@
             primary="true">
       </toc>
        <toc
-            file="html/Filtering/Functionalities-toc.xml"
+            file="html/User Manual/Functionalities-toc.xml"
             primary="false">
       </toc>
    </extension>

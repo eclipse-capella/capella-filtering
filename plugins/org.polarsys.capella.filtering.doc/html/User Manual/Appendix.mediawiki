@@ -16,5 +16,5 @@ To support the Add-On functionality the Capella metamodel is extended with filte
 
 
 
-<center>[[Image:Images/appendix_m2.png|center|760px]]</center>
+<center>[[Image:../Images/appendix_m2.png|center|760px]]</center>
 

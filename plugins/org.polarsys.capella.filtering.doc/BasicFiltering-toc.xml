@@ -10,19 +10,28 @@
   Contributors:
        Thales - initial API and implementation
 -->
-<toc label="Filtering Guide">
-    <topic href="html/Filtering/Introduction.html" label="Introduction"></topic>
+<toc label="Filtering Viewpoint Guide">
+   <topic label="Release Notes">
+      <topic href="html/Release Notes/Whatsnew.html" label="What&apos;s New">
+      </topic>
+      <topic href="html/Release Notes/KnownIssues.html" label="Known Issues">
+      </topic>
+   </topic>
 
-    <topic href="html/Filtering/Installation and Uninstall.html" label="Installation and Uninstall">
+    <topic href="html/Installation and Uninstall.html" label="Installation and Uninstallation">
+    </topic>
+    <topic label="User Manual">
+       <topic href="html/User Manual/Introduction.html" label="Introduction">
+       </topic>
+       <link toc="html/User Manual/Functionalities-toc.xml"/>
+       <topic href="html/User Manual/Appendix.html" label="Appendix">
+       </topic>
+       <topic href="html/User Manual/Command Line Support.html" label="Command Line Support">
+       </topic>
     </topic>
 
-    <link toc="html/Filtering/Functionalities-toc.xml"/>
-    <topic href="html/Filtering/Command Line Support.html" label="Command Line Support">
-    </topic>
     
     
-    <topic href="html/Filtering/Appendix.html" label="Appendix">
-    </topic>
     
     
 	   <anchor id="contribution"/>
