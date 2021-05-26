@@ -19,7 +19,7 @@ Filtering is an addon to filter capella models. It provides several capabilities
 * Visualization of criteria and results in diagrams
 * Creation of filtered models
 
-<center>[[Image:Images/introduction_concept.png|center|480px]]</center>
+<center>[[Image:../Images/introduction_concept.png|center|480px]]</center>
 
 
 In this Add-On, Capella elements are enriched with filtering related information (see Appendix 1: Filtering Add-On Metamodel). The new functionalities for filtering management presented in the following sections are built on top of this filtering information.
