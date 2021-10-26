@@ -139,7 +139,7 @@ public class FilteringServices {
     GlobalFiteringCache globalFilteringCache = FilteringToolsPlugin.getGlobalFilteringCache();
     Project project = CapellaProjectHelper.getProject(element);
 
-    if (FilteringUtils.hasAssociatedCriteria(element) && globalFilteringCache.isEnabled(project)) {
+    if (globalFilteringCache.isEnabled(project) && FilteringUtils.hasAssociatedCriteria(element)) {
 
       AbstractFilteringResult globalFilteringResult = globalFilteringCache.get(project).getFilteringResult();
 
