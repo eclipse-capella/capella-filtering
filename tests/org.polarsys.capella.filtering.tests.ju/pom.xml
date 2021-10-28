@@ -15,6 +15,9 @@
 		<version>1.4.2-SNAPSHOT</version>
 		<relativePath>../../</relativePath>
 	</parent>
+	<properties>
+    	<sonar.skip>true</sonar.skip>
+  	</properties>
 	<groupId>org.polarsys</groupId>
 	<artifactId>org.polarsys.capella.filtering.tests.ju</artifactId>
 	<version>1.4.2-SNAPSHOT</version>
