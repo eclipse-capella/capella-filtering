@@ -21,7 +21,7 @@
 	<artifactId>org.polarsys.capella.addon.filtering</artifactId>
 	<!-- If you update this version please change addonUnqualifiedVersion to 
 		be the same -->
-	<version>1.4.2-SNAPSHOT</version>
+	<version>1.4.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,7 +104,7 @@
 						<artifact>
 							<groupId>org.polarsys</groupId>
 							<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-							<version>1.4.2-SNAPSHOT</version>
+							<version>1.4.3-SNAPSHOT</version>
 							<classifier>releng/org.polarsys.capella.filtering.update/capella.target-definition</classifier>
 						</artifact>
 					</target>
