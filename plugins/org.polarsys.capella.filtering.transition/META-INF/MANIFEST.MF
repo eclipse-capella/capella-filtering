@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.polarsys.capella.filtering.transition;singleton:=true
-Bundle-Version: 1.4.2.qualifier
+Bundle-Version: 1.4.3.qualifier
 Bundle-Activator: org.polarsys.capella.filtering.transition.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.polarsys.capella.common.transition,

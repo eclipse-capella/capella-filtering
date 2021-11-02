@@ -17,13 +17,13 @@
 	
 	<groupId>org.polarsys</groupId>
 	<artifactId>org.polarsys.capella.filtering.bundles</artifactId>
-	<version>1.4.2-SNAPSHOT</version>
+	<version>1.4.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.polarsys</groupId>
 		<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-		<version>1.4.2-SNAPSHOT</version>
+		<version>1.4.3-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
