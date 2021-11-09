@@ -503,7 +503,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
     // No filtering Result is available in current selected project
     if (filteringResults.isEmpty()) {
-      enableCheckBtn.setSelection(false);
       filteringResultCombo.removeAll();
       filteringResultCombo.add("No FilteringResults");
       modifiedResultLabel.setData("");
