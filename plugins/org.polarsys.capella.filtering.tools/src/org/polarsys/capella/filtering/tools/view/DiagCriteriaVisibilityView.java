@@ -182,6 +182,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
           treeViewer.getTree().setEnabled(false);
         }
         updateCheckUncheckAllEnableState();
+        refreshActiveDiagram();
       }
     });
 
