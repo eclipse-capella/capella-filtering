@@ -9,7 +9,7 @@
 <!--@generated-->
   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated filtering -->
-      <package class="org.polarsys.capella.filtering.FilteringPackage" genModel="model/filtering.genmodel" uri="http://www.polarsys.org/capella/filtering/5.0.0"/>
+      <package class="org.polarsys.capella.filtering.FilteringPackage" genModel="model/filtering.genmodel" uri="http://www.polarsys.org/capella/filtering/6.0.0"/>
    </extension>
 
 <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -19,6 +19,6 @@
    
 <!--@generated-->
   <extension point="org.polarsys.capella.common.model.helpers.helper">
-    <helperImpl class="org.polarsys.capella.filtering.model.helpers.FilteringPackageHelper" nsURI="http://www.polarsys.org/capella/filtering/5.0.0"/>
+    <helperImpl class="org.polarsys.capella.filtering.model.helpers.FilteringPackageHelper" nsURI="http://www.polarsys.org/capella/filtering/6.0.0"/>
   </extension>
 </plugin>
