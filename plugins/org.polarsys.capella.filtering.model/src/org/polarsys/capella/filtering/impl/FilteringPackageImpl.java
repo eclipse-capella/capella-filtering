@@ -884,16 +884,16 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	protected void createConstraintAnnotations() {
 		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"; //$NON-NLS-1$
 		addAnnotation(filteringModelEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/5.0.0#//SystemEngineering" //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering" //$NON-NLS-1$
 		});
 		addAnnotation(filteringResultsEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/5.0.0#//SystemEngineering" //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering" //$NON-NLS-1$
 		});
 		addAnnotation(associatedFilteringCriterionSetEClass, source,
-				new String[] { "ExtendedElement", "http://www.polarsys.org/capella/core/core/5.0.0#//CapellaElement" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] { "ExtendedElement", "http://www.polarsys.org/capella/core/core/6.0.0#//CapellaElement" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(creationDefaultFilteringCriterionSetEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/5.0.0#//SystemEngineering " //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering " //$NON-NLS-1$
 		});
 	}
 
