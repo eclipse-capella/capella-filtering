@@ -284,8 +284,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
             }
             // Clear filtering global cache for current project
             if (treeViewerInput instanceof EObject) {
-              Project project = CapellaProjectHelper.getProject((EObject) treeViewerInput);
-              FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
+                Project project = CapellaProjectHelper.getProject((EObject) treeViewerInput);
+                FilteringResult allCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
+                FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
 
             updateControls();
@@ -419,8 +420,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
           // no criterion is selected =>
           // flush the cache for current project
           if (checkedList.isEmpty()) {
-            FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
-            updateModifiedResultsLabel(FilteringFactory.eINSTANCE.createFilteringResult());
+              FilteringResult noCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
+              FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, noCriteriaResult);
+            updateModifiedResultsLabel(noCriteriaResult);
             return;
           }
 
@@ -438,8 +440,9 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
             // no criterion is selected =>
             // flush the cache for current project
             if (filCriterionToCache.isEmpty()) {
-              FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
-              updateModifiedResultsLabel(FilteringFactory.eINSTANCE.createFilteringResult());
+                FilteringResult noCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
+                FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, noCriteriaResult);
+              updateModifiedResultsLabel(noCriteriaResult);
               return;
             }
 
