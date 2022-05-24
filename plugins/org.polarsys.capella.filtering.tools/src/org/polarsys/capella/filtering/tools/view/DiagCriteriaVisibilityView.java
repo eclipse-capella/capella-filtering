@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -419,6 +420,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
           // flush the cache for current project
           if (checkedList.isEmpty()) {
             FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
+            updateModifiedResultsLabel(FilteringFactory.eINSTANCE.createFilteringResult());
             return;
           }
 
@@ -437,6 +439,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
             // flush the cache for current project
             if (filCriterionToCache.isEmpty()) {
               FilteringToolsPlugin.getGlobalFilteringCache().remove(project);
+              updateModifiedResultsLabel(FilteringFactory.eINSTANCE.createFilteringResult());
               return;
             }
 
@@ -446,7 +449,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
             globalFilteringCache.setCurrentFilteringResult(project, filtResult);
 
-            tagModifiedResultLabel();
+            updateModifiedResultsLabel(filtResult);
           }
 
           if (firstElt instanceof ComposedFilteringResult) {
@@ -457,6 +460,22 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
           }
         }
       }
+
+	private void updateModifiedResultsLabel(FilteringResult filtResult) {
+		int realIndex = filteringResultCombo.getSelectionIndex() - 1;
+		if (realIndex < 0) {
+			resetModifiedResultLabel();
+			return;
+		}
+		AbstractFilteringResult filteringResult = filteringResults.get(realIndex);
+		EList<FilteringCriterion> selectedFilteringResultCriteria = filteringResult.computeFilteringCriterionSet().getFilteringCriteria();
+		EList<FilteringCriterion> checkedFilteringCriteria = filtResult.getFilteringCriteria();
+		if (selectedFilteringResultCriteria.containsAll(checkedFilteringCriteria) && checkedFilteringCriteria.containsAll(selectedFilteringResultCriteria)) {
+			resetModifiedResultLabel();
+		} else {
+			tagModifiedResultLabel();
+		}
+	}
 
       private List<Object> filterNonFilteringElements(List<Object> checkedList) {
         return checkedList.stream().filter(obj -> FilteringUtils.isInstanceOfFilteringExcludedElements(obj))
