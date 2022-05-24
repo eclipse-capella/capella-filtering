@@ -288,7 +288,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
                 FilteringResult allCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
                 FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
-
             updateControls();
           }
         }, enabledButtons);
@@ -326,7 +325,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
               allCriteriaResult.getFilteringCriteria().addAll(allFilteringCriteria);
               FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
-            tagModifiedResultLabel();
+            updateControls();
           }
         }, enabled);
 
