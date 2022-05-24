@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2023 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,6 +9,7 @@
  * 
  * Contributors:
  *    Thales - initial API and implementation
+ *    Obeo - Backport on branch v1.5.x
  *******************************************************************************/
 package org.polarsys.capella.filtering.tools.view;
 
@@ -288,7 +289,6 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
                 FilteringResult allCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
                 FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
-
             updateControls();
           }
         }, enabledButtons);
@@ -326,7 +326,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
               allCriteriaResult.getFilteringCriteria().addAll(allFilteringCriteria);
               FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
             }
-            tagModifiedResultLabel();
+            updateControls();
           }
         }, enabled);
 
