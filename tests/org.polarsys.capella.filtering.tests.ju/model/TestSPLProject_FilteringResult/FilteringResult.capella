@@ -72,7 +72,7 @@
           name="Operational Entities"/>
     </ownedArchitectures>
     <ownedArchitectures xsi:type="org.polarsys.capella.core.data.ctx:SystemAnalysis"
-        id="658115dd-d6d0-4ae4-9277-ed21299db21a" name="System Analysis">
+        id="658115dd-d6d0-4ae4-9277-ed21299db21a" name="System Analysis" description="&lt;p>This description contains an image to an external lib &lt;img src=&quot;sysmodel/ressources/uml.jpg&quot; />&lt;/p>&#xD;&#xA;">
       <ownedFunctionPkg xsi:type="org.polarsys.capella.core.data.ctx:SystemFunctionPkg"
           id="466a4dc1-eb0a-4c31-be9b-95cc8b025bd2" name="System Functions">
         <ownedSystemFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction"
