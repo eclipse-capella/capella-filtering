@@ -17,7 +17,8 @@ Require-Bundle: org.polarsys.capella.filtering.tools,
  org.polarsys.capella.core.commandline.core,
  org.polarsys.capella.filtering.commandline,
  org.polarsys.capella.core.commandline.core.ui,
- org.polarsys.capella.core.data.migration
+ org.polarsys.capella.core.data.migration,
+ org.polarsys.capella.core.data.gen
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.capella.filtering.tests.ju.tests.derivation,

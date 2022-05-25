@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -31,18 +33,23 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
 import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
 import org.eclipse.emf.diffmerge.generic.api.IComparison;
 import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
+import org.eclipse.emf.diffmerge.impl.policies.DefaultDiffPolicy;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.impl.scopes.FragmentedModelScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
+import org.eclipse.sirius.business.api.image.ImageManager;
 import org.eclipse.sirius.business.api.session.Session;
+import org.polarsys.capella.core.data.capellacore.CapellaElement;
+import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterionSet;
@@ -67,6 +74,9 @@ public class DerivationTest extends BasicTestCase {
   Session session = null;
   IProject project = null;
   AbstractFilteringResult currentFilteringResult = null;
+  
+  String derivedProjectName;
+  IProject expectedResultProject;
 
   private String modelId;
 
@@ -124,11 +134,11 @@ public class DerivationTest extends BasicTestCase {
       this.currentFilteringResult = filterResult;
       System.err.println("=== currentFilteringResult: " + currentFilteringResult);
 
-      IProject expectedResultProject = IResourceHelpers.getEclipseProjectInWorkspace(filterResult.getName());
+      expectedResultProject = IResourceHelpers.getEclipseProjectInWorkspace(filterResult.getName());
 
       // Create derived project
       IWorkspace workspace = ResourcesPlugin.getWorkspace();
-      String derivedProjectName = filterResult.getName();
+      derivedProjectName = filterResult.getName();
       IProject derivedProject = workspace.getRoot().getProject(derivedProjectName);
       derivedProject.create(progressMonitor);
       derivedProject.open(progressMonitor);
@@ -227,6 +237,55 @@ public class DerivationTest extends BasicTestCase {
       return super.getMatchID(element, scope);
     }
   }
+  
+  /**
+   * Specific Diff Policy to ensure diffs between images links in description fields are not taken into account.</br>
+   * In order to do so, take the description of CapellaElements, and replace the name of the expected results project by
+   * the name of the derived project name.
+   */
+  private class TestCaseDiffPolicy extends DefaultDiffPolicy {
+    
+    private String derivedProjectName;
+    private String expectedResultProjectName;
+    private static final String QUOTE = "\"";
+      
+    public TestCaseDiffPolicy(String derivedProjectName, String expectedResultProjectName) {
+        this.derivedProjectName = derivedProjectName;
+        this.expectedResultProjectName = expectedResultProjectName;
+    }
+
+    @Override
+      public boolean considerEqual(Object value1_p, Object value2_p, Object attribute_p, ITreeDataScope<EObject> scope_p) {
+          if (attribute_p.equals(CapellacorePackage.Literals.CAPELLA_ELEMENT__DESCRIPTION)) {
+              // Replace image paths to ensure diff is correct
+              // Adapted from /org.polarsys.capella.core.sirius.ui/src/org/polarsys/capella/core/sirius/ui/refactoring/WorkspaceImagePathChange.java
+              String textWithOriginalImagePaths = (String) value1_p;
+              String textWithUpdatedImagePaths = (String) value2_p;
+              Pattern pattern = Pattern.compile(ImageManager.HTML_IMAGE_PATH_PATTERN);
+              Matcher matcher = pattern.matcher(textWithOriginalImagePaths);
+
+              while (matcher.find()) {
+                String originalPath = matcher.group(1);
+                if (!originalPath.startsWith("/")) {
+                  String newPath = originalPath;
+                  Path path = new Path(originalPath);
+                  String segment = path.segment(0);
+                  if (derivedProjectName.equals(segment)) {
+                    newPath = originalPath.replace(derivedProjectName, expectedResultProjectName);
+                  }
+                  if (!newPath.equals(originalPath)) {
+                    // Use quote as start and end character to be sure to replace the path as a whole and not only a
+                    // part of the path
+                      textWithOriginalImagePaths = textWithOriginalImagePaths.replace(QUOTE + originalPath + QUOTE,
+                        QUOTE + newPath + QUOTE);
+                  }
+                }
+              }
+              return textWithOriginalImagePaths.equals(textWithUpdatedImagePaths);
+          }
+          return super.considerEqual(value1_p, value2_p, attribute_p, scope_p);
+      }
+  }
 
   /**
    * Return the first IFile under resource tree starting at 'root' that has a given extension. Returns null if no
@@ -285,7 +344,7 @@ public class DerivationTest extends BasicTestCase {
 
     // Compare
     IComparison comparison = new EComparisonImpl(targetScope, referenceScope);
-    comparison.compute(new TestCaseMatchPolicy(), null, null, progressMonitor);
+    comparison.compute(new TestCaseMatchPolicy(), new TestCaseDiffPolicy(derivedProjectName, project.getName() + "_" + derivedProjectName), null, progressMonitor);
 
     // Check if differences
     if (comparison.getNbDifferences() != 0) {
