@@ -66,6 +66,8 @@ public class Messages extends NLS {
   public static String FilteringDirtyReferencedModels_dialog_message;
   public static String FilteringDirtyReferencedModels_dialog_continue_without_saving;
   public static String FilteringDirtyReferencedModels_dialog_continue_with_saving;
+  
+  public static String FilteringErrorImagePathChange;
 
   static {
     // initialize resource bundle

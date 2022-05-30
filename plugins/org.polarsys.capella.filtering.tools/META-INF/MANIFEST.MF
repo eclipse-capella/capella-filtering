@@ -30,7 +30,8 @@ Require-Bundle: org.polarsys.capella.common.ui.toolkit,
  org.eclipse.jface.databinding,
  com.ibm.icu,
  com.google.guava;bundle-version="11.0.0",
- org.polarsys.capella.filtering.model.edit
+ org.polarsys.capella.filtering.model.edit,
+ org.eclipse.ltk.core.refactoring
 Bundle-Activator: org.polarsys.capella.filtering.tools.FilteringToolsPlugin
 Export-Package: org.polarsys.capella.filtering.tools,
  org.polarsys.capella.filtering.tools.actions,
