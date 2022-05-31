@@ -25,6 +25,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
@@ -39,7 +41,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
@@ -50,16 +54,25 @@ import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.business.api.image.ImageManager;
+import org.eclipse.sirius.business.api.image.RichTextAttributeRegistry;
+import org.eclipse.sirius.business.api.query.ResourceQuery;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.business.api.session.SessionStatus;
 import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.WorkspaceImage;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizer;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizerFactory;
 import org.eclipse.sirius.diagram.ui.business.api.view.SiriusGMFHelper;
 import org.eclipse.sirius.diagram.ui.tools.api.editor.DDiagramEditor;
+import org.eclipse.sirius.tools.api.Messages;
+import org.eclipse.sirius.tools.api.command.ui.NoUICallback;
 import org.eclipse.sirius.viewpoint.DRepresentation;
+import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
+import org.eclipse.sirius.viewpoint.DRepresentationElement;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -71,6 +84,7 @@ import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.common.ef.command.AbstractNonDirtyingCommand;
 import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
 import org.polarsys.capella.common.ef.command.ICommand;
+import org.polarsys.capella.common.helpers.EcoreUtil2;
 import org.polarsys.capella.common.helpers.TransactionHelper;
 import org.polarsys.capella.common.libraries.ILibraryManager;
 import org.polarsys.capella.common.libraries.IModel;
@@ -89,6 +103,7 @@ import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.core.model.handler.helpers.CrossReferencerHelper;
 import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteCommand;
 import org.polarsys.capella.core.sirius.ui.actions.OpenSessionAction;
+import org.polarsys.capella.core.sirius.ui.helper.ResourceHelper;
 import org.polarsys.capella.core.sirius.ui.helper.SessionHelper;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
@@ -1405,6 +1420,148 @@ public class FilteringUtils {
         .map(model -> model.getIdentifier().getName()) //
         .map(name -> new Path(name).removeFileExtension().toString()) //
         .collect(Collectors.joining(", "));
+  }
+
+  public static void applyRenameOnDescriptionFieldsContent(IProject clonedProject, String previousProjectName, IProgressMonitor pm) {
+      // Rename workspace image references
+      String newName = clonedProject.getName();
+      // Get the existing sessions for the relevant project
+      Collection<Session> existingSessions = SessionHelper.getExistingSessions(clonedProject);
+      // If we are renaming a project with closed session
+      if (existingSessions.isEmpty()) {
+        // If session(s) are not open for the container, force open here
+        openSession(clonedProject, pm);
+        existingSessions = SessionHelper.getExistingSessions(clonedProject);
+      }
+      performChange(existingSessions, clonedProject, previousProjectName, newName, pm);
+  }
+  
+  private static void performChange(Collection<Session> sessions, IProject clonedProject, String previousProjectName, String newName, IProgressMonitor pm) {
+
+      for (Session session : sessions) {
+        ExecutionManager manager = TransactionHelper.getExecutionManager(session);
+        manager.execute(new AbstractReadWriteCommand() {
+
+          @Override
+          public void run() {
+            if (!ResourceHelper.collectImageFiles(clonedProject).isEmpty()) {
+              updateImagePath(session, previousProjectName, newName, pm);
+            }
+          }
+        });
+
+        saveSession(session, pm);
+      }
+    }
+
+  private static void updateImagePath(Session session, String previousProjectName, String newName, IProgressMonitor pm) {
+
+    updateWorkspaceImage(session, previousProjectName, newName, pm);
+
+    updateRichTextString(session, previousProjectName, newName, pm);
+
+  }
+
+  private static final String QUOTE = "\"";
+  
+  private static void updateRichTextString(Session session, String previousProjectName, String newName, IProgressMonitor pm) {
+    pm.subTask(org.polarsys.capella.core.sirius.ui.internal.Messages.updating_richtext_description);
+    Collection<Resource> semanticResources = session.getSemanticResources();
+    for (Resource resource : semanticResources) {
+      if (CapellaResourceHelper.isCapellaResource(resource) || new ResourceQuery(resource).isAirdOrSrmResource()) {
+        TreeIterator<EObject> allContents = resource.getAllContents();
+        while (allContents.hasNext()) {
+          EObject eObject = allContents.next();
+
+          List<EAttribute> featuresToMigrate = eObject.eClass().getEAllAttributes().stream().filter(feature -> {
+            return RichTextAttributeRegistry.INSTANCE.getEAttributes().contains(feature);
+          }).collect(Collectors.toList());
+
+          for (EStructuralFeature attr : featuresToMigrate) {
+            Object value = eObject.eGet(attr);
+            if (value instanceof String) {
+              String textWithOriginalImagePaths = (String) value;
+              String textWithUpdatedImagePaths = textWithOriginalImagePaths;
+              Pattern pattern = Pattern.compile(ImageManager.HTML_IMAGE_PATH_PATTERN);
+              Matcher matcher = pattern.matcher(textWithOriginalImagePaths);
+
+              boolean stringUpdate = false;
+              while (matcher.find()) {
+                String originalPath = matcher.group(1);
+                if (!originalPath.startsWith("/")) {
+                  String newPath = getNewPath(originalPath, previousProjectName, newName);
+                  if (!newPath.equals(originalPath)) {
+                    stringUpdate = true;
+                    // Use quote as start and end character to be sure to replace the path as a whole and not only a
+                    // part of the path
+                    textWithUpdatedImagePaths = textWithUpdatedImagePaths.replace(QUOTE + originalPath + QUOTE,
+                        QUOTE + newPath + QUOTE);
+                  }
+                }
+              }
+              if (stringUpdate) {
+                eObject.eSet(attr, textWithUpdatedImagePaths);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  private static void updateWorkspaceImage(Session session, String previousProjectName, String newName, IProgressMonitor pm) {
+    // Get all diagrams from the session
+    pm.subTask(org.polarsys.capella.core.sirius.ui.internal.Messages.collecting_diagrams);
+    Collection<DRepresentationDescriptor> descriptors = DialectManager.INSTANCE
+        .getAllRepresentationDescriptors(session);
+    // Update the workspace images for each diagram
+    for (DRepresentationDescriptor descriptor : descriptors) {
+      pm.subTask(
+          NLS.bind(org.polarsys.capella.core.sirius.ui.internal.Messages.updating_diagram, descriptor.getName()));
+      updateWorkspaceImagePath(descriptor.getRepresentation(), previousProjectName, newName);
+    }
+  }
+  
+  private static void saveSession(Session session, IProgressMonitor pm) {
+      pm.subTask(Messages.DAnalysisSessionImpl_saveMsg);
+      session.save(pm);
+    }
+
+    private static void updateWorkspaceImagePath(DRepresentation representation, String previousProjectName, String newName) {
+      if (representation != null) {
+        for (DRepresentationElement element : representation.getOwnedRepresentationElements()) {
+          Iterator<EObject> iterator = element.eAllContents();
+          while (iterator.hasNext()) {
+            EObject eObject = iterator.next();
+            if (ResourceHelper.isCustomizedWorkspaceImageWorkspacePath(eObject)) {
+              String workspacePath = ((WorkspaceImage) eObject).getWorkspacePath();
+              String newPath = getNewPath(workspacePath, previousProjectName, newName);
+              if (!newPath.equals(workspacePath)) {
+                ((WorkspaceImage) eObject).setWorkspacePath(newPath);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    private static String getNewPath(String oldPath, String previousProjectName, String newName) {
+      String newPath = oldPath;
+      Path path = new Path(oldPath);
+      String segment = path.segment(0);
+      String oldName = previousProjectName;
+      if (oldName.equals(segment)) {
+        newPath = oldPath.replace(oldName, newName);
+      }
+      return newPath;
+    }
+  
+  private static void openSession(IProject project, IProgressMonitor monitor) {
+      Collection<IFile> airdFiles = ResourceHelper.getAirdFilesToOpen(project);
+      for (IFile airdFile : airdFiles) {
+          monitor.subTask(Messages.DAnalysisSessionImpl_openMsg);
+          SessionManager.INSTANCE.openSession(EcoreUtil2.getURI(airdFile), monitor, new NoUICallback());
+      }
   }
 
 }
