@@ -24,14 +24,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
@@ -39,10 +37,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.ltk.core.refactoring.Refactoring;
-import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.RenameArguments;
-import org.eclipse.ltk.core.refactoring.resource.RenameResourceDescriptor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.sirius.business.api.session.ReloadingPolicy;
 import org.eclipse.sirius.business.api.session.Session;
@@ -246,7 +241,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
                       try {
                           wipc.perform(subMonitor);
                       } catch (CoreException e) {
-                          FilteringToolsPlugin.getDefault().getLog().error(NLS.bind(org.polarsys.capella.filtering.tools.Messages.FilteringErrorImagePathChange, clonedProject.getName()), e);
+                          FilteringToolsPlugin.getDefault().getLog().error(NLS.bind(org.polarsys.capella.filtering.tools.Messages.filtering_error_image_path_change, clonedProject.getName()), e);
                       }
                   }
               });
