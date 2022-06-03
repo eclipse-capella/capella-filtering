@@ -285,14 +285,13 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
             // Clear filtering global cache for current project
             if (treeViewerInput instanceof EObject) {
                 Project project = CapellaProjectHelper.getProject((EObject) treeViewerInput);
-                FilteringResult allCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
-                FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, allCriteriaResult);
+                FilteringUtils.clearFilteringResultsForProject(project);
             }
             updateControls();
-          }
+          }      
         }, enabledButtons);
   }
-
+  
   private void createRefreshButton(Composite parent, boolean enabledButtons) {
     refreshButton = addButton(parent, "Refresh Diagram",
         ImageDescriptor.createFromFile(FilteringToolsPlugin.class, "/icons/refresh.gif").createImage(), //$NON-NLS-1$
@@ -419,8 +418,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
           // no criterion is selected =>
           // flush the cache for current project
           if (checkedList.isEmpty()) {
-              FilteringResult noCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
-              FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, noCriteriaResult);
+              FilteringResult noCriteriaResult = FilteringUtils.clearFilteringResultsForProject(project);
             updateModifiedResultsLabel(noCriteriaResult);
             return;
           }
@@ -439,8 +437,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
             // no criterion is selected =>
             // flush the cache for current project
             if (filCriterionToCache.isEmpty()) {
-                FilteringResult noCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
-                FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, noCriteriaResult);
+                FilteringResult noCriteriaResult = FilteringUtils.clearFilteringResultsForProject(project);
               updateModifiedResultsLabel(noCriteriaResult);
               return;
             }
