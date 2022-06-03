@@ -1406,5 +1406,15 @@ public class FilteringUtils {
         .map(name -> new Path(name).removeFileExtension().toString()) //
         .collect(Collectors.joining(", "));
   }
+  
+  /**
+   * TODO doc
+   * @param project
+   */
+  public static FilteringResult clearFilteringResultsForProject(Project project) {
+      FilteringResult noCriteriaResult = FilteringFactory.eINSTANCE.createFilteringResult();
+      FilteringToolsPlugin.getGlobalFilteringCache().setCurrentFilteringResult(project, noCriteriaResult);
+      return noCriteriaResult;
+  }
 
 }
