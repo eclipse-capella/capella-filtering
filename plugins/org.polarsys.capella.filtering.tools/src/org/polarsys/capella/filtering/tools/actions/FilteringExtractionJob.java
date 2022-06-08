@@ -241,7 +241,7 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
                       try {
                           wipc.perform(subMonitor);
                       } catch (CoreException e) {
-                          FilteringToolsPlugin.getDefault().getLog().error(NLS.bind(org.polarsys.capella.filtering.tools.Messages.filtering_error_image_path_change, clonedProject.getName()), e);
+                          FilteringToolsPlugin.getDefault().getLog().error(NLS.bind(org.polarsys.capella.filtering.tools.Messages.filteringErrorImagePathChange, clonedProject.getName()), e);
                       }
                   }
               });
