@@ -2,41 +2,41 @@
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" name="FilteringResults" version="12.0.0.2017041100">
   <ownedViewpoints documentation="sd&#xD;&#xA;" name="Filtering" label="Filtering" modelFileExtension="capella">
     <ownedRepresentations xsi:type="description_1:CrossTableDescription" name="[FILTERING] Product family" domainClass="SystemEngineering">
-      <ownedLineMappings name="FilteringCriterion list" domainClass="FilteringCriterion" semanticCandidatesExpression="&lt;%getAllFilteringCriteria()%>" headerLabelExpression="&lt;%name%>">
-        <create name="Create New Filtering Criterion" precondition="&lt;%true%>" forceRefresh="true" elementsToSelect="service:stdEmptyCollection">
+      <ownedLineMappings name="FilteringCriterion list" domainClass="FilteringCriterion" semanticCandidatesExpression="aql:self.getAllFilteringCriteria()" headerLabelExpression="aql:self.name">
+        <create name="Create New Filtering Criterion" precondition="aql:true" forceRefresh="true" elementsToSelect="aql:self.stdEmptyCollection">
           <variables name="root" documentation="The semantic element of the table."/>
           <variables name="element" documentation="The semantic currently edited element."/>
           <variables name="container" documentation="The semantic element corresponding to the view container."/>
-          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="&lt;%getFilteringModel()%>">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="aql:self.getFilteringModel()">
             <subModelOperations xsi:type="tool:CreateInstance" typeName="FilteringCriterion" referenceName="ownedFilteringCriteria">
               <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New Feature"/>
             </subModelOperations>
           </firstModelOperation>
         </create>
-        <delete name="Delete Filtering Criterion" precondition="&lt;%true%>" forceRefresh="true">
+        <delete name="Delete Filtering Criterion" precondition="aql:true" forceRefresh="true">
           <variables name="element" documentation="The currently edited element."/>
           <variables name="root" documentation="The semantic element corresponding to the current table."/>
           <firstModelOperation xsi:type="tool:RemoveElement"/>
         </delete>
       </ownedLineMappings>
-      <ownedColumnMappings name="FilteringResult list" headerLabelExpression="&lt;%name%>" domainClass="FilteringResult" semanticCandidatesExpression="&lt;%getAllFilteringResults()%>">
-        <create name="Create New FilteringResult" precondition="&lt;%true%>" elementsToSelect="service:stdEmptyCollection">
+      <ownedColumnMappings name="FilteringResult list" headerLabelExpression="aql:self.name" domainClass="FilteringResult" semanticCandidatesExpression="aql:self.getAllFilteringResults()">
+        <create name="Create New FilteringResult" precondition="aql:true" elementsToSelect="aql:self.stdEmptyCollection">
           <variables name="root" documentation="The semantic element of the table."/>
           <variables name="element" documentation="The semantic currently edited element."/>
           <variables name="container" documentation="The semantic element corresponding to the view container."/>
-          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="&lt;%getFilteringResults()%>">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="aql:self.getFilteringResults()">
             <subModelOperations xsi:type="tool:CreateInstance" typeName="FilteringResult" referenceName="filteringResults">
               <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="New FilteringResult"/>
             </subModelOperations>
           </firstModelOperation>
         </create>
-        <delete name="Delete FilteringResult" precondition="&lt;%true%>" forceRefresh="true">
+        <delete name="Delete FilteringResult" precondition="aql:true" forceRefresh="true">
           <variables name="element" documentation="The currently edited element."/>
           <variables name="root" documentation="The semantic element corresponding to the current table."/>
           <firstModelOperation xsi:type="tool:RemoveElement"/>
         </delete>
       </ownedColumnMappings>
-      <intersection name="FilteringResult has criterion" lineMapping="//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='[FILTERING]%20Product%20family']/@ownedLineMappings[name='FilteringCriterion%20list']" columnMapping="//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='[FILTERING]%20Product%20family']/@ownedColumnMappings.0" labelExpression="X" columnFinderExpression="&lt;%hasFilteringCriterion()%>">
+      <intersection name="FilteringResult has criterion" lineMapping="//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='[FILTERING]%20Product%20family']/@ownedLineMappings[name='FilteringCriterion%20list']" columnMapping="//@ownedViewpoints[name='Filtering']/@ownedRepresentations[name='[FILTERING]%20Product%20family']/@ownedColumnMappings.0" labelExpression="X" columnFinderExpression="aql:self.hasFilteringCriterion()">
         <directEdit>
           <variables name="table" documentation="The current DTable."/>
           <variables name="line" documentation="The DLine of the current DCell."/>
@@ -44,15 +44,15 @@
           <variables name="lineSemantic" documentation="The semantic element corresponding to the line."/>
           <variables name="columnSemantic" documentation="The semantic element corresponding to the column (only available for Intersection Mapping)."/>
           <variables name="root" documentation="The semantic element of the table."/>
-          <firstModelOperation xsi:type="tool:If" conditionExpression="&lt;%$0 == &quot;&quot; &amp;&amp; $columnSemantic.filteringCriteria.nContains($lineSemantic)%>">
-            <subModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%removeFilteringCriterionFromFilteringResult($columnSemantic, $lineSemantic)%>"/>
+          <firstModelOperation xsi:type="tool:If" conditionExpression="aql:(arg0  = '' and columnSemantic.filteringCriteria->includes(lineSemantic))">
+            <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.removeFilteringCriterionFromFilteringResult(columnSemantic, lineSemantic)"/>
           </firstModelOperation>
           <mask mask="{0}"/>
         </directEdit>
         <defaultForeground>
           <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
         </defaultForeground>
-        <backgroundConditionalStyle predicateExpression="&lt;%hasFilteringCriterion()%>">
+        <backgroundConditionalStyle predicateExpression="aql:self.hasFilteringCriterion()">
           <style>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
           </style>
@@ -61,8 +61,8 @@
           <variables name="lineSemantic" documentation="The semantic element corresponding to the line."/>
           <variables name="columnSemantic" documentation="The semantic element corresponding to the column."/>
           <variables name="root" documentation="The semantic root element of the table."/>
-          <firstModelOperation xsi:type="tool:If" conditionExpression="&lt;%$0 == &quot;X&quot; &amp;&amp; !($columnSemantic.filteringCriteria.nContains($lineSemantic))%>">
-            <subModelOperations xsi:type="tool:ChangeContext" browseExpression="&lt;%addFilteringCriterionToResult($columnSemantic, $lineSemantic)%>"/>
+          <firstModelOperation xsi:type="tool:If" conditionExpression="aql:arg0 = 'X' and not(columnSemantic.filteringCriteria->includes(lineSemantic))">
+            <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.addFilteringCriterionToResult(columnSemantic, lineSemantic)"/>
           </firstModelOperation>
           <mask mask="{0}"/>
         </create>
