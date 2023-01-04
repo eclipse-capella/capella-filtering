@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2023 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -212,5 +212,10 @@ public class FilteringOverviewDialog extends AbstractExportDialog {
     }
 
     return result;
+  }
+  
+  @Override
+  protected String getDefaultFileName() {
+    return Messages.filtering_overview_dialog_default_filename;
   }
 }
