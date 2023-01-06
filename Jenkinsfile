@@ -9,7 +9,7 @@ pipeline {
 	}
   
 	environment {
-		BUILD_KEY = "6.0.0"
+		BUILD_KEY = (github.isPullRequest() ? CHANGE_TARGET : BRANCH_NAME).replaceFirst(/^v/, '')
 		CAPELLA_PRODUCT_PATH = "${WORKSPACE}/capella/capella"
 		CAPELLA_BRANCH = 'master'
   	}
@@ -56,7 +56,7 @@ pipeline {
 	    stage('Download Capella') {
         	steps {
         		script {
-	        		def capellaURL = capella.getDownloadURL("${BUILD_KEY}", 'linux', '')
+	        		def capellaURL = capella.getDownloadURL("${CAPELLA_BRANCH}", 'linux', '')
 
 					sh "curl -k -o capella.tar.gz ${capellaURL}"
 					sh "tar xvzf capella.tar.gz"
@@ -71,7 +71,7 @@ pipeline {
 	        		sh "chmod 755 ${CAPELLA_PRODUCT_PATH}"
 	        		sh "chmod 755 ${WORKSPACE}/capella/jre/bin/java"
 	        		
-	        		eclipse.installFeature("${CAPELLA_PRODUCT_PATH}", capella.getTestUpdateSiteURL("${BUILD_KEY}"), 'org.polarsys.capella.test.feature.feature.group')
+	        		eclipse.installFeature("${CAPELLA_PRODUCT_PATH}", capella.getTestUpdateSiteURL("${CAPELLA_BRANCH}"), 'org.polarsys.capella.test.feature.feature.group')
 	        		eclipse.installFeature("${CAPELLA_PRODUCT_PATH}", "file:/${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/repository/".replace("\\", "/"), 'org.polarsys.capella.filtering.feature.feature.group')
 	        		eclipse.installFeature("${CAPELLA_PRODUCT_PATH}", "file:/${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/repository/".replace("\\", "/"), 'org.polarsys.capella.filtering.tests.feature.feature.group')
 	       		}         

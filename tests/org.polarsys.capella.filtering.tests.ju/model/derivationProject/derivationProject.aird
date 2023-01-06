@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:concern="http://www.eclipse.org/sirius/diagram/description/concern/1.1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:org.polarsys.capella.core.data.cs="http://www.polarsys.org/capella/core/cs/6.0.0" xmlns:org.polarsys.capella.core.data.ctx="http://www.polarsys.org/capella/core/ctx/6.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/diagram/description/concern/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/concern http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/filter/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/filter http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_8D-k8FQDEeu6DOXNC0hlVg" selectedViews="_-BVpgFQDEeu6DOXNC0hlVg _-JaAYFQDEeu6DOXNC0hlVg _-1tFsFQDEeu6DOXNC0hlVg _-31MoFQDEeu6DOXNC0hlVg _-4TtwFQDEeu6DOXNC0hlVg _-6F2cFQDEeu6DOXNC0hlVg _-9wOcFQDEeu6DOXNC0hlVg _JUlC4FQFEeuczcyRbnt41w" version="15.0.0.202201261500">
+  <viewpoint:DAnalysis uid="_8D-k8FQDEeu6DOXNC0hlVg" selectedViews="_-BVpgFQDEeu6DOXNC0hlVg _-JaAYFQDEeu6DOXNC0hlVg _-1tFsFQDEeu6DOXNC0hlVg _-31MoFQDEeu6DOXNC0hlVg _-4TtwFQDEeu6DOXNC0hlVg _-6F2cFQDEeu6DOXNC0hlVg _-9wOcFQDEeu6DOXNC0hlVg _JUlC4FQFEeuczcyRbnt41w" version="15.1.0.202211301600">
     <semanticResources>derivationProject.afm</semanticResources>
     <semanticResources>derivationProject.capella</semanticResources>
+    <eAnnotations xmi:type="description:DAnnotationEntry" uid="_3Jq68I_5Ee2VD5l7vgC4Hg" source="ImagesDependencies"/>
     <ownedViews xmi:type="viewpoint:DView" uid="_-BVpgFQDEeu6DOXNC0hlVg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.polarsys.kitalpha.ad.integration.sirius/description/ad.odesign#//@ownedViewpoints[name='ad']"/>
     </ownedViews>
@@ -20,7 +21,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_-6F2cFQDEeu6DOXNC0hlVg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.polarsys.capella.core.sirius.analysis/description/context.odesign#//@ownedViewpoints[name='System%20Analysis']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ByzTgFQFEeuczcyRbnt41w" name="[SAB] Structure" repPath="#_Bv37UFQFEeuczcyRbnt41w" changeId="725270cb-f9a1-498d-b1be-05e9628c386e">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ByzTgFQFEeuczcyRbnt41w" name="[SAB] Structure" repPath="#_Bv37UFQFEeuczcyRbnt41w" changeId="1673253866718">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.polarsys.capella.core.sirius.analysis/description/context.odesign#//@ownedViewpoints[name='System%20Analysis']/@ownedRepresentations[name='System%20Architecture%20Blank']"/>
         <target xmi:type="org.polarsys.capella.core.data.ctx:SystemComponentPkg" href="derivationProject.capella#bb86f164-8b8a-42f5-ba56-193e0f53e5fb"/>
       </ownedRepresentationDescriptors>
