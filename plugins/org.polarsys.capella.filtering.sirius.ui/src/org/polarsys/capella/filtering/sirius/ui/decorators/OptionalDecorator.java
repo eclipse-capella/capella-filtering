@@ -31,13 +31,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.polarsys.capella.common.helpers.TransactionHelper;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.sirius.ui.Activator;
 import org.polarsys.capella.filtering.sirius.ui.FilteringSiriusUtils;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.preferences.FilteringPreferencesPage;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * Optional Decorator
@@ -77,7 +77,7 @@ public class OptionalDecorator implements IDecorator {
     if (element instanceof DDiagramElement) {
       TransactionalEditingDomain editingDomain = TransactionHelper.getExecutionManager(element).getEditingDomain();
       // Add the notifier to each melody element in the diagram
-      for (CapellaElement melodyElement : FilteringSiriusUtils.getCapellaElements((DDiagramElement) element)) {
+      for (ExtensibleElement melodyElement : FilteringSiriusUtils.getCapellaElements((DDiagramElement) element)) {
         notifier = melodyElement;
         DiagramEventBroker.getInstance(editingDomain).addNotificationListener(notifier, changeListener);
         // Include also the notifier to their associated feature sets

@@ -22,10 +22,10 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.sirius.ui.business.api.descriptor.ComposedImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class CriteriaLabelDecorator implements ILabelDecorator {
 
@@ -57,11 +57,11 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
 
   @Override
   public Image decorateImage(Image image, Object element) {
-    if (!(element instanceof CapellaElement) || !ViewpointHelper.isViewpointActive((CapellaElement) element)
+    if (!(element instanceof ExtensibleElement) || !ViewpointHelper.isViewpointActive((ExtensibleElement) element)
         || image == null) {
       return null;
     }
-    if (isOptional((CapellaElement) element)) {
+    if (isOptional((ExtensibleElement) element)) {
       ComposedImage img = decorateFiltering(image);
       ImageDescriptor descriptor = new ComposedImageDescriptor(img);
       return FilteringToolsPlugin.getDefault().getImage(descriptor);
@@ -93,9 +93,9 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
 
   @Override
   public String decorateText(String text, Object element) {
-    if (element instanceof CapellaElement && ViewpointHelper.isViewpointActive((CapellaElement) element)
-        && isOptional((CapellaElement) element)) {
-      String decorator = FilteringUtils.getCommaSeparatedExplicitFeatures((CapellaElement) element);
+    if (element instanceof ExtensibleElement && ViewpointHelper.isViewpointActive((ExtensibleElement) element)
+        && isOptional((ExtensibleElement) element)) {
+      String decorator = FilteringUtils.getCommaSeparatedExplicitFeatures((ExtensibleElement) element);
       if (decorator != null) {
         return text + " [" + decorator + "]";
       }
@@ -103,7 +103,7 @@ public class CriteriaLabelDecorator implements ILabelDecorator {
     return text;
   }
 
-  private boolean isOptional(CapellaElement element) {
+  private boolean isOptional(ExtensibleElement element) {
     return !FilteringUtils.getExplicitAssociatedCriteria(element).isEmpty();
   }
 }

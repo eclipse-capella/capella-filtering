@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * Product Line for metrics label provider.
@@ -48,7 +48,7 @@ public class FilteringForMetricsLabelProvider extends FilteringLabelProvider {
     if (0 == columnIndex) {
       text = getText(element);
       // Filtering rate
-    } else if (1 == columnIndex && element instanceof CapellaElement) {
+    } else if (1 == columnIndex && element instanceof ExtensibleElement) {
       Double metric = getFilteringRate((EObject) element);
       varMetric = metric;
       DecimalFormat df = new DecimalFormat();
@@ -101,7 +101,7 @@ public class FilteringForMetricsLabelProvider extends FilteringLabelProvider {
     // Calculate in other cases
     double numberOfChilds = 0;
     double numberOfOptionalChilds = 0;
-    Iterator<EObject> i = ((CapellaElement) element).eAllContents();
+    Iterator<EObject> i = ((ExtensibleElement) element).eAllContents();
     while (i.hasNext()) {
       EObject elt = i.next();
       if (!FilteringUtils.isInstanceOfFilteringExcludedElements(elt)) {

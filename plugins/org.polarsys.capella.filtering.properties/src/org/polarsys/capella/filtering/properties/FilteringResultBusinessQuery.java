@@ -23,13 +23,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.polarsys.capella.common.helpers.EObjectExt;
 import org.polarsys.capella.core.business.queries.IBusinessQuery;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.helpers.SystemEngineeringExt;
-import org.polarsys.capella.core.model.utils.ListExt;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResultSet;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class FilteringResultBusinessQuery implements IBusinessQuery {
 
@@ -39,7 +38,7 @@ public class FilteringResultBusinessQuery implements IBusinessQuery {
     SystemEngineering systemEngineering = SystemEngineeringExt.getSystemEngineering((FilteringResultSet) element);
     if (null != systemEngineering) {
       for (EObject elt : EObjectExt.getAll(systemEngineering, FilteringPackage.Literals.ABSTRACT_FILTERING_RESULT)) {
-        availableElements.add((CapellaElement) elt);
+        availableElements.add((ExtensibleElement) elt);
       }
     }
 

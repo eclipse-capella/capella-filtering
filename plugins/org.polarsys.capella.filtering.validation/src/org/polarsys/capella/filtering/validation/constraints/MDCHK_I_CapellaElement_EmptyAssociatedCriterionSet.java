@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.kitalpha.emde.model.ElementExtension;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -34,8 +34,8 @@ public class MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet extends Abstract
     EMFEventType eType = ctx.getEventType();
     // check that it is batch validation
     if (eType == EMFEventType.NULL) {
-      if (eObj instanceof CapellaElement) {
-        CapellaElement capellaElement = (CapellaElement) eObj;
+      if (eObj instanceof ExtensibleElement) {
+        ExtensibleElement capellaElement = (ExtensibleElement) eObj;
         for (ElementExtension elementExtension : capellaElement.getOwnedExtensions()) {
           if (elementExtension instanceof AssociatedFilteringCriterionSet) {
 

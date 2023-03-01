@@ -16,8 +16,8 @@ import java.util.Collection;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class FilteringPropertyTester extends PropertyTester {
 
@@ -37,7 +37,7 @@ public class FilteringPropertyTester extends PropertyTester {
   @SuppressWarnings({ "unchecked", "rawtypes" })
   public final boolean isViewpointActivated(final Object receiver) {
     if (receiver instanceof EObject)
-      return ViewpointHelper.isViewpointActive((EObject) receiver) && receiver instanceof CapellaElement;
+      return ViewpointHelper.isViewpointActive((EObject) receiver) && receiver instanceof ExtensibleElement;
     else if (receiver instanceof Collection)
       return ((Collection) receiver).stream().allMatch(element -> isViewpointActivated(element));
     return false;

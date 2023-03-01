@@ -77,7 +77,6 @@ import org.polarsys.capella.common.libraries.IModel;
 import org.polarsys.capella.common.libraries.manager.LibraryManagerExt;
 import org.polarsys.capella.common.tools.report.config.registry.ReportManagerRegistry;
 import org.polarsys.capella.common.tools.report.util.IReportManagerDefaultComponents;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.polarsys.capella.core.data.capellacore.Namespace;
 import org.polarsys.capella.core.data.capellamodeller.Project;
@@ -455,8 +454,8 @@ public class FilteringUtils {
     public static List<FilteringCriterion> getAssociatedCriteria(EObject element, List<EObject> visitedElements) {
         List<FilteringCriterion> featureList = new ArrayList<FilteringCriterion>();
 
-        if (element instanceof CapellaElement) {
-            CapellaElement capellaElement = (CapellaElement) CapellaAdapterHelper.resolveBusinessObject(element);
+        if (element instanceof ExtensibleElement) {
+          ExtensibleElement capellaElement = (ExtensibleElement) CapellaAdapterHelper.resolveBusinessObject(element);
 
             // Add its own features. Explicit
             featureList.addAll(getExplicitAssociatedCriteria(capellaElement));
@@ -492,7 +491,7 @@ public class FilteringUtils {
     public static List<FilteringCriterion> getExplicitAssociatedCriteria(EObject element) {
         List<FilteringCriterion> featureList = new ArrayList<FilteringCriterion>();
 
-        if (element instanceof CapellaElement) {
+        if (element instanceof ExtensibleElement) {
 
             // Get the feature set
             FilteringCriterionSet featureSet = getAssociatedFilteringCriterionSet(element);
@@ -542,11 +541,12 @@ public class FilteringUtils {
             }
 
             List<EObject> referencedElements = CrossReferencerHelper.getReferencingElements(currentFeature);
-            List<CapellaElement> explictlyReferencedElements = new ArrayList<CapellaElement>();
+            List<ExtensibleElement> explictlyReferencedElements = new ArrayList<ExtensibleElement>();
 
             for (EObject referencedElement : referencedElements) {
-                if (referencedElement instanceof AssociatedFilteringCriterionSet && referencedElement.eContainer() instanceof CapellaElement) {
-                    explictlyReferencedElements.add((CapellaElement) referencedElement.eContainer());
+              if (referencedElement instanceof AssociatedFilteringCriterionSet
+                  && referencedElement.eContainer() instanceof ExtensibleElement) {
+                  explictlyReferencedElements.add((ExtensibleElement) referencedElement.eContainer());
                 }
             }
 

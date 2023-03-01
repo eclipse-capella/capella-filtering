@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -46,7 +46,7 @@ public class MDCHK_D_FilteringCriterion_Unused extends AbstractModelConstraint {
         Iterator<EObject> i = project.eAllContents();
         while (i.hasNext()) {
           EObject object = i.next();
-          if (object instanceof CapellaElement) {
+          if (object instanceof ExtensibleElement) {
             List<FilteringCriterion> filteringCriteria = FilteringUtils.getExplicitAssociatedCriteria(object);
             if (filteringCriteria.contains(eObj)) {
               // OK, used Filtering Criterion

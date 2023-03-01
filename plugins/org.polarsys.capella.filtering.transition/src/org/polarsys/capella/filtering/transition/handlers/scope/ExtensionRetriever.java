@@ -19,11 +19,11 @@ import java.util.LinkedList;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.transition.common.handlers.options.OptionsHandlerHelper;
 import org.polarsys.capella.core.transition.common.handlers.scope.IScopeRetriever;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.transition.constants.IExtensionConstants;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 import org.polarsys.kitalpha.transposer.rules.handler.rules.api.IContext;
 
 /**
@@ -51,8 +51,8 @@ public class ExtensionRetriever implements IScopeRetriever {
    */
   public Collection<? extends EObject> retrieveRelatedElements(EObject source, IContext context) {
     Collection<EObject> elements = new LinkedList<>();
-    if (source instanceof CapellaElement) {
-      CapellaElement element = (CapellaElement) source;
+    if (source instanceof ExtensibleElement) {
+      ExtensibleElement element = (ExtensibleElement) source;
       if (element.getOwnedExtensions() != null && OptionsHandlerHelper.getInstance(context).getBooleanValue(context,
           IExtensionConstants.OPTIONS_SCOPE, IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET,
           IExtensionConstants.OPTIONS_ASSOCIATEDCRITERIONSET__DEFAULT_VALUE)) {

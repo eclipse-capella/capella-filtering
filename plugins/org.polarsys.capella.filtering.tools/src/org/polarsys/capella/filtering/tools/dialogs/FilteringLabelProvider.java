@@ -23,9 +23,9 @@ import org.eclipse.ui.PlatformUI;
 import org.polarsys.capella.common.mdsofa.common.constant.ICommonConstants;
 import org.polarsys.capella.common.ui.providers.MDEAdapterFactoryLabelProvider;
 import org.polarsys.capella.common.ui.toolkit.viewers.data.TreeData;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.model.utils.EObjectExt2;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * Product Line label provider.
@@ -93,7 +93,7 @@ public class FilteringLabelProvider extends MDEAdapterFactoryLabelProvider imple
 
     if (0 == columnIndex) {
       text = getText(element);
-    } else if (1 == columnIndex && element instanceof CapellaElement) {
+    } else if (1 == columnIndex && element instanceof ExtensibleElement) {
       text = EObjectExt2.formatValues(FilteringUtils.getExplicitAssociatedCriteria((EObject) element), null,
           ICommonConstants.EMPTY_STRING);
     }
