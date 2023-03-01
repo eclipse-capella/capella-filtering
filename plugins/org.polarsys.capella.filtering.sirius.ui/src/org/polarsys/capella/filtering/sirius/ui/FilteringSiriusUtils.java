@@ -36,16 +36,15 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.EnumerationPropertyLiteral;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.FilteringResults;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class FilteringSiriusUtils {
@@ -227,11 +226,11 @@ public class FilteringSiriusUtils {
    * @param element
    * @return
    */
-  public static List<CapellaElement> getCapellaElements(DDiagramElement element) {
-    List<CapellaElement> melodyElements = new ArrayList<>();
+  public static List<ExtensibleElement> getCapellaElements(DDiagramElement element) {
+    List<ExtensibleElement> melodyElements = new ArrayList<>();
     for (EObject e : getRealSemanticElements(element)) {
-      if (e instanceof CapellaElement) {
-        melodyElements.add((CapellaElement) e);
+      if (e instanceof ExtensibleElement) {
+        melodyElements.add((ExtensibleElement) e);
       }
     }
     return melodyElements;
@@ -245,7 +244,7 @@ public class FilteringSiriusUtils {
    */
   public static boolean containsCapellaElements(DDiagramElement element) {
     for (EObject e : element.getSemanticElements()) {
-      if (e instanceof CapellaElement) {
+      if (e instanceof ExtensibleElement) {
         return true;
       }
     }
@@ -259,7 +258,7 @@ public class FilteringSiriusUtils {
    * @return
    */
   public static boolean containsAssociatedCriteria(DDiagramElement element) {
-    for (CapellaElement me : getCapellaElements(element)) {
+    for (ExtensibleElement me : getCapellaElements(element)) {
       if (!FilteringUtils.getAssociatedCriteria(me).isEmpty()) {
         return true;
       }
@@ -274,7 +273,7 @@ public class FilteringSiriusUtils {
    * @return
    */
   public static boolean containsExplicitAssociatedCriteria(DDiagramElement element) {
-    for (CapellaElement me : getCapellaElements(element)) {
+    for (ExtensibleElement me : getCapellaElements(element)) {
       if (!FilteringUtils.getExplicitAssociatedCriteria(me).isEmpty()) {
         return true;
       }

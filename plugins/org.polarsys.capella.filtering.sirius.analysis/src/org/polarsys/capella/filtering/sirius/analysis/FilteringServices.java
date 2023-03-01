@@ -27,7 +27,7 @@ import org.polarsys.capella.common.data.modellingcore.ModelElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
-import org.polarsys.capella.core.model.helpers.query.CapellaQueries;
+import org.polarsys.capella.core.model.helpers.SystemEngineeringExt;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
 import org.polarsys.capella.filtering.FilteringCriterion;
@@ -38,6 +38,7 @@ import org.polarsys.capella.filtering.semantic.queries.FilteringCriterionQuery;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.tools.view.GlobalFiteringCache;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * Services used/exposed in the odesign file as expressions/queries
@@ -82,12 +83,12 @@ public class FilteringServices {
    * @param CapellaElement
    * @return
    */
-  public Collection<AbstractFilteringResult> getAssociatedResults(ModelElement capellaElement) {
+  public Collection<AbstractFilteringResult> getAssociatedResults(ExtensibleElement capellaElement) {
 
     Set<AbstractFilteringResult> result = new HashSet<AbstractFilteringResult>();
 
     FilteringResults filteringResults = FilteringUtils.getFilteringResults(capellaElement);
-    SystemEngineering sysEng = CapellaQueries.getInstance().getRootQueries().getSystemEngineering(capellaElement);
+    SystemEngineering sysEng = SystemEngineeringExt.getSystemEngineering(capellaElement);
 
     List<AbstractFilteringResult> allFilteringResults = FilteringUtils.getAllFilteringResults(filteringResults);
 
@@ -115,7 +116,7 @@ public class FilteringServices {
    */
   public Collection<EObject> getAssociatedElements(AbstractFilteringResult filteringResult) {
 
-    SystemEngineering root = CapellaQueries.getInstance().getRootQueries().getSystemEngineering(filteringResult);
+    SystemEngineering root = SystemEngineeringExt.getSystemEngineering(filteringResult);
 
     if (null == root) {
       return Collections.emptySet();

@@ -23,9 +23,9 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -51,7 +51,7 @@ public class MDCHK_D_CapellaElement_Parents extends AbstractModelConstraint {
     EMFEventType eType = ctx.getEventType();
     // check that it is batch validation
     if (eType == EMFEventType.NULL) {
-      if (eObj instanceof CapellaElement) {
+      if (eObj instanceof ExtensibleElement) {
         if (!FilteringUtils.isInstanceOfFilteringExcludedElements(eObj)) {
           List<IStatus> statuses = new ArrayList<>();
           // Features of element
@@ -65,7 +65,7 @@ public class MDCHK_D_CapellaElement_Parents extends AbstractModelConstraint {
             Iterator<EObject> i = eObj.eContents().iterator();
             while (i.hasNext()) {
               EObject child = i.next();
-              if (child instanceof CapellaElement) {
+              if (child instanceof ExtensibleElement) {
                 if (!FilteringUtils.isInstanceOfFilteringExcludedElements(child)) {
                   List<FilteringCriterion> childFeatures = ConstraintsUtil.getAssociatedCriteria(child,
                       currentConstraintData);

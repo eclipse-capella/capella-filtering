@@ -45,6 +45,9 @@
          <package
                namespaceUri="http://www.polarsys.org/capella/core/fa/6.0.0">
          </package>
+         <package
+               namespaceUri="http://www.polarsys.org/kitalpha/emde/1.0.0">
+         </package>
          <constraints
                categories="capella.category/filtering/integrity">
             <constraint
@@ -82,7 +85,7 @@
                   Because of a technical limitation the user could add more than one AssociatedFilteringCriterionSet as CapellaElement child. Only one is permitted as the other ones will be ignored.
                </description>
                <target
-                     class="CapellaElement"></target>
+                     class="ExtensibleElement"></target>
             </constraint>
             <constraint
                   class="org.polarsys.capella.filtering.validation.constraints.MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet"
@@ -100,7 +103,7 @@
                   It is not worthy to keep an AssociatedFilteringCriterionSet element without references to filtering criteria. It should be removed or updated.
                </description>
                <target
-                     class="CapellaElement">
+                     class="ExtensibleElement">
                </target>
             </constraint>
          </constraints>
@@ -122,7 +125,7 @@
                   If a CapellaElement has feature V and any of its parents contains other associated features but not V.
                </description>
                <target
-                     class="CapellaElement">
+                     class="ExtensibleElement">
                </target>
             </constraint>
             <constraint

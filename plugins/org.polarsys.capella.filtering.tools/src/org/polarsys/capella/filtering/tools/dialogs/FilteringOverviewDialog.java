@@ -30,19 +30,20 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.polarsys.capella.common.helpers.EcoreUtil2;
+import org.polarsys.capella.common.model.label.LabelRetriever;
 import org.polarsys.capella.common.ui.toolkit.dialogs.AbstractExportDialog;
 import org.polarsys.capella.common.ui.toolkit.viewers.AbstractRegExpViewer;
 import org.polarsys.capella.common.ui.toolkit.viewers.IViewerStyle;
 import org.polarsys.capella.common.ui.toolkit.viewers.TreeAndListViewer;
 import org.polarsys.capella.common.ui.toolkit.viewers.data.DataContentProvider;
 import org.polarsys.capella.common.ui.toolkit.viewers.data.TreeData;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.NamedElement;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.tools.Messages;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class FilteringOverviewDialog extends AbstractExportDialog {
 
@@ -197,12 +198,14 @@ public class FilteringOverviewDialog extends AbstractExportDialog {
     List<? extends EObject> allTaggedElements = (List<? extends EObject>) ((TreeData) getData()).getValidElements();
 
     for (EObject current : allTaggedElements) {
-      CapellaElement me = (CapellaElement) current;
+      ExtensibleElement me = (ExtensibleElement) current;
       // create the result
       List<String> row = new ArrayList<>();
       row.add(current.eClass().getName());
-      row.add(me.getFullLabel());
-      row.add(me.getLabel());
+      String fullLabel = LabelRetriever.getFullLabel(me);
+      row.add(fullLabel);
+      String label = LabelRetriever.getFullLabel(me);
+      row.add(label);
       // One associated feature per column
       for (NamedElement feature : FilteringUtils.getExplicitAssociatedCriteria(me)) {
         row.add(feature.getName());

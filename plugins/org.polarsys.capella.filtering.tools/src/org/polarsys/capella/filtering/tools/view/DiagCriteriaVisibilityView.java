@@ -80,7 +80,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.ViewPart;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CapellaProjectHelper;
@@ -94,6 +93,7 @@ import org.polarsys.capella.filtering.tools.IImageKeys;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.tools.utils.ui.CriteriaContentProvider;
 import org.polarsys.capella.filtering.tools.utils.ui.FilteringResultsContentProvider;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionListener {
 
@@ -410,7 +410,7 @@ public class DiagCriteriaVisibilityView extends ViewPart implements ISelectionLi
 
         Object treeRoot = treeViewer.getInput();
 
-        if (treeRoot instanceof CapellaElement) {
+        if (treeRoot instanceof ExtensibleElement) {
           Project project = CapellaProjectHelper.getProject((EObject) treeRoot);
 
           GlobalFiteringCache globalFilteringCache = FilteringToolsPlugin.getGlobalFilteringCache();

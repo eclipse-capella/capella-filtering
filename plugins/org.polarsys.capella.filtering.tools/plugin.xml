@@ -25,7 +25,7 @@
          <enablement>
          <!-- More check is done inside the class FeaturesLabelDecorator -->
             <objectClass
-                  name="org.polarsys.capella.core.data.capellacore.CapellaElement">
+                  name="org.polarsys.kitalpha.emde.model.ExtensibleElement">
             </objectClass>            
          </enablement>
       </decorator>
@@ -34,7 +34,7 @@
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             id="org.polarsys.capella.filtering.tools.melodyElementContribution.filteringOverview"
-            objectClass="org.polarsys.capella.core.data.capellacore.CapellaElement">
+            objectClass="org.polarsys.kitalpha.emde.model.ExtensibleElement">
          <menu
                icon="icons/optionalDecorator.png"
                id="org.polarsys.capella.filtering.tools.menu"

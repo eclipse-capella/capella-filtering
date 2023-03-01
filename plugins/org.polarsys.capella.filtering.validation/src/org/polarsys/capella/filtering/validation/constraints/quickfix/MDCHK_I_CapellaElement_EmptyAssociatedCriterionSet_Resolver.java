@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -31,9 +31,9 @@ public class MDCHK_I_CapellaElement_EmptyAssociatedCriterionSet_Resolver extends
   @Override
   public List<EObject> getElementsToDelete(EObject markerEObject) {
     List<EObject> toDelete = new ArrayList<EObject>();
-    if (markerEObject instanceof CapellaElement) {
+    if (markerEObject instanceof ExtensibleElement) {
       AssociatedFilteringCriterionSet featureSet = FilteringUtils
-          .getAssociatedFilteringCriterionSet((CapellaElement) markerEObject);
+          .getAssociatedFilteringCriterionSet((ExtensibleElement) markerEObject);
       if (featureSet != null) {
         toDelete.add(featureSet);
       }

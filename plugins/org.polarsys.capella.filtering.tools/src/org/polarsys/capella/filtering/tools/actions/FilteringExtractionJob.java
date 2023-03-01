@@ -50,7 +50,6 @@ import org.polarsys.capella.common.ef.ExecutionManagerRegistry;
 import org.polarsys.capella.common.ef.command.AbstractNonDirtyingCommand;
 import org.polarsys.capella.common.libraries.ILibraryManager;
 import org.polarsys.capella.common.libraries.IModel;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.core.data.capellamodeller.SystemEngineering;
 import org.polarsys.capella.core.model.handler.helpers.CrossReferencerHelper;
@@ -66,6 +65,7 @@ import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.extract.FilteringExtractor;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * TODO A workspace runnable is used instead of a Job because resources modification notifications caused several
@@ -297,9 +297,9 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
 
                   EObject eContainer = eObject.eContainer();
 
-                  if (eObject instanceof AssociatedFilteringCriterionSet && eContainer instanceof CapellaElement) {
+                  if (eObject instanceof AssociatedFilteringCriterionSet && eContainer instanceof ExtensibleElement) {
 
-                    final CapellaElement capellaElement = (CapellaElement) eContainer;
+                    final ExtensibleElement capellaElement = (ExtensibleElement) eContainer;
                     IModel model = ILibraryManager.INSTANCE.getModel(capellaElement);
 
                     if (currentModel != null && currentModel.equals(model)
@@ -489,7 +489,8 @@ public class FilteringExtractionJob implements IWorkspaceRunnable {
    * @param mappingTable
    * @return
    */
-  private boolean hasOneCheckedFeature(CapellaElement elem, Map<FilteringCriterion, FilteringCriterion> mappingTable) {
+  private boolean hasOneCheckedFeature(ExtensibleElement elem,
+      Map<FilteringCriterion, FilteringCriterion> mappingTable) {
 
     List<FilteringCriterion> associatedCriteria = FilteringUtils.getAssociatedCriteria(elem);
 

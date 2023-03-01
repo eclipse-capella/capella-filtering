@@ -20,7 +20,7 @@
             isTopLevel="true"
             name="Explicit Filtering Criteria">
          <availableForType
-               class="org.polarsys.capella.core.data.capellacore.CapellaElement">
+               class="org.polarsys.kitalpha.emde.model.ExtensibleElement">
          </availableForType>
          <targetBrowserId
                id="CurrentElementBrowser">
@@ -36,7 +36,7 @@
             isTopLevel="true"
             name="Implicit Filtering Criteria">
          <availableForType
-               class="org.polarsys.capella.core.data.capellacore.CapellaElement">
+               class="org.polarsys.kitalpha.emde.model.ExtensibleElement">
          </availableForType>
          <targetBrowserId
                id="CurrentElementBrowser">

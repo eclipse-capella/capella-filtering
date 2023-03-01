@@ -20,10 +20,10 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.emf.ecore.EObject;
 import org.polarsys.capella.common.ef.ExecutionManager;
 import org.polarsys.capella.common.helpers.TransactionHelper;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.model.preferences.IDeletePreferences;
 import org.polarsys.capella.core.platform.sirius.ui.commands.CapellaDeleteCommand;
 import org.polarsys.capella.core.validation.ui.ide.quickfix.AbstractCapellaMarkerResolution;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class MDCHK_DeleteElement_Resolver extends AbstractCapellaMarkerResolution {
 
@@ -56,8 +56,8 @@ public class MDCHK_DeleteElement_Resolver extends AbstractCapellaMarkerResolutio
    */
   public List<EObject> getElementsToDelete(EObject markerEObject) {
     List<EObject> toDelete = new ArrayList<EObject>();
-    if (markerEObject instanceof CapellaElement) {
-      CapellaElement element = (CapellaElement) markerEObject;
+    if (markerEObject instanceof ExtensibleElement) {
+      ExtensibleElement element = (ExtensibleElement) markerEObject;
       toDelete.add(element);
     }
     return toDelete;

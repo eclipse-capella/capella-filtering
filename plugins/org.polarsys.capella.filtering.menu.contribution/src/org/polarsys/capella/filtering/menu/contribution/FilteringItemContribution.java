@@ -25,13 +25,13 @@ import org.polarsys.capella.common.data.modellingcore.ModellingcorePackage;
 import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
 import org.polarsys.capella.common.ef.command.ICommand;
 import org.polarsys.capella.common.menu.dynamic.contributions.IMDEMenuItemContribution;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.CreationDefaultFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 public class FilteringItemContribution implements IMDEMenuItemContribution {
 
@@ -50,7 +50,7 @@ public class FilteringItemContribution implements IMDEMenuItemContribution {
   public Command executionContribution(EditingDomain editingDomain, ModelElement containerElement,
       ModelElement createdElement, EStructuralFeature feature) {
 
-    if (createdElement instanceof CapellaElement
+    if (createdElement instanceof ExtensibleElement
         && !FilteringUtils.isInstanceOfFilteringExcludedElements(createdElement)) {
 
       // Get creation default features
@@ -64,7 +64,7 @@ public class FilteringItemContribution implements IMDEMenuItemContribution {
           // Create associatedFeatureSet for the element if it doesn't
           // exist
           AssociatedFilteringCriterionSet featureSet = FilteringUtils
-              .getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
+              .getAssociatedFilteringCriterionSet((ExtensibleElement) createdElement);
           if (featureSet == null) {
             AbstractReadWriteCommand command = new AbstractReadWriteCommand() {
               @Override
@@ -76,7 +76,7 @@ public class FilteringItemContribution implements IMDEMenuItemContribution {
             };
             executeCommand(command, containerElement);
             // Get the associated feature set again
-            featureSet = FilteringUtils.getAssociatedFilteringCriterionSet((CapellaElement) createdElement);
+            featureSet = FilteringUtils.getAssociatedFilteringCriterionSet((ExtensibleElement) createdElement);
           }
 
           // Create the command that we should return in the execution

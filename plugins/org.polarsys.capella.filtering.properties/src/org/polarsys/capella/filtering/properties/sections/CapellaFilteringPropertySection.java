@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.polarsys.capella.common.data.modellingcore.AbstractType;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.cs.CsPackage;
 import org.polarsys.capella.core.data.cs.Part;
 import org.polarsys.capella.core.data.epbs.ConfigurationItem;
@@ -41,6 +40,7 @@ import org.polarsys.capella.filtering.properties.CapellaElementImplicitCriteria;
 import org.polarsys.capella.filtering.properties.fields.IndirectCapellaElementCriteriaMultipleSemanticField;
 import org.polarsys.capella.filtering.properties.fields.ReadOnlyMultipleSemanticField;
 import org.polarsys.capella.filtering.tools.helpers.ViewpointHelper;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * The tab Filtering is enabled on all CapellaElements and none of Filtering ones except Union/Exception/Intersection
@@ -56,7 +56,7 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
   @Override
   public boolean select(Object toTest) {
     EObject eObj = CapellaAdapterHelper.resolveSemanticObject(toTest);
-    if (!(eObj instanceof CapellaElement)) {
+    if (!(eObj instanceof ExtensibleElement)) {
       return false;
     }
     if (eObj != null && eObj.eClass() != null && FilteringPackage.eINSTANCE.equals(eObj.eClass().getEPackage())) {
@@ -110,7 +110,7 @@ public class CapellaFilteringPropertySection extends AbstractSection implements 
     if (selection instanceof StructuredSelection) {
       EObject selected = CapellaAdapterHelper
           .resolveSemanticObject(((StructuredSelection) selection).getFirstElement());
-      if (selected instanceof CapellaElement) {
+      if (selected instanceof ExtensibleElement) {
         if (selected.eClass().equals(CsPackage.eINSTANCE.getPart())) {
           boolean allowMultiplePart = TriStateBoolean.True
               .equals(CapellaProjectHelper.isReusableComponentsDriven(selected));

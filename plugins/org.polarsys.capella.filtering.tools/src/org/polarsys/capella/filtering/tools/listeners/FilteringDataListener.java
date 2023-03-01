@@ -18,13 +18,13 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.model.helpers.listeners.CapellaModelDataListener;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringModel;
 import org.polarsys.capella.filtering.tools.FilteringToolsPlugin;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -80,7 +80,7 @@ public class FilteringDataListener extends CapellaModelDataListener {
     }
     if (newValue instanceof FilteringCriterion) {
       implicitImpactCache.remove(newValue);
-    } else if (newValue instanceof CapellaElement) {
+    } else if (newValue instanceof ExtensibleElement) {
       FilteringUtils.getImplicitAssociatedCriteria((EObject) newValue);
 
     }

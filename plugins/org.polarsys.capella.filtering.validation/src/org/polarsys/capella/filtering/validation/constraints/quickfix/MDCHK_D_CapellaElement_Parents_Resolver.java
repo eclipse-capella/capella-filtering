@@ -19,11 +19,11 @@ import java.util.List;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.emf.ecore.EObject;
 import org.polarsys.capella.common.ef.command.AbstractReadWriteCommand;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.validation.ui.ide.quickfix.AbstractCapellaMarkerResolution;
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.tools.utils.FilteringUtils;
 import org.polarsys.capella.filtering.validation.constraints.ConstraintsUtil;
+import org.polarsys.kitalpha.emde.model.ExtensibleElement;
 
 /**
  * 
@@ -40,8 +40,8 @@ public class MDCHK_D_CapellaElement_Parents_Resolver extends AbstractCapellaMark
     Iterator<EObject> it = getModelElements(marker_p).iterator();
     if (it.hasNext()) {
       EObject first = it.next();
-      if (first instanceof CapellaElement) {
-        final CapellaElement element = (CapellaElement) first;
+      if (first instanceof ExtensibleElement) {
+        final ExtensibleElement element = (ExtensibleElement) first;
 
         // Loop through childs to collect their Filtering Criteria
         List<FilteringCriterion> childsVarFeatures = getChildsFeatures(element);
@@ -70,7 +70,7 @@ public class MDCHK_D_CapellaElement_Parents_Resolver extends AbstractCapellaMark
     Iterator<EObject> childs = element.eAllContents();
     while (childs.hasNext()) {
       EObject child = childs.next();
-      if (child instanceof CapellaElement) {
+      if (child instanceof ExtensibleElement) {
         if (!FilteringUtils.isInstanceOfFilteringExcludedElements(child)) {
           for (FilteringCriterion var : FilteringUtils.getAssociatedCriteria(child)) {
             if (!childsVarFeatures.contains(var)) {
