@@ -192,7 +192,7 @@ public class FilteringOverviewDialog extends AbstractExportDialog {
    */
   @Override
   protected List<String[]> getExportableData() {
-    List<String[]> result = super.getExportableData(EcoreUtil2.getProject(root).getName());
+    List<String[]> result = super.getExportableData(FilteringUtils.getEclipseProject(root).getName());
 
     @SuppressWarnings("unchecked")
     List<? extends EObject> allTaggedElements = (List<? extends EObject>) ((TreeData) getData()).getValidElements();
