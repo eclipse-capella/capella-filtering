@@ -24,7 +24,7 @@
 	<groupId>org.polarsys</groupId>
 	<artifactId>org.polarsys.capella.addon.filtering</artifactId>
 	
-	<version>1.5.3-SNAPSHOT</version>
+	<version>1.5.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 
@@ -86,7 +86,7 @@
 						<artifact>
 							<groupId>org.polarsys</groupId>
 							<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-							<version>1.5.3-SNAPSHOT</version>
+							<version>1.5.4-SNAPSHOT</version>
 							<classifier>releng/org.polarsys.capella.filtering.update/capella.target-definition</classifier>
 						</artifact>
 					</target>
