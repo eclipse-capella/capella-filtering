@@ -147,6 +147,19 @@
                </defaultMappingPossibility>
             </mappingElement>
             
+            <mappingElement
+                  domainMetaClass="org.polarsys.capella.filtering.FilteringCriterionPkg"
+                  reuseExtendedElementDefaultPossibility="true"
+                  reuseExtendedElementPossibilities="true">
+               <defaultMappingPossibility
+                     context="org.polarsys.capella.core.transition.common.context.TransitionContext"
+                     enabled="true"
+                     completeRule="org.polarsys.capella.filtering.transition.rules.FilteringCriterionRulePkg"
+                     incompleteRule="org.polarsys.capella.filtering.transition.rules.FilteringCriterionRulePkg"
+                     name="FilteringCriterionPkg">
+               </defaultMappingPossibility>
+            </mappingElement>
+            
          </mappingPackage>
      </mapping>
       

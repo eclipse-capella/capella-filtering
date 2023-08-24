@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--Capella_Version_6.1.0-->
+<!--Capella_Version_null-->
 <org.polarsys.capella.core.data.capellamodeller:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:filtering="http://www.polarsys.org/capella/filtering/6.0.0"
     xmlns:libraries="http://www.polarsys.org/capella/common/libraries/6.0.0" xmlns:org.polarsys.capella.core.data.capellacommon="http://www.polarsys.org/capella/core/common/6.0.0"
@@ -42,6 +42,11 @@
         name="FilteringModel 1">
       <ownedFilteringCriteria xsi:type="filtering:FilteringCriterion" id="93e1e58d-2b4c-4607-95a1-d759dbcdeaa7"
           name="FilteringCriterion 1"/>
+      <ownedFilteringCriterionPkgs xsi:type="filtering:FilteringCriterionPkg" id="e5a5179a-e584-4675-a19c-3f733c43a239"
+          name="FilteringCriterionPkg 1">
+        <ownedFilteringCriteria xsi:type="filtering:FilteringCriterion" id="ffef6d25-a657-43a0-af64-160f746a8f46"
+            name="FilteringCriterion 2"/>
+      </ownedFilteringCriterionPkgs>
     </ownedExtensions>
     <ownedArchitectures xsi:type="org.polarsys.capella.core.data.oa:OperationalAnalysis"
         id="4ee6cb27-65ec-4bb6-aede-ab8bedf06ffc" name="Operational Analysis">
@@ -71,6 +76,11 @@
               id="bc18b8d1-7b7c-4a92-8ee3-85ae431c1593" name="SystemFunction 1">
             <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet"
                 id="e29b9987-09cb-4acb-8070-0a1abaaa7e3a" filteringCriteria="#93e1e58d-2b4c-4607-95a1-d759dbcdeaa7"/>
+          </ownedFunctions>
+          <ownedFunctions xsi:type="org.polarsys.capella.core.data.ctx:SystemFunction"
+              id="53f2f7d5-6d54-4106-875e-7d2a3e3fa124" name="SystemFunction 2">
+            <ownedExtensions xsi:type="filtering:AssociatedFilteringCriterionSet"
+                id="dc3dfb25-11e2-40ca-af2e-2bbf630c5788" filteringCriteria="#ffef6d25-a657-43a0-af64-160f746a8f46"/>
           </ownedFunctions>
           <ownedFunctionRealizations xsi:type="org.polarsys.capella.core.data.fa:FunctionRealization"
               id="a852c1a0-ecc4-454e-9d9c-c93a5d8a5073" targetElement="#c8836a7a-f89f-4ec1-8bfb-488f3d47082d"
