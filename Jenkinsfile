@@ -5,13 +5,13 @@ pipeline {
   
 	tools {
 		maven 'apache-maven-latest'
-		jdk 'openjdk-jdk14-latest'
+		jdk 'openjdk-jdk17-latest'
 	}
   
 	environment {
 		BUILD_KEY = (github.isPullRequest() ? CHANGE_TARGET : BRANCH_NAME).replaceFirst(/^v/, '')
 		CAPELLA_PRODUCT_PATH = "${WORKSPACE}/capella/capella"
-		CAPELLA_BRANCH = '6.1.0'
+		CAPELLA_BRANCH = 'master'
   	}
   
   	stages {
