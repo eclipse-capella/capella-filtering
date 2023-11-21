@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_Miq-AIczEeKbPZAQIbQckg" selectedViews="_Mkm3sIczEeKbPZAQIbQckg _MkwosIczEeKbPZAQIbQckg _Mk5yoIczEeKbPZAQIbQckg _Mk5yoYczEeKbPZAQIbQckg _MlDjoIczEeKbPZAQIbQckg _MlNUoIczEeKbPZAQIbQckg _MlNUoYczEeKbPZAQIbQckg _9pBKwNksEeiNFdh_iapWlQ" version="15.1.0.202211301600">
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_Miq-AIczEeKbPZAQIbQckg" selectedViews="_Mkm3sIczEeKbPZAQIbQckg _MkwosIczEeKbPZAQIbQckg _Mk5yoIczEeKbPZAQIbQckg _Mk5yoYczEeKbPZAQIbQckg _MlDjoIczEeKbPZAQIbQckg _MlNUoIczEeKbPZAQIbQckg _MlNUoYczEeKbPZAQIbQckg _9pBKwNksEeiNFdh_iapWlQ" version="15.2.0.202303281325">
   <semanticResources>FilteringResult.capella</semanticResources>
   <semanticResources>FilteringResult.afm</semanticResources>
-  <eAnnotations xmi:type="description:DAnnotationEntry" uid="_TqU4AI_6Ee2VD5l7vgC4Hg" source="ImagesDependencies"/>
+  <eAnnotations xmi:type="description:DAnnotationEntry" uid="_TqU4AI_6Ee2VD5l7vgC4Hg" source="ImagesDependencies">
+    <details>RichText:sysmodel</details>
+  </eAnnotations>
   <ownedViews xmi:type="viewpoint:DView" uid="_Mkm3sIczEeKbPZAQIbQckg">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.polarsys.capella.core.sirius.analysis/description/context.odesign#//@ownedViewpoints[name='System%20Analysis']"/>
   </ownedViews>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_VxBzAFDEEeutCq94_kLVkA" selectedViews="_V7qVsFDEEeutCq94_kLVkA _WA1JkFDEEeutCq94_kLVkA _WdGO0FDEEeutCq94_kLVkA _WkZJoFDEEeutCq94_kLVkA _WuaoUFDEEeutCq94_kLVkA _WvowUFDEEeutCq94_kLVkA _W1F4EFDEEeutCq94_kLVkA _aNuAwFDEEeutCq94_kLVkA" version="15.1.0.202211301600">
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_VxBzAFDEEeutCq94_kLVkA" selectedViews="_V7qVsFDEEeutCq94_kLVkA _WA1JkFDEEeutCq94_kLVkA _WdGO0FDEEeutCq94_kLVkA _WkZJoFDEEeutCq94_kLVkA _WuaoUFDEEeutCq94_kLVkA _WvowUFDEEeutCq94_kLVkA _W1F4EFDEEeutCq94_kLVkA _aNuAwFDEEeutCq94_kLVkA" version="15.2.0.202303281325">
   <semanticResources>simple-project.afm</semanticResources>
   <semanticResources>simple-project.capella</semanticResources>
   <semanticResources>platform:/resource/simple-library/simple-library.capella</semanticResources>
-  <eAnnotations xmi:type="description:DAnnotationEntry" uid="_Ee2MUI_6Ee2VD5l7vgC4Hg" source="ImagesDependencies"/>
   <ownedViews xmi:type="viewpoint:DView" uid="_V7qVsFDEEeutCq94_kLVkA">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.polarsys.kitalpha.ad.integration.sirius/description/ad.odesign#//@ownedViewpoints[name='ad']"/>
   </ownedViews>
