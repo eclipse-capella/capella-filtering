@@ -18,21 +18,14 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.polarsys.capella.core.data.capellacommon.GenericTrace;
-
 import org.polarsys.capella.core.data.capellacore.NamingRule;
 import org.polarsys.capella.core.data.capellacore.Trace;
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
-
-import org.polarsys.capella.core.data.requirement.RequirementsTrace;
-
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.FilteringPackage;
 import org.polarsys.capella.filtering.FilteringResultPkg;
@@ -45,7 +38,6 @@ import org.polarsys.capella.filtering.FilteringResultPkg;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getOwnedTraces <em>Owned Traces</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getContainedGenericTraces <em>Contained Generic Traces</em>}</li>
- *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getContainedRequirementsTraces <em>Contained Requirements Traces</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getNamingRules <em>Naming Rules</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getOwnedFilteringResults <em>Owned Filtering Results</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringResultPkgImpl#getOwnedFilteringResultPkgs <em>Owned Filtering Result Pkgs</em>}</li>
@@ -142,19 +134,6 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-
-	@Override
-	public EList<RequirementsTrace> getContainedRequirementsTraces() {
-
-		return ECollections.emptyEList();
-
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 
@@ -228,8 +207,6 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 			return getOwnedTraces();
 		case FilteringPackage.FILTERING_RESULT_PKG__CONTAINED_GENERIC_TRACES:
 			return getContainedGenericTraces();
-		case FilteringPackage.FILTERING_RESULT_PKG__CONTAINED_REQUIREMENTS_TRACES:
-			return getContainedRequirementsTraces();
 		case FilteringPackage.FILTERING_RESULT_PKG__NAMING_RULES:
 			return getNamingRules();
 		case FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS:
@@ -302,8 +279,6 @@ public class FilteringResultPkgImpl extends NamedElementImpl implements Filterin
 			return ownedTraces != null && !ownedTraces.isEmpty();
 		case FilteringPackage.FILTERING_RESULT_PKG__CONTAINED_GENERIC_TRACES:
 			return !getContainedGenericTraces().isEmpty();
-		case FilteringPackage.FILTERING_RESULT_PKG__CONTAINED_REQUIREMENTS_TRACES:
-			return !getContainedRequirementsTraces().isEmpty();
 		case FilteringPackage.FILTERING_RESULT_PKG__NAMING_RULES:
 			return namingRules != null && !namingRules.isEmpty();
 		case FilteringPackage.FILTERING_RESULT_PKG__OWNED_FILTERING_RESULTS:

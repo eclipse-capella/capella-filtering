@@ -21,7 +21,7 @@ import org.polarsys.kitalpha.emde.model.ElementExtension;
  *
  *
  * @see org.polarsys.capella.filtering.FilteringPackage#getAssociatedFilteringCriterionSet()
- * @model annotation="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint ExtendedElement='http://www.polarsys.org/capella/core/core/6.0.0#//CapellaElement'"
+ * @model annotation="http://www.polarsys.org/kitalpha/emde/1.0.0/constraint ExtendedElement='http://www.polarsys.org/capella/core/core/7.0.0#//CapellaElement'"
  *        annotation="http://www.polarsys.org/kitalpha/ecore/documentation description='null' usage\040guideline='null' used\040in\040levels='null' usage\040examples='null' constraints='null'"
  * @generated
  */

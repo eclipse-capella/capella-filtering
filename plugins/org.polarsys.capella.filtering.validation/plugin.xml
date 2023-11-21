@@ -31,19 +31,19 @@
             cache="true"
             mode="Batch">
          <package
-               namespaceUri="http://www.polarsys.org/capella/filtering/6.0.0">
+               namespaceUri="http://www.polarsys.org/capella/filtering/7.0.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/modeller/6.0.0">
+               namespaceUri="http://www.polarsys.org/capella/core/modeller/7.0.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/core/6.0.0">
+               namespaceUri="http://www.polarsys.org/capella/core/core/7.0.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/cs/6.0.0">
+               namespaceUri="http://www.polarsys.org/capella/core/cs/7.0.0">
          </package>
          <package
-               namespaceUri="http://www.polarsys.org/capella/core/fa/6.0.0">
+               namespaceUri="http://www.polarsys.org/capella/core/fa/7.0.0">
          </package>
          <package
                namespaceUri="http://www.polarsys.org/kitalpha/emde/1.0.0">

@@ -18,22 +18,14 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.polarsys.capella.core.data.capellacommon.GenericTrace;
-
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
 import org.polarsys.capella.core.data.capellacore.NamingRule;
 import org.polarsys.capella.core.data.capellacore.Trace;
-
 import org.polarsys.capella.core.data.capellacore.impl.NamedElementImpl;
-
-import org.polarsys.capella.core.data.requirement.RequirementsTrace;
-
 import org.polarsys.capella.filtering.FilteringCriterion;
 import org.polarsys.capella.filtering.FilteringCriterionPkg;
 import org.polarsys.capella.filtering.FilteringPackage;
@@ -46,7 +38,6 @@ import org.polarsys.capella.filtering.FilteringPackage;
  * <ul>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getOwnedTraces <em>Owned Traces</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getContainedGenericTraces <em>Contained Generic Traces</em>}</li>
- *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getContainedRequirementsTraces <em>Contained Requirements Traces</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getNamingRules <em>Naming Rules</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getOwnedFilteringCriteria <em>Owned Filtering Criteria</em>}</li>
  *   <li>{@link org.polarsys.capella.filtering.impl.FilteringCriterionPkgImpl#getOwnedFilteringCriterionPkgs <em>Owned Filtering Criterion Pkgs</em>}</li>
@@ -96,19 +87,6 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 
 	@Override
 	public EList<GenericTrace> getContainedGenericTraces() {
-
-		return ECollections.emptyEList();
-
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-
-	@Override
-	public EList<RequirementsTrace> getContainedRequirementsTraces() {
 
 		return ECollections.emptyEList();
 
@@ -185,8 +163,6 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 			return getOwnedTraces();
 		case FilteringPackage.FILTERING_CRITERION_PKG__CONTAINED_GENERIC_TRACES:
 			return getContainedGenericTraces();
-		case FilteringPackage.FILTERING_CRITERION_PKG__CONTAINED_REQUIREMENTS_TRACES:
-			return getContainedRequirementsTraces();
 		case FilteringPackage.FILTERING_CRITERION_PKG__NAMING_RULES:
 			return getNamingRules();
 		case FilteringPackage.FILTERING_CRITERION_PKG__OWNED_FILTERING_CRITERIA:
@@ -259,8 +235,6 @@ public class FilteringCriterionPkgImpl extends NamedElementImpl implements Filte
 			return !getOwnedTraces().isEmpty();
 		case FilteringPackage.FILTERING_CRITERION_PKG__CONTAINED_GENERIC_TRACES:
 			return !getContainedGenericTraces().isEmpty();
-		case FilteringPackage.FILTERING_CRITERION_PKG__CONTAINED_REQUIREMENTS_TRACES:
-			return !getContainedRequirementsTraces().isEmpty();
 		case FilteringPackage.FILTERING_CRITERION_PKG__NAMING_RULES:
 			return !getNamingRules().isEmpty();
 		case FilteringPackage.FILTERING_CRITERION_PKG__OWNED_FILTERING_CRITERIA:
