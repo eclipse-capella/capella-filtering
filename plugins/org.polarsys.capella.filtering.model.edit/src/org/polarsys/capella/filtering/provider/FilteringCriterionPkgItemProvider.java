@@ -18,12 +18,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,24 +29,15 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.polarsys.capella.core.data.capellacommon.CapellacommonFactory;
-
 import org.polarsys.capella.core.data.capellacore.CapellacoreFactory;
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
-
 import org.polarsys.capella.core.data.capellacore.provider.NamedElementItemProvider;
-
 import org.polarsys.capella.core.data.interaction.InteractionFactory;
-
-import org.polarsys.capella.core.data.requirement.RequirementFactory;
-
 import org.polarsys.capella.filtering.FilteringCriterionPkg;
 import org.polarsys.capella.filtering.FilteringFactory;
 import org.polarsys.capella.filtering.FilteringPackage;
-
 import org.polarsys.kitalpha.emde.model.EmdePackage;
-
 import org.polarsys.kitalpha.emde.model.edit.provider.NewChildDescriptorHelper;
 
 /**
@@ -80,7 +68,6 @@ public class FilteringCriterionPkgItemProvider extends NamedElementItemProvider 
 			super.getPropertyDescriptors(object);
 
 			addContainedGenericTracesPropertyDescriptor(object);
-			addContainedRequirementsTracesPropertyDescriptor(object);
 		}
 		// begin-extension-code
 		checkChildCreationExtender(object);
@@ -104,27 +91,6 @@ public class FilteringCriterionPkgItemProvider extends NamedElementItemProvider 
 				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_containedGenericTraces_feature", //$NON-NLS-1$//$NON-NLS-2$
 						"_UI_Namespace_type"), //$NON-NLS-1$
 				CapellacorePackage.Literals.NAMESPACE__CONTAINED_GENERIC_TRACES, false, false, false, null, null,
-				// begin-extension-code
-				null));
-		// end-extension-code
-	}
-
-	/**
-	 * This adds a property descriptor for the Contained Requirements Traces feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainedRequirementsTracesPropertyDescriptor(Object object) {
-
-		// begin-extension-code
-		itemPropertyDescriptors.add(createItemPropertyDescriptor
-		// end-extension-code
-		(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Namespace_containedRequirementsTraces_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_containedRequirementsTraces_feature", //$NON-NLS-1$//$NON-NLS-2$
-						"_UI_Namespace_type"), //$NON-NLS-1$
-				CapellacorePackage.Literals.NAMESPACE__CONTAINED_REQUIREMENTS_TRACES, false, false, false, null, null,
 				// begin-extension-code
 				null));
 		// end-extension-code
@@ -263,17 +229,6 @@ public class FilteringCriterionPkgItemProvider extends NamedElementItemProvider 
 			CommandParameter commandParameter = createChildParameter(
 					EmdePackage.Literals.EXTENSIBLE_ELEMENT__OWNED_EXTENSIONS,
 					FilteringFactory.eINSTANCE.createCreationDefaultFilteringCriterionSet());
-			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
-				newChildDescriptors.add(commandParameter);
-			}
-		}
-		// end-extension-code
-
-		// begin-extension-code
-		{
-			CommandParameter commandParameter = createChildParameter(
-					CapellacorePackage.Literals.NAMESPACE__OWNED_TRACES,
-					RequirementFactory.eINSTANCE.createRequirementsTrace());
 			if (NewChildDescriptorHelper.isValidCommand(object, commandParameter)) {
 				newChildDescriptors.add(commandParameter);
 			}
