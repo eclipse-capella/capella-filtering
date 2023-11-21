@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.sirius.diagram.ui,
  org.eclipse.sirius.ecore.extender,
  org.polarsys.capella.core.model.handler
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: org.polarsys.capella.common.ui.actions,
  org.polarsys.capella.filtering.tools,
  org.polarsys.capella.filtering.tools.actions,

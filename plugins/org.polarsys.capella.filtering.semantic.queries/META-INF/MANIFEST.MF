@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.polarsys.capella.filtering.semantic.queries;singleton:=
 Bundle-Version: 1.6.2.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.polarsys.capella.core.model.handler,
  org.polarsys.capella.core.model.helpers,
  org.polarsys.capella.filtering.model
