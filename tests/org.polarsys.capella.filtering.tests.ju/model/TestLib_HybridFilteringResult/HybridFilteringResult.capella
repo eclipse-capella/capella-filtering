@@ -48,7 +48,7 @@
       <filteringResults xsi:type="filtering:FilteringResult" id="8ca5b856-0158-4e9f-8fbc-80c384fe36a0"
           name="HybridFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.capella#a8695fa5-143d-485a-a8d7-a6dd2b6fc2f2"/>
       <filteringResults xsi:type="filtering:FilteringResult" id="b3993f54-c307-4009-abbc-d2b94e4f2263"
-          name="EssenceFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.capella#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
+          name="PetrolFilteringResult" filteringCriteria="filtering:FilteringCriterion ../MyLib/MyLib.capella#04baf6e7-60b0-4084-8b92-6d10d29e9f9e"/>
     </ownedExtensions>
     <ownedArchitectures xsi:type="org.polarsys.capella.core.data.oa:OperationalAnalysis"
         id="96fbc8b3-9371-46d3-8215-48a0ed574a37" name="Operational Analysis">
