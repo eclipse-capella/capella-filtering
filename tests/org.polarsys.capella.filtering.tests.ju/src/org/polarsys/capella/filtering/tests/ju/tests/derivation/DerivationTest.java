@@ -48,7 +48,6 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.image.ImageManager;
 import org.eclipse.sirius.business.api.session.Session;
-import org.polarsys.capella.core.data.capellacore.CapellaElement;
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
 import org.polarsys.capella.core.data.capellamodeller.Project;
 import org.polarsys.capella.filtering.AbstractFilteringResult;
@@ -218,7 +217,9 @@ public class DerivationTest extends BasicTestCase {
 
   // Info to display (in case of failing test)
   private String getInfoOfCurrentTest() {
-    return "Project=[" + project.getName() + "] with FilteringResult=[" + currentFilteringResult.getName() + "]";
+    String projectName = project != null ? project.getName() : "?";
+    String filteringResultName = currentFilteringResult != null ? currentFilteringResult.getName() : "?";
+    return "Project=[" + projectName + "] with FilteringResult=[" + filteringResultName + "]";
   }
 
   /**
