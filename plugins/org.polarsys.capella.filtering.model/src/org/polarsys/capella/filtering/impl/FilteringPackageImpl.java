@@ -16,35 +16,21 @@ package org.polarsys.capella.filtering.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.polarsys.capella.common.data.activity.ActivityPackage;
 import org.polarsys.capella.common.data.behavior.BehaviorPackage;
 import org.polarsys.capella.common.data.modellingcore.ModellingcorePackage;
 import org.polarsys.capella.core.data.capellacommon.CapellacommonPackage;
-
 import org.polarsys.capella.core.data.capellacore.CapellacorePackage;
-
 import org.polarsys.capella.core.data.cs.CsPackage;
-
 import org.polarsys.capella.core.data.ctx.CtxPackage;
-
 import org.polarsys.capella.core.data.epbs.EpbsPackage;
-
 import org.polarsys.capella.core.data.fa.FaPackage;
-
 import org.polarsys.capella.core.data.information.InformationPackage;
-
 import org.polarsys.capella.core.data.interaction.InteractionPackage;
-
 import org.polarsys.capella.core.data.la.LaPackage;
-
 import org.polarsys.capella.core.data.oa.OaPackage;
 import org.polarsys.capella.core.data.pa.PaPackage;
-
-import org.polarsys.capella.core.data.requirement.RequirementPackage;
-
 import org.polarsys.capella.filtering.AbstractFilteringResult;
 import org.polarsys.capella.filtering.AssociatedFilteringCriterionSet;
 import org.polarsys.capella.filtering.ComposedFilteringResult;
@@ -60,7 +46,6 @@ import org.polarsys.capella.filtering.FilteringResult;
 import org.polarsys.capella.filtering.FilteringResultPkg;
 import org.polarsys.capella.filtering.FilteringResultSet;
 import org.polarsys.capella.filtering.FilteringResults;
-
 import org.polarsys.capella.filtering.IntersectionFilteringResultSet;
 import org.polarsys.capella.filtering.UnionFilteringResultSet;
 import org.polarsys.kitalpha.emde.model.EmdePackage;
@@ -216,7 +201,6 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 		LaPackage.eINSTANCE.eClass();
 		PaPackage.eINSTANCE.eClass();
 		EpbsPackage.eINSTANCE.eClass();
-		RequirementPackage.eINSTANCE.eClass();
 		CapellacommonPackage.eINSTANCE.eClass();
 		InformationPackage.eINSTANCE.eClass();
 		CsPackage.eINSTANCE.eClass();
@@ -884,16 +868,16 @@ public class FilteringPackageImpl extends EPackageImpl implements FilteringPacka
 	protected void createConstraintAnnotations() {
 		String source = "http://www.polarsys.org/kitalpha/emde/1.0.0/constraint"; //$NON-NLS-1$
 		addAnnotation(filteringModelEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering" //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering" //$NON-NLS-1$
 		});
 		addAnnotation(filteringResultsEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering" //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering" //$NON-NLS-1$
 		});
 		addAnnotation(associatedFilteringCriterionSetEClass, source,
-				new String[] { "ExtendedElement", "http://www.polarsys.org/capella/core/core/6.0.0#//CapellaElement" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] { "ExtendedElement", "http://www.polarsys.org/capella/core/core/7.0.0#//CapellaElement" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(creationDefaultFilteringCriterionSetEClass, source, new String[] { "ExtendedElement", //$NON-NLS-1$
-				"http://www.polarsys.org/capella/core/modeller/6.0.0#//SystemEngineering " //$NON-NLS-1$
+				"http://www.polarsys.org/capella/core/modeller/7.0.0#//SystemEngineering " //$NON-NLS-1$
 		});
 	}
 

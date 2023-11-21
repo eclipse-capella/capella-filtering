@@ -48,7 +48,7 @@ public interface FilteringPackage extends EPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.polarsys.org/capella/filtering/6.0.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.polarsys.org/capella/filtering/7.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -250,15 +250,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_MODEL__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_MODEL__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Filtering Criteria</b></em>' containment reference list.
@@ -483,15 +474,6 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_CRITERION__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_CRITERION__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The number of structural features of the '<em>Criterion</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -685,15 +667,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_CRITERION_SET__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Criteria</b></em>' reference list.
@@ -908,15 +881,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_RESULTS__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_RESULTS__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' containment reference list.
@@ -1141,15 +1105,6 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT__FEATURES = FILTERING_CRITERION_SET__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_RESULT__APPLIED_REQUIREMENTS = FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Filtering Criteria</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -1361,15 +1316,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATED_FILTERING_CRITERION_SET__FEATURES = FILTERING_CRITERION_SET__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATED_FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS = FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Criteria</b></em>' reference list.
@@ -1586,15 +1532,6 @@ public interface FilteringPackage extends EPackage {
 	int CREATION_DEFAULT_FILTERING_CRITERION_SET__FEATURES = FILTERING_CRITERION_SET__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATION_DEFAULT_FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS = FILTERING_CRITERION_SET__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Filtering Criteria</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -1809,15 +1746,6 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT_PKG__FEATURES = CapellacorePackage.NAMESPACE__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_RESULT_PKG__APPLIED_REQUIREMENTS = CapellacorePackage.NAMESPACE__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Traces</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -1834,15 +1762,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_RESULT_PKG__CONTAINED_GENERIC_TRACES = CapellacorePackage.NAMESPACE__CONTAINED_GENERIC_TRACES;
-
-	/**
-	 * The feature id for the '<em><b>Contained Requirements Traces</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_RESULT_PKG__CONTAINED_REQUIREMENTS_TRACES = CapellacorePackage.NAMESPACE__CONTAINED_REQUIREMENTS_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Naming Rules</b></em>' containment reference list.
@@ -2067,15 +1986,6 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_CRITERION_PKG__FEATURES = CapellacorePackage.NAMESPACE__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_CRITERION_PKG__APPLIED_REQUIREMENTS = CapellacorePackage.NAMESPACE__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Traces</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -2092,15 +2002,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILTERING_CRITERION_PKG__CONTAINED_GENERIC_TRACES = CapellacorePackage.NAMESPACE__CONTAINED_GENERIC_TRACES;
-
-	/**
-	 * The feature id for the '<em><b>Contained Requirements Traces</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_CRITERION_PKG__CONTAINED_REQUIREMENTS_TRACES = CapellacorePackage.NAMESPACE__CONTAINED_REQUIREMENTS_TRACES;
 
 	/**
 	 * The feature id for the '<em><b>Naming Rules</b></em>' containment reference list.
@@ -2326,15 +2227,6 @@ public interface FilteringPackage extends EPackage {
 	int ABSTRACT_FILTERING_RESULT__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_FILTERING_RESULT__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The number of structural features of the '<em>Abstract Filtering Result</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -2529,15 +2421,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSED_FILTERING_RESULT__FEATURES = ABSTRACT_FILTERING_RESULT__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_FILTERING_RESULT__APPLIED_REQUIREMENTS = ABSTRACT_FILTERING_RESULT__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Union Filtering Result Set</b></em>' containment reference.
@@ -2774,15 +2657,6 @@ public interface FilteringPackage extends EPackage {
 	int FILTERING_RESULT_SET__FEATURES = CapellacorePackage.NAMED_ELEMENT__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = CapellacorePackage.NAMED_ELEMENT__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -2996,15 +2870,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
@@ -3223,15 +3088,6 @@ public interface FilteringPackage extends EPackage {
 	int EXCLUSION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
 
 	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXCLUSION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
-
-	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -3446,15 +3302,6 @@ public interface FilteringPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERSECTION_FILTERING_RESULT_SET__FEATURES = FILTERING_RESULT_SET__FEATURES;
-
-	/**
-	 * The feature id for the '<em><b>Applied Requirements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERSECTION_FILTERING_RESULT_SET__APPLIED_REQUIREMENTS = FILTERING_RESULT_SET__APPLIED_REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Filtering Results</b></em>' reference list.
