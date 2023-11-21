@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.polarsys.capella.filtering.tools;singleton:=true
 Bundle-Localization: plugin
 Bundle-Version: 1.6.2.qualifier
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.polarsys.capella.common.ui.toolkit,
  org.polarsys.capella.core.platform.sirius.ui.actions,
  org.polarsys.capella.core.platform.sirius.ui.navigator,

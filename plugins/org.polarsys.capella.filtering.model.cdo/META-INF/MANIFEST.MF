@@ -6,7 +6,7 @@ Bundle-Version: 1.6.2.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.capella.filtering.impl
 Import-Package: org.polarsys.capella.common.data.activity,
  org.polarsys.capella.common.data.behavior,

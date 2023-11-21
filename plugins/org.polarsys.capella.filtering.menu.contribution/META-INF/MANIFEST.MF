@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.polarsys.capella.filtering.menu.contribution;singleton:=true
 Bundle-Version: 1.6.2.qualifier
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.polarsys.capella.common.menu.dynamic,
  org.polarsys.capella.core.model.handler,
  org.polarsys.capella.filtering.tools,
