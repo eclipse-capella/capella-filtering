@@ -14,7 +14,7 @@
 =Functionalities=
 
 Once the Filtering Add-On is installed, you have to activate this viewpoint for each project you want to work with, to see how please refers to:
-[[../help/topic/org.polarsys.capella.viewpoint.doc/html/activation/activation.html|Capella Guide > User Manual > Viewpoints > Activation]]<span class="github-link">[[https://github.com/eclipse/capella/blob/master/doc/plugins/org.polarsys.capella.viewpoint.doc/html/activation/activation.mediawiki|(online documentation)]]</span>.
+[[../help/topic/org.polarsys.capella.viewpoint.doc/html/activation/activation.html|Capella Guide > User Manual > Viewpoints > Activation]]<span class="github-link">[[https://github.com/eclipse-capella/capella/blob/master/doc/plugins/org.polarsys.capella.viewpoint.doc/html/activation/activation.mediawiki|(online documentation)]]</span>.
 
 Then, these projects can be enriched with filtering information. That means that for creating a generic product the user should follow the standard Capella new project creation.
 

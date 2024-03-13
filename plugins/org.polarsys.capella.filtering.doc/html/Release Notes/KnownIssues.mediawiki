@@ -14,4 +14,4 @@
 
 Retrieve all known issues by following this link:
 
-* [https://github.com/eclipse/capella-filtering/issues Filtering issues]
+* [https://github.com/eclipse-capella/capella-filtering/issues Filtering issues]
