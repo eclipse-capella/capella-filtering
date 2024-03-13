@@ -95,7 +95,7 @@ pipeline {
 		stage('Sonar') {
 			steps {
 				script {
-					sonar.runSonar("eclipse_capella-filtering", "eclipse/capella-filtering", 'sonarcloud-token-filtering')
+					sonar.runSonar("eclipse-capella_capella-filtering", "eclipse/capella-filtering", 'sonarcloud-token-filtering')
 				}
 			}
 		}
