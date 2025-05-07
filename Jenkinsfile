@@ -5,13 +5,13 @@ pipeline {
   
 	tools {
 		maven 'apache-maven-latest'
-		jdk 'openjdk-jdk14-latest'
+		jdk 'openjdk-jdk17-latest'
 	}
   
 	environment {
 		BUILD_KEY = (github.isPullRequest() ? CHANGE_TARGET : BRANCH_NAME).replaceFirst(/^v/, '')
 		CAPELLA_PRODUCT_PATH = "${WORKSPACE}/capella/capella"
-		CAPELLA_BRANCH = '6.1.0'
+		CAPELLA_BRANCH = 'master'
   	}
   
   	stages {
@@ -48,6 +48,7 @@ pipeline {
 					
 					deployer.addonNightlyDropins("${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/*-dropins-*.zip", deploymentDirName)
 					deployer.addonNightlyUpdateSite("${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/*-updateSite-*.zip", deploymentDirName)					
+					deployer.addonNightlyUpdateSite("${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/bom.json", deploymentDirName)					
 					currentBuild.description = "${deploymentDirName} - <a href=\"https://download.eclipse.org/capella/addons/filtering/dropins/nightly/${deploymentDirName}\">drop-in</a> - <a href=\"https://download.eclipse.org/capella/addons/filtering/updates/nightly/${deploymentDirName}\">update-site</a>"
 	       		}         
 	     	}
@@ -95,7 +96,7 @@ pipeline {
 		stage('Sonar') {
 			steps {
 				script {
-					sonar.runSonar("eclipse_capella-filtering", "eclipse/capella-filtering", 'sonarcloud-token-filtering')
+					sonar.runSonar("eclipse-capella_capella-filtering", "eclipse/capella-filtering", 'sonarcloud-token-filtering')
 				}
 			}
 		}
