@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2019, 2023 THALES GLOBAL SERVICES.
+  Copyright (c) 2019, 2026 THALES GLOBAL SERVICES.
   
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License 2.0 which is available at
@@ -34,7 +34,7 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-surefire-plugin</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<configuration>
 					<product>${capella-product-id}</product>
 					<application>${capella-application-id}</application>
@@ -54,7 +54,7 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<configuration>
 					<environments combine.self="override" />
 					<dependency-resolution>

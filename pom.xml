@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2019, 2023 THALES GLOBAL SERVICES.
+  Copyright (c) 2019, 2026 THALES GLOBAL SERVICES.
   
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License 2.0 which is available at
@@ -29,8 +29,7 @@
 	<properties>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<tycho.version>4.0.9</tycho.version>
-		<tycho.extras.version>4.0.9</tycho.extras.version>
+		<tycho-extras-version>${tycho-version}</tycho-extras-version>
 		<antrun-version>3.0.0</antrun-version>
 
 		<tycho.scmUrl>scm:git:http://git.polarsys.org/c/capella/capella-filtering.git</tycho.scmUrl>
@@ -56,7 +55,7 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<configuration>
 					<strictBinIncludes>false</strictBinIncludes>
 					<sourceReferences>
@@ -67,20 +66,20 @@
 					<dependency>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-sourceref-jgit</artifactId>
-						<version>${tycho.extras.version}</version>
+						<version>${tycho-extras-version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<configuration>
 					<target>
 						<artifact>
@@ -112,7 +111,7 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-source-plugin</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<executions>
 					<execution>
 						<id>feature-source</id>
@@ -140,7 +139,7 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-plugin</artifactId>
-				<version>${tycho.version}</version>
+				<version>${tycho-version}</version>
 				<executions>
 					<!-- These two should allow us not to get "duplicate artifact" warnings 
 						during the build. -->
@@ -167,7 +166,7 @@
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-compiler-plugin</artifactId>
-					<version>${tycho.version}</version>
+					<version>${tycho-version}</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 						<compilerArgument>-warn:+discouraged,forbidden</compilerArgument>
@@ -180,7 +179,7 @@
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-eclipse-plugin</artifactId>
-					<version>${tycho.version}</version>
+					<version>${tycho-version}</version>
 					<configuration>
 						<repositories>
 							<repository>
@@ -284,7 +283,7 @@
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-p2-repository-plugin</artifactId>
-					<version>${tycho.version}</version>
+					<version>${tycho-version}</version>
 					<executions>
 						<execution>
 							<phase>package</phase>
@@ -309,7 +308,7 @@
 					  <dependency>
 						  <groupId>org.eclipse.tycho</groupId>
 						  <artifactId>tycho-sbom</artifactId>
-						  <version>${tycho.version}</version>
+						  <version>${tycho-version}</version>
 					  </dependency>
 				  </dependencies>
 				  <executions>
