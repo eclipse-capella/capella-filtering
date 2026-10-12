@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2026 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,7 +24,8 @@ public class FilteringArgumentHelper extends CommandLineArgumentHelper {
   public void parseArgs(String[] args) {
     super.parseArgs(args);
 
-    ArgumentsHelper helper = ArgumentsHelper.getInstance();
+    final ArgumentsHelper helper = new ArgumentsHelper();
+    helper.loadArguments(args);
     filteringResultId = helper.getString(FilteringCommandLineConstants.FILTERING_RESULT_ID);
     derivationProjectName = helper.getString(FilteringCommandLineConstants.DERIVATION_PROJECT_NAME);
   }
