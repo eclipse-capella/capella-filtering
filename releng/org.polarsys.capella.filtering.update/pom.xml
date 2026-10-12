@@ -49,7 +49,7 @@
 						<repository>
 							<id>targetplatform-tp</id>
 							<layout>p2</layout>
-							<url>https://download.eclipse.org/releases/2023-03</url>
+							<url>https://download.eclipse.org/releases/2025-09</url>
 						</repository>
 						<repository>
 							<id>targetplatform</id>
@@ -68,13 +68,13 @@
 							<type>eclipse-feature</type>
 						</dependency>
 					</dependencies>
+					<executionEnvironment>JavaSE-21</executionEnvironment>
 				</configuration>
 				<executions>
 					<execution>
 						<id>generate.target</id>
 						<phase>validate</phase>
 						<configuration>
-							<executionEnvironment>JavaSE-17</executionEnvironment>
 							<applicationArgs>
 								<arg>-application</arg>
 								<arg>${converterApplication.name}</arg>
