@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 THALES GLOBAL SERVICES.
+ * Copyright (c) 2018, 2026 THALES GLOBAL SERVICES.
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -244,7 +244,7 @@ public class SelectCriteriaAction extends FilteringDiagramAction {
     }
     // Try with its links
     if (editPart instanceof GraphicalEditPart) {
-      List<EditPart> sourceConnections = ((GraphicalEditPart) editPart).getSourceConnections();
+      List<? extends EditPart> sourceConnections = ((GraphicalEditPart) editPart).getSourceConnections();
       for (EditPart connectionEditPart : sourceConnections) {
         EditPart elementEP = findEditPart(connectionEditPart, theElement);
         if (elementEP != null) {
