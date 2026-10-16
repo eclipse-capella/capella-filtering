@@ -6,5 +6,5 @@
   <viewpointReferences xsi:type="metadata:ViewpointReference" id="_94rcwFQDEeu6DOXNC0hlVg"
       vpId="org.polarsys.capella.core.viewpoint" version="7.2.0"/>
   <viewpointReferences xsi:type="metadata:ViewpointReference" id="_JRmAUFQFEeuczcyRbnt41w"
-      vpId="org.polarsys.capella.filtering" version="1.7.0"/>
+      vpId="org.polarsys.capella.filtering" version="1.8.0"/>
 </metadata:Metadata>
