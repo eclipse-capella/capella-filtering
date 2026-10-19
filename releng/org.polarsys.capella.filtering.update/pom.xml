@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2018, 2023 THALES GLOBAL SERVICES.
+  Copyright (c) 2018, 2026 THALES GLOBAL SERVICES.
   
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License 2.0 which is available at
@@ -17,26 +17,23 @@
 
 	<groupId>org.polarsys</groupId>
 	<artifactId>capella.target-definition</artifactId>
-	<version>1.7.0-SNAPSHOT</version>
+	<version>1.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<licenses>
 		<license>
-			<name>Eclipse Public License v1.0</name>
+			<name>Eclipse Public License v2.0</name>
 			<comments>
-				All rights reserved.
+				This program and the accompanying materials are made available under the
+				terms of the Eclipse Public License 2.0 which is available at
+				http://www.eclipse.org/legal/epl-2.0
 
-				This program and the accompanying materials are made
-				available under the terms of the Eclipse Public License v1.0
-				which accompanies this distribution, and is available at
-				http://www.eclipse.org/legal/epl-v10.htm
+				SPDX-License-Identifier: EPL-2.0
 			</comments>
 		</license>
 	</licenses>
 
 	<properties>
-		<tycho-version>4.0.9</tycho-version>
-		<tycho-extras-version>4.0.9</tycho-extras-version>
 		<targetPlatform.name>capella.target-definition.targetplatform</targetPlatform.name>
 		<converterApplication.name>org.eclipse.cbi.targetplatform.tpd.converter</converterApplication.name>
 	</properties>
@@ -52,7 +49,7 @@
 						<repository>
 							<id>targetplatform-tp</id>
 							<layout>p2</layout>
-							<url>https://download.eclipse.org/releases/2023-03</url>
+							<url>https://download.eclipse.org/releases/2025-09</url>
 						</repository>
 						<repository>
 							<id>targetplatform</id>
@@ -71,13 +68,13 @@
 							<type>eclipse-feature</type>
 						</dependency>
 					</dependencies>
+					<executionEnvironment>JavaSE-21</executionEnvironment>
 				</configuration>
 				<executions>
 					<execution>
 						<id>generate.target</id>
 						<phase>validate</phase>
 						<configuration>
-							<executionEnvironment>JavaSE-17</executionEnvironment>
 							<applicationArgs>
 								<arg>-application</arg>
 								<arg>${converterApplication.name}</arg>
