@@ -30,14 +30,17 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
-		<antrun-version>3.0.0</antrun-version>
+		<antrun-version>3.2.0</antrun-version>
 
 		<tycho.scmUrl>scm:git:http://git.polarsys.org/c/capella/capella-filtering.git</tycho.scmUrl>
 
 		<!-- for packaging -->
-		<platform-name>oxygen</platform-name>
-		<eclipse-repo.url>http://download.eclipse.org/releases/${platform-name}</eclipse-repo.url>
+		<platform-name>2025-09</platform-name>
+		<eclipse-repo.url>https://download.eclipse.org/releases/${platform-name}</eclipse-repo.url>
 		<packagedAddonName>Filtering</packagedAddonName>
+
+		<capella-product-id>org.polarsys.capella.rcp.product</capella-product-id>
+		<capella-application-id>org.polarsys.capella.core.platform.sirius.ui.perspective.id</capella-application-id>
 
 	</properties>
 
@@ -203,11 +206,11 @@
 								<type>eclipse-feature</type>
 							</dependency>
 							<dependency>
-								<artifactId>org.eclipse.equinox.ds</artifactId>
+								<artifactId>org.apache.felix.scr</artifactId>
 								<type>eclipse-plugin</type>
 							</dependency>
 						</dependencies>
-						<executionEnvironment>JavaSE-17</executionEnvironment>
+						<executionEnvironment>JavaSE-21</executionEnvironment>
 					</configuration>
 					<executions>
 						<execution>
@@ -225,7 +228,7 @@
 									<arg>-destination</arg>
 									<arg>${project.build.directory}/${packagedAddonName}/eclipse</arg>
 								</applicationArgs>
-								<executionEnvironment>JavaSE-17</executionEnvironment>
+								<executionEnvironment>JavaSE-21</executionEnvironment>
 							</configuration>
 						</execution>
 					</executions>
@@ -301,9 +304,9 @@
 				<plugin>
 				  <groupId>org.cyclonedx</groupId>
 				  <artifactId>cyclonedx-maven-plugin</artifactId>
-				  <version>2.8.1</version>
+				  <version>2.9.3</version>
 				  <configuration>
-					  <schemaVersion>1.5</schemaVersion>
+					  <schemaVersion>1.6</schemaVersion>
 				  </configuration>
 				  <dependencies>
 					  <dependency>
@@ -340,7 +343,7 @@
 					<plugin>
 						<groupId>org.eclipse.cbi.maven.plugins</groupId>
 						<artifactId>eclipse-jarsigner-plugin</artifactId>
-						<version>1.3.2</version>
+						<version>1.5.4</version>
 						<executions>
 							<execution>
 								<id>sign</id>
