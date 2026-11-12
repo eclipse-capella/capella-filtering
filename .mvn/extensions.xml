@@ -10,11 +10,16 @@
   
   Contributors:
        Thales - initial API and implementation
+       Obeo - rehaul
 -->
-<extensions>
-  <extension>
-    <groupId>org.eclipse.tycho</groupId>
-    <artifactId>tycho-build</artifactId>
-    <version>${tycho-version}</version>
-  </extension>
+<extensions xmlns="http://maven.apache.org/EXTENSIONS/1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/EXTENSIONS/1.1.0 http://maven.apache.org/xsd/core-extensions-1.1.0.xsd">
+	<extension>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-build</artifactId>
+		<!-- Unfortunately at this time we do not have access to the properties of the 
+			parent module to use the same version of tycho-build as the rest of the Tycho plugins. -->
+		<version>${dep.plugin.tycho-build.version}</version>
+	</extension>
 </extensions>
