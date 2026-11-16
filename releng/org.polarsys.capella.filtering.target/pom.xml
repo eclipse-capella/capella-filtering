@@ -34,7 +34,7 @@
 	</licenses>
 
 	<properties>
-		<targetPlatform.name>capella.target-definition.targetplatform</targetPlatform.name>
+		<targetPlatform.name>tp/capella.target-definition.targetplatform</targetPlatform.name>
 		<converterApplication.name>org.eclipse.cbi.targetplatform.tpd.converter</converterApplication.name>
 	</properties>
 
