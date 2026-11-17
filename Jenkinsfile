@@ -22,19 +22,17 @@ pipeline {
 		        	if(github.isPullRequest()){
 		        	    github.buildStartedComment()
 		        	}
-		        	
 		        	sh 'env'
 		        	sh 'mvn clean verify -f releng/org.polarsys.capella.filtering.update/pom.xml'
 	       		}         
 	     	}
 	    }
 	    
-    	stage('Build and Package') {
+    	stage('Build Addon (with SBOM and jarsign)') {
       		steps {
       			script {
-      				def customParams = github.isPullRequest() ? '' : '-Psign'
-      	    
-      	    		sh "mvn -DjavaDocPhase=none ${customParams} clean package -f pom.xml"
+      				def customParams = github.isPullRequest() ? '' : '-Psign -Psbom'
+      	    		sh "mvn clean verify -DjavaDocPhase=none ${customParams} -f pom.xml"
 	       		}
 	     	}
 	    }
@@ -50,7 +48,7 @@ pipeline {
 					deployer.addonNightlyUpdateSite("${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/*-updateSite-*.zip", deploymentDirName)					
 					deployer.addonNightlyUpdateSite("${WORKSPACE}/releng/org.polarsys.capella.filtering.site/target/bom.json", deploymentDirName)					
 					currentBuild.description = "${deploymentDirName} - <a href=\"https://download.eclipse.org/capella/addons/filtering/dropins/nightly/${deploymentDirName}\">drop-in</a> - <a href=\"https://download.eclipse.org/capella/addons/filtering/updates/nightly/${deploymentDirName}\">update-site</a>"
-	       		}         
+	       		}
 	     	}
 	    }
 	    
@@ -79,15 +77,13 @@ pipeline {
 	     	}
 	    }
 	    
-    	stage('Run tests') {
+    	stage('Run JUnit Tests') {
         	steps {
         		script {
         			wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
-		        		
 		        		tester.runUITests("${CAPELLA_PRODUCT_PATH}", 'MainTestSuite', 'org.polarsys.capella.filtering.tests.ju', 
 		        			['org.polarsys.capella.filtering.tests.ju.MainTestSuite'])		        			 
 	        		}
-	        		
 	        		tester.publishTests()
 				}
 			}

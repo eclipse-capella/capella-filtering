@@ -10,28 +10,22 @@
   
   Contributors:
        Thales - initial API and implementation
+       Obeo - rehaul
 -->
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-	
-	<groupId>org.polarsys</groupId>
-	<artifactId>org.polarsys.capella.filtering.bundles</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.polarsys</groupId>
 		<artifactId>org.polarsys.capella.addon.filtering</artifactId>
-		<version>1.8.0-SNAPSHOT</version>
+		<version>${releaseVersion}${qualifier}</version>
 		<relativePath>../</relativePath>
 	</parent>
 
+	<artifactId>org.polarsys.capella.filtering.plugins</artifactId>
+	<packaging>pom</packaging>
+
 	<modules>
-	
-		<!-- Plugins -->
 		<module>org.polarsys.capella.filtering.af</module>
 		<module>org.polarsys.capella.filtering.business.queries</module>
 		<module>org.polarsys.capella.filtering.commandline</module>
@@ -47,7 +41,6 @@
 		<module>org.polarsys.capella.filtering.sirius.ui</module>
 		<module>org.polarsys.capella.filtering.tools</module>
 		<module>org.polarsys.capella.filtering.transition</module>
-		<module>org.polarsys.capella.filtering.validation</module>	
+		<module>org.polarsys.capella.filtering.validation</module>
 	</modules>
 </project>
-

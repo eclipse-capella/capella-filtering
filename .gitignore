@@ -15,43 +15,20 @@ tmp/
 *.bak
 *.swp
 *~.nib
-#local.properties
-#.classpath
-#.settings/
 .loadpath
-
+.polyglot.*
+.tycho-consumer-pom.xml
 # External tool builders
 .externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-#*.launch
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
 
 ########
 ## Sonar
 ########
 org.sonar.ide.eclipse.core.prefs
 
-#########
-## KDiff3
-#########
-*.orig
-
-#############
-## Clear Case
-#############
-*.mkelem
-*.contrib
-*.keep
-
-###################
-## Windows detritus
-###################
+############
+## Windows 
+############
 
 # Windows image file caches
 Thumbs.db
@@ -63,9 +40,9 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-##########
-# Mac crap
-##########
+#######
+# Mac 
+#######
 .DS_Store
 .DS_Store?
 ._*
